@@ -13,8 +13,22 @@ body {
   font-family: 'Poppins', sans-serif;
   line-height: 1.6;
   color: #333;
-  background: linear-gradient(135deg, #ffe5b4, #fff3e0, #fceabb);
-  /* soft peach-to-cream gradient */
+  background: url('https://copilot.microsoft.com/th/id/BCO.db250c33-7491-44d7-90a4-293734e14a22.png') no-repeat center center fixed;
+  background-size: cover;
+  position: relative;
+  z-index: 0;
+}
+
+/* Optional Overlay for readability */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 245, 230, 0.6); /* soft peach overlay */
+  z-index: -1;
 }
 
 /* Utility */
@@ -45,7 +59,7 @@ body {
   background: linear-gradient(135deg, #ffecd2, #fcb69f);
   color: #333;
   text-align: center;
-  padding-top: 120px; /* ensures hero text sits below nav */
+  padding-top: 120px;
 }
 
 .sub-header h1 {
@@ -55,11 +69,11 @@ body {
 
 /* Navigation */
 nav {
-  position: fixed;       /* keeps nav at the top */
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  background: #01796F;   /* teal for contrast */
+  background: #01796F;
   padding: 1rem 6%;
   display: flex;
   justify-content: space-between;
@@ -73,12 +87,12 @@ nav img {
 
 .nav-links ul {
   display: flex;
-  gap: 2rem; /* neat spacing between links */
+  gap: 2rem;
   list-style: none;
 }
 
 .nav-links ul li a {
-  color: #fff8e7;              /* warm cream tone */
+  color: #fff8e7;
   text-decoration: none;
   font-size: 1rem;
   font-weight: 500;
@@ -89,7 +103,7 @@ nav img {
   content: '';
   width: 0%;
   height: 2px;
-  background: #ffe5b4;         /* peach underline */
+  background: #ffe5b4;
   display: block;
   margin: auto;
   transition: width 0.3s ease;
@@ -124,18 +138,18 @@ nav .fa {
 
 /* Buttons */
 .hero-btn {
-  border: 1px solid #f77f00;   /* warm orange */
+  border: 1px solid #f77f00;
   color: #fff;
   background: #f77f00;
 }
 
 .hero-btn:hover {
-  background: #d65a00;         /* deeper orange on hover */
+  background: #d65a00;
   border: 1px solid #d65a00;
 }
 
 .blue-btn {
-  border: 1px solid #ff9f68;   /* soft coral */
+  border: 1px solid #ff9f68;
   color: #ff9f68;
   background: transparent;
 }
@@ -174,7 +188,7 @@ p {
 .contact-col,
 .About-col {
   flex: 1 1 30%;
-  background: #fff8e7; /* warm cream tone */
+  background: #fff8e7;
   border-radius: 10px;
   padding: 1.5rem;
   transition: box-shadow 0.3s ease;
@@ -197,7 +211,7 @@ p {
 
 /* Testimonials */
 .testimonial-col {
-  background: #ffe0b2; /* soft orange for warmth */
+  background: #ffe0b2;
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -228,7 +242,7 @@ p {
 }
 
 .icons .fa {
-  color: #f77f00;              /* warm orange for consistency */
+  color: #f77f00;
   margin: 0 0.75rem;
   cursor: pointer;
   transition: transform 0.3s ease;
@@ -236,7 +250,7 @@ p {
 
 .icons .fa:hover {
   transform: scale(1.2);
-  color: #d65a00;              /* deeper orange hover */
+  color: #d65a00;
 }
 
 /* Forms */
@@ -267,7 +281,7 @@ input, textarea {
     height: 100vh;
     width: 200px;
     top: 0;
-    right: -200px; /* hidden by default */
+    right: -200px;
     transition: right 0.3s ease;
     padding: 2rem;
     text-align: left;
