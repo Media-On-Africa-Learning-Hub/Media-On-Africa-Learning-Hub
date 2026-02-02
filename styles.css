@@ -40,49 +40,39 @@ body {
 
 /* Header */
 .header, .sub-header {
-  min-height: 50vh;
-  background: linear-gradient(rgba(3, 7, 4, 0.7), rgba(81, 204, 32, 0.7)),
-              url(css/istockphoto-1207872886-612x612.jpg) center/cover no-repeat;
-  position: relative;
-  color: #fff;
+  min-height: 80vh;
+  background: #f4f4f4; /* clean light background */
+  color: #333;
   text-align: center;
-}
-
-.sub-header {
-  background: linear-gradient(rgba(214, 167, 13, 0.7),rgba(4,9,30,0.7)),
-              url(css/modern-education-20.jpg) center/cover no-repeat;
+  padding-top: 120px; /* ensures hero text sits below nav */
 }
 
 .sub-header h1 {
-  margin-top: 100px;
   font-size: 2.5rem;
+  margin-bottom: 1rem;
 }
 
 /* Navigation */
 nav {
+  position: fixed;       /* keeps nav at the top */
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #01796F;   /* solid background so links are visible */
+  padding: 1rem 6%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 6%;
+  z-index: 1000;
 }
 
 nav img {
   width: 150px;
 }
 
-.nav-links {
-  flex: 1;
-  text-align: right;
-}
-
 .nav-links ul {
   display: flex;
   gap: 2rem; /* neat spacing between links */
-  justify-content: flex-end;
-  align-items: center;
-}
-
-.nav-links ul li {
   list-style: none;
 }
 
@@ -90,6 +80,7 @@ nav img {
   color: #fff;
   text-decoration: none;
   font-size: 1rem;
+  font-weight: 500;
   position: relative;
 }
 
@@ -114,11 +105,9 @@ nav .fa {
 
 /* Hero Text */
 .text-box {
-  text-align: center;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  max-width: 800px;
+  margin: auto;
+  padding: 2rem;
 }
 
 .text-box h1 {
@@ -129,18 +118,19 @@ nav .fa {
 .text-box p {
   font-size: 1rem;
   margin-bottom: 2rem;
+  color: #555;
 }
 
 /* Buttons */
 .hero-btn {
-  border: 1px solid #fff;
+  border: 1px solid #01796F;
   color: #fff;
-  background: transparent;
+  background: #01796F;
 }
 
 .hero-btn:hover {
-  background: #0c2916;
-  border: 2px solid #fff;
+  background: #025c4f;
+  border: 1px solid #025c4f;
 }
 
 .blue-btn {
@@ -195,11 +185,6 @@ p {
 }
 
 /* Facilities */
-.facilities {
-  background: linear-gradient(rgba(81, 88, 114, 0.7), rgba(30, 4, 17, 0.7)),
-              url(css/What+is+Lifelong+Learning.png) center/cover no-repeat;
-}
-
 .facilities-col img {
   width: 100%;
   border-radius: 10px;
@@ -224,12 +209,11 @@ p {
 
 /* CTA */
 .cta {
-  background: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),
-              url(css/gse-virtual-learning-NL.jpg) center/cover no-repeat;
+  background: #01796F;
   border-radius: 10px;
   text-align: center;
   padding: 4rem 2rem;
-  color: #00b3ff;
+  color: #fff;
 }
 
 /* Footer */
