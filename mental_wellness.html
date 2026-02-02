@@ -16,7 +16,7 @@
       href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
     />
   </head>
-  <body>
+  <body class="wellness-page">
 
     <!-- Sub-header -->
     <section class="sub-header">
@@ -44,7 +44,7 @@
         <div class="About-col">
           <h1>🌿 A Safe Space for Students</h1>
           <p>
-            Life as a student can be overwhelming. Between exams, expectations, and personal challenges, it’s easy to feel stressed or alone. This hub is here to remind you: your feelings matter, your well-being matters, and you are not alone. 
+            Life as a student can be overwhelming. Between exams, expectations, and personal challenges, it’s easy to feel stressed or alone. This hub is here to remind you: your feelings matter, your well-being matters, and you are not alone.  
           </p>
           <p>
             Mental wellness is not about being happy all the time — it’s about learning to care for yourself, finding balance, and knowing when to pause. Here you’ll find comforting reads, practical exercises, and words of encouragement to help you feel grounded.
@@ -74,8 +74,17 @@
       <div class="row">
         <div class="About-col">
           <h2>🌟 Daily Positivity</h2>
-          <p class="quote">“Every day may not be good, but there’s something good in every day.”</p>
+          <p id="daily-quote" class="quote"></p>
           <p>Try this: Write down one thing you’re grateful for today and share it with a friend. Gratitude shifts your focus from what’s missing to what’s present.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="About-us">
+      <div class="row">
+        <div class="About-col">
+          <h2>📝 Reflection Prompt</h2>
+          <p id="reflection-prompt"></p>
         </div>
       </div>
     </section>
@@ -124,7 +133,7 @@
     <section class="Footer">
       <h4>Mental Wellness Hub</h4>
       <p>
-        This space is dedicated to helping students feel supported, encouraged, and connected. 
+        This space is dedicated to helping students feel supported, encouraged, and connected.  
         Remember: taking care of your mind is just as important as taking care of your studies.
       </p>
       <div class="icons">
@@ -143,6 +152,43 @@
       function hidemenu() { navLinks.style.right = "-200px"; }
     </script>
 
+    <!-- Rotating Quotes & Reflection Prompts -->
+    <script>
+      const quotes = [
+        "Every day may not be good, but there’s something good in every day.",
+        "You are stronger than you think, braver than you feel, and smarter than you believe.",
+        "Rest is not a waste of time — it’s how you recharge your mind and body.",
+        "Your value is not measured by grades, but by the kindness you show and the effort you give.",
+        "Even the darkest night will end, and the sun will rise.",
+        "Progress, not perfection — small steps lead to big change.",
+        "You are not alone. Someone cares about how you feel today."
+      ];
+
+      const reflections = [
+        "What’s one thing you did well today?",
+        "What’s a small step you can take tomorrow to feel better?",
+        "What’s one challenge you overcame recently?",
+        "What’s something you’re grateful for right now?",
+        "What’s one kind thing you can do for yourself today?",
+        "What’s a moment this week that made you smile?",
+        "What’s one strength you’re proud of?"
+      ];
+
+      document.addEventListener("DOMContentLoaded", function() {
+        const quoteContainer = document.getElementById("daily-quote");
+        const reflectionContainer = document.getElementById("reflection-prompt");
+
+        if (quoteContainer) {
+          const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+          quoteContainer.innerText = randomQuote;
+        }
+
+        if (reflectionContainer) {
+          const randomReflection = reflections[Math.floor(Math.random() * reflections.length)];
+          reflectionContainer.innerText = randomReflection;
+        }
+      });
+    </script>
     <!-- Chatbot Embed -->
     <script src="//code.tidio.co/uqdod81sfajvlkpiujfsjo49za71xsuc.js" async></script>
   </body>
