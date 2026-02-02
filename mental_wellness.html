@@ -174,23 +174,22 @@
         "What’s one strength you’re proud of?"
       ];
 
-      let quoteIndex = 0;
-      let reflectionIndex = 0;
-
-      function updateContent() {
+      document.addEventListener("DOMContentLoaded", function() {
         const quoteContainer = document.getElementById("daily-quote");
         const reflectionContainer = document.getElementById("reflection-prompt");
 
         if (quoteContainer) {
-          quoteContainer.innerText = quotes[quoteIndex];
-          quoteIndex = (quoteIndex + 1) % quotes.length;
+          const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+          quoteContainer.innerText = randomQuote;
         }
 
         if (reflectionContainer) {
-          reflectionContainer.innerText = reflections[reflectionIndex];
-          reflectionIndex = (reflectionIndex + 1) % reflections.length;
-        }};
+          const randomReflection = reflections[Math.floor(Math.random() * reflections.length)];
+          reflectionContainer.innerText = randomReflection;
+        }
+      });
     </script>
+
     <!-- Chatbot Embed -->
     <script src="//code.tidio.co/uqdod81sfajvlkpiujfsjo49za71xsuc.js" async></script>
   </body>
