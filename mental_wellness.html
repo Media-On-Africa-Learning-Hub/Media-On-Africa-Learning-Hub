@@ -50,6 +50,10 @@
             Mental wellness is not about being happy all the time — it’s about learning to care for yourself, finding balance, and knowing when to pause. Here you’ll find comforting reads, practical exercises, and words of encouragement to help you feel grounded.
           </p>
         </div>
+        <div class="About-col">
+          <img src="images/wellness.jpg" alt="Students practicing mindfulness" />
+        </div>
+      </div>
     </section>
 
     <section class="About-us">
@@ -170,20 +174,22 @@
         "What’s one strength you’re proud of?"
       ];
 
-      document.addEventListener("DOMContentLoaded", function() {
+      let quoteIndex = 0;
+      let reflectionIndex = 0;
+
+      function updateContent() {
         const quoteContainer = document.getElementById("daily-quote");
         const reflectionContainer = document.getElementById("reflection-prompt");
 
         if (quoteContainer) {
-          const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
-          quoteContainer.innerText = randomQuote;
+          quoteContainer.innerText = quotes[quoteIndex];
+          quoteIndex = (quoteIndex + 1) % quotes.length;
         }
 
         if (reflectionContainer) {
-          const randomReflection = reflections[Math.floor(Math.random() * reflections.length)];
-          reflectionContainer.innerText = randomReflection;
-        }
-      });
+          reflectionContainer.innerText = reflections[reflectionIndex];
+          reflectionIndex = (reflectionIndex + 1) % reflections.length;
+        }};
     </script>
     <!-- Chatbot Embed -->
     <script src="//code.tidio.co/uqdod81sfajvlkpiujfsjo49za71xsuc.js" async></script>
