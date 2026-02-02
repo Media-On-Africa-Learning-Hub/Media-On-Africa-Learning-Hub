@@ -1,3 +1,15 @@
+/* Theme Variables */
+:root {
+  --color-green: #88b04b;   /* soft green */
+  --color-orange: #f77f00;  /* warm orange */
+  --color-orange-dark: #d65a00;
+  --color-blue: #4a90e2;    /* calm blue */
+  --color-beige: #fff8e7;   /* warm neutral background */
+  --color-light-blue: #e6f2ff;
+  --color-dark: #333;
+  --color-gray: #555;
+}
+
 /* Global Reset & Typography */
 * {
   margin: 0;
@@ -12,8 +24,8 @@ html {
 body {
   font-family: 'Poppins', sans-serif;
   line-height: 1.6;
-  color: #333;
-  background-color: #fff8e7; /* warm static background */
+  color: var(--color-dark);
+  background-color: var(--color-beige);
 }
 
 /* Utility */
@@ -41,8 +53,8 @@ body {
 /* Header */
 .header, .sub-header {
   min-height: 60vh;
-  background: #fcb69f; /* warm peach tone */
-  color: #333;
+  background: var(--color-blue);
+  color: #fff;
   text-align: center;
   padding-top: 120px;
 }
@@ -58,7 +70,7 @@ nav {
   top: 0;
   left: 0;
   width: 100%;
-  background: #b5651d; /* warm brown */
+  background: var(--color-green);
   padding: 1rem 6%;
   display: flex;
   justify-content: space-between;
@@ -77,7 +89,7 @@ nav img {
 }
 
 .nav-links ul li a {
-  color: #fff8e7;
+  color: var(--color-beige);
   text-decoration: none;
   font-size: 1rem;
   font-weight: 500;
@@ -88,7 +100,7 @@ nav img {
   content: '';
   width: 0%;
   height: 2px;
-  background: #ffe5b4;
+  background: var(--color-orange);
   display: block;
   margin: auto;
   transition: width 0.3s ease;
@@ -118,19 +130,19 @@ nav .fa {
 .text-box p {
   font-size: 1rem;
   margin-bottom: 2rem;
-  color: #555;
+  color: var(--color-gray);
 }
 
 /* Buttons */
 .hero-btn {
-  border: 1px solid #f77f00;
+  border: 1px solid var(--color-orange);
   color: #fff;
-  background: #f77f00;
+  background: var(--color-orange);
 }
 
 .hero-btn:hover {
-  background: #d65a00;
-  border: 1px solid #d65a00;
+  background: var(--color-orange-dark);
+  border: 1px solid var(--color-orange-dark);
 }
 
 /* Sections */
@@ -150,7 +162,7 @@ p {
 
 /* About Blocks */
 .about-block {
-  background-color: #ffe5b4; /* warm beige block */
+  background-color: var(--color-light-blue);
   border-radius: 8px;
   padding: 2rem;
   margin: 2rem 0;
@@ -159,7 +171,7 @@ p {
 
 .about-block h2, 
 .about-block h3 {
-  color: #b5651d; /* warm brown headings */
+  color: var(--color-green);
   margin-bottom: 1rem;
 }
 
@@ -167,7 +179,8 @@ p {
 .Footer {
   text-align: center;
   padding: 2rem 0;
-  background: #fcb69f; /* warm footer tone */
+  background: var(--color-blue);
+  color: #fff;
 }
 
 .Footer h4 {
@@ -175,7 +188,7 @@ p {
 }
 
 .icons .fa {
-  color: #f77f00;
+  color: var(--color-orange);
   margin: 0 0.75rem;
   cursor: pointer;
   transition: transform 0.3s ease;
@@ -183,7 +196,7 @@ p {
 
 .icons .fa:hover {
   transform: scale(1.2);
-  color: #d65a00;
+  color: var(--color-orange-dark);
 }
 
 /* Responsive */
@@ -198,7 +211,7 @@ p {
   }
   .nav-links {
     position: fixed;
-    background: #b5651d;
+    background: var(--color-green);
     height: 100vh;
     width: 200px;
     top: 0;
