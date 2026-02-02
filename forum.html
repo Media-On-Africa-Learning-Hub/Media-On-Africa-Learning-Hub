@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Forum | Media On Africa Learning Hub</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f9f9f9;
+      color: #333;
+    }
+    header {
+      background: #004d40;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+    main {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 1rem;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h2>Media On Africa Learning Hub</h2>
+  </header>
+  <main>
+    <h1>Student Discussion Forum</h1>
+    <p>Welcome! Use this space to ask questions, share tips, and collaborate with other students.</p>
+
+    <!-- Disqus Embed -->
+    <div id="disqus_thread"></div>
+    <script>
+      var disqus_config = function () {
+        this.page.url = window.location.href;  
+        this.page.identifier = "sitewide-forum"; 
+      };
+      (function() {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://mediaonafrica.disqus.com/embed.js'; 
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the forum.</noscript>
+  </main>
+</body>
+</html>
