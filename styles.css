@@ -1,12 +1,12 @@
-/* Theme Variables */
 :root {
-  --color-green: #a8c686;   /* misty green */
-  --color-orange: #f4a261;  /* soft orange */
+  --color-green: #a8c686;   /* muted green */
+  --color-orange: #f4a261;  /* friendly orange */
   --color-orange-dark: #e76f51;
   --color-blue: #6ca0dc;    /* gentle blue */
-  --color-bg: #faf9f6;      /* off-white background */
+  --color-bg: #fffaf3;      /* warm cream background */
+  --color-block: #ffe0c2;   /* soft peach blocks */
   --color-dark: #333;
-  --color-gray: #666;
+  --color-gray: #555;
 }
 
 /* Global Reset & Typography */
@@ -16,16 +16,11 @@
   box-sizing: border-box;
 }
 
-html {
-  font-size: 16px;
-}
-
 body {
   font-family: 'Poppins', sans-serif;
   line-height: 1.8;
   color: var(--color-dark);
   background-color: var(--color-bg);
-  padding: 2rem; /* generous whitespace */
 }
 
 /* Utility */
@@ -34,7 +29,7 @@ body {
   max-width: 1200px;
   margin: auto;
   display: grid;
-  gap: 3rem; /* spacing between blocks */
+  gap: 3rem;
 }
 
 /* Header */
@@ -69,10 +64,6 @@ nav {
   z-index: 1000;
 }
 
-nav img {
-  width: 150px;
-}
-
 .nav-links ul {
   display: flex;
   gap: 2.5rem;
@@ -99,11 +90,6 @@ nav img {
 
 .nav-links ul li a:hover::after {
   width: 100%;
-}
-
-nav .fa {
-  display: none;
-  cursor: pointer;
 }
 
 /* Hero Text */
@@ -139,9 +125,13 @@ nav .fa {
   border: 1px solid var(--color-orange-dark);
 }
 
-/* Sections */
-section {
-  padding: 6rem 0;
+/* Sections with alternating backgrounds */
+section:nth-of-type(odd) {
+  background: var(--color-bg); /* cream */
+}
+
+section:nth-of-type(even) {
+  background: var(--color-block); /* peach */
 }
 
 h2 {
@@ -151,11 +141,11 @@ h2 {
 
 /* About Blocks */
 .about-block {
-  background-color: #ffffff;
-  border-radius: 10px;
+  background-color: #fff;
+  border-radius: 12px;
   padding: 3rem;
   margin: 3rem 0;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.08);
 }
 
 .about-block h2, 
@@ -172,12 +162,80 @@ h2 {
 }
 
 .feature-card {
-  background: var(--color-blue);
-  color: #fff;
+  background: #fff;
+  color: var(--color-dark);
   padding: 2rem;
-  border-radius: 8px;
+  border-radius: 10px;
   text-align: center;
-  box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.feature-card h3 {
+  color: var(--color-blue);
+  margin-bottom: 1rem;
+}
+
+/* Subjects Section */
+.subjects {
+  text-align: center;
+  padding: 60px 20px;
+  background: var(--color-bg); /* cream background */
+}
+
+.subjects h1 {
+  font-size: 2.5em;
+  margin-bottom: 10px;
+  color: var(--color-green);
+}
+
+.subjects p {
+  font-size: 1.2em;
+  color: var(--color-gray);
+  margin-bottom: 30px;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.subject-col {
+  background: #fff;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  width: 300px;
+  text-align: left;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.subject-col:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 12px rgba(0,0,0,0.15);
+}
+
+.subject-col h3 {
+  font-size: 1.5em;
+  margin-bottom: 15px;
+  color: var(--color-blue);
+}
+
+.subject-col ul {
+  list-style: none;
+  padding: 0;
+}
+
+.subject-col ul li {
+  margin-bottom: 10px;
+  font-size: 1em;
+  color: #444;
+}
+
+.subject-col ul li strong {
+  color: var(--color-orange); /* accent keywords */
 }
 
 /* Call-to-Action Banner */
@@ -186,7 +244,7 @@ h2 {
   color: #fff;
   text-align: center;
   padding: 4rem 2rem;
-  border-radius: 8px;
+  border-radius: 10px;
   margin: 4rem 0;
 }
 
