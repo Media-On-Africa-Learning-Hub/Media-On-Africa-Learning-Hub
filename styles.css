@@ -16,7 +16,7 @@ body {
   background: #fff;
 }
 
-/* Utility Classes */
+/* Utility */
 .container {
   width: 90%;
   max-width: 1200px;
@@ -60,7 +60,9 @@ nav img {
 
 .nav-links ul {
   display: flex;
-  gap: 1rem;
+  gap: 1.5rem; /* spacing between links */
+  justify-content: flex-end;
+  align-items: center;
 }
 
 .nav-links ul li {
@@ -88,6 +90,11 @@ nav img {
   width: 100%;
 }
 
+nav .fa {
+  display: none;
+}
+
+/* Hero Text */
 .text-box {
   text-align: center;
   position: absolute;
@@ -166,6 +173,21 @@ p {
 .subject-col:hover,
 .testimonial-col:hover {
   box-shadow: 0 0 20px rgba(0,0,0,0.3);
+}
+
+/* Facilities */
+.facilities {
+  background: linear-gradient(rgba(81, 88, 114, 0.7), rgba(30, 4, 17, 0.7)),
+              url(css/What+is+Lifelong+Learning.png) center/cover no-repeat;
+}
+
+.facilities-col img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.facilities-col p {
+  padding: 1rem;
 }
 
 /* Testimonials */
