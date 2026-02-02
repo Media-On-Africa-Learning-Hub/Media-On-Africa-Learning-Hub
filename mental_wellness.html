@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mental Wellness Hub - Media On Africa</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300;400;700&family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+  <body>
+
+    <!-- Sub-header -->
+    <section class="sub-header">
+      <nav>
+        <a href="index.html"><img src="images/logo.png" alt="LOGO" /></a>
+        <div class="nav-links" id="navLinks">
+          <i class="fa fa-times" onclick="hidemenu()"></i>
+          <ul>
+            <li><a href="index.html">HOME</a></li>
+            <li><a href="About.html">ABOUT</a></li>
+            <li><a href="Subjects.html">SUBJECTS</a></li>
+            <li><a href="mental_wellness.html">WELLNESS</a></li>
+            <li><a href="blog.html">BLOG</a></li>
+            <li><a href="contact.html">CONTACT</a></li>
+          </ul>
+        </div>
+        <i class="fa fa-bars" onclick="showmenu()"></i>
+      </nav>
+      <h1>Mental Wellness Hub</h1>
+    </section>
+
+    <!-- Wellness Content -->
+    <section class="About-us">
+      <div class="row">
+        <div class="About-col">
+          <h1>🌿 A Safe Space for Students</h1>
+          <p>
+            Life as a student can be overwhelming. Between exams, expectations, and personal challenges, it’s easy to feel stressed or alone. This hub is here to remind you: your feelings matter, your well-being matters, and you are not alone. 
+          </p>
+          <p>
+            Mental wellness is not about being happy all the time — it’s about learning to care for yourself, finding balance, and knowing when to pause. Here you’ll find comforting reads, practical exercises, and words of encouragement to help you feel grounded.
+          </p>
+        </div>
+        <div class="About-col">
+          <img src="images/wellness.jpg" alt="Students practicing mindfulness" />
+        </div>
+      </div>
+    </section>
+
+    <section class="About-us">
+      <div class="row">
+        <div class="About-col">
+          <h2>💡 Comforting Reads</h2>
+          <ul>
+            <li><strong>Managing Exam Stress:</strong> Break study sessions into smaller chunks, take short walks, and remind yourself that progress matters more than perfection.</li>
+            <li><strong>Mindful Breaks:</strong> Close your eyes for 2 minutes, breathe deeply, and notice how your body feels. This resets your focus.</li>
+            <li><strong>Dealing with Loneliness:</strong> Reach out to a friend, join a study group, or write down your thoughts. Connection can be found in small moments.</li>
+            <li><strong>Building Resilience:</strong> Think of challenges as stepping stones. Each difficulty you overcome adds strength to your journey.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="About-us">
+      <div class="row">
+        <div class="About-col">
+          <h2>🌟 Daily Positivity</h2>
+          <p class="quote">“Every day may not be good, but there’s something good in every day.”</p>
+          <p>Try this: Write down one thing you’re grateful for today and share it with a friend. Gratitude shifts your focus from what’s missing to what’s present.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="About-us">
+      <div class="row">
+        <div class="About-col">
+          <h2>✨ Quick Relaxation Exercise</h2>
+          <p>Try this 4-7-8 breathing technique:</p>
+          <ol>
+            <li>Inhale quietly through your nose for 4 seconds.</li>
+            <li>Hold your breath for 7 seconds.</li>
+            <li>Exhale completely through your mouth for 8 seconds.</li>
+            <li>Repeat 3–4 times to calm your mind.</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="About-us">
+      <div class="row">
+        <div class="About-col">
+          <h2>💬 Words of Encouragement</h2>
+          <p>
+            You are more than your grades, more than your struggles, and more than your mistakes. You are a person with dreams, strengths, and endless potential. Even when life feels heavy, you carry the ability to rise again.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="About-us">
+      <div class="row">
+        <div class="About-col">
+          <h2>📚 Resources</h2>
+          <p>Explore more on mindfulness and student wellness:</p>
+          <ul>
+            <li><a href="https://www.mindful.org/" target="_blank">Mindful.org</a> — Articles and practices for everyday mindfulness.</li>
+            <li><a href="https://www.headspace.com/" target="_blank">Headspace</a> — Guided meditations and stress relief tools.</li>
+            <li><a href="https://www.who.int/health-topics/mental-health" target="_blank">WHO Mental Health</a> — Global resources on mental wellness.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <section class="Footer">
+      <h4>Mental Wellness Hub</h4>
+      <p>
+        This space is dedicated to helping students feel supported, encouraged, and connected. 
+        Remember: taking care of your mind is just as important as taking care of your studies.
+      </p>
+      <div class="icons">
+        <i class="fa fa-facebook"></i>
+        <i class="fa fa-twitter"></i> 
+        <i class="fa fa-instagram"></i> 
+        <i class="fa fa-linkedin"></i> 
+      </div>
+      <p>Made with <i class="fa fa-heart-o"></i> by Media On Africa</p>
+    </section>
+
+    <!-- JavaScript for Toggle Menu -->
+    <script>
+      var navLinks = document.getElementById("navLinks");
+      function showmenu() { navLinks.style.right = "0"; }
+      function hidemenu() { navLinks.style.right = "-200px"; }
+    </script>
+
+    <!-- Chatbot Embed -->
+    <script src="//code.tidio.co/uqdod81sfajvlkpiujfsjo49za71xsuc.js" async></script>
+  </body>
+</html>
