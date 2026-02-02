@@ -1,26 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Discussion Forum - Media On Africa</title>
-    <link rel="stylesheet" href="styles.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300;400;700&family=Poppins:wght@300;400;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
-  </head>
-
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Discussion Forum - Media On Africa</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300;400;700&family=Poppins:wght@300;400;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+  />
+</head>
 <body>
+
   <!-- Sub-header with Forum Title -->
-  <section class="sub-header" style="padding:3rem 1rem;text-align:center;background:#d97b48;color:#fdfdfd;">
-    <nav style="margin-bottom:2rem;">
+  <section class="sub-header">
+    <nav>
       <a href="index.html"><img src="images/logo.png" alt="LOGO" /></a>
       <div class="nav-links" id="navLinks">
         <i class="fa fa-times" onclick="hidemenu()"></i>
@@ -36,15 +36,14 @@
       </div>
       <i class="fa fa-bars" onclick="showmenu()"></i>
     </nav>
-    <h1 style="font-family:'Poppins',sans-serif;font-weight:700;margin:0;">
-      Student Discussion Forum
-    </h1>
-    <p style="max-width:700px;margin:1rem auto;font-family:'Comic Neue',sans-serif;font-size:1.2rem;opacity:0.9;">
+    <h1>Student Discussion Forum</h1>
+    <p>
       Welcome! Use this space to ask questions, share tips, and collaborate with other students.
     </p>
   </section>
 
-  <main style="max-width:800px;margin:2rem auto;padding:1rem;background:#fffdf9;border-radius:8px;box-shadow:0 2px 6px rgba(0,0,0,0.1);">
+  <!-- Forum Content -->
+  <main class="forum-content">
     <!-- Disqus Embed -->
     <div id="disqus_thread"></div>
     <script>
@@ -54,7 +53,7 @@
       };
       (function() {
         var d = document, s = d.createElement('script');
-        s.src = 'https://mediaonafrica.disqus.com/embed.js'; 
+        s.src = 'https://mediaonafrica.disqus.com/embed.js';  
         s.setAttribute('data-timestamp', +new Date());
         (d.head || d.body).appendChild(s);
       })();
@@ -65,9 +64,11 @@
   <!-- Footer -->
   <section class="Footer">
     <h4>About Us</h4>
-    <p>By leveraging technology, we aim to empower students with
-      the tools and support they need to succeed academically<br>regardless of
-      their location, resources, or socioeconomic status</p>
+    <p>
+      By leveraging technology, we aim to empower students with
+      the tools and support they need to succeed academically<br>
+      regardless of their location, resources, or socioeconomic status
+    </p>
     <div class="icons">
       <i class="fa fa-facebook"></i>
       <i class="fa fa-twitter"></i> 
@@ -88,3 +89,4 @@
   <script src="https://code.tidio.co/uqdod81sfajvlkpiujfsjo49za71xsuc.js" async></script>
 </body>
 </html>
+
