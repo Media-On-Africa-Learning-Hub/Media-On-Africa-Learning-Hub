@@ -15,6 +15,97 @@
     rel="stylesheet"
     href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
   />
+  <style>
+    /* Slimmer header */
+    .header {
+      min-height: 40vh;
+      width: 100%;
+      background: #27ae60;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .header h1 {
+      font-size: 2.5rem;
+      margin-top: 1rem;
+    }
+
+    /* About Us Section */
+    .About-us {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      padding: 3rem;
+      background: #f9f9f9;
+    }
+
+    .feature-block {
+      background: #ffffff;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .feature-block h2,
+    .feature-block h3 {
+      margin-bottom: 1rem;
+      color: #2c3e50;
+    }
+
+    .feature-block p {
+      line-height: 1.6;
+      color: #555;
+    }
+
+    .hero-btn {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.8rem 1.5rem;
+      background: #27ae60;
+      color: #fff;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: background 0.3s ease;
+    }
+
+    .hero-btn:hover {
+      background: #219150;
+    }
+
+    /* Footer */
+    .Footer {
+      background: #222;
+      color: #fff;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .Footer h4 {
+      margin-bottom: 1rem;
+    }
+
+    .Footer p {
+      color: #bbb;
+      line-height: 1.5;
+    }
+
+    .icons i {
+      margin: 0 10px;
+      color: #27ae60;
+      cursor: pointer;
+    }
+
+    /* Mobile-friendly layout */
+    @media (max-width: 768px) {
+      .About-us {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 <body>
 
@@ -43,7 +134,7 @@
 
 <!-- About Us Content -->
 <section class="About-us">
-  <div class="About-col">
+  <div class="feature-block">
     <h2>Africa's Biggest E-learning Platform</h2>
     <p>
       We are creating an inclusive and accessible e-learning platform
@@ -52,7 +143,7 @@
     </p>
   </div>
 
-  <div class="About-col">
+  <div class="feature-block">
     <h3>Core Features</h3>
     <p>
       Our platform is built to work offline-first, allowing learners to
@@ -60,7 +151,7 @@
     </p>
   </div>
 
-  <div class="About-col">
+  <div class="feature-block">
     <h3>Community and Support</h3>
     <p>
       Learners can connect through peer-to-peer discussion forums, fostering
@@ -68,7 +159,7 @@
     </p>
   </div>
 
-  <div class="About-col">
+  <div class="feature-block">
     <h3>Technical Strategy</h3>
     <p>
       The platform is optimized for low-bandwidth environments with compressed
@@ -76,7 +167,7 @@
     </p>
   </div>
 
-  <div class="About-col">
+  <div class="feature-block">
     <h3>Long-Term Impact</h3>
     <p>
       Our mission is to narrow the achievement gap between urban and rural
@@ -118,4 +209,3 @@
 <script src="//code.tidio.co/uqdod81sfajvlkpiujfsjo49za71xsuc.js" async></script>
 </body>
 </html>
-
