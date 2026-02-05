@@ -122,14 +122,7 @@
   <p>Made with <i class="fa fa-heart-o"></i> by Media On Africa</p>
 </section>
 
-<!-- JavaScript for Toggle Menu -->
-<script>
-  var navLinks = document.getElementById("navLinks");
-  function showmenu() { navLinks.style.right = "0"; }
-  function hidemenu() { navLinks.style.right = "-200px"; }
-</script>
-
-<!-- Rotating Quotes & Reflection Prompts -->
+<!-- Rotating Quotes, Reflections, Relaxation Exercises & Encouragement -->
 <script>
   const quotes = [
     "Every day may not be good, but there’s something good in every day.",
@@ -138,7 +131,9 @@
     "Your value is not measured by grades, but by the kindness you show and the effort you give.",
     "Even the darkest night will end, and the sun will rise.",
     "Progress, not perfection — small steps lead to big change.",
-    "You are not alone. Someone cares about how you feel today."
+    "You are not alone. Someone cares about how you feel today.",
+    "Take one step at a time — small progress is still progress.",
+    "Your journey is unique, and that makes it powerful."
   ];
 
   const reflections = [
@@ -148,24 +143,59 @@
     "What’s something you’re grateful for right now?",
     "What’s one kind thing you can do for yourself today?",
     "What’s a moment this week that made you smile?",
-    "What’s one strength you’re proud of?"
+    "What’s one strength you’re proud of?",
+    "What’s a lesson you learned from a mistake?",
+    "What’s one way you showed kindness today?",
+    "What’s something you’re looking forward to?"
   ];
 
+  const relaxationExercises = [
+    "Close your eyes and take 5 slow breaths, focusing only on the rise and fall of your chest.",
+    "Stretch your arms overhead, then gently roll your shoulders back to release tension.",
+    "Try progressive muscle relaxation: tense each muscle group for 5 seconds, then release.",
+    "Visualize a calm place — a beach, a forest, or anywhere peaceful — and imagine yourself there.",
+    "Do a quick body scan: notice how your head, shoulders, arms, and legs feel, and let go of tightness."
+  ];
+
+  const encouragements = [
+    "You are more than your grades, more than your struggles, and more than your mistakes.",
+    "Even when life feels heavy, you carry the ability to rise again.",
+    "Your effort matters, even when results take time.",
+    "You are worthy of rest, care, and compassion.",
+    "Every challenge you face is proof of your strength.",
+    "You have the courage to keep moving forward, even when it’s hard.",
+    "Your dreams are valid, and your potential is limitless."
+  ];
+
+  function rotateContent(containerId, array) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+    let index = 0;
+    container.innerText = array[index];
+    setInterval(() => {
+      index = (index + 1) % array.length;
+      container.innerText = array[index];
+    }, 8000); // rotates every 8 seconds
+  }
+
   document.addEventListener("DOMContentLoaded", function() {
-    const quoteContainer = document.getElementById("daily-quote");
-    const reflectionContainer = document.getElementById("reflection-prompt");
+    // Ensure containers exist
+    const exerciseContainer = document.createElement("p");
+    exerciseContainer.id = "relaxation-exercise";
+    document.querySelector(".feature-block:nth-of-type(5)").appendChild(exerciseContainer);
 
-    if (quoteContainer) {
-      const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
-      quoteContainer.innerText = randomQuote;
-    }
+    const encouragementContainer = document.createElement("p");
+    encouragementContainer.id = "encouragement";
+    document.querySelector(".feature-block:nth-of-type(6)").appendChild(encouragementContainer);
 
-    if (reflectionContainer) {
-      const randomReflection = reflections[Math.floor(Math.random() * reflections.length)];
-      reflectionContainer.innerText = randomReflection;
-    }
+    // Start rotations
+    rotateContent("daily-quote", quotes);
+    rotateContent("reflection-prompt", reflections);
+    rotateContent("relaxation-exercise", relaxationExercises);
+    rotateContent("encouragement", encouragements);
   });
 </script>
+
 
 <!-- Chatbot Embed -->
 <script src="//code.tidio.co/uqdod81sfajvlkpiujfsjo49za71xsuc.js" async></script>
