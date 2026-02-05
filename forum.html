@@ -18,77 +18,81 @@
 </head>
 <body>
 
-  <!-- Forum Header -->
-  <section class="header small-header">
-    <nav>
-      <a href="index.html"><img src="images/logo.png" alt="LOGO" /></a>
-      <div class="nav-links" id="navLinks">
-        <i class="fa fa-times" onclick="hidemenu()"></i>
-        <ul>
-          <li><a href="index.html">HOME</a></li>
-          <li><a href="About.html">ABOUT</a></li>
-          <li><a href="Subjects.html">SUBJECTS</a></li>
-          <li><a href="forum.html">DISCUSSION</a></li>
-          <li><a href="mental_wellness.html">WELLNESS</a></li>
-          <li><a href="blog.html">BLOG</a></li>
-          <li><a href="contact.html">CONTACT</a></li>
-        </ul>
-      </div>
-      <i class="fa fa-bars" onclick="showmenu()"></i>
-    </nav>
-    <div class="text-box">
-      <h1>Student Discussion Forum</h1>
-      <p>
-        Welcome! Use this space to ask questions, share tips, and collaborate with other students.
-      </p>
-    </div>
-  </section>
+<!-- Navigation (always at the very top) -->
+<nav>
+  <a href="index.html"><img src="images/logo.png" alt="LOGO" /></a>
+  <div class="nav-links" id="navLinks">
+    <i class="fa fa-times" onclick="hidemenu()"></i>
+    <ul>
+      <li><a href="index.html">HOME</a></li>
+      <li><a href="About.html">ABOUT</a></li>
+      <li><a href="Subjects.html">SUBJECTS</a></li>
+      <li><a href="forum.html">DISCUSSION</a></li>
+      <li><a href="mental_wellness.html">WELLNESS</a></li>
+      <li><a href="blog.html">BLOG</a></li>
+      <li><a href="contact.html">CONTACT</a></li>
+    </ul>
+  </div>
+  <i class="fa fa-bars" onclick="showmenu()"></i>
+</nav>
 
-  <!-- Forum Content -->
-  <main class="forum-content">
-    <!-- Disqus Embed -->
-    <div id="disqus_thread"></div>
-    <script>
-      var disqus_config = function () {
-        this.page.url = window.location.href;  
-        this.page.identifier = "sitewide-forum"; 
-      };
-      (function() {
-        var d = document, s = d.createElement('script');
-        s.src = 'https://mediaonafrica.disqus.com/embed.js';  
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-      })();
-    </script>
-    <noscript>Please enable JavaScript to view the forum.</noscript>
-  </main>
-
-  <!-- Footer -->
-  <section class="Footer">
-    <h4>About Us</h4>
+<!-- Forum Header -->
+<section class="header small-header">
+  <div class="text-box">
+    <h1>Student Discussion Forum</h1>
     <p>
-      By leveraging technology, we aim to empower students with
-      the tools and support they need to succeed academically<br>
-      regardless of their location, resources, or socioeconomic status
+      Welcome! Use this space to ask questions, share tips, and collaborate with other students.
     </p>
-    <div class="icons">
-      <i class="fa fa-facebook"></i>
-      <i class="fa fa-twitter"></i> 
-      <i class="fa fa-instagram"></i> 
-      <i class="fa fa-linkedin"></i> 
-    </div>
-    <p>Made with <i class="fa fa-heart-o"></i> by Lunga Dyantyi</p>
-  </section>
+  </div>
+</section>
 
-  <!-- JavaScript for Toggle Menu -->
+<!-- Forum Content -->
+<main class="forum-content">
+  <!-- Disqus Embed -->
+  <div id="disqus_thread"></div>
   <script>
-    var navLinks = document.getElementById("navLinks");
-    function showmenu() { navLinks.style.right = "0"; }
-    function hidemenu() { navLinks.style.right = "-200px"; }
+    var disqus_config = function () {
+      this.page.url = window.location.href;  
+      this.page.identifier = "sitewide-forum"; 
+    };
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://mediaonafrica.disqus.com/embed.js';  
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
   </script>
+  <noscript>Please enable JavaScript to view the forum.</noscript>
+</main>
 
-  <!-- Chatbot Embed -->
-  <script src="https://code.tidio.co/uqdod81sfajvlkpiujfsjo49za71xsuc.js" async></script>
+<!-- Footer -->
+<section class="Footer">
+  <h4>About Us</h4>
+  <p>
+    By leveraging technology, we aim to empower students with
+    the tools and support they need to succeed academically<br>
+    regardless of their location, resources, or socioeconomic status
+  </p>
+  <div class="icons">
+    <i class="fa fa-facebook"></i>
+    <i class="fa fa-twitter"></i> 
+    <i class="fa fa-instagram"></i> 
+    <i class="fa fa-linkedin"></i> 
+  </div>
+  <p>Made with <i class="fa fa-heart-o"></i> by Lunga Dyantyi</p>
+</section>
+
+<!-- JavaScript for Toggle Menu -->
+<script>
+  var navLinks = document.getElementById("navLinks");
+  function showmenu() { navLinks.style.right = "0"; }
+  function hidemenu() { navLinks.style.right = "-200px"; }
+</script>
+
+<!-- Chatbot Embed -->
+<script src="https://code.tidio.co/uqdod81sfajvlkpiujfsjo49za71xsuc.js" async></script>
 </body>
 </html>
+
+
 
