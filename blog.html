@@ -79,15 +79,15 @@ Elon Musk, the CEO of Tesla, has admitted that “excessive automation” at his
 
 </div>
 
-      <div class="comment-box">
-        <h3>Leave a comment</h3>
-        <form class="comment-form">
-          <input type="text" placeholder="Enter Name">
-          <input type="email" placeholder="Enter Email">
-          <textarea rows="5" placeholder="Your comment"></textarea>
-          <button type="submit" class="hero-btn blue-btn">POST COMMENT</button>
-        </form>
-      </div>
+   <div class="comment-box">
+  <h3>Leave a comment</h3>
+  <form action="comment-handler.php" method="post" class="comment-form">
+    <input type="text" name="name" placeholder="Enter your name" required>
+    <input type="email" name="email" placeholder="Enter email address" required>
+    <textarea rows="5" name="comment" placeholder="Your comment" required></textarea>
+    <button type="submit" class="hero-btn blue-btn">POST COMMENT</button>
+  </form>
+</div>
 </section>
 
 <!-- Footer -->
