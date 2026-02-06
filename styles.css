@@ -280,6 +280,8 @@ nav .fa {
   .rubric-block {
     margin-bottom: 20px;
   }
+}   /* <-- properly closed here */
+
 /* About Us blocks */
 .About-us {
   display: flex;
@@ -290,7 +292,7 @@ nav .fa {
 }
 
 .feature-block {
-  flex: 1 1 300px; /* responsive card sizing */
+  flex: 1 1 300px;
   background: #f9f9f9;
   padding: 20px;
   border-radius: 8px;
@@ -299,7 +301,6 @@ nav .fa {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Hover effect */
 .feature-block:hover {
   transform: translateY(-6px);
   box-shadow: 0 6px 16px rgba(0,0,0,0.15);
@@ -308,7 +309,7 @@ nav .fa {
 .feature-block h2,
 .feature-block h3 {
   margin-bottom: 15px;
-  color: #01796F; /* accent color */
+  color: #01796F;
 }
 
 .feature-block p {
@@ -317,7 +318,6 @@ nav .fa {
   margin-bottom: 15px;
 }
 
-/* Button inside blocks */
 .feature-block .hero-btn {
   display: inline-block;
   text-decoration: none;
@@ -332,43 +332,8 @@ nav .fa {
   background: #025f52;
 }
 
-/* Responsive Navigation (mobile menu) */
-@media(max-width: 700px) {
-  .text-box h1 {
-    font-size: 28px;
-  }
-  .nav-links {
-    position: fixed;
-    background: #01796F;
-    height: 100vh;
-    width: 200px;
-    top: 0;
-    right: -200px;
-    text-align: left;
-    z-index: 2;
-    transition: 0.5s;
-    padding-top: 60px;
-  }
-  .nav-links ul li {
-    display: block;
-    margin: 20px 0;
-  }
-  nav .fa {
-    display: block;
-    color: #fff;
-    font-size: 22px;
-    cursor: pointer;
-  }
-}
-
-/* Responsive stacking (rubric + About Us) */
+/* Responsive stacking for About Us */
 @media(max-width: 900px) {
-  .rubric-container {
-    flex-direction: column;
-  }
-  .rubric-block {
-    margin-bottom: 20px;
-  }
   .About-us {
     flex-direction: column;
   }
