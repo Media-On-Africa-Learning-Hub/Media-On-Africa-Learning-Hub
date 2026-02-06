@@ -211,38 +211,29 @@ nav .fa {
   }
 }
 
-/* Subjects */
-.subjects h1 {
-  font-size: 36px;
-  font-weight: 600;
-  margin-bottom: 20px;
+/* Subject Icons */
+.subject-col i {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 32px;
+  transition: color 0.3s ease;
 }
 
-.subjects p {
-  color: #222; /* FIXED: dark text for visibility */
-  font-size: 14px;
-  line-height: 22px;
+/* Hover colors by subject */
+.subject-col.math:hover i {
+  color: #2e7d32; /* green for Mathematics */
 }
 
-.row {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  margin-top: 40px;
+.subject-col.science:hover i {
+  color: #1565c0; /* blue for Science */
 }
 
-.subject-col {
-  flex: 1 1 30%;
-  background: #0094b9;
-  border-radius: 10px;
-  margin: 15px;
-  padding: 20px;
-  transition: 0.3s;
-  color: #fff; /* ensure text is readable on blue background */
+.subject-col.tech:hover i {
+  color: #ef6c00; /* orange for Technology */
 }
 
-.subject-col:hover {
-  box-shadow: 0 0 20px rgba(0,0,0,0.7);
+.subject-col.arts:hover i {
+  color: #8e24aa; /* purple for Visual Arts */
 }
 
 /* Facilities */
@@ -360,5 +351,7 @@ nav .fa {
   color: #fff;
   border: none;
   padding: 12px 24
+
+  
 
 
