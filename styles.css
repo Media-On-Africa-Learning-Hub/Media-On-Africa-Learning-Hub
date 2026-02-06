@@ -350,27 +350,29 @@ nav .fa {
 
 /* About Us Intro Section */
 .about-intro {
-  width: 90%;
+  width: 100%;              /* span full width */
   margin: 60px auto;
   text-align: center;
-  padding: 60px 20px;
-  background: #fff; /* clean background */
+  padding: 80px 20px;        /* generous spacing */
+  background: #fff;          /* clean background */
   color: #333;
 }
 
 .about-intro h1 {
-  font-size: 52px;
+  font-size: 56px;           /* large heading */
   font-weight: 700;
-  margin-bottom: 25px;
-  color: #01796F; /* brand green */
+  margin-bottom: 30px;
+  color: #01796F;            /* brand green */
+  text-align: center;        /* center heading */
 }
 
 .about-intro p {
-  font-size: 18px;
+  font-size: 20px;           /* slightly larger for readability */
   line-height: 1.8;
-  max-width: 800px;   /* keeps text neat and narrow */
-  margin: 0 auto;     /* centers the paragraph */
+  max-width: 900px;          /* keeps text neat and narrow */
+  margin: 0 auto;            /* centers the paragraph */
   color: #444;
+  text-align: center;        /* centers the paragraph text */
 }
 
 
