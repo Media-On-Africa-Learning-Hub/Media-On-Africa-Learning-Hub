@@ -267,10 +267,6 @@ nav .fa {
   color: #ef6c00; /* orange for Technology */
 }
 
-.subject-col.arts:hover i {
-  color: #8e24aa; /* purple for Visual Arts */
-}
-
 /* Facilities */
 .facilities {
   background: linear-gradient(rgba(81, 88, 114, 0.7), rgba(30, 4, 17, 0.7)),
@@ -346,13 +342,13 @@ nav .fa {
   cursor: pointer;
 }
 
-
 /* Contact */
 .contact-col {
   flex: 1 1 45%;
   margin: 15px;
   text-align: left;
 }
+
 
 .contact-col input, .contact-col textarea {
   width: 100%;
