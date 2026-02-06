@@ -348,6 +348,31 @@ nav .fa {
   background: #025f52;
 }
 
+/* About Us Intro Section */
+.about-intro {
+  width: 90%;
+  margin: 60px auto;
+  text-align: center;
+  padding: 60px 20px;
+  background: linear-gradient(135deg, #01796F, #00b3ff);
+  color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+
+.about-intro h1 {
+  font-size: 48px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.about-intro p {
+  font-size: 18px;
+  line-height: 1.8;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
 
 /* Footer */
 .Footer h4 {
