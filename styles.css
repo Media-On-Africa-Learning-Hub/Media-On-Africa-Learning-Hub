@@ -281,6 +281,72 @@ nav .fa {
     margin-bottom: 20px;
   }
 }   /* <-- properly closed here */
+/* About Us Feature Blocks */
+.feature-block {
+  padding: 2rem;
+  margin: 2rem auto;
+  max-width: 900px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  text-align: left;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-block:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+}
+
+.feature-block h2,
+.feature-block h3 {
+  margin-bottom: 1rem;
+  color: #01796F;
+  font-weight: 600;
+}
+
+.feature-block p {
+  line-height: 1.6;
+  color: #333;
+}
+
+/* Specific block accents */
+.feature-block.intro {
+  background: #fff;
+  text-align: center;
+}
+
+.feature-block.core-features {
+  border-left: 6px solid #007acc;
+}
+
+.feature-block.community-support {
+  border-left: 6px solid #e67e22;
+}
+
+.feature-block.technical-strategy {
+  border-left: 6px solid #555;
+}
+
+.feature-block.long-term-impact {
+  border-left: 6px solid #27ae60;
+}
+
+/* Hero button inside blocks */
+.feature-block .hero-btn {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.8rem 1.5rem;
+  background: #01796F;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background 0.3s ease;
+}
+
+.feature-block .hero-btn:hover {
+  background: #025f52;
+}
 
 
 /* Footer */
