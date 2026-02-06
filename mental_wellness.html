@@ -122,7 +122,33 @@
   <p>Made with <i class="fa fa-heart-o"></i> by Media On Africa</p>
 </section>
 
-<!-- Rotating Quotes, Reflections, Relaxation Exercises & Encouragement -->
+<style>
+  /* Fade-in effect */
+  .fade {
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+  }
+  .fade.show {
+    opacity: 1;
+  }
+
+  /* Control buttons */
+  .control-btn {
+    display: inline-block;
+    margin: 8px;
+    padding: 6px 12px;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+  }
+  .control-btn:hover {
+    background: #45a049;
+  }
+</style>
+
 <script>
   const quotes = [
     "Every day may not be good, but there’s something good in every day.",
@@ -167,15 +193,48 @@
     "Your dreams are valid, and your potential is limitless."
   ];
 
+  let intervals = {}; // store intervals
+  let delay = 3000;   // 3 seconds
+
   function rotateContent(containerId, array) {
     const container = document.getElementById(containerId);
     if (!container) return;
     let index = 0;
+
+    container.classList.add("fade");
     container.innerText = array[index];
-    setInterval(() => {
+    setTimeout(() => container.classList.add("show"), 50);
+
+    intervals[containerId] = setInterval(() => {
       index = (index + 1) % array.length;
-      container.innerText = array[index];
-    }, 8000); // rotates every 8 seconds
+      container.classList.remove("show");
+      setTimeout(() => {
+        container.innerText = array[index];
+        container.classList.add("show");
+      }, 500);
+    }, delay);
+  }
+
+  function startRotation() {
+    rotateContent("daily-quote", quotes);
+    rotateContent("reflection-prompt", reflections);
+    rotateContent("relaxation-exercise", relaxationExercises);
+    rotateContent("encouragement", encouragements);
+  }
+
+  function pauseRotation() {
+    for (let id in intervals) {
+      clearInterval(intervals[id]);
+    }
+    intervals = {};
+    alert("Rotation paused. Current messages will stay visible.");
+  }
+
+  function resumeRotation() {
+    if (Object.keys(intervals).length === 0) {
+      startRotation();
+      alert("Rotation resumed.");
+    }
   }
 
   document.addEventListener("DOMContentLoaded", function() {
@@ -188,11 +247,23 @@
     encouragementContainer.id = "encouragement";
     document.querySelector(".feature-block:nth-of-type(6)").appendChild(encouragementContainer);
 
+    // Add control buttons
+    const pauseButton = document.createElement("button");
+    pauseButton.innerText = "Pause Rotation";
+    pauseButton.className = "control-btn";
+    pauseButton.onclick = pauseRotation;
+
+    const resumeButton = document.createElement("button");
+    resumeButton.innerText = "Resume Rotation";
+    resumeButton.className = "control-btn";
+    resumeButton.onclick = resumeRotation;
+
+    const footer = document.querySelector(".Footer");
+    footer.appendChild(pauseButton);
+    footer.appendChild(resumeButton);
+
     // Start rotations
-    rotateContent("daily-quote", quotes);
-    rotateContent("reflection-prompt", reflections);
-    rotateContent("relaxation-exercise", relaxationExercises);
-    rotateContent("encouragement", encouragements);
+    startRotation();
   });
 </script>
 
