@@ -211,6 +211,41 @@ nav .fa {
   }
 }
 
+/* Subjects */
+.subjects h1 {
+  font-size: 36px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.subjects p {
+  color: #222;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-top: 40px;
+}
+
+.subject-col {
+  flex: 1 1 22%;
+  background: #0094b9;
+  border-radius: 10px;
+  margin: 15px;
+  padding: 20px;
+  transition: 0.3s;
+  color: #fff;
+  text-align: center;
+}
+
+.subject-col:hover {
+  box-shadow: 0 0 20px rgba(0,0,0,0.7);
+}
+
 /* Subject Icons */
 .subject-col i {
   display: block;
@@ -244,14 +279,14 @@ nav .fa {
 }
 
 .facilities h1, .facilities p {
-  color: #fff; /* ensure headings and intro text are visible */
+  color: #fff;
 }
 
 .facilities-col {
   flex: 1 1 30%;
   margin: 15px;
   text-align: left;
-  background: rgba(255, 255, 255, 0.85); /* FIXED: light overlay for readability */
+  background: rgba(255, 255, 255, 0.85);
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.3);
@@ -310,6 +345,7 @@ nav .fa {
   margin: 0 10px;
   cursor: pointer;
 }
+
 
 /* Contact */
 .contact-col {
