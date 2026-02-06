@@ -354,23 +354,23 @@ nav .fa {
   margin: 60px auto;
   text-align: center;
   padding: 60px 20px;
-  background: linear-gradient(135deg, #01796F, #00b3ff);
-  color: #fff;
-  border-radius: 12px;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  background: #fff; /* clean background */
+  color: #333;
 }
 
 .about-intro h1 {
-  font-size: 48px;
+  font-size: 52px;
   font-weight: 700;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
+  color: #01796F; /* brand green */
 }
 
 .about-intro p {
   font-size: 18px;
   line-height: 1.8;
-  max-width: 900px;
-  margin: 0 auto;
+  max-width: 800px;   /* keeps text neat and narrow */
+  margin: 0 auto;     /* centers the paragraph */
+  color: #444;
 }
 
 
