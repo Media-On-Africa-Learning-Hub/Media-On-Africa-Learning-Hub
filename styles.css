@@ -15,7 +15,7 @@
   position: relative;
 }
 
-/* Smaller header for inner pages (About, Subjects, Contact, etc.) */
+/* Smaller header for inner pages */
 .header.small-header {
   min-height: 60vh;
   background: linear-gradient(rgba(3, 7, 4, 0.7), rgba(81, 204, 32, 0.7)),
@@ -47,11 +47,6 @@ nav {
   z-index: 1000;
   background: #01796F;
   height: 70px;
-}
-
-nav img {
-  width: 150px;
-  height: auto;
 }
 
 .nav-links {
@@ -178,39 +173,6 @@ nav .fa {
   padding: 60px 0;
 }
 
-/* Feature blocks for About Us */
-.feature-block {
-  background: #f9f9f9;
-  padding: 2rem;
-  margin: 1.5rem 0;
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  text-align: left;
-}
-
-.feature-block h2,
-.feature-block h3 {
-  margin-bottom: 1rem;
-  color: #2e7d32;
-}
-
-.feature-block p {
-  line-height: 1.6;
-  color: #333;
-}
-
-/* Optional: two-column layout for larger screens */
-@media(min-width: 900px) {
-  .About-us {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-  }
-  .About-us .intro {
-    grid-column: 1 / -1;
-  }
-}
-
 /* Subjects */
 .subjects h1 {
   font-size: 36px;
@@ -246,7 +208,6 @@ nav .fa {
   box-shadow: 0 0 20px rgba(0,0,0,0.7);
 }
 
-/* Subject Icons */
 .subject-col i {
   display: block;
   margin-bottom: 10px;
@@ -254,80 +215,71 @@ nav .fa {
   transition: color 0.3s ease;
 }
 
-/* Hover colors by subject */
-.subject-col.math:hover i {
-  color: #2e7d32; /* green for Mathematics */
+.subject-col.math:hover i { color: #2e7d32; }
+.subject-col.science:hover i { color: #1565c0; }
+.subject-col.tech:hover i { color: #ef6c00; }
+
+/* Rubric Section */
+.rubric-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 30px;
+  flex-wrap: wrap;
 }
 
-.subject-col.science:hover i {
-  color: #1565c0; /* blue for Science */
-}
-
-.subject-col.tech:hover i {
-  color: #ef6c00; /* orange for Technology */
-}
-
-/* Facilities */
-.facilities {
-  background: linear-gradient(rgba(81, 88, 114, 0.7), rgba(30, 4, 17, 0.7)),
-              url(css/What+is+Lifelong+Learning.png) center/cover no-repeat;
-  position: relative;
-}
-
-.facilities h1, .facilities p {
-  color: #fff;
-}
-
-.facilities-col {
-  flex: 1 1 30%;
-  margin: 15px;
-  text-align: left;
-  background: rgba(255, 255, 255, 0.85);
+.rubric-block {
+  flex: 1;
+  min-width: 250px;
+  background: #f9f9f9;
   padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: left;
 }
 
-.facilities-col img {
-  width: 100%;
-  border-radius: 10px;
+.rubric-block:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
 }
 
-.facilities-col h3 {
-  color: #111;
-}
+/* Subject-specific colors */
+.rubric-block.math { border-top: 6px solid #0073e6; }
+.rubric-block.science { border-top: 6px solid #28a745; }
+.rubric-block.tech { border-top: 6px solid #ff9800; }
 
-.facilities-col p {
+.rubric-block h2 {
+  margin-bottom: 15px;
+  font-size: 1.3em;
   color: #333;
 }
 
-/* Testimonials */
-.testimonial-col {
-  flex: 1 1 45%;
-  background: #00b3ff;
-  border-radius: 10px;
-  margin: 15px;
-  padding: 20px;
-  display: flex;
-  align-items: center;
+.rubric-level {
+  margin-bottom: 10px;
+  padding: 8px;
+  background: #fff;
+  border-left: 4px solid #ccc;
+  border-radius: 4px;
+  transition: background 0.3s ease;
 }
 
-.testimonial-col img {
-  height: 50px;
-  margin-right: 20px;
-  border-radius: 50%;
+.math .rubric-level { border-left-color: #0073e6; }
+.science .rubric-level { border-left-color: #28a745; }
+.tech .rubric-level { border-left-color: #ff9800; }
+
+.rubric-level:hover {
+  background: #f0f8ff;
 }
 
-/* Call to Action */
-.cta {
-  background: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),
-              url(css/gse-virtual-learning-NL.jpg) center/cover no-repeat;
-  border-radius: 10px;
-}
-
-.cta h1 {
-  color: #00b3ff;
-  margin-bottom: 20px;
+/* Responsive rubric stacking */
+@media(max-width: 900px) {
+  .rubric-container {
+    flex-direction: column;
+  }
+  .rubric-block {
+    margin-bottom: 20px;
+  }
 }
 
 /* Footer */
