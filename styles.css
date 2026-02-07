@@ -280,17 +280,26 @@ nav .fa {
   .rubric-block {
     margin-bottom: 20px;
   }
-}   /* <-- properly closed here */
+}
+
 /* About Us Feature Blocks */
+.About-us {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: stretch;
+}
+
 .feature-block {
   padding: 2rem;
-  margin: 2rem auto;
-  max-width: 900px;
   background: #f9f9f9;
   border-radius: 8px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
   text-align: left;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .feature-block:hover {
@@ -310,11 +319,12 @@ nav .fa {
   color: #333;
 }
 
+
 /* Specific block accents */
-.feature-block.intro {
-  background: #fff;
-  text-align: center;
-}
+.feature-block.core-features { border-left: 6px solid #007acc; }
+.feature-block.community-support { border-left: 6px solid #e67e22; }
+.feature-block.technical-strategy { border-left: 6px solid #555; }
+.feature-block.long-term-impact
 
 .feature-block.core-features {
   border-left: 6px solid #007acc;
@@ -335,19 +345,26 @@ nav .fa {
 /* Hero button inside blocks */
 .feature-block .hero-btn {
   display: inline-block;
-  margin-top: 1rem;
+  margin-top: auto; /* pushes button to bottom */
   padding: 0.8rem 1.5rem;
   background: #01796F;
   color: #fff;
   text-decoration: none;
   border-radius: 4px;
   transition: background 0.3s ease;
+  align-self: flex-start; /* keeps button aligned left */
 }
 
 .feature-block .hero-btn:hover {
   background: #025f52;
 }
 
+/* Responsive About Us stacking */
+@media (max-width: 768px) {
+  .About-us {
+    grid-template-columns: 1fr; /* stack blocks on small screens */
+  }
+}
 
 /* Footer */
 .Footer h4 {
@@ -368,8 +385,8 @@ nav .fa {
   text-align: left;
 }
 
-
-.contact-col input, .contact-col textarea {
+.contact-col input,
+.contact-col textarea {
   width: 100%;
   padding: 12px;
   margin-bottom: 15px;
@@ -401,7 +418,40 @@ nav .fa {
   background: #01796F;
   color: #fff;
   border: none;
-  padding: 12px 24
+  padding: 12px 24px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.blog-content form button:hover {
+  background: #025f52;
+}
+
+.blog-content form textarea {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #01796F;
+  border-radius: 6px;
+  background: #fff;
+  color: #333;
+}
+
+.blog-content form button {
+  background: #01796F;
+  color: #fff;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.blog-content form button:hover {
+  background: #025f52;
+}
+
 
   
 
