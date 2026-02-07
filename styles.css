@@ -35,6 +35,23 @@
 .header.small-header .text-box h1 {
   font-size: 48px;
 }
+/* Refined About Us header */
+.header.big-header {
+  min-height: 40vh; /* reduced height */
+  background: linear-gradient(rgba(3, 7, 4, 0.6), rgba(81, 204, 32, 0.6)),
+              url(css/istockphoto-1207872886-612x612.jpg) center/cover no-repeat;
+  position: relative;
+  display: flex;
+  align-items: center;   /* center vertically */
+  justify-content: center; /* center horizontally */
+}
+
+.header.big-header .text-box h1 {
+  font-size: 36px; /* smaller heading */
+  margin: 0;
+  color: #fff;
+  text-align: center;
+}
 
 /* Sticky Navigation */
 nav {
