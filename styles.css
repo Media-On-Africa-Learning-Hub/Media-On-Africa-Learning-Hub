@@ -410,6 +410,21 @@ nav .fa {
   border: 1px solid #ccc;
 }
 
+/* Contact form button */
+.contact-col .hero-btn {
+  background: #01796F;   /* same green as Post Comment */
+  color: #fff;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.contact-col .hero-btn:hover {
+  background: #025f52;   /* darker green on hover */
+}
+
 /* Blog Comment Form */
 .blog-content form {
   background: linear-gradient(135deg, #e6f4ea, #c8e6c9); /* soft green gradient */
