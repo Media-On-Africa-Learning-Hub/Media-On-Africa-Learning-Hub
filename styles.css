@@ -271,7 +271,7 @@ nav .fa {
 .about-hub h2 {
   font-size: 28px;
   margin-bottom: 15px;
-  color: #01796F;          /* consistent green accent */
+  color: #000;          /* black accent */
 }
 
 .about-hub p {
