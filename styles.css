@@ -260,6 +260,26 @@ nav .fa {
   box-shadow: 0 0 20px rgba(0,0,0,0.1);
 }
 
+/* About This Hub Section */
+.about-hub {
+  text-align: center;      /* centers heading and paragraph */
+  margin: 40px auto;       /* adds balanced spacing */
+  max-width: 800px;        /* keeps text from stretching too wide */
+  line-height: 1.6;        /* improves readability */
+}
+
+.about-hub h2 {
+  font-size: 28px;
+  margin-bottom: 15px;
+  color: #01796F;          /* consistent green accent */
+}
+
+.about-hub p {
+  font-size: 16px;
+  color: #333;
+}
+
+
 /* Call To Action */
 .cta {
   text-align: center;
