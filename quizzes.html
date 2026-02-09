@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quizzes - Media On Africa Learning Hub</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300;400;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+  />
+</head>
+<body>
+
+<!-- Navigation -->
+<nav>
+  <div class="nav-links" id="navLinks">
+    <i class="fa fa-times" onclick="hidemenu()"></i>
+    <ul>
+      <li><a href="index.html">HOME</a></li>
+      <li><a href="About.html">ABOUT</a></li>
+      <li><a href="Subjects.html">SUBJECTS</a></li>
+      <li><a href="Quizzes.html" class="active">QUIZZES</a></li>
+      <li><a href="forum.html">DISCUSSION</a></li>
+      <li><a href="mental_wellness.html">WELLNESS</a></li>
+      <li><a href="blog.html">BLOG</a></li>
+      <li><a href="contact.html">CONTACT</a></li>
+    </ul>
+  </div>
+  <i class="fa fa-bars" onclick="showmenu()"></i>
+</nav>
+
+<!-- Header -->
+<section class="header big-header">
+  <div class="text-box">
+    <h1>Interactive Quizzes</h1>
+    <p>Test your knowledge in Maths, Science, and Technology for Grades 10–12</p>
+  </div>
+</section>
+
+<!-- Quizzes Content -->
+<section class="quizzes">
+  <!-- Maths Block -->
+  <div class="feature-block quiz-block">
+    <h3>Mathematics Quizzes</h3>
+    <p>Challenge yourself with algebra, trigonometry, and calculus questions.</p>
+    <div id="quiz-maths"></div>
+    <button onclick="loadQuiz('maths','grade10','quiz-maths')">Grade 10</button>
+    <button onclick="loadQuiz('maths','grade11','quiz-maths')">Grade 11</button>
+    <button onclick="loadQuiz('maths','grade12','quiz-maths')">Grade 12</button>
+  </div>
+
+  <!-- Science Block -->
+  <div class="feature-block quiz-block">
+    <h3>Science Quizzes</h3>
+    <p>Explore physics, chemistry, and biology concepts.</p>
+    <div id="quiz-science"></div>
+    <button onclick="loadQuiz('science','grade10','quiz-science')">Grade 10</button>
+    <button onclick="loadQuiz('science','grade11','quiz-science')">Grade 11</button>
+    <button onclick="loadQuiz('science','grade12','quiz-science')">Grade 12</button>
+  </div>
+
+  <!-- Technology Block -->
+  <div class="feature-block quiz-block">
+    <h3>Technology Quizzes</h3>
+    <p>Test your ICT and design knowledge.</p>
+    <div id="quiz-technology"></div>
+    <button onclick="loadQuiz('technology','grade10','quiz-technology')">Grade 10</button>
+    <button onclick="loadQuiz('technology','grade11','quiz-technology')">Grade 11</button>
+    <button onclick="loadQuiz('technology','grade12','quiz-technology')">Grade 12</button>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="Footer">
+  <h4>Quizzes</h4>
+  <p>Practice makes perfect — use these quizzes to prepare for exams and sharpen your skills.</p>
+  <div class="icons">
+    <i class="fa fa-facebook"></i>
+    <i class="fa fa-twitter"></i>
+    <i class="fa fa-instagram"></i>
+    <i class="fa fa-linkedin"></i>
+  </div>
+  <p>Made with <i class="fa fa-heart-o"></i> by Media On Africa</p>
+</footer>
+
+<!-- JavaScript for Toggle Menu -->
+<script>
+  var navLinks = document.getElementById("navLinks");
+  function showmenu() { navLinks.style.right = "0"; }
+  function hidemenu() { navLinks.style.right = "-200px"; }
+</script>
+
+<!-- Quiz Scripts -->
+<script src="quiz-data.js"></script>
+<script src="quiz-script.js"></script>
+
+</body>
+</html>
+
