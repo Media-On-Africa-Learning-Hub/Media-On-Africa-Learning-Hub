@@ -580,6 +580,86 @@ nav .fa {
   background: #025f52;
 }
 
+/* Quiz container */
+.quiz-container {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 700px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* Each question block */
+.quiz-question {
+  margin-bottom: 15px;
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.quiz-question p {
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+/* Answer buttons */
+.quiz-question button {
+  display: inline-block;
+  margin: 5px;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 4px;
+  background: #0078d7;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.quiz-question button:hover:not(:disabled) {
+  background: #005a9e;
+}
+
+.quiz-question button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Submit and retry buttons */
+button {
+  margin-top: 10px;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 4px;
+  background: #28a745;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background: #218838;
+}
+
+/* Retry button styling */
+button:nth-of-type(2) {
+  background: #ffc107;
+  color: #333;
+}
+
+button:nth-of-type(2):hover {
+  background: #e0a800;
+}
+
+/* Quiz result */
+.quiz-result {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-top: 15px;
+  color: #444;
+  text-align: center;
+}
+
 
 
   
