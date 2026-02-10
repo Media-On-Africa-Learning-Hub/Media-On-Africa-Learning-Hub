@@ -159,8 +159,8 @@ technology: {
     { q: "Which is a software development methodology?", options: ["Agile", "Word Processing", "Spreadsheet"], answer: 0 },
     { q: "Which is a cloud storage provider?", options: ["Dropbox", "Excel", "Word"], answer: 0 }
   ]
-},
+};
 
-
+console.log("Quiz data loaded:", quizzes);
 
 
