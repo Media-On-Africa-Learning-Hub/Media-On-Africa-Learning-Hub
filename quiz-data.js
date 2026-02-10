@@ -5,162 +5,71 @@ const quizzes = {
       { q: "Solve for x: 2x + 5 = 15", options: ["x = 5", "x = 10", "x = -5"], answer: 0 },
       { q: "Factorize: x^2 - 9", options: ["(x-3)(x+3)", "(x-9)(x+1)", "(x-1)(x-9)"], answer: 0 },
       { q: "What is sin(90°)?", options: ["0", "1", "√3/2"], answer: 1 },
-      { q: "Convert 0.75 to a fraction", options: ["3/4", "1/2", "7/10"], answer: 0 },
-      { q: "Find the slope of y = 2x + 3", options: ["2", "3", "1/2"], answer: 0 },
-      { q: "Area of a triangle with base 10 and height 5?", options: ["25", "50", "15"], answer: 0 },
-      { q: "Simplify: √(49)", options: ["7", "14", "9"], answer: 0 },
-      { q: "Value of cos(0°)?", options: ["0", "1", "-1"], answer: 1 },
-      { q: "Expand: (x+2)(x+3)", options: ["x^2+5x+6", "x^2+6x+5", "x^2+2x+3"], answer: 0 },
-      { q: "Solve: 3x = 12", options: ["x=4", "x=3", "x=12"], answer: 0 },
-      { q: "Perimeter of a square with side 6?", options: ["24", "36", "12"], answer: 0 },
-      { q: "Simplify: 2(x+3)", options: ["2x+6", "2x+3", "x+6"], answer: 0 },
-      { q: "Find median of {2,4,6}", options: ["4", "5", "6"], answer: 0 },
-      { q: "Volume of cube with side 3?", options: ["27", "9", "12"], answer: 0 }
+      { q: "Convert 0.75 to a fraction", options: ["3/4", "1/2", "7/10"], answer: 0 }
     ],
     grade11: [
       { q: "Derivative of x^2?", options: ["2x", "x", "x^3"], answer: 0 },
       { q: "Solve: log10(100)", options: ["1", "2", "10"], answer: 1 },
-      { q: "Simplify: (x^2 + 2x + 1)", options: ["(x+1)^2", "(x+2)^2", "(x-1)^2"], answer: 0 },
       { q: "Equation of parabola y = x^2 + 4x + 4 has vertex at?", options: ["(-2,0)", "(2,0)", "(0,4)"], answer: 0 },
       { q: "Probability of rolling a 6 on a fair die?", options: ["1/6", "1/2", "1/12"], answer: 0 },
-      { q: "Simplify: tan(45°)", options: ["1", "0", "√3"], answer: 0 },
-      { q: "Find gradient of line through (1,2) and (3,6)", options: ["2", "4", "1"], answer: 0 },
-      { q: "Solve: 2^x = 8", options: ["x=3", "x=2", "x=4"], answer: 0 },
-      { q: "Area under y=2x from 0 to 2?", options: ["4", "8", "2"], answer: 0 },
-      { q: "Simplify: cos^2θ + sin^2θ", options: ["1", "0", "2"], answer: 0 },
-      { q: "Find mode of {2,2,3,4}", options: ["2", "3", "4"], answer: 0 },
-      { q: "Solve: x^2=16", options: ["x=±4", "x=4", "x=-4"], answer: 0 },
-      { q: "Find asymptote of y=1/x", options: ["x=0", "y=0", "x=1"], answer: 0 },
-      { q: "Simplify: √(81)", options: ["9", "8", "7"], answer: 0 },
-      { q: "Find inverse of f(x)=2x+3", options: ["(x-3)/2", "2x-3", "x/2+3"], answer: 0 }
+      { q: "Simplify: tan(45°)", options: ["1", "0", "√3"], answer: 0 }
     ],
     grade12: [
       { q: "Integral of 2x dx?", options: ["x^2 + C", "2x^2 + C", "x + C"], answer: 0 },
       { q: "Limit of (1 + 1/n)^n as n→∞?", options: ["e", "1", "∞"], answer: 0 },
       { q: "Find mean of 2,4,6,8", options: ["4", "5", "6"], answer: 1 },
-      { q: "Variance of {2,4,6}", options: ["4", "2.67", "2"], answer: 1 },
       { q: "Compound interest: R1000 at 10% for 2 years?", options: ["R1210", "R1200", "R1100"], answer: 0 },
-      { q: "Differentiate sin(x)", options: ["cos(x)", "-cos(x)", "tan(x)"], answer: 0 },
-      { q: "Integrate cos(x)", options: ["sin(x)+C", "-sin(x)+C", "tan(x)+C"], answer: 0 },
-      { q: "Find median of {1,2,3,4,5}", options: ["3", "2", "4"], answer: 0 },
-      { q: "Solve: e^x=1", options: ["x=0", "x=1", "x=-1"], answer: 0 },
-      { q: "Find derivative of ln(x)", options: ["1/x", "x", "ln(x)"], answer: 0 },
-      { q: "Find mode of {1,2,2,3}", options: ["2", "3", "1"], answer: 0 },
-      { q: "Find asymptote of y=tan(x)", options: ["x=90°", "x=0", "x=180°"], answer: 0 },
-      { q: "Find determinant of [[1,2],[3,4]]", options: ["-2", "2", "10"], answer: 0 },
-      { q: "Solve: x^2-5x+6=0", options: ["x=2 or 3", "x=1 or 6", "x=0 or 5"], answer: 0 },
-      { q: "Find derivative of x^3", options: ["3x^2", "x^2", "x^3"], answer: 0 }
+      { q: "Differentiate sin(x)", options: ["cos(x)", "-cos(x)", "tan(x)"], answer: 0 }
     ]
   },
 
-    science: {
-  grade10: [
-    { q: "What is the chemical symbol for Sodium?", options: ["Na", "S", "So"], answer: 0 },
-    { q: "Which organelle is the powerhouse of the cell?", options: ["Nucleus", "Mitochondria", "Ribosome"], answer: 1 },
-    { q: "Newton’s 1st Law is also called?", options: ["Law of Inertia", "Law of Force", "Law of Gravity"], answer: 0 },
-    { q: "Boiling point of water at sea level?", options: ["100°C", "90°C", "120°C"], answer: 0 },
-    { q: "Atomic number of Carbon?", options: ["6", "12", "8"], answer: 0 },
-    { q: "Which gas is needed for respiration?", options: ["Oxygen", "Carbon dioxide", "Nitrogen"], answer: 0 },
-    { q: "Which planet is known as the Red Planet?", options: ["Mars", "Venus", "Jupiter"], answer: 0 },
-    { q: "What is the SI unit of force?", options: ["Newton", "Joule", "Pascal"], answer: 0 },
-    { q: "Which part of the atom has a positive charge?", options: ["Proton", "Electron", "Neutron"], answer: 0 },
-    { q: "What is the freezing point of water?", options: ["0°C", "10°C", "32°C"], answer: 0 },
-    { q: "Which organ pumps blood?", options: ["Heart", "Lungs", "Kidney"], answer: 0 },
-    { q: "Which energy source is renewable?", options: ["Solar", "Coal", "Oil"], answer: 0 },
-    { q: "What is H2O?", options: ["Water", "Hydrogen peroxide", "Oxygen"], answer: 0 },
-    { q: "Which blood cells fight infection?", options: ["White", "Red", "Platelets"], answer: 0 },
-    { q: "Which organ helps in digestion of fats?", options: ["Liver", "Stomach", "Pancreas"], answer: 0 }
-  ],
-  grade11: [
-    { q: "Newton’s 2nd Law states?", options: ["F = ma", "E = mc^2", "V = IR"], answer: 0 },
-    { q: "pH of pure water?", options: ["7", "0", "14"], answer: 0 },
-    { q: "Bond type in NaCl?", options: ["Ionic", "Covalent", "Metallic"], answer: 0 },
-    { q: "Speed = Distance/Time. If distance=100m and time=20s?", options: ["5 m/s", "10 m/s", "20 m/s"], answer: 0 },
-    { q: "Which law explains current, voltage, resistance?", options: ["Ohm’s Law", "Newton’s Law", "Boyle’s Law"], answer: 0 },
-    { q: "Which wave has the longest wavelength?", options: ["Radio", "Gamma", "X-ray"], answer: 0 },
-    { q: "Which element has atomic number 1?", options: ["Hydrogen", "Helium", "Lithium"], answer: 0 },
-    { q: "Which organelle does photosynthesis?", options: ["Chloroplast", "Mitochondria", "Nucleus"], answer: 0 },
-    { q: "Which circuit connection shares voltage?", options: ["Series", "Parallel", "Mixed"], answer: 0 },
-    { q: "Which gas is produced in photosynthesis?", options: ["Oxygen", "Carbon dioxide", "Nitrogen"], answer: 0 },
-    { q: "Which unit measures electric current?", options: ["Ampere", "Volt", "Watt"], answer: 0 },
-    { q: "Which blood type is universal donor?", options: ["O-", "AB+", "A+"], answer: 0 },
-    { q: "Which organ filters blood?", options: ["Kidney", "Liver", "Heart"], answer: 0 },
-    { q: "Which scientist discovered gravity?", options: ["Newton", "Einstein", "Galileo"], answer: 0 },
-    { q: "Which part of the cell controls activities?", options: ["Nucleus", "Cytoplasm", "Membrane"], answer: 0 }
-  ],
-  grade12: [
-    { q: "Which particle has no charge?", options: ["Proton", "Electron", "Neutron"], answer: 2 },
-    { q: "What is the speed of light?", options: ["3×10^8 m/s", "1×10^6 m/s", "3×10^6 m/s"], answer: 0 },
-    { q: "Main functional group in alcohols?", options: ["-OH", "-COOH", "-NH2"], answer: 0 },
-    { q: "Momentum formula?", options: ["p = mv", "p = m/v", "p = v/m"], answer: 0 },
-    { q: "Which scientist proposed relativity?", options: ["Einstein", "Newton", "Bohr"], answer: 0 },
-    { q: "Which reaction releases energy?", options: ["Exothermic", "Endothermic", "Neutral"], answer: 0 },
-    { q: "Which bond is strongest?", options: ["Covalent", "Ionic", "Hydrogen"], answer: 0 },
-    { q: "Which organelle packages proteins?", options: ["Golgi", "Ribosome", "Nucleus"], answer: 0 },
-    { q: "Which vitamin is produced by sunlight?", options: ["Vitamin D", "Vitamin C", "Vitamin B"], answer: 0 },
-    { q: "Which law explains gas pressure-volume?", options: ["Boyle’s Law", "Ohm’s Law", "Newton’s Law"], answer: 0 },
-    { q: "Which organ absorbs nutrients?", options: ["Small intestine", "Stomach", "Large intestine"], answer: 0 },
-    { q: "Which wave is used in medical imaging?", options: ["X-ray", "Radio", "Infrared"], answer: 0 },
-    { q: "Which blood type is universal recipient?", options: ["AB+", "O-", "A+"], answer: 0 },
-    { q: "Which organ produces insulin?", options: ["Pancreas", "Liver", "Kidney"], answer: 0 },
-    { q: "Which scientist proposed atomic theory?", options: ["Dalton", "Einstein", "Newton"], answer: 0 }
-  ]
-},
+  science: {
+    grade10: [
+      { q: "What is the chemical symbol for Sodium?", options: ["Na", "S", "So"], answer: 0 },
+      { q: "Which organelle is the powerhouse of the cell?", options: ["Nucleus", "Mitochondria", "Ribosome"], answer: 1 },
+      { q: "Newton’s 1st Law is also called?", options: ["Law of Inertia", "Law of Force", "Law of Gravity"], answer: 0 },
+      { q: "Boiling point of water at sea level?", options: ["100°C", "90°C", "120°C"], answer: 0 },
+      { q: "Atomic number of Carbon?", options: ["6", "12", "8"], answer: 0 }
+    ],
+    grade11: [
+      { q: "Newton’s 2nd Law states?", options: ["F = ma", "E = mc^2", "V = IR"], answer: 0 },
+      { q: "pH of pure water?", options: ["7", "0", "14"], answer: 0 },
+      { q: "Bond type in NaCl?", options: ["Ionic", "Covalent", "Metallic"], answer: 0 },
+      { q: "Speed = Distance/Time. If distance=100m and time=20s?", options: ["5 m/s", "10 m/s", "20 m/s"], answer: 0 },
+      { q: "Which law explains current, voltage, resistance?", options: ["Ohm’s Law", "Newton’s Law", "Boyle’s Law"], answer: 0 }
+    ],
+    grade12: [
+      { q: "Which particle has no charge?", options: ["Proton", "Electron", "Neutron"], answer: 2 },
+      { q: "What is the speed of light?", options: ["3×10^8 m/s", "1×10^6 m/s", "3×10^6 m/s"], answer: 0 },
+      { q: "Main functional group in alcohols?", options: ["-OH", "-COOH", "-NH2"], answer: 0 },
+      { q: "Momentum formula?", options: ["p = mv", "p = m/v", "p = v/m"], answer: 0 },
+      { q: "Which scientist proposed relativity?", options: ["Einstein", "Newton", "Bohr"], answer: 0 }
+    ]
+  },
 
-technology: {
-  grade10: [
-    { q: "Which language is used for web structure?", options: ["Python", "HTML", "C++"], answer: 1 },
-    { q: "What does ICT stand for?", options: ["Information & Communication Technology", "Internet Computer Training", "Integrated Coding Techniques"], answer: 0 },
-    { q: "Hardware example?", options: ["Monitor", "MS Word", "Linux"], answer: 0 },
-    { q: "Which device stores data permanently?", options: ["Hard drive", "RAM", "Cache"], answer: 0 },
-    { q: "Which is an input device?", options: ["Keyboard", "Printer", "Monitor"], answer: 0 },
-    { q: "Which is an output device?", options: ["Printer", "Mouse", "Scanner"], answer: 0 },
-    { q: "Which software controls hardware?", options: ["Operating System", "Word Processor", "Spreadsheet"], answer: 0 },
-    { q: "Which is a storage device?", options: ["USB drive", "Monitor", "Keyboard"], answer: 0 },
-    { q: "Which is a mobile operating system?", options: ["Android", "Windows", "Linux"], answer: 0 },
-    { q: "Which device connects computers to the internet?", options: ["Router", "Printer", "Scanner"], answer: 0 },
-    { q: "Which is a programming language?", options: ["Java", "Excel", "Word"], answer: 0 },
-    { q: "Which is a web browser?", options: ["Chrome", "Photoshop", "Excel"], answer: 0 },
-    { q: "Which device displays output?", options: ["Monitor", "Keyboard", "Mouse"], answer: 0 },
-    { q: "Which is a peripheral device?", options: ["Printer", "CPU", "RAM"], answer: 0 },
-    { q: "Which is a cloud storage service?", options: ["Google Drive", "MS Word", "Excel"], answer: 0 }
-  ],
-  grade11: [
-    { q: "Binary of decimal 5?", options: ["101", "111", "100"], answer: 0 },
-    { q: "Which protocol is used for web browsing?", options: ["HTTP", "FTP", "SMTP"], answer: 0 },
-    { q: "LAN stands for?", options: ["Local Area Network", "Large Access Node", "Logical Application Network"], answer: 0 },
-    { q: "Which is a database software?", options: ["MySQL", "Photoshop", "Word"], answer: 0 },
-    { q: "Which number system uses base 2?", options: ["Binary", "Decimal", "Hexadecimal"], answer: 0 },
-    { q: "Which is a search engine?", options: ["Google", "Word", "Excel"], answer: 0 },
-    { q: "Which device converts digital signals to analog?", options: ["Modem", "Router", "Switch"], answer: 0 },
-    { q: "Which is a markup language?", options: ["HTML", "Python", "C++"], answer: 0 },
-    { q: "Which is a spreadsheet software?", options: ["Excel", "Word", "Access"], answer: 0 },
-    { q: "Which is a presentation software?", options: ["PowerPoint", "Excel", "Access"], answer: 0 },
-    { q: "Which is a type of network topology?", options: ["Star", "Circle", "Square"], answer: 0 },
-    { q: "Which is a secondary storage device?", options: ["Hard disk", "RAM", "Cache"], answer: 0 },
-    { q: "Which is a programming paradigm?", options: ["Object-Oriented", "Word Processing", "Spreadsheet"], answer: 0 },
-    { q: "Which is a version control system?", options: ["Git", "Excel", "Word"], answer: 0 },
-    { q: "Which is a file extension for text files?", options: [".txt", ".jpg", ".mp3"], answer: 0 }
-  ],
-  grade12: [
-    { q: "What does SQL stand for?", options: ["Structured Query Language", "Simple Query Logic", "System Quality Language"], answer: 0 },
-    { q: "Which is a front-end framework?", options: ["React", "MySQL", "Linux"], answer: 0 },
-    { q: "IPv4 address length?", options: ["32 bits", "64 bits", "128 bits"], answer: 0 },
-    { q: "Which is a back-end language?", options: ["Node.js", "CSS", "HTML"], answer: 0 },
-    { q: "Which is a relational database?", options: ["PostgreSQL", "Photoshop", "Word"], answer: 0 },
-    { q: "Which is a cloud computing platform?", options: ["AWS", "Excel", "Word"], answer: 0 },
-    { q: "Which is a cybersecurity threat?", options: ["Phishing", "Word Processing", "Spreadsheet"], answer: 0 },
-    { q: "Which is a hashing algorithm?", options: ["SHA-256", "Excel", "Word"], answer: 0 },
-    { q: "Which is a machine learning library?", options: ["TensorFlow", "Word", "Excel"], answer: 0 },
-    { q: "Which is a mobile app framework?", options: ["Flutter", "Excel", "Word"], answer: 0 },
-    { q: "Which is a type of AI?", options: ["Neural Networks", "Word Processing", "Spreadsheet"], answer: 0 },
-    { q: "Which is a data structure?", options: ["Linked List", "Word", "Excel"], answer: 0 },
-    { q: "Which is a sorting algorithm?", options: ["QuickSort", "Word", "Excel"], answer: 0 },
-    { q: "Which is a software development methodology?", options: ["Agile", "Word Processing", "Spreadsheet"], answer: 0 },
-    { q: "Which is a cloud storage provider?", options: ["Dropbox", "Excel", "Word"], answer: 0 }
-  ]
+  technology: {
+    grade10: [
+      { q: "Which language is used for web structure?", options: ["Python", "HTML", "C++"], answer: 1 },
+      { q: "What does ICT stand for?", options: ["Information & Communication Technology", "Internet Computer Training", "Integrated Coding Techniques"], answer: 0 },
+      { q: "Hardware example?", options: ["Monitor", "MS Word", "Linux"], answer: 0 },
+      { q: "Which device stores data permanently?", options: ["Hard drive", "RAM", "Cache"], answer: 0 },
+      { q: "Which is an input device?", options: ["Keyboard", "Printer", "Monitor"], answer: 0 }
+    ],
+    grade11: [
+      { q: "Binary of decimal 5?", options: ["101", "111", "100"], answer: 0 },
+      { q: "Which protocol is used for web browsing?", options: ["HTTP", "FTP", "SMTP"], answer: 0 },
+      { q: "LAN stands for?", options: ["Local Area Network", "Large Access Node", "Logical Application Network"], answer: 0 },
+      { q: "Which is a database software?", options: ["MySQL", "Photoshop", "Word"], answer: 0 },
+      { q: "Which number system uses base 2?", options: ["Binary", "Decimal", "Hexadecimal"], answer: 0 }
+    ],
+    grade12: [
+      { q: "What does SQL stand for?", options: ["Structured Query Language", "Simple Query Logic", "System Quality Language"], answer: 0 },
+      { q: "Which is a front-end framework?", options: ["React", "MySQL", "Linux"], answer: 0 },
+      { q: "IPv4 address length?", options: ["32 bits", "64 bits", "128 bits"], answer: 0 },
+      { q: "Which is a back-end language?", options: ["Node.js", "CSS", "HTML"], answer: 0 },
+      { q: "Which is a relational database?", options: ["PostgreSQL", "Photoshop", "Word"], answer: 0 }
+    ]
+  }
 };
 
 console.log("Quiz data loaded:", quizzes);
-
-
