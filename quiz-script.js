@@ -1,8 +1,6 @@
-// Get random questions from the pool
-function getRandomQuestions(subject, grade, count = 5) {
-  const pool = quizzes[subject][grade];
-  const shuffled = pool.sort(() => 0.5 - Math.random());
-  return shuffled.slice(0, count);
+// Get all questions from the pool (already 5 per grade)
+function getQuestions(subject, grade) {
+  return quizzes[subject][grade];
 }
 
 // Load quiz into container
@@ -10,7 +8,7 @@ function loadQuiz(subject, grade, containerId) {
   const container = document.getElementById(containerId);
   container.innerHTML = "";
 
-  const questions = getRandomQuestions(subject, grade);
+  const questions = getQuestions(subject, grade);
   container.dataset.score = 0; // reset score
   container.dataset.total = questions.length;
   container.dataset.subject = subject;
