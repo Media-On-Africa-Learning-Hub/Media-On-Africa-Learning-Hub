@@ -51,7 +51,7 @@ const quizzes = {
       { q: "Solve: x^2-5x+6=0", options: ["x=2 or 3", "x=1 or 6", "x=0 or 5"], answer: 0 },
       { q: "Find derivative of x^3", options: ["3x^2", "x^2", "x^3"], answer: 0 }
     ]
-  }
+  },
 
     science: {
   grade10: [
@@ -105,7 +105,7 @@ const quizzes = {
     { q: "Which organ produces insulin?", options: ["Pancreas", "Liver", "Kidney"], answer: 0 },
     { q: "Which scientist proposed atomic theory?", options: ["Dalton", "Einstein", "Newton"], answer: 0 }
   ]
-}
+},
 
 technology: {
   grade10: [
@@ -159,7 +159,7 @@ technology: {
     { q: "Which is a software development methodology?", options: ["Agile", "Word Processing", "Spreadsheet"], answer: 0 },
     { q: "Which is a cloud storage provider?", options: ["Dropbox", "Excel", "Word"], answer: 0 }
   ]
-}
+},
 
 
 
