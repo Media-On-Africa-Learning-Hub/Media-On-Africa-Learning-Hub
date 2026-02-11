@@ -199,15 +199,16 @@
   let delay = 4000; // 4 seconds
 
   // Typing effect
-  function typeText(container, text, speed = 40) {
-    container.innerText = "";
-    let i = 0;
-    const interval = setInterval(() => {
-      container.innerText += text.charAt(i);
-      i++;
-      if (i >= text.length) clearInterval(interval);
-    }, speed);
-  }
+function typeText(container, text, speed = 40) {
+  container.textContent = ""; // clears properly
+  let i = 0;
+  const interval = setInterval(() => {
+    container.textContent += text.charAt(i); // preserves spaces
+    i++;
+    if (i >= text.length) clearInterval(interval);
+  }, speed);
+}
+
 
   // Rotation function
   function rotateContent(containerId, array, useTyping = false) {
