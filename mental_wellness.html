@@ -206,131 +206,6 @@
       container.textContent += text.charAt(i);
       i++;
       if (i >= text.length) clearInterval(typingInterval);
-    }, 50);
-  }
-
-  // Rotation logic
-  function rotateContent(containerId, array, useTyping = false, useFade = false) {
-    const container = document.getElementById(containerId);
-    if (!container) return;
-    let index = 0;
-
-    function showMessage(text) {
-      if (useTyping) {
-        typeText(container, text);
-        container.classList.remove("pop-show");
-        void container.offsetWidth; // force reflow
-        container.classList.add("pop-show");
-      } else if (useFade) {
-        container.classList.remove("fade-in");
-        setTimeout(() => {
-          container.textContent = text;
-          container.classList.add("fade-in");
-        }, 200);
-      } else {
-        container.textContent = text;
-      }
-    }
-
-    showMessage(array[index]);
-
-    intervals[containerId] = setInterval(() => {
-      index = (index + 1) % array.length;
-      showMessage(array[index]);
-    }, delay);
-  }
-
-  function startRotation() {
-    rotateContent("daily-quote", quotes, true); // typing + pop
-    rotateContent("encouragement", encouragements, false, true); // fade only
-    rotateContent("reflection-prompt", reflections, false); // reflections only
-    rotateContent("relaxation-exercise", relaxationExercises, false); // exercises only
-  }
-
-  function pauseRotation() {
-    for (let id in intervals) {
-      clearInterval(intervals[id]);
-    }
-    intervals = {};
-    alert("Rotation paused. Current messages will stay visible.");
-  }
-
-  function resumeRotation() {
-    if (Object.keys(intervals).length === 0) {
-      startRotation();
-      alert("Rotation resumed.");
-    }
-  }
-
-  document.addEventListener("DOMContentLoaded", function() {
-    // Explicitly map containers to feature-blocks
-    const reflectionContainer = document.createElement("p");
-    reflectionContainer.id = "reflection-prompt";
-    document.querySelector(".feature-block:nth-of-type(4)").appendChild(reflectionContainer);
-
-    const exerciseContainer = document.createElement("p");
-    exerciseContainer.id = "relaxation-exercise";
-    document.querySelector(".feature-block:nth-of-type(5)").appendChild(exerciseContainer);
-
-    const encouragementContainer = document.createElement("p");
-    encouragementContainer.id = "encouragement";
-    document.querySelector(".feature-block:nth-of-type(6)").appendChild(encouragementContainer);
-
-    // Add control buttons
-    const pauseButton = document.createElement("button");
-    pauseButton.innerText = "Pause Rotation";
-    pauseButton.className = "control-btn";
-    pauseButton.onclick = pauseRotation;
-
-    const resumeButton = document.createElement("button");
-    resumeButton.innerText = "Resume Rotation";
-    resumeButton.className = "control-btn";
-    resumeButton.onclick = resumeRotation;
-
-    const footer = document.querySelector(".Footer");
-    footer.appendChild(pauseButton);
-    footer.appendChild(resumeButton);
-
-    // Start rotations
-    startRotation();
-  });
-  
-</script>
-  "What’s one strength you’re proud of?",
-    "What’s a lesson you learned from a mistake?",
-    "What’s one way you showed kindness today?",
-    "What’s something you’re looking forward to?"
-  ];
-
-  const relaxationExercises = [
-    "Close your eyes and take 5 slow breaths, focusing only on the rise and fall of your chest.",
-    "Stretch your arms overhead, then gently roll your shoulders back to release tension.",
-    "Try progressive muscle relaxation: tense each muscle group for 5 seconds, then release.",
-    "Visualize a calm place — a beach, a forest, or anywhere peaceful — and imagine yourself there.",
-    "Do a quick body scan: notice how your head, shoulders, arms, and legs feel, and let go of tightness."
-  ];
-
-  const encouragements = [
-    "You are more than your grades, more than your struggles, and more than your mistakes.",
-    "Even when life feels heavy, you carry the ability to rise again.",
-    "Your effort matters, even when results take time.",
-    "You are worthy of rest, care, and compassion.",
-    "Every challenge you face is proof of your strength.",
-    "You have the courage to keep moving forward, even when it’s hard.",
-    "Your dreams are valid, and your potential is limitless."
-  ];
-
-  let intervals = {};
-  let delay = 4000; // 4 seconds
-
-  // Typing effect helper
-  function typeText(container, text) {
-    container.textContent = "";
-    let i = 0;
-    const typingInterval = setInterval(() => {
-      container.textContent += text.charAt(i);
-      i++;
-      if (i >= text.length) clearInterval(typingInterval);
     }, 50); // typing speed
   }
 
@@ -416,6 +291,7 @@
     startRotation();
   });
 </script>
+
 
 
 
