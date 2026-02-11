@@ -199,26 +199,23 @@
   let delay = 4000; // 4 seconds
 
   // Typing effect
-function typeText(container, text, speed = 40) {
-  container.textContent = ""; // clears properly
-  let i = 0;
-  const interval = setInterval(() => {
-    container.textContent += text.charAt(i); // preserves spaces
-    i++;
-    if (i >= text.length) clearInterval(interval);
-  }, speed);
-}
-
-
-  // Rotation function
- function rotateContent(containerId, array, useTyping = false) {
+function rotateContent(containerId, array, useTyping = false, useFade = false) {
   const container = document.getElementById(containerId);
   if (!container) return;
   let index = 0;
 
   function showMessage(text) {
     if (useTyping) {
-      typeText(container, text); // typing effect
+      typeText(container, text); // typing effect for Daily Positivity
+      container.classList.remove("pop-show");
+      void container.offsetWidth; // force reflow
+      container.classList.add("pop-show");
+    } else if (useFade) {
+      container.classList.remove("fade-in");
+      setTimeout(() => {
+        container.textContent = text;
+        container.classList.add("fade-in");
+      }, 200);
     } else {
       container.textContent = text; // static swap
     }
@@ -233,10 +230,10 @@ function typeText(container, text, speed = 40) {
 }
 
 function startRotation() {
-  rotateContent("daily-quote", quotes, true); // typing + animation
-  rotateContent("encouragement", encouragements, false); // static
-  rotateContent("reflection-prompt", reflections, false);
-  rotateContent("relaxation-exercise", relaxationExercises, false);
+  rotateContent("daily-quote", quotes, true); // typing + pop animation
+  rotateContent("encouragement", encouragements, false, true); // static with gentle fade
+  rotateContent("reflection-prompt", reflections, false); // static
+  rotateContent("relaxation-exercise", relaxationExercises, false); // static
 }
 
 
