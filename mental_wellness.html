@@ -195,33 +195,58 @@
     "Your dreams are valid, and your potential is limitless."
   ];
 
-  let intervals = {}; // store intervals
-  let delay = 3000;   // 3 seconds
+  let intervals = {}; 
+  let delay = 4000; // 4 seconds
 
-  function rotateContent(containerId, array) {
+  // Typing effect
+  function typeText(container, text, speed = 40) {
+    container.innerText = "";
+    let i = 0;
+    const interval = setInterval(() => {
+      container.innerText += text.charAt(i);
+      i++;
+      if (i >= text.length) clearInterval(interval);
+    }, speed);
+  }
+
+  // Rotation function
+  function rotateContent(containerId, array, useTyping = false) {
     const container = document.getElementById(containerId);
     if (!container) return;
     let index = 0;
 
-    container.classList.add("fade");
-    container.innerText = array[index];
-    setTimeout(() => container.classList.add("show"), 50);
+    // initial load
+    if (useTyping) {
+      typeText(container, array[index]);
+    } else {
+      container.classList.add("fade");
+      container.innerText = array[index];
+      setTimeout(() => container.classList.add("show"), 50);
+    }
 
     intervals[containerId] = setInterval(() => {
       index = (index + 1) % array.length;
-      container.classList.remove("show");
-      setTimeout(() => {
-        container.innerText = array[index];
-        container.classList.add("show");
-      }, 500);
+
+      if (useTyping) {
+        typeText(container, array[index]);
+      } else {
+        container.classList.remove("show");
+        setTimeout(() => {
+          container.innerText = array[index];
+          container.classList.add("show");
+        }, 500);
+      }
     }, delay);
   }
 
   function startRotation() {
-    rotateContent("daily-quote", quotes);
-    rotateContent("reflection-prompt", reflections);
-    rotateContent("relaxation-exercise", relaxationExercises);
-    rotateContent("encouragement", encouragements);
+    // Daily Positivity + Encouragement use typing
+    rotateContent("daily-quote", quotes, true);
+    rotateContent("encouragement", encouragements, true);
+
+    // Reflection + Relaxation use fade
+    rotateContent("reflection-prompt", reflections, false);
+    rotateContent("relaxation-exercise", relaxationExercises, false);
   }
 
   function pauseRotation() {
@@ -268,6 +293,7 @@
     startRotation();
   });
 </script>
+
 
 
 <!-- Chatbot Embed -->
