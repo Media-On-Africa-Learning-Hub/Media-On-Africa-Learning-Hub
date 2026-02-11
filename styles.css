@@ -679,6 +679,11 @@ button:nth-of-type(2):hover {
   color: #3e2723; /* deep brown for readability */
   box-shadow: 0 4px 12px rgba(251, 140, 0, 0.2);
   transition: all 0.3s ease;
+  min-height: 3.5em; /* keeps block height stable */
+  display: flex;
+  align-items: center;
+  white-space: pre-wrap;
+  word-break: break-word;
 }
 
 #daily-quote:hover {
@@ -687,7 +692,7 @@ button:nth-of-type(2):hover {
   background: linear-gradient(135deg, #fff3e0, #ffe0b2); /* subtle warm shift */
 }
 
-/* Words of Encouragement: calm, supportive */
+/* Words of Encouragement: calm, supportive (static) */
 #encouragement {
   background: linear-gradient(135deg, #e1f5fe, #e0f7fa); /* soft sky blue + aqua */
   border-left: 6px solid #00838f; /* deep teal accent */
@@ -696,6 +701,11 @@ button:nth-of-type(2):hover {
   color: #004d40; /* dark teal for readability */
   box-shadow: 0 4px 12px rgba(0, 131, 143, 0.2);
   transition: all 0.3s ease;
+  min-height: 3.5em; /* keeps block height stable */
+  display: flex;
+  align-items: center;
+  white-space: pre-wrap;
+  word-break: break-word;
 }
 
 #encouragement:hover {
@@ -704,7 +714,7 @@ button:nth-of-type(2):hover {
   background: linear-gradient(135deg, #e0f7fa, #b2ebf2); /* subtle calming shift */
 }
 
-/* Pop animation */
+/* Pop animation (used only for Daily Positivity) */
 .pop-show {
   animation: popGlow 1s ease forwards;
 }
@@ -715,7 +725,7 @@ button:nth-of-type(2):hover {
   100% { opacity: 1; transform: scale(1); text-shadow: none; }
 }
 
-/* Typing cursor */
+/* Typing cursor (used only for Daily Positivity) */
 .typing::after {
   content: "|";
   animation: blink 0.8s infinite;
