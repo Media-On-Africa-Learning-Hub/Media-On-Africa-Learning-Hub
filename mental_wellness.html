@@ -206,7 +206,7 @@ function rotateContent(containerId, array, useTyping = false, useFade = false) {
 
   function showMessage(text) {
     if (useTyping) {
-      typeText(container, text); // typing effect for Daily Positivity
+      typeText(container, text); // typing effect
       container.classList.remove("pop-show");
       void container.offsetWidth; // force reflow
       container.classList.add("pop-show");
@@ -230,12 +230,11 @@ function rotateContent(containerId, array, useTyping = false, useFade = false) {
 }
 
 function startRotation() {
-  rotateContent("daily-quote", quotes, true); // typing + pop animation
-  rotateContent("encouragement", encouragements, false, true); // static with gentle fade
-  rotateContent("reflection-prompt", reflections, false); // static
-  rotateContent("relaxation-exercise", relaxationExercises, false); // static
+  rotateContent("daily-quote", quotes, true); // typing + pop
+  rotateContent("encouragement", encouragements, false, true); // fade only
+  rotateContent("reflection-prompt", reflections, false);
+  rotateContent("relaxation-exercise", relaxationExercises, false);
 }
-
 
     // Reflection + Relaxation use fade
     rotateContent("reflection-prompt", reflections, false);
