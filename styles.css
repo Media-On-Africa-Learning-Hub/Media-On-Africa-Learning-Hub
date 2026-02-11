@@ -660,7 +660,51 @@ button:nth-of-type(2):hover {
   text-align: center;
 }
 
+/* Hero blocks */
+.pop-block {
+  border-radius: 12px;
+  padding: 1.2rem;
+  color: #2c2c2c; /* dark text for readability */
+  font-weight: 500;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+  transition: transform 0.3s ease;
+}
 
+/* Daily Positivity: warm, uplifting */
+#daily-quote {
+  background: linear-gradient(135deg, #ffcc80, #ffb74d);
+  border-left: 6px solid #f57c00;
+}
+
+/* Words of Encouragement: calm, supportive */
+#encouragement {
+  background: linear-gradient(135deg, #80deea, #4dd0e1);
+  border-left: 6px solid #00838f;
+}
+
+/* Pop animation */
+.pop-show {
+  animation: popGlow 1s ease forwards;
+}
+
+@keyframes popGlow {
+  0%   { opacity: 0; transform: scale(0.9); text-shadow: none; }
+  50%  { opacity: 1; transform: scale(1.05); text-shadow: 0 0 12px rgba(0,0,0,0.2); }
+  100% { opacity: 1; transform: scale(1); text-shadow: none; }
+}
+
+/* Typing cursor */
+.typing::after {
+  content: "|";
+  animation: blink 0.8s infinite;
+  margin-left: 2px;
+  color: #f57c00; /* matches positivity theme */
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
 
   
 
