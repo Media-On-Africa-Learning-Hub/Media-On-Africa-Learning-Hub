@@ -195,50 +195,56 @@
     "Your dreams are valid, and your potential is limitless."
   ];
 
-  let intervals = {}; 
+  let intervals = {};
   let delay = 4000; // 4 seconds
 
-  // Typing effect
-function rotateContent(containerId, array, useTyping = false, useFade = false) {
-  const container = document.getElementById(containerId);
-  if (!container) return;
-  let index = 0;
-
-  function showMessage(text) {
-    if (useTyping) {
-      typeText(container, text); // typing effect
-      container.classList.remove("pop-show");
-      void container.offsetWidth; // force reflow
-      container.classList.add("pop-show");
-    } else if (useFade) {
-      container.classList.remove("fade-in");
-      setTimeout(() => {
-        container.textContent = text;
-        container.classList.add("fade-in");
-      }, 200);
-    } else {
-      container.textContent = text; // static swap
-    }
+  // Typing effect helper
+  function typeText(container, text) {
+    container.textContent = "";
+    let i = 0;
+    const typingInterval = setInterval(() => {
+      container.textContent += text.charAt(i);
+      i++;
+      if (i >= text.length) clearInterval(typingInterval);
+    }, 50); // typing speed
   }
 
-  showMessage(array[index]);
+  // Rotation logic
+  function rotateContent(containerId, array, useTyping = false, useFade = false) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+    let index = 0;
 
-  intervals[containerId] = setInterval(() => {
-    index = (index + 1) % array.length;
+    function showMessage(text) {
+      if (useTyping) {
+        typeText(container, text);
+        container.classList.remove("pop-show");
+        void container.offsetWidth; // force reflow
+        container.classList.add("pop-show");
+      } else if (useFade) {
+        container.classList.remove("fade-in");
+        setTimeout(() => {
+          container.textContent = text;
+          container.classList.add("fade-in");
+        }, 200);
+      } else {
+        container.textContent = text;
+      }
+    }
+
     showMessage(array[index]);
-  }, delay);
-}
 
-function startRotation() {
-  rotateContent("daily-quote", quotes, true); // typing + pop
-  rotateContent("encouragement", encouragements, false, true); // fade only
-  rotateContent("reflection-prompt", reflections, false);
-  rotateContent("relaxation-exercise", relaxationExercises, false);
-}
+    intervals[containerId] = setInterval(() => {
+      index = (index + 1) % array.length;
+      showMessage(array[index]);
+    }, delay);
+  }
 
-    // Reflection + Relaxation use fade
-    rotateContent("reflection-prompt", reflections, false);
-    rotateContent("relaxation-exercise", relaxationExercises, false);
+  function startRotation() {
+    rotateContent("daily-quote", quotes, true); // typing + pop
+    rotateContent("encouragement", encouragements, false, true); // fade only
+    rotateContent("reflection-prompt", reflections, false); // static swap
+    rotateContent("relaxation-exercise", relaxationExercises, false); // static swap
   }
 
   function pauseRotation() {
@@ -285,6 +291,7 @@ function startRotation() {
     startRotation();
   });
 </script>
+
 
 
 
