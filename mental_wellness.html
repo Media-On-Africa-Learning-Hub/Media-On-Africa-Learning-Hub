@@ -224,10 +224,10 @@
         void container.offsetWidth; // force reflow
         container.classList.add("pop-show");
       } else if (useFade) {
-        container.classList.remove("fade-in");
+        container.classList.remove("show");
         setTimeout(() => {
           container.textContent = text;
-          container.classList.add("fade-in");
+          container.classList.add("show");
         }, 200);
       } else {
         container.textContent = text;
@@ -244,7 +244,7 @@
 
   function startRotation() {
     rotateContent("daily-quote", quotes, true);              // typing + pop
-    rotateContent("encouragement-text", encouragements, false, true); // fade
+    rotateContent("encouragement", encouragements, false, true); // fade
     rotateContent("reflection-prompt-text", reflections, false, true); // fade
     rotateContent("relaxation-exercise", relaxationExercises, false, true); // fade
   }
@@ -282,7 +282,6 @@
     startRotation();
   });
 </script>
-
 
 
 
