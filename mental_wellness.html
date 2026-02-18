@@ -48,15 +48,13 @@
 
   <div class="feature-block" id="daily-quote-block">
     <h2>🌟 Daily Positivity</h2>
-    <p id="daily-quote" class="quote"></p>
+    <p id="daily-quote"></p>
     <p>Write down one thing you’re grateful for today and share it with a friend. Gratitude helps you focus on what you have, not what you lack.</p>
   </div>
 
   <div class="feature-block" id="encouragement">
     <h2>💬 Words of Encouragement</h2>
-    <p>
-      You are more than your grades, more than your struggles, and more than your mistakes. You are a person with dreams, strengths, and endless potential. Even when life feels heavy, you carry the ability to rise again.
-    </p>
+    <p id="encouragement-text"></p>
   </div>
 
   <div class="feature-block" id="safe-space">
@@ -87,6 +85,7 @@
 
   <div class="feature-block" id="relaxation">
     <h2>✨ Quick Relaxation Exercise</h2>
+    <p id="relaxation-exercise"></p>
     <p>Try this 4-7-8 breathing technique:</p>
     <ol>
       <li>Inhale quietly through your nose for 4 seconds.</li>
@@ -108,7 +107,6 @@
 
 </section>
 
-
 <!-- Footer -->
 <section class="Footer">
   <h4>Mental Wellness Hub</h4>
@@ -124,6 +122,7 @@
   </div>
   <p>Made with <i class="fa fa-heart-o"></i> by Media On Africa</p>
 </section>
+
 
 <style>
   /* Fade-in effect */
@@ -211,19 +210,14 @@
     container.classList.add("typing");
   }
 
-  // Rotation logic
-  function rotateContent(containerId, array, useTyping = false, useFade = false) {
+   // Rotation logic
+  function rotateContent(containerId, array, useFade = false) {
     const container = document.getElementById(containerId);
     if (!container) return;
     let index = 0;
 
     function showMessage(text) {
-      if (useTyping) {
-        typeText(container, text);
-        container.classList.remove("pop-show");
-        void container.offsetWidth; // force reflow
-        container.classList.add("pop-show");
-      } else if (useFade) {
+      if (useFade) {
         container.classList.remove("show");
         setTimeout(() => {
           container.textContent = text;
@@ -243,10 +237,10 @@
   }
 
   function startRotation() {
-    rotateContent("daily-quote", quotes, true);              // typing + pop
-    rotateContent("encouragement", encouragements, false, true); // fade
-    rotateContent("reflection-prompt-text", reflections, false, true); // fade
-    rotateContent("relaxation-exercise", relaxationExercises, false, true); // fade
+    rotateContent("daily-quote", quotes); 
+    rotateContent("encouragement-text", encouragements, true);
+    rotateContent("reflection-prompt-text", reflections, true);
+    rotateContent("relaxation-exercise", relaxationExercises, true);
   }
 
   function pauseRotation() {
@@ -282,6 +276,7 @@
     startRotation();
   });
 </script>
+
 
 
 
