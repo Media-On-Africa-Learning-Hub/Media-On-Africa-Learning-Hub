@@ -1,4 +1,4 @@
-// Get all questions from the pool (already 5 per grade)
+// Get all questions from the pool
 function getQuestions(subject, grade) {
   return quizzes[subject][grade];
 }
@@ -14,12 +14,15 @@ function loadQuiz(subject, grade, containerId) {
   container.dataset.subject = subject;
   container.dataset.grade = grade;
 
+  // Store user answers
+  container.dataset.answers = JSON.stringify([]);
+
   questions.forEach((item, index) => {
     const block = document.createElement("div");
     block.classList.add("quiz-question");
     block.innerHTML = `
       <p>${index + 1}. ${item.q}</p>
-      ${item.options.map((opt, i) => 
+      ${item.options.map((opt, i) =>
         `<button onclick="checkAnswer('${subject}', '${grade}', ${index}, ${i}, this, '${containerId}')">${opt}</button>`
       ).join("")}
     `;
@@ -54,6 +57,11 @@ function checkAnswer(subject, grade, qIndex, optIndex, btn, containerId) {
   const buttons = parent.querySelectorAll("button");
   buttons.forEach(b => b.disabled = true);
 
+  // Track answers
+  let answers = JSON.parse(document.getElementById(containerId).dataset.answers);
+  answers[qIndex] = optIndex;
+  document.getElementById(containerId).dataset.answers = JSON.stringify(answers);
+
   if (optIndex === question.answer) {
     btn.style.backgroundColor = "green";
     let score = parseInt(document.getElementById(containerId).dataset.score);
@@ -63,14 +71,36 @@ function checkAnswer(subject, grade, qIndex, optIndex, btn, containerId) {
   }
 }
 
-// Show score
+// Show score + memo
 function showScore(containerId) {
   const container = document.getElementById(containerId);
   const score = parseInt(container.dataset.score);
   const total = parseInt(container.dataset.total);
+  const subject = container.dataset.subject;
+  const grade = container.dataset.grade;
+  const questions = getQuestions(subject, grade);
+  const answers = JSON.parse(container.dataset.answers);
 
-  const result = document.createElement("p");
+  // Clear old results if any
+  const oldResult = container.querySelector(".quiz-result");
+  if (oldResult) oldResult.remove();
+
+  const result = document.createElement("div");
   result.classList.add("quiz-result");
-  result.textContent = `You got ${score} out of ${total} correct.`;
+  result.innerHTML = `<h3>You got ${score} out of ${total} correct.</h3><h4>Memo:</h4>`;
+
+  questions.forEach((q, index) => {
+    const userAnswerIndex = answers[index];
+    const userAnswer = userAnswerIndex !== undefined ? q.options[userAnswerIndex] : "No answer";
+    const correctAnswer = q.options[q.answer];
+
+    if (userAnswerIndex === q.answer) {
+      result.innerHTML += `<p class="memo-correct">Q${index+1}: Correct ✅ (${correctAnswer})</p>`;
+    } else {
+      result.innerHTML += `<p class="memo-wrong">Q${index+1}: Wrong ❌ (Your answer: ${userAnswer} | Correct: ${correctAnswer})</p>`;
+    }
+  });
+
   container.appendChild(result);
 }
+
