@@ -702,48 +702,59 @@ button:nth-of-type(2):hover {
   border-radius: 10px;
   margin-bottom: 1.5rem;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Daily Positivity Block */
-#daily-quote-block {
-  background: linear-gradient(135deg, #fff3e0, #ffe0b2); /* warm peach */
-  color: #3e2723;
+/* Hover effect */
+.feature-block:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.2);
 }
 
-/* Encouragement Block */
-#encouragement {
-  background: linear-gradient(135deg, #e3f2fd, #bbdefb); /* soft blue */
-  color: #0d47a1;
+/* Distinct block backgrounds */
+#daily-quote-block { background: #fef4e7; color: #3e2723; }   /* soft peach */
+#encouragement     { background: #e7f0fe; color: #0d47a1; }   /* soft sky blue */
+#safe-space        { background: #f5e7f9; color: #4a148c; }   /* lavender purple */
+#comforting-reads  { background: #fffde7; color: #5d4037; }   /* pale yellow */
+#reflection-prompt { background: #ede7f6; color: #311b92; }   /* light violet */
+#relaxation        { background: #e8f5e9; color: #1b5e20; }   /* mint green */
+#resources         { background: #e0f7fa; color: #004d40; }   /* aqua teal */
+
+/* --- Rotating text sub-blocks --- */
+.rotating-block {
+  background: #ffffff; /* clean white contrast */
+  border: 2px solid rgba(0,0,0,0.1);
+  border-radius: 8px;
+  padding: 0.8rem 1rem;
+  margin-top: 0.8rem;
+  box-shadow: inset 0 2px 6px rgba(0,0,0,0.05);
 }
 
-/* Safe Space Block */
-#safe-space {
-  background: linear-gradient(135deg, #f3e5f5, #e1bee7); /* gentle purple */
-  color: #4a148c;
+/* Daily quote typing effect inside its own block */
+#daily-quote {
+  color: #fb8c00; /* orange text */
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 2px solid #fb8c00; /* cursor effect */
 }
 
-/* Comforting Reads Block */
-#comforting-reads {
-  background: linear-gradient(135deg, #fff8e1, #ffecb3); /* light yellow */
-  color: #5d4037;
+/* Encouragement rotating text */
+#encouragement-text {
+  color: #1565c0; /* deep blue */
+  font-style: italic;
 }
 
-/* Reflection Prompt Block */
-#reflection-prompt {
-  background: linear-gradient(135deg, #ede7f6, #d1c4e9); /* lavender */
-  color: #311b92;
+/* Reflection prompt rotating text */
+#reflection-prompt-text {
+  color: #6a1b9a; /* purple */
+  font-style: italic;
 }
 
-/* Relaxation Exercise Block */
-#relaxation {
-  background: linear-gradient(135deg, #e8f5e9, #c8e6c9); /* calming green */
-  color: #1b5e20;
-}
-
-/* Resources Block */
-#resources {
-  background: linear-gradient(135deg, #e0f7fa, #b2ebf2); /* teal aqua */
-  color: #004d40;
+/* Relaxation exercise rotating text */
+#relaxation-exercise {
+  color: #2e7d32; /* green */
+  font-weight: 500;
 }
 
 
