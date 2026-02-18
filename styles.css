@@ -696,54 +696,56 @@ button:nth-of-type(2):hover {
   transition: transform 0.3s ease;
 }
 
-/* Daily Positivity: warm, uplifting with typing effect */
-#daily-quote {
-  background: linear-gradient(135deg, #fbe9e7, #fff3e0); /* soft peach + cream */
-  border-left: 6px solid #fb8c00; /* rich orange accent */
-  padding: 1rem;
+/* General feature block styling */
+.feature-block {
+  padding: 1.5rem;
   border-radius: 10px;
-  color: #3e2723; /* deep brown for readability */
-  box-shadow: 0 4px 12px rgba(251, 140, 0, 0.2);
-  transition: all 0.3s ease;
-  min-height: 3.5em;
-  display: inline-block; /* needed for typing effect */
-  align-items: center;
-  white-space: nowrap; /* typing effect */
-  overflow: hidden;    /* typing effect */
-  border-right: 2px solid #fb8c00; /* cursor effect */
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
-/* Hover glow */
-#daily-quote:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 6px 18px rgba(251, 140, 0, 0.3);
-  background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+/* Daily Positivity Block */
+#daily-quote-block {
+  background: linear-gradient(135deg, #fff3e0, #ffe0b2); /* warm peach */
+  color: #3e2723;
 }
 
-/* Typing cursor animation */
-.typing::after {
-  content: "|";
-  animation: blink 0.8s infinite;
-  margin-left: 2px;
-  color: #fb8c00;
-}
-@keyframes blink {
-  0%, 50% { opacity: 1; }
-  51%, 100% { opacity: 0; }
+/* Encouragement Block */
+#encouragement {
+  background: linear-gradient(135deg, #e3f2fd, #bbdefb); /* soft blue */
+  color: #0d47a1;
 }
 
-/* Reflection Prompt: thoughtful purples with fade-in */
-#reflection-prompt-text {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: all 1s ease-in-out;
-  font-style: italic;
+/* Safe Space Block */
+#safe-space {
+  background: linear-gradient(135deg, #f3e5f5, #e1bee7); /* gentle purple */
   color: #4a148c;
 }
-#reflection-prompt-text.show {
-  opacity: 1;
-  transform: translateY(0);
+
+/* Comforting Reads Block */
+#comforting-reads {
+  background: linear-gradient(135deg, #fff8e1, #ffecb3); /* light yellow */
+  color: #5d4037;
 }
+
+/* Reflection Prompt Block */
+#reflection-prompt {
+  background: linear-gradient(135deg, #ede7f6, #d1c4e9); /* lavender */
+  color: #311b92;
+}
+
+/* Relaxation Exercise Block */
+#relaxation {
+  background: linear-gradient(135deg, #e8f5e9, #c8e6c9); /* calming green */
+  color: #1b5e20;
+}
+
+/* Resources Block */
+#resources {
+  background: linear-gradient(135deg, #e0f7fa, #b2ebf2); /* teal aqua */
+  color: #004d40;
+}
+
 
 
   
