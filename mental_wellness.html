@@ -197,17 +197,21 @@
   ];
 
   let intervals = {};
-  let delay = 4000; // 4 seconds
+  let delay = 6000; // 6 seconds per rotation for readability
 
-  // Typing effect helper
+  // Typing effect helper (ensures full sentence is typed)
   function typeText(container, text) {
     container.textContent = "";
     let i = 0;
     const typingInterval = setInterval(() => {
       container.textContent += text.charAt(i);
       i++;
-      if (i >= text.length) clearInterval(typingInterval);
+      if (i >= text.length) {
+        clearInterval(typingInterval);
+        container.classList.remove("typing");
+      }
     }, 50); // typing speed
+    container.classList.add("typing");
   }
 
   // Rotation logic
@@ -243,9 +247,9 @@
 
   function startRotation() {
     rotateContent("daily-quote", quotes, true); // typing + pop
-    rotateContent("encouragement", encouragements, false, true); // fade only
-    rotateContent("reflection-prompt", reflections, false); // static swap
-    rotateContent("relaxation-exercise", relaxationExercises, false); // static swap
+    rotateContent("encouragement-text", encouragements, false, true); // fade only
+    rotateContent("reflection-prompt-text", reflections, false, true); // fade only
+    rotateContent("relaxation-exercise", relaxationExercises, false, true); // fade only
   }
 
   function pauseRotation() {
@@ -265,13 +269,23 @@
 
   document.addEventListener("DOMContentLoaded", function() {
     // Ensure containers exist
-    const exerciseContainer = document.createElement("p");
-    exerciseContainer.id = "relaxation-exercise";
-    document.querySelector(".feature-block:nth-of-type(5)").appendChild(exerciseContainer);
+    if (!document.getElementById("relaxation-exercise")) {
+      const exerciseContainer = document.createElement("p");
+      exerciseContainer.id = "relaxation-exercise";
+      document.querySelector("#relaxation").appendChild(exerciseContainer);
+    }
 
-    const encouragementContainer = document.createElement("p");
-    encouragementContainer.id = "encouragement";
-    document.querySelector(".feature-block:nth-of-type(6)").appendChild(encouragementContainer);
+    if (!document.getElementById("encouragement-text")) {
+      const encouragementContainer = document.createElement("p");
+      encouragementContainer.id = "encouragement-text";
+      document.querySelector("#encouragement").appendChild(encouragementContainer);
+    }
+
+    if (!document.getElementById("reflection-prompt-text")) {
+      const reflectionContainer = document.createElement("p");
+      reflectionContainer.id = "reflection-prompt-text";
+      document.querySelector("#reflection-prompt").appendChild(reflectionContainer);
+    }
 
     // Add control buttons
     const pauseButton = document.createElement("button");
