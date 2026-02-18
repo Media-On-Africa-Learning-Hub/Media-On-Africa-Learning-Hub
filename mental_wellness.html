@@ -197,20 +197,17 @@
   ];
 
   let intervals = {};
-  let delay = 6000; // 6 seconds per rotation for readability
+  let delay = 6000; // 6 seconds per rotation
 
-  // Typing effect helper (ensures full sentence is typed)
+  // Typing effect helper
   function typeText(container, text) {
     container.textContent = "";
     let i = 0;
     const typingInterval = setInterval(() => {
       container.textContent += text.charAt(i);
       i++;
-      if (i >= text.length) {
-        clearInterval(typingInterval);
-        container.classList.remove("typing");
-      }
-    }, 50); // typing speed
+      if (i >= text.length) clearInterval(typingInterval);
+    }, 50);
     container.classList.add("typing");
   }
 
@@ -246,16 +243,14 @@
   }
 
   function startRotation() {
-    rotateContent("daily-quote", quotes, true); // typing + pop
-    rotateContent("encouragement-text", encouragements, false, true); // fade only
-    rotateContent("reflection-prompt-text", reflections, false, true); // fade only
-    rotateContent("relaxation-exercise", relaxationExercises, false, true); // fade only
+    rotateContent("daily-quote", quotes, true);              // typing + pop
+    rotateContent("encouragement-text", encouragements, false, true); // fade
+    rotateContent("reflection-prompt-text", reflections, false, true); // fade
+    rotateContent("relaxation-exercise", relaxationExercises, false, true); // fade
   }
 
   function pauseRotation() {
-    for (let id in intervals) {
-      clearInterval(intervals[id]);
-    }
+    for (let id in intervals) clearInterval(intervals[id]);
     intervals = {};
     alert("Rotation paused. Current messages will stay visible.");
   }
@@ -268,25 +263,6 @@
   }
 
   document.addEventListener("DOMContentLoaded", function() {
-    // Ensure containers exist
-    if (!document.getElementById("relaxation-exercise")) {
-      const exerciseContainer = document.createElement("p");
-      exerciseContainer.id = "relaxation-exercise";
-      document.querySelector("#relaxation").appendChild(exerciseContainer);
-    }
-
-    if (!document.getElementById("encouragement-text")) {
-      const encouragementContainer = document.createElement("p");
-      encouragementContainer.id = "encouragement-text";
-      document.querySelector("#encouragement").appendChild(encouragementContainer);
-    }
-
-    if (!document.getElementById("reflection-prompt-text")) {
-      const reflectionContainer = document.createElement("p");
-      reflectionContainer.id = "reflection-prompt-text";
-      document.querySelector("#reflection-prompt").appendChild(reflectionContainer);
-    }
-
     // Add control buttons
     const pauseButton = document.createElement("button");
     pauseButton.innerText = "Pause Rotation";
