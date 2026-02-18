@@ -738,6 +738,77 @@ button:nth-of-type(2):hover {
   51%, 100% { opacity: 0; }
 }
 
+/* Safe Space: grounding, natural */
+#safe-space {
+  background: linear-gradient(135deg, #e8f5e9, #c8e6c9); /* soft greens */
+  border-left: 6px solid #2e7d32; /* deep green accent */
+  padding: 1rem;
+  border-radius: 10px;
+  color: #1b5e20;
+  box-shadow: 0 4px 12px rgba(46, 125, 50, 0.2);
+  transition: all 0.3s ease;
+}
+#safe-space:hover {
+  transform: translateY(-4px);
+  background: linear-gradient(135deg, #c8e6c9, #a5d6a7);
+}
+
+/* Comforting Reads: warm, cozy */
+#comforting-reads {
+  background: linear-gradient(135deg, #fff3e0, #ffe0b2); /* warm orange tones */
+  border-left: 6px solid #ef6c00;
+  padding: 1rem;
+  border-radius: 10px;
+  color: #4e342e;
+  box-shadow: 0 4px 12px rgba(239, 108, 0, 0.2);
+}
+#comforting-reads:hover {
+  transform: translateY(-4px);
+  background: linear-gradient(135deg, #ffe0b2, #ffcc80);
+}
+
+/* Reflection Prompt: thoughtful, soft purple */
+#reflection-prompt {
+  background: linear-gradient(135deg, #f3e5f5, #e1bee7);
+  border-left: 6px solid #8e24aa;
+  padding: 1rem;
+  border-radius: 10px;
+  color: #4a148c;
+  box-shadow: 0 4px 12px rgba(142, 36, 170, 0.2);
+}
+#reflection-prompt:hover {
+  transform: translateY(-4px);
+  background: linear-gradient(135deg, #e1bee7, #ce93d8);
+}
+
+/* Relaxation Exercise: calm yellow */
+#relaxation {
+  background: linear-gradient(135deg, #fffde7, #fff9c4);
+  border-left: 6px solid #fbc02d;
+  padding: 1rem;
+  border-radius: 10px;
+  color: #f57f17;
+  box-shadow: 0 4px 12px rgba(251, 192, 45, 0.2);
+}
+#relaxation:hover {
+  transform: translateY(-4px);
+  background: linear-gradient(135deg, #fff9c4, #fff59d);
+}
+
+/* Resources: neutral grey for balance */
+#resources {
+  background: linear-gradient(135deg, #eceff1, #cfd8dc);
+  border-left: 6px solid #455a64;
+  padding: 1rem;
+  border-radius: 10px;
+  color: #263238;
+  box-shadow: 0 4px 12px rgba(69, 90, 100, 0.2);
+}
+#resources:hover {
+  transform: translateY(-4px);
+  background: linear-gradient(135deg, #cfd8dc, #b0bec5);
+}
+
   
 
 
