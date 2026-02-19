@@ -557,27 +557,30 @@ nav .fa {
 
 /* Blog Block Styling */
 .blog-content .block {
-  background: linear-gradient(180deg, #fdfdfd, #f7f7f7);
   padding: 2rem;
   margin-bottom: 2rem;
-  border-radius: 12px;
+  border-radius: 14px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  border-left: 6px solid #a8dadc; /* pastel accent */
+  color: #1d3557;
+}
+
+/* Different pastel backgrounds per block */
+.blog-content .block:nth-child(1) {
+  background: linear-gradient(135deg, #fdfcdc, #ffe5ec);
 }
 
 .blog-content .block:nth-child(2) {
-  border-left: 6px solid #ffd6a5; /* soft yellow accent */
+  background: linear-gradient(135deg, #e0f7fa, #f1faee);
 }
 
 .blog-content .block:nth-child(3) {
-  border-left: 6px solid #ffafcc; /* soft pink accent */
+  background: linear-gradient(135deg, #ffd6a5, #caffbf);
 }
 
 .blog-content .block:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
-  background: linear-gradient(180deg, #ffffff, #f1faee);
+  transform: translateY(-6px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.15);
 }
 
 /* Headings */
@@ -596,7 +599,7 @@ nav .fa {
 
 /* Quotes */
 blockquote {
-  background: #eaf4f4;
+  background: rgba(255,255,255,0.6);
   border-left: 4px solid #457b9d;
   padding: 0.8rem 1rem;
   margin: 1rem 0;
@@ -604,7 +607,6 @@ blockquote {
   color: #1d3557;
   border-radius: 6px;
 }
-
 
 /* Quiz container */
 .quiz-container {
