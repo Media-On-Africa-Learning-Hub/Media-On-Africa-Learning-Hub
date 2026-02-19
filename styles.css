@@ -205,21 +205,21 @@ nav .fa {
 
 .row {
   display: flex;
-  justify-content: space-between; /* keeps items evenly spaced */
   flex-wrap: wrap;
+  justify-content: space-between; /* evenly distribute items */
   margin-top: 40px;
 }
 
 .subject-col {
-  flex: 1 1 22%; /* 4 items per row */
-  background: #0094b9; /* shared background */
+  flex: 0 0 calc(25% - 30px); /* 4 items per row, accounting for margins */
+  background: #0094b9;
   border-radius: 10px;
   margin: 15px;
   padding: 20px;
   transition: 0.3s;
   color: #fff;
   text-align: left;
-  box-sizing: border-box; /* ensures padding/margin don’t break layout */
+  box-sizing: border-box;
 }
 
 .subject-col h3 {
@@ -241,15 +241,16 @@ nav .fa {
 /* Responsive tweaks */
 @media (max-width: 1024px) {
   .subject-col {
-    flex: 1 1 45%; /* 2 per row on tablets */
+    flex: 0 0 calc(50% - 30px); /* 2 per row on tablets */
   }
 }
 
 @media (max-width: 600px) {
   .subject-col {
-    flex: 1 1 100%; /* 1 per row on phones */
+    flex: 0 0 100%; /* 1 per row on phones */
   }
 }
+
 
 
 /* Facilities */
