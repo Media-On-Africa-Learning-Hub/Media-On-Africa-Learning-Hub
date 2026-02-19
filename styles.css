@@ -762,10 +762,15 @@ button:nth-of-type(2):hover {
 #daily-quote {
   color: #fb8c00; /* orange text */
   font-weight: 500;
-  white-space: nowrap;
+  white-space: normal;       /* allow wrapping */
   overflow: hidden;
   border-right: 2px solid #fb8c00; /* cursor effect */
+  display: inline-block;
+  max-width: 100%;           /* prevent overflow */
+  min-height: 1.5em;         /* reserve space so block height stays stable */
 }
+
+
 
 /* Encouragement rotating text */
 #encouragement-text {
