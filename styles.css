@@ -205,13 +205,13 @@ nav .fa {
 
 .row {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between; /* keeps items evenly spaced */
   flex-wrap: wrap;
   margin-top: 40px;
 }
 
 .subject-col {
-  flex: 1 1 30%;
+  flex: 1 1 22%; /* 4 items per row */
   background: #0094b9; /* shared background */
   border-radius: 10px;
   margin: 15px;
@@ -219,6 +219,7 @@ nav .fa {
   transition: 0.3s;
   color: #fff;
   text-align: left;
+  box-sizing: border-box; /* ensures padding/margin don’t break layout */
 }
 
 .subject-col h3 {
@@ -236,6 +237,20 @@ nav .fa {
 .subject-col.science i { color: #4caf50; }  /* green */
 .subject-col.tech i { color: #2196f3; }     /* blue */
 .subject-col.art i { color: #9c27b0; }      /* purple */
+
+/* Responsive tweaks */
+@media (max-width: 1024px) {
+  .subject-col {
+    flex: 1 1 45%; /* 2 per row on tablets */
+  }
+}
+
+@media (max-width: 600px) {
+  .subject-col {
+    flex: 1 1 100%; /* 1 per row on phones */
+  }
+}
+
 
 /* Facilities */
 .facilities-col {
