@@ -758,6 +758,14 @@ button:nth-of-type(2):hover {
   box-shadow: inset 0 2px 6px rgba(0,0,0,0.05);
 }
 
+/* General tidy-up for feature block text */
+.feature-block p,
+.feature-block ul,
+.feature-block li {
+  margin: 0.5rem 0;       /* consistent vertical spacing */
+  line-height: 1.6;       /* improve readability */
+}
+
 /* Daily quote typing effect inside its own block */
 #daily-quote {
   color: #fb8c00; /* orange text */
@@ -771,18 +779,32 @@ button:nth-of-type(2):hover {
 }
 
 
-
-/* Encouragement rotating text */
+/* Words of Encouragement block */
 #encouragement-text {
   color: #1565c0; /* deep blue */
   font-style: italic;
+  display: block;
+  margin-top: 0.5rem;     /* add breathing space below heading */
 }
 
-/* Reflection prompt rotating text */
+/* Reflection Prompt block */
 #reflection-prompt-text {
   color: #6a1b9a; /* purple */
   font-style: italic;
+  display: block;
+  margin-top: 0.5rem;
 }
+
+/* Resources block */
+#resources ul {
+  padding-left: 1.2rem;   /* indent list neatly */
+  margin-top: 0.5rem;
+}
+
+#resources li {
+  margin-bottom: 0.4rem;  /* space between list items */
+}
+
 
 /* Relaxation exercise rotating text */
 #relaxation-exercise {
