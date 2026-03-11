@@ -69,7 +69,34 @@ const quizzes = {
       { q: "Which is a back-end language?", options: ["Node.js", "CSS", "HTML"], answer: 0 },
       { q: "Which is a relational database?", options: ["PostgreSQL", "Photoshop", "Word"], answer: 0 }
     ]
+  },
+  
+ art: {
+    grade10: [
+      { q: "Which South African group is known for geometric house painting?", options: ["Zulu", "Ndebele", "Xhosa"], answer: 1 },
+      { q: "San rock art often depicts?", options: ["Hunting scenes", "Abstract shapes", "Portraits"], answer: 0 },
+      { q: "Which element of art refers to the outline of objects?", options: ["Line", "Texture", "Form"], answer: 0 },
+      { q: "Which tool is most commonly used for shading?", options: ["Pencil", "Brush", "Chisel"], answer: 0 },
+      { q: "Which color scheme uses opposite colors on the wheel?", options: ["Complementary", "Analogous", "Monochromatic"], answer: 0 }
+    ],
+
+    grade11: [
+      { q: "Impressionism is characterized by?", options: ["Light and color", "Geometric shapes", "Surreal imagery"], answer: 0 },
+      { q: "Which South African artist painted township life?", options: ["Gerard Sekoto", "William Kentridge", "Esther Mahlangu"], answer: 0 },
+      { q: "Which medium uses pigment mixed with water?", options: ["Watercolor", "Oil", "Acrylic"], answer: 0 },
+      { q: "Which element of art refers to surface quality?", options: ["Texture", "Line", "Shape"], answer: 0 },
+      { q: "Which principle creates differences in visual elements?", options: ["Contrast", "Balance", "Unity"], answer: 0 }
+    ],
+
+    grade12: [
+      { q: "William Kentridge is best known for?", options: ["Charcoal animations", "Oil landscapes", "Ceramic sculpture"], answer: 0 },
+      { q: "Esther Mahlangu is famous for?", options: ["Ndebele painting", "Cubist portraits", "Surrealist drawings"], answer: 0 },
+      { q: "Which principle balances visual weight in art?", options: ["Balance", "Rhythm", "Proportion"], answer: 0 },
+      { q: "Which art movement explored dreams and the unconscious?", options: ["Surrealism", "Realism", "Impressionism"], answer: 0 },
+      { q: "Gerard Sekoto’s work often depicted?", options: ["Township life", "European landscapes", "Abstract geometry"], answer: 0 }
+    ]
   }
+
 };
 
 console.log("Quiz data loaded:", quizzes);
