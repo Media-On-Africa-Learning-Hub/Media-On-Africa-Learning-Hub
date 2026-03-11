@@ -345,10 +345,10 @@ nav .fa {
 .rubric-block {
   flex: 1;
   min-width: 250px;
-  background: #0094b9; /* same base as subject-col */
+  background: #0094b9;
   padding: 20px;
   border-radius: 10px;
-  color: #fff; /* white text for readability */
+  color: #fff;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   text-align: left;
@@ -359,30 +359,30 @@ nav .fa {
   box-shadow: 0 6px 18px rgba(0,0,0,0.2);
 }
 
-/* Subject-specific accent colors */
-.rubric-block.math { border-top: 6px solid #ff9800; }   /* orange */
-.rubric-block.science { border-top: 6px solid #4caf50; } /* green */
-.rubric-block.tech { border-top: 6px solid #2196f3; }    /* blue */
-.rubric-block.art { border-top: 6px solid #9c27b0; }     /* purple */
+/* Subject accent colors */
+
+.rubric-block.math { border-top: 6px solid #ff9800; }
+.rubric-block.science { border-top: 6px solid #4caf50; }
+.rubric-block.tech { border-top: 6px solid #2196f3; }
+.rubric-block.art { border-top: 6px solid #9c27b0; }
 
 .rubric-block h2 {
   margin-bottom: 15px;
   font-size: 1.3em;
   font-weight: 600;
-  color: #fff; /* consistent with subject cards */
+  color: #fff;
 }
 
 .rubric-level {
   margin-bottom: 10px;
   padding: 8px;
-  background: rgba(255,255,255,0.1); /* subtle contrast inside block */
+  background: rgba(255,255,255,0.1);
   border-left: 4px solid #fff;
   border-radius: 4px;
   transition: background 0.3s ease;
   color: #f0f0f0;
 }
 
-/* Accent colors for rubric levels */
 .math .rubric-level { border-left-color: #ff9800; }
 .science .rubric-level { border-left-color: #4caf50; }
 .tech .rubric-level { border-left-color: #2196f3; }
@@ -392,16 +392,66 @@ nav .fa {
   background: rgba(255,255,255,0.2);
 }
 
-/* Responsive rubric stacking */
+/* ================= Accordion Styling ================= */
+
+.accordion {
+  background: #0094b9;
+  color: #fff;
+  cursor: pointer;
+  padding: 15px;
+  width: 100%;
+  border: none;
+  outline: none;
+  text-align: left;
+  font-size: 18px;
+  font-weight: 500;
+  border-radius: 6px;
+  margin-top: 10px;
+  transition: background 0.3s ease;
+}
+
+.accordion:hover {
+  background: #007a98;
+}
+
+.accordion.active {
+  background: #006b85;
+}
+
+.panel {
+  padding: 0 15px;
+  display: none;
+  background: #f9f9f9;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+
+/* Links inside accordion panels */
+
+.panel a {
+  color: #0094b9;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.panel a:hover {
+  text-decoration: underline;
+}
+
+/* ================= Responsive ================= */
+
 @media(max-width: 900px) {
+
   .rubric-container {
     flex-direction: column;
   }
+
   .rubric-block {
     margin-bottom: 20px;
   }
-}
 
+}
 
 /* About Us Feature Blocks */
 .About-us {
