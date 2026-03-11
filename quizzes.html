@@ -46,47 +46,55 @@
 
 <!-- Quizzes Content -->
 <section class="quizzes">
-  <!-- Maths Block -->
-  <div class="feature-block quiz-block">
-    <h3>Mathematics Quizzes</h3>
-    <p>Challenge yourself with algebra, trigonometry, and calculus questions.</p>
+  <!-- Maths -->
+  <div class="quiz-card">
+    <h3>Mathematics</h3>
+    <p>Challenge yourself with algebra, trigonometry, and calculus.</p>
+    <div class="quiz-tabs">
+      <button onclick="loadQuiz('maths','grade10','quiz-maths')">Grade 10</button>
+      <button onclick="loadQuiz('maths','grade11','quiz-maths')">Grade 11</button>
+      <button onclick="loadQuiz('maths','grade12','quiz-maths')">Grade 12</button>
+    </div>
     <div id="quiz-maths"></div>
-    <button onclick="loadQuiz('maths','grade10','quiz-maths')">Grade 10</button>
-    <button onclick="loadQuiz('maths','grade11','quiz-maths')">Grade 11</button>
-    <button onclick="loadQuiz('maths','grade12','quiz-maths')">Grade 12</button>
   </div>
 
-  <!-- Science Block -->
-  <div class="feature-block quiz-block">
-    <h3>Science Quizzes</h3>
+  <!-- Science -->
+  <div class="quiz-card">
+    <h3>Science</h3>
     <p>Explore physics, chemistry, and biology concepts.</p>
+    <div class="quiz-tabs">
+      <button onclick="loadQuiz('science','grade10','quiz-science')">Grade 10</button>
+      <button onclick="loadQuiz('science','grade11','quiz-science')">Grade 11</button>
+      <button onclick="loadQuiz('science','grade12','quiz-science')">Grade 12</button>
+    </div>
     <div id="quiz-science"></div>
-    <button onclick="loadQuiz('science','grade10','quiz-science')">Grade 10</button>
-    <button onclick="loadQuiz('science','grade11','quiz-science')">Grade 11</button>
-    <button onclick="loadQuiz('science','grade12','quiz-science')">Grade 12</button>
   </div>
 
-  <!-- Technology Block -->
-  <div class="feature-block quiz-block">
-    <h3>Technology Quizzes</h3>
+  <!-- Technology -->
+  <div class="quiz-card">
+    <h3>Technology</h3>
     <p>Test your ICT and design knowledge.</p>
+    <div class="quiz-tabs">
+      <button onclick="loadQuiz('technology','grade10','quiz-technology')">Grade 10</button>
+      <button onclick="loadQuiz('technology','grade11','quiz-technology')">Grade 11</button>
+      <button onclick="loadQuiz('technology','grade12','quiz-technology')">Grade 12</button>
+    </div>
     <div id="quiz-technology"></div>
-    <button onclick="loadQuiz('technology','grade10','quiz-technology')">Grade 10</button>
-    <button onclick="loadQuiz('technology','grade11','quiz-technology')">Grade 11</button>
-    <button onclick="loadQuiz('technology','grade12','quiz-technology')">Grade 12</button>
   </div>
 
- <!-- Art Block -->
-  <div class="feature-block quiz-block">
-    <h3>Art Quizzes</h3>
+  <!-- Art -->
+  <div class="quiz-card">
+    <h3>Art</h3>
     <p>Discover creativity through visual arts, design, and history.</p>
+    <div class="quiz-tabs">
+      <button onclick="loadQuiz('art','grade10','quiz-art')">Grade 10</button>
+      <button onclick="loadQuiz('art','grade11','quiz-art')">Grade 11</button>
+      <button onclick="loadQuiz('art','grade12','quiz-art')">Grade 12</button>
+    </div>
     <div id="quiz-art"></div>
-    <button onclick="loadQuiz('art','grade10','quiz-art')">Grade 10</button>
-    <button onclick="loadQuiz('art','grade11','quiz-art')">Grade 11</button>
-    <button onclick="loadQuiz('art','grade12','quiz-art')">Grade 12</button>
   </div>
-  
 </section>
+
 
 <!-- Footer -->
 <footer class="Footer">
