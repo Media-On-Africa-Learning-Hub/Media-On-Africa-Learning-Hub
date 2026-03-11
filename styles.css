@@ -592,7 +592,7 @@ blockquote {
 .quiz-question p {
   font-weight: 600;
   margin-bottom: 12px;
-  color: #1a2a40;
+  color: #4a4a8c; /* deep pastel blue */
   font-size: 1.1em;
 }
 
@@ -603,15 +603,15 @@ blockquote {
   padding: 10px 18px;
   border: none;
   border-radius: 6px;
-  background: #00bfa6;
-  color: #fff;
+  background: #c7d2fe; /* soft lavender */
+  color: #333;
   font-weight: 500;
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
 .quiz-question button:hover:not(:disabled) {
-  background: #1a2a40;
+  background: #a5b4fc; /* slightly darker lavender */
   transform: scale(1.05);
 }
 
@@ -626,26 +626,26 @@ button {
   padding: 12px 20px;
   border: none;
   border-radius: 6px;
-  background: #00bfa6;
-  color: #fff;
+  background: #fbcfe8; /* pastel pink */
+  color: #333;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
 button:hover {
-  background: #1a2a40;
+  background: #f9a8d4; /* darker pink */
   transform: scale(1.05);
 }
 
 /* Retry button styling */
 button:nth-of-type(2) {
-  background: #ffc107;
+  background: #fde68a; /* pastel yellow */
   color: #333;
 }
 
 button:nth-of-type(2):hover {
-  background: #e0a800;
+  background: #facc15; /* stronger yellow */
 }
 
 /* Quiz result */
@@ -660,12 +660,12 @@ button:nth-of-type(2):hover {
 
 /* Memo feedback styling */
 .memo-correct {
-  color: #28a745;
+  color: #22c55e; /* pastel green */
   font-weight: 600;
 }
 
 .memo-wrong {
-  color: #dc3545;
+  color: #ef4444; /* pastel red */
   font-weight: 600;
 }
 
