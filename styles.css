@@ -626,7 +626,7 @@ blockquote {
 .quiz-question p {
   font-weight: 600;
   margin-bottom: 12px;
-  color: #4a4a8c; /* deep pastel blue */
+  color: #4a4a8c;
   font-size: 1.05em;
 }
 
@@ -644,7 +644,7 @@ blockquote {
   transition: all 0.3s ease;
 }
 .option-btn:hover:not(:disabled) {
-  background: #a5b4fc; /* slightly darker lavender */
+  background: #a5b4fc;
   transform: scale(1.05);
 }
 .option-btn:disabled {
@@ -665,7 +665,7 @@ blockquote {
   transition: all 0.3s ease;
 }
 .submit-btn:hover {
-  background: #f9a8d4; /* darker pink */
+  background: #f9a8d4;
   transform: scale(1.05);
 }
 
@@ -682,7 +682,7 @@ blockquote {
   transition: all 0.3s ease;
 }
 .retry-btn:hover {
-  background: #facc15; /* stronger yellow */
+  background: #facc15;
   transform: scale(1.05);
 }
 
@@ -696,12 +696,32 @@ blockquote {
   line-height: 1.6;
 }
 .memo-correct {
-  color: #22c55e; /* pastel green */
+  color: #22c55e;
   font-weight: 600;
 }
 .memo-wrong {
-  color: #ef4444; /* pastel red */
+  color: #ef4444;
   font-weight: 600;
+}
+
+/* 🎨 Backgrounds per grade */
+.grade10-block {
+  background: linear-gradient(135deg, #ffb3ba 0%, #ffe0e0 100%);
+}
+.grade11-block {
+  background: linear-gradient(135deg, #bae1ff 0%, #e0f2ff 100%);
+}
+.grade12-block {
+  background: linear-gradient(135deg, #baffc9 0%, #e0ffe8 100%);
+}
+
+/* Add subtle animation */
+.quiz-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.quiz-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
 }
 
 /* Hero blocks */
