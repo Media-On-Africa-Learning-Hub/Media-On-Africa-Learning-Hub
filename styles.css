@@ -511,14 +511,21 @@ nav .fa {
   padding: 2rem;
 }
 
+.blog-content.grid-layout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
+}
+
 /* Blog Block Styling */
 .blog-content .block {
   padding: 2rem;
-  margin-bottom: 2rem;
   border-radius: 14px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   color: #1d3557;
+  background: #fff; /* fallback background */
 }
 
 /* Different pastel backgrounds per block */
@@ -544,6 +551,7 @@ nav .fa {
 .blog-content .block h3 {
   margin-bottom: 10px;
   color: #1d3557;
+  font-size: 1.4rem;
 }
 
 /* Author Styling */
@@ -551,6 +559,7 @@ nav .fa {
   font-size: 0.9rem;
   color: #555;
   margin-bottom: 1rem;
+  font-style: italic;
 }
 
 /* Quotes */
@@ -562,6 +571,15 @@ blockquote {
   font-style: italic;
   color: #1d3557;
   border-radius: 6px;
+  line-height: 1.5;
+}
+
+/* Author Note */
+.author-note {
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  color: #444;
+  font-style: italic;
 }
 
 /* Quiz container */
