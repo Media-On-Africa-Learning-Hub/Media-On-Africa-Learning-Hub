@@ -15,6 +15,75 @@
     rel="stylesheet"
     href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
   />
+   <style>
+    /* Revamped Quiz Styling */
+    .quizzes {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 30px;
+      padding: 40px;
+    }
+    .quiz-card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 25px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: transform 0.2s ease;
+    }
+    .quiz-card:hover {
+      transform: translateY(-5px);
+    }
+    .quiz-card h3 {
+      font-family: 'Comic Neue', cursive;
+      font-size: 1.6rem;
+      margin-bottom: 10px;
+    }
+    .quiz-card p {
+      font-family: 'Poppins', sans-serif;
+      margin-bottom: 15px;
+    }
+    .quiz-tabs {
+      margin-bottom: 15px;
+    }
+    .grade-btn {
+      border: none;
+      padding: 10px 18px;
+      margin: 5px;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      color: #333;
+    }
+    .grade10 { background: #ffb3ba; }
+    .grade11 { background: #bae1ff; }
+    .grade12 { background: #baffc9; }
+    .grade-btn:hover { opacity: 0.85; }
+
+    /* Split Quiz + Memo */
+    .quiz-container {
+      display: flex;
+      gap: 20px;
+      margin-top: 15px;
+      flex-wrap: wrap;
+    }
+    .quiz-area {
+      flex: 2;
+      min-width: 250px;
+    }
+    .memo-area {
+      flex: 1;
+      background: #f9f9f9;
+      border-left: 3px solid #eee;
+      padding: 15px;
+      border-radius: 8px;
+      min-width: 200px;
+    }
+    .memo-area h4 {
+      margin-bottom: 10px;
+      font-family: 'Poppins', sans-serif;
+    }
+  </style>
 </head>
 <body>
 
@@ -46,16 +115,20 @@
 
 <!-- Quizzes Content -->
 <section class="quizzes">
+
   <!-- Maths -->
   <div class="quiz-card">
     <h3>Mathematics</h3>
     <p>Challenge yourself with algebra, trigonometry, and calculus.</p>
     <div class="quiz-tabs">
-      <button onclick="loadQuiz('maths','grade10','quiz-maths')">Grade 10</button>
-      <button onclick="loadQuiz('maths','grade11','quiz-maths')">Grade 11</button>
-      <button onclick="loadQuiz('maths','grade12','quiz-maths')">Grade 12</button>
+      <button class="grade-btn grade10" onclick="loadQuiz('maths','grade10','quiz-maths','memo-maths')">Grade 10</button>
+      <button class="grade-btn grade11" onclick="loadQuiz('maths','grade11','quiz-maths','memo-maths')">Grade 11</button>
+      <button class="grade-btn grade12" onclick="loadQuiz('maths','grade12','quiz-maths','memo-maths')">Grade 12</button>
     </div>
-    <div id="quiz-maths"></div>
+    <div class="quiz-container">
+      <div id="quiz-maths" class="quiz-area"></div>
+      <div id="memo-maths" class="memo-area"></div>
+    </div>
   </div>
 
   <!-- Science -->
@@ -63,11 +136,14 @@
     <h3>Science</h3>
     <p>Explore physics, chemistry, and biology concepts.</p>
     <div class="quiz-tabs">
-      <button onclick="loadQuiz('science','grade10','quiz-science')">Grade 10</button>
-      <button onclick="loadQuiz('science','grade11','quiz-science')">Grade 11</button>
-      <button onclick="loadQuiz('science','grade12','quiz-science')">Grade 12</button>
+      <button class="grade-btn grade10" onclick="loadQuiz('science','grade10','quiz-science','memo-science')">Grade 10</button>
+      <button class="grade-btn grade11" onclick="loadQuiz('science','grade11','quiz-science','memo-science')">Grade 11</button>
+      <button class="grade-btn grade12" onclick="loadQuiz('science','grade12','quiz-science','memo-science')">Grade 12</button>
     </div>
-    <div id="quiz-science"></div>
+    <div class="quiz-container">
+      <div id="quiz-science" class="quiz-area"></div>
+      <div id="memo-science" class="memo-area"></div>
+    </div>
   </div>
 
   <!-- Technology -->
@@ -75,11 +151,14 @@
     <h3>Technology</h3>
     <p>Test your ICT and design knowledge.</p>
     <div class="quiz-tabs">
-      <button onclick="loadQuiz('technology','grade10','quiz-technology')">Grade 10</button>
-      <button onclick="loadQuiz('technology','grade11','quiz-technology')">Grade 11</button>
-      <button onclick="loadQuiz('technology','grade12','quiz-technology')">Grade 12</button>
+      <button class="grade-btn grade10" onclick="loadQuiz('technology','grade10','quiz-technology','memo-technology')">Grade 10</button>
+      <button class="grade-btn grade11" onclick="loadQuiz('technology','grade11','quiz-technology','memo-technology')">Grade 11</button>
+      <button class="grade-btn grade12" onclick="loadQuiz('technology','grade12','quiz-technology','memo-technology')">Grade 12</button>
     </div>
-    <div id="quiz-technology"></div>
+    <div class="quiz-container">
+      <div id="quiz-technology" class="quiz-area"></div>
+      <div id="memo-technology" class="memo-area"></div>
+    </div>
   </div>
 
   <!-- Art -->
@@ -87,14 +166,16 @@
     <h3>Art</h3>
     <p>Discover creativity through visual arts, design, and history.</p>
     <div class="quiz-tabs">
-      <button onclick="loadQuiz('art','grade10','quiz-art')">Grade 10</button>
-      <button onclick="loadQuiz('art','grade11','quiz-art')">Grade 11</button>
-      <button onclick="loadQuiz('art','grade12','quiz-art')">Grade 12</button>
+      <button class="grade-btn grade10" onclick="loadQuiz('art','grade10','quiz-art','memo-art')">Grade 10</button>
+      <button class="grade-btn grade11" onclick="loadQuiz('art','grade11','quiz-art','memo-art')">Grade 11</button>
+      <button class="grade-btn grade12" onclick="loadQuiz('art','grade12','quiz-art','memo-art')">Grade 12</button>
     </div>
-    <div id="quiz-art"></div>
+    <div class="quiz-container">
+      <div id="quiz-art" class="quiz-area"></div>
+      <div id="memo-art" class="memo-area"></div>
+    </div>
   </div>
 </section>
-
 
 <!-- Footer -->
 <footer class="Footer">
