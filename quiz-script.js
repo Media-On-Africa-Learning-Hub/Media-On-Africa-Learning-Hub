@@ -4,9 +4,12 @@ function getQuestions(subject, grade) {
 }
 
 // Load quiz into container
-function loadQuiz(subject, grade, containerId) {
+function loadQuiz(subject, grade, containerId, memoId) {
   const container = document.getElementById(containerId);
+  const memoContainer = document.getElementById(memoId);
+
   container.innerHTML = "";
+  memoContainer.innerHTML = ""; // clear memo area
 
   const questions = getQuestions(subject, grade);
   container.dataset.score = 0; // reset score
@@ -23,7 +26,7 @@ function loadQuiz(subject, grade, containerId) {
     block.innerHTML = `
       <p>${index + 1}. ${item.q}</p>
       ${item.options.map((opt, i) =>
-        `<button onclick="checkAnswer('${subject}', '${grade}', ${index}, ${i}, this, '${containerId}')">${opt}</button>`
+        `<button class="option-btn" onclick="checkAnswer('${subject}', '${grade}', ${index}, ${i}, this, '${containerId}')">${opt}</button>`
       ).join("")}
     `;
     container.appendChild(block);
@@ -32,17 +35,19 @@ function loadQuiz(subject, grade, containerId) {
   // Add submit button
   const submitBtn = document.createElement("button");
   submitBtn.textContent = "Submit Quiz";
-  submitBtn.onclick = () => showScore(containerId);
+  submitBtn.classList.add("submit-btn");
+  submitBtn.onclick = () => showScore(containerId, memoId);
   container.appendChild(submitBtn);
 
   // Add try again button
   const retryBtn = document.createElement("button");
   retryBtn.textContent = "Try Again";
+  retryBtn.classList.add("retry-btn");
   retryBtn.style.marginLeft = "10px";
   retryBtn.onclick = () => {
     const subj = container.dataset.subject;
     const grd = container.dataset.grade;
-    loadQuiz(subj, grd, containerId);
+    loadQuiz(subj, grd, containerId, memoId);
   };
   container.appendChild(retryBtn);
 }
@@ -63,17 +68,21 @@ function checkAnswer(subject, grade, qIndex, optIndex, btn, containerId) {
   document.getElementById(containerId).dataset.answers = JSON.stringify(answers);
 
   if (optIndex === question.answer) {
-    btn.style.backgroundColor = "green";
+    btn.style.backgroundColor = "#4CAF50"; // green
+    btn.style.color = "#fff";
     let score = parseInt(document.getElementById(containerId).dataset.score);
     document.getElementById(containerId).dataset.score = score + 1;
   } else {
-    btn.style.backgroundColor = "red";
+    btn.style.backgroundColor = "#f44336"; // red
+    btn.style.color = "#fff";
   }
 }
 
-// Show score + memo
-function showScore(containerId) {
+// Show score + memo (in right panel)
+function showScore(containerId, memoId) {
   const container = document.getElementById(containerId);
+  const memoContainer = document.getElementById(memoId);
+
   const score = parseInt(container.dataset.score);
   const total = parseInt(container.dataset.total);
   const subject = container.dataset.subject;
@@ -81,9 +90,8 @@ function showScore(containerId) {
   const questions = getQuestions(subject, grade);
   const answers = JSON.parse(container.dataset.answers);
 
-  // Clear old results if any
-  const oldResult = container.querySelector(".quiz-result");
-  if (oldResult) oldResult.remove();
+  // Clear old memo
+  memoContainer.innerHTML = "";
 
   const result = document.createElement("div");
   result.classList.add("quiz-result");
@@ -101,6 +109,8 @@ function showScore(containerId) {
     }
   });
 
-  container.appendChild(result);
+  memoContainer.appendChild(result);
 }
+
+
 
