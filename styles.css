@@ -587,34 +587,76 @@ nav .fa {
 }
 
 
-/* Contact */
+/* === Contact Section === */
 .contact-col {
   flex: 1 1 45%;
   margin: 15px;
   text-align: left;
+  background: #f9f9f9;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.1);
 }
 
+/* Inputs & Textarea */
 .contact-col input,
 .contact-col textarea {
   width: 100%;
-  padding: 12px;
-  margin-bottom: 15px;
+  padding: 14px 16px;
+  margin-bottom: 18px;
   border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Focus effect */
+.contact-col input:focus,
+.contact-col textarea:focus {
+  border-color: #01796F;
+  box-shadow: 0 0 6px rgba(1,121,111,0.3);
+  outline: none;
 }
 
 /* Contact form button */
 .contact-col .hero-btn {
-  background: #01796F;   /* same green as Post Comment */
+  background: linear-gradient(135deg, #01796F, #02a38f);
   color: #fff;
   border: none;
-  padding: 12px 24px;
-  border-radius: 6px;
+  padding: 14px 28px;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background 0.3s ease;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: background 0.3s ease, transform 0.2s ease;
 }
 
 .contact-col .hero-btn:hover {
-  background: #025f52;   /* darker green on hover */
+  background: linear-gradient(135deg, #025f52, #038c76);
+  transform: translateY(-2px);
+}
+
+/* Blog Hero Section */
+.header.blog-hero {
+  background: linear-gradient(135deg, #ffafcc, #a8dadc);
+  text-align: center;
+  padding: 4rem 2rem;
+  border-radius: 12px;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.12);
+}
+
+.header.blog-hero h1 {
+  font-size: 2.5rem;
+  color: #1d3557;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+
+.header.blog-hero .subtitle {
+  font-size: 1.2rem;
+  color: #fff;
+  font-weight: 500;
+  letter-spacing: 0.5px;
 }
 
 /* Blog Hero Section */
