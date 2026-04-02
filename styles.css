@@ -337,7 +337,7 @@ nav .fa {
 .rubric-container {
   display: flex;
   justify-content: space-between;
-  gap: 20px;
+  gap: 24px;
   margin-top: 30px;
   flex-wrap: wrap;
 }
@@ -345,73 +345,74 @@ nav .fa {
 /* Rubric Block Card */
 .rubric-block {
   flex: 1;
-  min-width: 250px;
+  min-width: 260px;
   background: #0094b9; /* base color */
-  padding: 20px;
-  border-radius: 10px;
+  padding: 18px 20px;
+  border-radius: 12px;
   color: #fff;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  text-align: left;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.12);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .rubric-block:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.18);
 }
 
 /* Subject-specific accent colors */
-.rubric-block.math { border-top: 6px solid #ff9800; }   /* orange */
-.rubric-block.science { border-top: 6px solid #4caf50; }/* green */
-.rubric-block.tech { border-top: 6px solid #2196f3; }   /* blue */
-.rubric-block.art { border-top: 6px solid #9c27b0; }    /* purple */
+.rubric-block.math { border-top: 5px solid #ff9800; }
+.rubric-block.science { border-top: 5px solid #4caf50; }
+.rubric-block.tech { border-top: 5px solid #2196f3; }
+.rubric-block.art { border-top: 5px solid #9c27b0; }
 
+/* Headings */
 .rubric-block h2 {
-  margin-bottom: 15px;
-  font-size: 1.3em;
+  margin-bottom: 12px;
+  font-size: 1.25em;
   font-weight: 600;
-  color: #fff;
+  letter-spacing: 0.5px;
 }
 
-/* Grade/Term Headings */
 .rubric-block h3 {
-  margin: 15px 0 8px;
-  font-size: 1.1em;
-  color: #f0f0f0;
+  margin: 12px 0 6px;
+  font-size: 1.05em;
+  font-weight: 500;
+  color: #e8f6f9;
 }
 
 /* Table Styling */
 .rubric-block table {
   width: 100%;
   border-collapse: collapse;
-  margin-bottom: 15px;
-  background: rgba(255,255,255,0.05);
-  border-radius: 6px;
+  margin-bottom: 12px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 8px;
   overflow: hidden;
 }
 
 .rubric-block th,
 .rubric-block td {
-  padding: 10px;
+  padding: 8px 10px;
   text-align: left;
-  border: 1px solid rgba(255,255,255,0.2);
+  border: 1px solid rgba(255,255,255,0.15);
   font-size: 0.9em;
+  line-height: 1.4;
 }
 
 .rubric-block th {
-  background: rgba(255,255,255,0.15);
-  color: #fff;
+  background: rgba(255,255,255,0.12);
   font-weight: 600;
 }
 
 .rubric-block tr:nth-child(even) {
-  background: rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.05);
 }
 
 /* Links inside rubric */
 .rubric-block a {
-  color: #ffe082; /* soft yellow for contrast */
+  color: #ffd54f; /* softer yellow */
   text-decoration: none;
+  font-weight: 500;
 }
 .rubric-block a:hover {
   text-decoration: underline;
