@@ -636,49 +636,48 @@ nav .fa {
   transform: translateY(-2px);
 }
 
-/* Blog Hero Section */
+/* === Blog Hero Section === */
 .header.blog-hero {
   background: linear-gradient(135deg, #ffafcc, #a8dadc);
   text-align: center;
-  padding: 4rem 2rem;
+  padding: 5rem 2rem;
   border-radius: 12px;
   box-shadow: 0 6px 14px rgba(0,0,0,0.12);
+  position: relative;
+  overflow: hidden;
 }
 
-.header.blog-hero h1 {
-  font-size: 2.5rem;
-  color: #1d3557;
-  margin-bottom: 0.5rem;
-  font-weight: 700;
+/* Animated gradient overlay */
+.header.blog-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(0,0,0,0.05));
+  animation: shimmer 6s infinite linear;
 }
 
-.header.blog-hero .subtitle {
-  font-size: 1.2rem;
-  color: #fff;
-  font-weight: 500;
-  letter-spacing: 0.5px;
-}
-
-/* Blog Hero Section */
-.header.blog-hero {
-  background: linear-gradient(135deg, #ffafcc, #a8dadc);
-  text-align: center;
-  padding: 4rem 2rem;
+@keyframes shimmer {
+  0% { opacity: 0.2; }
+  50% { opacity: 0.5; }
+  100% { opacity: 0.2; }
 }
 
 .header.blog-hero h1 {
   font-size: 3rem;
   color: #1d3557;
   margin-bottom: 0.5rem;
+  font-weight: 700;
+  letter-spacing: 1px;
 }
 
 .header.blog-hero .subtitle {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   color: #fff;
   font-weight: 500;
+  letter-spacing: 0.5px;
 }
 
-/* Blog Content Layout */
+/* === Blog Content Layout === */
 .blog-content.single-column {
   max-width: 900px;
   margin: 0 auto;
@@ -692,40 +691,48 @@ nav .fa {
   padding: 2rem;
 }
 
-/* Blog Block Styling */
+/* === Blog Block Styling === */
 .blog-content .block {
   padding: 2rem;
-  border-radius: 14px;
+  border-radius: 16px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   color: #1d3557;
-  background: #fff; /* fallback background */
+  background: #fff;
+  position: relative;
+  overflow: hidden;
 }
 
-/* Different pastel backgrounds per block */
+/* Hover animation */
+.blog-content .block:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.18);
+}
+
+/* Pastel backgrounds per block */
 .blog-content .block:nth-child(1) {
   background: linear-gradient(135deg, #fdfcdc, #ffe5ec);
 }
-
 .blog-content .block:nth-child(2) {
   background: linear-gradient(135deg, #e0f7fa, #f1faee);
 }
-
 .blog-content .block:nth-child(3) {
   background: linear-gradient(135deg, #ffd6a5, #caffbf);
 }
 
-.blog-content .block:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 8px 18px rgba(0,0,0,0.15);
-}
-
-/* Headings */
+/* Headings inside blocks */
 .blog-content .block h2,
 .blog-content .block h3 {
-  margin-bottom: 10px;
+  margin-bottom: 12px;
   color: #1d3557;
-  font-size: 1.4rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.3;
+  transition: color 0.3s ease;
+}
+
+.blog-content .block h2:hover {
+  color: #e63946; /* lively red accent */
 }
 
 /* Author Styling */
@@ -734,18 +741,24 @@ nav .fa {
   color: #555;
   margin-bottom: 1rem;
   font-style: italic;
+  letter-spacing: 0.3px;
 }
 
 /* Quotes */
 blockquote {
-  background: rgba(255,255,255,0.6);
+  background: rgba(255,255,255,0.7);
   border-left: 4px solid #457b9d;
-  padding: 0.8rem 1rem;
-  margin: 1rem 0;
+  padding: 1rem 1.2rem;
+  margin: 1.2rem 0;
   font-style: italic;
   color: #1d3557;
-  border-radius: 6px;
-  line-height: 1.5;
+  border-radius: 8px;
+  line-height: 1.6;
+  transition: transform 0.3s ease;
+}
+
+blockquote:hover {
+  transform: scale(1.02);
 }
 
 /* Author Note */
@@ -754,6 +767,7 @@ blockquote {
   font-size: 0.85rem;
   color: #444;
   font-style: italic;
+  opacity: 0.9;
 }
 
 /* Quiz container (split view) */
