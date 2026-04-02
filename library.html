@@ -51,6 +51,11 @@
     <h2>Available Books</h2>
     <p>Books from the Department of Basic Education will be listed here.</p>
 
+    <div class="library-search">
+  <input type="text" placeholder="Search for a book..." />
+  <button>Search</button>
+</div>
+    
     <!-- Book Grid -->
     <div class="book-grid">
       <!-- Example Book Card -->
@@ -102,6 +107,27 @@
 
 <!-- Chatbot Embed -->
 <script src="//code.tidio.co/uqdod81sfajvlkpiujfsjo49za71xsuc.js" async></script>
+  
+<script>
+  // Search filter for library books
+  const searchInput = document.querySelector(".library-search input");
+  const bookCards = document.querySelectorAll(".book-card");
+
+  searchInput.addEventListener("keyup", function () {
+    const query = searchInput.value.toLowerCase();
+
+    bookCards.forEach(card => {
+      const title = card.querySelector("h3").textContent.toLowerCase();
+      const description = card.querySelector("p").textContent.toLowerCase();
+
+      if (title.includes(query) || description.includes(query)) {
+        card.style.display = "block";
+      } else {
+        card.style.display = "none";
+      }
+    });
+  });
+</script>
 </body>
 </html>
 
