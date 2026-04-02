@@ -922,11 +922,11 @@ blockquote:hover {
   transition: transform 0.3s ease;
 }
 
-/* General feature block styling */
+/* Wellness block styling */
 .feature-block {
-  padding: 1.5rem;
-  border-radius: 10px;
-  margin-bottom: 1.5rem;
+  padding: 2rem;                 /* slightly more breathing room */
+  border-radius: 12px;
+  margin-bottom: 2rem;           /* more space between blocks */
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -934,7 +934,22 @@ blockquote:hover {
 /* Hover effect */
 .feature-block:hover {
   transform: translateY(-6px);
-  box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.18);
+}
+
+/* Headings inside blocks */
+.feature-block h2 {
+  font-size: 1.4em;              /* slightly smaller */
+  margin-bottom: 0.75rem;        /* tighter spacing */
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.feature-block h3 {
+  font-size: 1.15em;
+  margin: 0.5rem 0;
+  font-weight: 600;
+  line-height: 1.25;
 }
 
 /* Distinct block backgrounds */
@@ -946,99 +961,93 @@ blockquote:hover {
 #relaxation        { background: #e8f5e9; color: #1b5e20; }   /* mint green */
 #resources         { background: #e0f7fa; color: #004d40; }   /* aqua teal */
 
-/* --- Rotating text sub-blocks --- */
-.rotating-block {
-  background: #ffffff; /* clean white contrast */
-  border: 2px solid rgba(0,0,0,0.1);
-  border-radius: 8px;
-  padding: 0.8rem 1rem;
-  margin-top: 0.8rem;
-  box-shadow: inset 0 2px 6px rgba(0,0,0,0.05);
-}
-
-/* General tidy-up for feature block text */
+/* General tidy-up for text */
 .feature-block p,
 .feature-block ul,
 .feature-block li {
-  margin: 0.5rem 0;       /* consistent vertical spacing */
-  line-height: 1.6;       /* improve readability */
+  margin: 0.6rem 0;
+  line-height: 1.6;
+  font-size: 0.95em;             /* slightly smaller for balance */
 }
 
-/* Daily quote typing effect inside its own block */
+/* Rotating sub-blocks */
+.rotating-block {
+  background: #ffffff;
+  border: 2px solid rgba(0,0,0,0.08);
+  border-radius: 10px;
+  padding: 1rem;
+  margin-top: 1rem;
+  box-shadow: inset 0 2px 6px rgba(0,0,0,0.05);
+  font-size: 0.95em;
+}
+
+/* Daily quote typing effect */
 #daily-quote {
-  color: #fb8c00; /* orange text */
-  font-weight: 500;
-  white-space: normal;       /* allow wrapping */
-  overflow: hidden;
-  border-right: 2px solid #fb8c00; /* cursor effect */
+  color: #fb8c00;
+  font-weight: 600;
+  border-right: 2px solid #fb8c00;
   display: inline-block;
-  max-width: 100%;           /* prevent overflow */
-  min-height: 1.5em;         /* reserve space so block height stays stable */
+  min-height: 1.6em;
+  font-size: 1em;
 }
 
-
-/* Words of Encouragement block */
-#encouragement-text {
-  color: #1565c0; /* deep blue */
-  font-style: italic;
-  display: block;
-  margin-top: 0.5rem;     /* add breathing space below heading */
-}
-
-/* Reflection Prompt block */
+/* Encouragement & Reflection prompts */
+#encouragement-text,
 #reflection-prompt-text {
-  color: #6a1b9a; /* purple */
   font-style: italic;
   display: block;
-  margin-top: 0.5rem;
+  margin-top: 0.6rem;
+  font-size: 0.95em;
 }
 
-/* Resources block */
+/* Resources block list */
 #resources ul {
-  padding-left: 1.2rem;   /* indent list neatly */
-  margin-top: 0.5rem;
+  padding-left: 1.4rem;
+  margin-top: 0.6rem;
 }
-
 #resources li {
-  margin-bottom: 0.4rem;  /* space between list items */
+  margin-bottom: 0.5rem;
+  font-size: 0.95em;
 }
 
-
-/* Relaxation exercise rotating text */
+/* Relaxation exercise text */
 #relaxation-exercise {
-  color: #2e7d32; /* green */
-  font-weight: 500;
+  color: #2e7d32;
+  font-weight: 600;
+  font-size: 1em;
 }
 
-
+/* Video container */
 .video-container {
   position: relative;
-  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  padding-bottom: 56.25%; /* 16:9 */
   height: 0;
   overflow: hidden;
   max-width: 100%;
-  border-radius: 8px;
+  border-radius: 10px;
+  margin-top: 1rem;
 }
-
 .video-container iframe {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: 8px;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  border-radius: 10px;
 }
 
+/* Two-column layout */
 .two-column-layout {
   display: grid;
-  grid-template-columns: 1fr 1fr; /* two equal columns */
-  gap: 1.5rem; /* space between blocks */
-  margin-top: 2rem;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;                     /* more space between columns */
+  margin-top: 2.5rem;
 }
 
 @media (max-width: 768px) {
   .two-column-layout {
-    grid-template-columns: 1fr; /* stack on smaller screens */
+    grid-template-columns: 1fr;
+  }
+  .feature-block {
+    margin-bottom: 1.5rem;
   }
 }
 
