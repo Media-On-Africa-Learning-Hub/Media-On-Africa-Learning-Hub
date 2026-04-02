@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Library - Media On Africa Learning Hub</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300;400;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+  />
+</head>
+<body>
+
+<!-- Navigation -->
+<nav>
+  <div class="nav-links" id="navLinks">
+    <i class="fa fa-times" onclick="hidemenu()"></i>
+    <ul>
+      <li><a href="index.html">HOME</a></li>
+      <li><a href="About.html">ABOUT</a></li>
+      <li><a href="Subjects.html">SUBJECTS</a></li>
+      <li><a href="quizzes.html">QUIZZES</a></li>
+      <li><a href="forum.html">DISCUSSION</a></li>
+      <li><a href="mental_wellness.html">WELLNESS</a></li>
+      <li><a href="blog.html">BLOG</a></li>
+      <li><a href="contact.html">CONTACT</a></li>
+      <li><a href="library.html" class="active">LIBRARY</a></li>
+    </ul>
+  </div>
+  <i class="fa fa-bars" onclick="showmenu()"></i>
+</nav>
+
+<!-- Header -->
+<section class="header big-header">
+  <div class="text-box">
+    <h1>Library</h1>
+    <p>Explore DBE textbooks and learning resources</p>
+  </div>
+</section>
+
+<!-- Library Content -->
+<section class="library">
+  <div class="container">
+    <h2>Available Books</h2>
+    <p>Books from the Department of Basic Education will be listed here.</p>
+
+    <!-- Book Grid -->
+    <div class="book-grid">
+      <!-- Example Book Card -->
+      <div class="book-card">
+        <i class="fa fa-book"></i>
+        <h3>Book Title Placeholder</h3>
+        <p>Short description of the book goes here.</p>
+        <a href="#" class="btn">Read / Download</a>
+      </div>
+
+      <!-- Duplicate this block for each book -->
+      <!--
+      <div class="book-card">
+        <i class="fa fa-book"></i>
+        <h3>Another Book</h3>
+        <p>Brief description...</p>
+        <a href="#">Read / Download</a>
+      </div>
+      -->
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="Footer">
+  <h4>Library</h4>
+  <p>
+    Access DBE-approved learning materials to support your academic journey.
+  </p>
+  <div class="icons">
+    <i class="fa fa-facebook"></i>
+    <i class="fa fa-twitter"></i>
+    <i class="fa fa-instagram"></i>
+    <i class="fa fa-linkedin"></i>
+  </div>
+  <p>Made with <i class="fa fa-heart-o"></i> by Media On Africa</p>
+</footer>
+
+<!-- JavaScript for Toggle Menu -->
+<script>
+  var navLinks = document.getElementById("navLinks");
+  function showmenu() {
+    navLinks.style.right = "0";
+  }
+  function hidemenu() {
+    navLinks.style.right = "-200px";
+  }
+</script>
+
+<!-- Chatbot Embed -->
+<script src="//code.tidio.co/uqdod81sfajvlkpiujfsjo49za71xsuc.js" async></script>
+</body>
+</html>
+
