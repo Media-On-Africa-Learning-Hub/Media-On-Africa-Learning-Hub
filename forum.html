@@ -18,7 +18,7 @@
 </head>
 <body>
 
-<!-- Navigation (always at the very top) -->
+<!-- Navigation -->
 <nav>
   <div class="nav-links" id="navLinks">
     <i class="fa fa-times" onclick="hidemenu()"></i>
@@ -27,11 +27,11 @@
       <li><a href="About.html">ABOUT</a></li>
       <li><a href="Subjects.html">SUBJECTS</a></li>
       <li><a href="quizzes.html">QUIZZES</a></li>
-      <li><a href="forum.html">DISCUSSION</a></li>
+      <li><a href="forum.html" class="active">DISCUSSION</a></li>
       <li><a href="mental_wellness.html">WELLNESS</a></li>
       <li><a href="blog.html">BLOG</a></li>
       <li><a href="contact.html">CONTACT</a></li>
-      <li><a href="library.html" class="active">LIBRARY</a></li>
+      <li><a href="library.html">LIBRARY</a></li>
     </ul>
   </div>
   <i class="fa fa-bars" onclick="showmenu()"></i>
@@ -47,23 +47,42 @@
   </div>
 </section>
 
+<!-- Announcement Bar -->
+<div class="announcement-bar">
+  📢 New: Join our April study challenge!
+</div>
+
 <!-- Forum Content -->
 <main class="forum-content">
-  <!-- Disqus Embed -->
-  <div id="disqus_thread"></div>
-  <script>
-    var disqus_config = function () {
-      this.page.url = window.location.href;  
-      this.page.identifier = "sitewide-forum"; 
-    };
-    (function() {
-      var d = document, s = d.createElement('script');
-      s.src = 'https://mediaonafrica.disqus.com/embed.js';  
-      s.setAttribute('data-timestamp', +new Date());
-      (d.head || d.body).appendChild(s);
-    })();
-  </script>
-  <noscript>Please enable JavaScript to view the forum.</noscript>
+  <!-- Forum Wrapper -->
+  <div class="forum-wrapper">
+    <h2>Latest Discussions</h2>
+    <div id="disqus_thread"></div>
+    <script>
+      var disqus_config = function () {
+        this.page.url = window.location.href;  
+        this.page.identifier = "sitewide-forum"; 
+      };
+      (function() {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://mediaonafrica.disqus.com/embed.js';  
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the forum.</noscript>
+  </div>
+
+  <!-- Sidebar -->
+  <aside class="forum-sidebar">
+    <h3><i class="fa fa-fire"></i> Trending Topics</h3>
+    <ul>
+      <li><a href="#"><i class="fa fa-book"></i> Math Exam Prep</a></li>
+      <li><a href="#"><i class="fa fa-flask"></i> Science Fair Ideas</a></li>
+      <li><a href="#"><i class="fa fa-code"></i> Coding Challenges</a></li>
+      <li><a href="#"><i class="fa fa-heart"></i> Wellness Tips</a></li>
+    </ul>
+  </aside>
 </main>
 
 <!-- Footer -->
@@ -94,6 +113,4 @@
 <script src="https://code.tidio.co/uqdod81sfajvlkpiujfsjo49za71xsuc.js" async></script>
 </body>
 </html>
-
-
 
