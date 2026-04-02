@@ -346,76 +346,94 @@ nav .fa {
 .rubric-block {
   flex: 1;
   min-width: 260px;
-  background: #0094b9; /* base color */
-  padding: 18px 20px;
-  border-radius: 12px;
+  background: linear-gradient(135deg, #0094b9, #00bcd4); /* lively gradient */
+  padding: 20px;
+  border-radius: 14px;
   color: #fff;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.12);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
 }
 
+/* Animated hover effect */
 .rubric-block:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 6px 16px rgba(0,0,0,0.18);
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.2);
 }
 
-/* Subject-specific accent colors */
-.rubric-block.math { border-top: 5px solid #ff9800; }
-.rubric-block.science { border-top: 5px solid #4caf50; }
-.rubric-block.tech { border-top: 5px solid #2196f3; }
-.rubric-block.art { border-top: 5px solid #9c27b0; }
+/* Subject-specific accent colors with glow */
+.rubric-block.math { border-top: 6px solid #ff9800; box-shadow: inset 0 4px 12px rgba(255,152,0,0.3); }
+.rubric-block.science { border-top: 6px solid #4caf50; box-shadow: inset 0 4px 12px rgba(76,175,80,0.3); }
+.rubric-block.tech { border-top: 6px solid #2196f3; box-shadow: inset 0 4px 12px rgba(33,150,243,0.3); }
+.rubric-block.art { border-top: 6px solid #9c27b0; box-shadow: inset 0 4px 12px rgba(156,39,176,0.3); }
 
 /* Headings */
 .rubric-block h2 {
-  margin-bottom: 12px;
-  font-size: 1.25em;
-  font-weight: 600;
-  letter-spacing: 0.5px;
+  margin-bottom: 14px;
+  font-size: 1.35em;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  border-bottom: 2px solid rgba(255,255,255,0.3);
+  padding-bottom: 6px;
 }
 
 .rubric-block h3 {
-  margin: 12px 0 6px;
-  font-size: 1.05em;
-  font-weight: 500;
-  color: #e8f6f9;
+  margin: 14px 0 8px;
+  font-size: 1.1em;
+  font-weight: 600;
+  color: #e0f7fa;
 }
 
 /* Table Styling */
 .rubric-block table {
   width: 100%;
   border-collapse: collapse;
-  margin-bottom: 12px;
-  background: rgba(255,255,255,0.06);
-  border-radius: 8px;
+  margin-bottom: 14px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 10px;
   overflow: hidden;
 }
 
 .rubric-block th,
 .rubric-block td {
-  padding: 8px 10px;
+  padding: 10px 12px;
   text-align: left;
   border: 1px solid rgba(255,255,255,0.15);
-  font-size: 0.9em;
-  line-height: 1.4;
+  font-size: 0.95em;
+  line-height: 1.5;
+  transition: background 0.3s ease;
 }
 
 .rubric-block th {
-  background: rgba(255,255,255,0.12);
-  font-weight: 600;
+  background: rgba(255,255,255,0.18);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .rubric-block tr:nth-child(even) {
-  background: rgba(255,255,255,0.05);
+  background: rgba(255,255,255,0.06);
+}
+
+/* Row hover animation */
+.rubric-block tr:hover {
+  background: rgba(255,255,255,0.15);
+  transform: scale(1.01);
 }
 
 /* Links inside rubric */
 .rubric-block a {
   color: #ffd54f; /* softer yellow */
   text-decoration: none;
-  font-weight: 500;
+  font-weight: 600;
+  transition: color 0.3s ease, transform 0.2s ease;
 }
 .rubric-block a:hover {
   text-decoration: underline;
+  color: #fff176;
+  transform: translateX(4px);
 }
 
 /* Responsive stacking */
@@ -424,8 +442,38 @@ nav .fa {
     flex-direction: column;
   }
   .rubric-block {
-    margin-bottom: 20px;
+    margin-bottom: 22px;
   }
+}
+
+/* === Grade Level Headings (e.g., Grade 10 Term One) === */
+.rubric-block h2 {
+  margin: 0 0 10px 0;          /* space below heading */
+  font-size: 1.2em;            /* slightly smaller */
+  font-weight: 700;            /* bold for emphasis */
+  letter-spacing: 0.4px;       /* subtle spacing */
+  line-height: 1.3;            /* breathing room */
+  color: #ffffff;              /* strong contrast */
+  text-transform: none;        /* keep natural case */
+  border-bottom: 2px solid rgba(255,255,255,0.25); /* subtle divider */
+  padding-bottom: 4px;
+}
+
+/* === Block Headings (e.g., Blocks per Subject) === */
+.rubric-block h3 {
+  margin: 8px 0 6px;           /* tighter spacing */
+  font-size: 1em;              /* smaller than h2 */
+  font-weight: 600;
+  color: #e0f7fa;              /* softer accent */
+  line-height: 1.25;
+  text-transform: none;
+}
+
+/* Optional: hover highlight for liveliness */
+.rubric-block h2:hover,
+.rubric-block h3:hover {
+  color: #ffd54f;              /* highlight yellow */
+  transition: color 0.3s ease;
 }
 
 /* About Us Feature Blocks */
@@ -1041,36 +1089,49 @@ blockquote {
 /* === Forum Wrapper (Disqus embed container) === */
 .forum-wrapper {
   flex: 3;
-  background: #ffffff;
+  background: linear-gradient(135deg, #ffffff, #f9f9ff);
   padding: 1.5rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  border-radius: 12px;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.12);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.forum-wrapper:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.18);
 }
 
 .forum-wrapper h2 {
   margin-bottom: 1rem;
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   color: #2c3e50;
-  border-bottom: 2px solid #0077cc;
+  border-bottom: 3px solid #ff6f61;
   padding-bottom: 0.5rem;
+  font-weight: 700;
 }
 
 /* === Sidebar === */
 .forum-sidebar {
   flex: 1;
-  background: #f9fafb;
+  background: linear-gradient(135deg, #f0f9ff, #e6f7ff);
   padding: 1.5rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease;
+}
+
+.forum-sidebar:hover {
+  transform: scale(1.02);
 }
 
 .forum-sidebar h3 {
   margin-bottom: 1rem;
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   color: #0077cc;
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  font-weight: 600;
 }
 
 .forum-sidebar ul {
@@ -1087,25 +1148,37 @@ blockquote {
   text-decoration: none;
   color: #333;
   font-weight: 500;
-  transition: color 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: color 0.3s ease, transform 0.2s ease;
 }
 
 .forum-sidebar a:hover {
-  color: #0077cc;
+  color: #ff6f61;
+  transform: translateX(4px);
 }
 
 /* === Announcement Bar === */
 .announcement-bar {
-  background: #0077cc;
+  background: linear-gradient(90deg, #ff6f61, #ff9966);
   color: #ffffff;
   text-align: center;
   padding: 0.75rem;
-  font-weight: 600;
-  font-size: 1rem;
+  font-weight: 700;
+  font-size: 1.1rem;
   margin: 0 auto 1.5rem auto;
   max-width: 1200px;
-  border-radius: 6px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  animation: pulse 3s infinite;
+}
+
+/* Subtle pulsing animation for announcement bar */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+  100% { transform: scale(1); }
 }
 
 /* === Responsive Adjustments === */
