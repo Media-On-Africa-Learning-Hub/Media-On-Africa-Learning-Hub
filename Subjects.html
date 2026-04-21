@@ -718,57 +718,293 @@
 </article>
 
   <!-- Grade 12 -->
-  <article>
-    <h3>Grade 12 – Term 1</h3>
-    <table>
-      <thead><tr><th>Topic</th><th>Excellent</th><th>Good</th><th>Fair</th><th>Needs Improvement</th></tr></thead>
-      <tbody>
-        <tr>
-          <td><a href="resources/Grade%2012%20Mathematics.pdf#page=4">Advanced Algebra & Functions (pp. 4–133)</a></td>
-          <td>Accurate solutions</td><td>Minor errors</td><td>Partial understanding</td><td>Frequent errors</td>
-        </tr>
-      </tbody>
-    </table>
-  </article>
+ <article>
+  <h3>Grade 12 – Term 1</h3>
+  <table>
+    <thead><tr><th>Topic</th><th>Excellent</th><th>Good</th><th>Fair</th><th>Needs Improvement</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>
+          <a href="resources/Grade%2012%20Mathematics.pdf#page=4">Advanced Algebra & Functions (pp. 4–133)</a>
+          <br><button class="toggle-btn">Show Questions</button>
+          <div class="questions hidden">
+            <form class="quiz" id="mathsGrade12Term1">
+              <p>Q1: Solve for x: 2x² – 8 = 0</p>
+              <label><input type="radio" name="q1" value="a">x = ±2</label>
+              <label><input type="radio" name="q1" value="b">x = ±4</label>
+              <label><input type="radio" name="q1" value="c">x = ±√2</label>
 
-  <article>
-    <h3>Grade 12 – Term 2</h3>
-    <table>
-      <thead><tr><th>Topic</th><th>Excellent</th><th>Good</th><th>Fair</th><th>Needs Improvement</th></tr></thead>
-      <tbody>
-        <tr>
-          <td><a href="resources/Grade%2012%20Mathematics.pdf#page=138">Calculus & Differential Equations (pp. 138–201)</a></td>
-          <td>Clear, precise application</td><td>Mostly correct</td><td>Basic understanding</td><td>Incomplete or incorrect</td>
-        </tr>
-      </tbody>
-    </table>
-  </article>
+              <p>Q2: Factorize: x³ – 27</p>
+              <label><input type="radio" name="q2" value="a">(x – 3)(x² + 3x + 9)</label>
+              <label><input type="radio" name="q2" value="b">(x – 27)(x + 1)</label>
+              <label><input type="radio" name="q2" value="c">Prime</label>
 
-  <article>
-    <h3>Grade 12 – Term 3</h3>
-    <table>
-      <thead><tr><th>Topic</th><th>Excellent</th><th>Good</th><th>Fair</th><th>Needs Improvement</th></tr></thead>
-      <tbody>
-        <tr>
-          <td><a href="resources/Grade%2012%20Mathematics.pdf#page=204">Probability, Statistics & Financial Maths (pp. 204–353)</a></td>
-          <td>Accurate calculations & analysis</td><td>Minor errors</td><td>Basic understanding</td><td>Incorrect or incomplete</td>
-        </tr>
-      </tbody>
-    </table>
-  </article>
+              <p>Q3: Domain of f(x) = 1/(x² – 4)</p>
+              <label><input type="radio" name="q3" value="a">x ≠ ±2</label>
+              <label><input type="radio" name="q3" value="b">x ≠ 0</label>
+              <label><input type="radio" name="q3" value="c">All real x</label>
 
-  <article>
-    <h3>Grade 12 – Term 4</h3>
-    <table>
-      <thead><tr><th>Topic</th><th>Excellent</th><th>Good</th><th>Fair</th><th>Needs Improvement</th></tr></thead>
-      <tbody>
-        <tr>
-          <td><a href="resources/Grade%2012%20Mathematics.pdf#page=360">Revision & Exam Preparation (pp. 360–440)</a></td>
-          <td>Comprehensive, well‑structured solutions</td><td>Good preparation</td><td>Basic revision</td><td>Incomplete or poor</td>
-        </tr>
-      </tbody>
-    </table>
-  </article>
+              <p>Q4: Range of f(x) = √x</p>
+              <label><input type="radio" name="q4" value="a">y ≥ 0</label>
+              <label><input type="radio" name="q4" value="b">y ≤ 0</label>
+              <label><input type="radio" name="q4" value="c">All real y</label>
+
+              <p>Q5: Solve: log₃(81)</p>
+              <label><input type="radio" name="q5" value="a">4</label>
+              <label><input type="radio" name="q5" value="b">3</label>
+              <label><input type="radio" name="q5" value="c">2</label>
+
+              <p>Q6: Solve: |x – 7| = 5</p>
+              <label><input type="radio" name="q6" value="a">x = 2 or 12</label>
+              <label><input type="radio" name="q6" value="b">x = –2 or –12</label>
+              <label><input type="radio" name="q6" value="c">x = 7</label>
+
+              <p>Q7: If f(x) = 3x – 2, find f(4)</p>
+              <label><input type="radio" name="q7" value="a">10</label>
+              <label><input type="radio" name="q7" value="b">12</label>
+              <label><input type="radio" name="q7" value="c">14</label>
+
+              <p>Q8: Solve: x² – 5x + 6 = 0</p>
+              <label><input type="radio" name="q8" value="a">x = 2 or 3</label>
+              <label><input type="radio" name="q8" value="b">x = –2 or –3</label>
+              <label><input type="radio" name="q8" value="c">x = 6 or –1</label>
+
+              <p>Q9: Inverse of f(x) = 2x + 5</p>
+              <label><input type="radio" name="q9" value="a">f⁻¹(x) = (x – 5)/2</label>
+              <label><input type="radio" name="q9" value="b">f⁻¹(x) = 2x – 5</label>
+              <label><input type="radio" name="q9" value="c">f⁻¹(x) = x/2 + 5</label>
+
+              <p>Q10: Solve: x³ = 27</p>
+              <label><input type="radio" name="q10" value="a">x = 3</label>
+              <label><input type="radio" name="q10" value="b">x = ±3</label>
+              <label><input type="radio" name="q10" value="c">x = 9</label>
+
+              <button type="button" class="submit-btn">Check Answers</button>
+            </form>
+          </div>
+        </td>
+        <td>Accurate solutions</td><td>Minor errors</td><td>Partial understanding</td><td>Frequent errors</td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+
+<article>
+  <h3>Grade 12 – Term 2</h3>
+  <table>
+    <thead><tr><th>Topic</th><th>Excellent</th><th>Good</th><th>Fair</th><th>Needs Improvement</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>
+          <a href="resources/Grade%2012%20Mathematics.pdf#page=138">Calculus & Differential Equations (pp. 138–201)</a>
+          <br><button class="toggle-btn">Show Questions</button>
+          <div class="questions hidden">
+            <form class="quiz" id="mathsGrade12Term2">
+              <p>Q1: Derivative of f(x)=x³</p>
+              <label><input type="radio" name="q1" value="a">3x²</label>
+              <label><input type="radio" name="q1" value="b">x³</label>
+              <label><input type="radio" name="q1" value="c">x²</label>
+
+              <p>Q2: ∫2x dx</p>
+              <label><input type="radio" name="q2" value="a">x² + C</label>
+              <label><input type="radio" name="q2" value="b">2x²</label>
+              <label><input type="radio" name="q2" value="c">2x + C</label>
+
+              <p>Q3: Solve dy/dx = 2x, y(0)=1</p>
+              <label><input type="radio" name="q3" value="a">y = x² + 1</label>
+              <label><input type="radio" name="q3" value="b">y = 2x + 1</label>
+              <label><input type="radio" name="q3" value="c">y = 2x² + 1</label>
+
+              <p>Q4: Derivative of sin(x)</p>
+              <label><input type="radio" name="q4" value="a">cos(x)</label>
+              <label><input type="radio" name="q4" value="b">–cos(x)</label>
+              <label><input type="radio" name="q4" value="c">–sin(x)</label>
+
+              <p>Q5: ∫cos(x) dx</p>
+              <label><input type="radio" name="q5" value="a">sin(x) + C</label>
+              <label><input type="radio" name="q5" value="b">–sin(x) + C</label>
+              <label><input type="radio" name="q5" value="c">cos(x) + C</label>
+
+              <p>Q6: Derivative of ln(x)</p>
+              <label><input type="radio" name="q6" value="a">1/x</label>
+              <label><input type="radio" name="q6" value="b">ln(x)</label>
+              <label><input type="radio" name="q6" value="c">x</label>
+
+              <p>Q7: Solve dy/dx = y, y(0)=1</p>
+              <label><input type="radio" name="q7" value="a">y = eˣ</label>
+              <label><input type="radio" name="q7" value="b">y = x</label>
+              <label><input type="radio" name="q7" value="c">y = 1</label>
+
+              <p>Q8: ∫eˣ dx</p>
+              <label><input type="radio" name="q8" value="a">eˣ + C</label>
+              <label><input type="radio" name="q8" value="b">ln(x) + C</label>
+              <label><input type="radio" name="q8" value="c">x + C</label>
+
+              <p>Q9: Derivative of tan(x)</p>
+              <label><input type="radio" name="q9" value="a">sec²(x)</label>
+              <label><input type="radio" name="q9" value="b">cos²(x)</label>
+              <label><input type="radio" name="q9" value="c">sin²(x)</label>
+
+              <p>Q10: ∫1/x dx</p>
+              <label><input type="radio" name="q10" value="a">ln|x| + C</label>
+              <label><input type="radio" name="q10" value="b">1/x + C</label>
+              <label><input type="radio" name="q10" value="c">x + C</label>
+
+              <button type="button" class="submit-btn">Check Answers</button>
+            </form>
+          </div>
+        </td>
+        <td>Clear, precise application</td><td>Mostly correct</td><td>Basic understanding</td><td>Incomplete or incorrect</td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+
+<article>
+  <h3>Grade 12 – Term 3</h3>
+  <table>
+    <thead>
+      <tr><th>Topic</th><th>Excellent</th><th>Good</th><th>Fair</th><th>Needs Improvement</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <a href="resources/Grade%2012%20Mathematics.pdf#page=204">Probability, Statistics & Financial Maths (pp. 204–353)</a>
+          <br><button class="toggle-btn">Show Questions</button>
+          <div class="questions hidden">
+            <form class="quiz" id="mathsGrade12Term3">
+              <p>Q1: P(A ∪ B) = ?</p>
+              <label><input type="radio" name="q1" value="a">P(A)+P(B)–P(A∩B)</label>
+              <label><input type="radio" name="q1" value="b">P(A)·P(B)</label>
+              <label><input type="radio" name="q1" value="c">P(A)+P(B)</label>
+
+              <p>Q2: P(A ∩ B) if independent</p>
+              <label><input type="radio" name="q2" value="a">P(A)·P(B)</label>
+              <label><input type="radio" name="q2" value="b">P(A)+P(B)</label>
+              <label><input type="radio" name="q2" value="c">P(A)–P(B)</label>
+
+              <p>Q3: Mutually exclusive events definition</p>
+              <label><input type="radio" name="q3" value="a">P(A ∩ B) = 0</label>
+              <label><input type="radio" name="q3" value="b">P(A ∪ B) = P(A)+P(B)</label>
+              <label><input type="radio" name="q3" value="c">Events are independent</label>
+
+              <p>Q4: Mean formula</p>
+              <label><input type="radio" name="q4" value="a">Σx/n</label>
+              <label><input type="radio" name="q4" value="b">Σx²/n</label>
+              <label><input type="radio" name="q4" value="c">Σf</label>
+
+              <p>Q5: Variance formula</p>
+              <label><input type="radio" name="q5" value="a">Σ(x–μ)²/n</label>
+              <label><input type="radio" name="q5" value="b">Σx/n</label>
+              <label><input type="radio" name="q5" value="c">Σf</label>
+
+              <p>Q6: Standard deviation</p>
+              <label><input type="radio" name="q6" value="a">√variance</label>
+              <label><input type="radio" name="q6" value="b">Σx/n</label>
+              <label><input type="radio" name="q6" value="c">Σf</label>
+
+              <p>Q7: Compound interest formula</p>
+              <label><input type="radio" name="q7" value="a">A = P(1 + i)^n</label>
+              <label><input type="radio" name="q7" value="b">A = P + i</label>
+              <label><input type="radio" name="q7" value="c">A = Pn</label>
+
+              <p>Q8: Simple interest formula</p>
+              <label><input type="radio" name="q8" value="a">I = P·i·n</label>
+              <label><input type="radio" name="q8" value="b">I = P + i</label>
+              <label><input type="radio" name="q8" value="c">I = Pn</label>
+
+              <p>Q9: Z-score formula</p>
+              <label><input type="radio" name="q9" value="a">(x–μ)/σ</label>
+              <label><input type="radio" name="q9" value="b">Σx/n</label>
+              <label><input type="radio" name="q9" value="c">Σ(x–μ)²/n</label>
+
+              <p>Q10: Correlation coefficient range</p>
+              <label><input type="radio" name="q10" value="a">–1 ≤ r ≤ 1</label>
+              <label><input type="radio" name="q10" value="b">0 ≤ r ≤ 1</label>
+              <label><input type="radio" name="q10" value="c">–∞ ≤ r ≤ ∞</label>
+
+              <button type="button" class="submit-btn">Check Answers</button>
+            </form>
+          </div>
+        </td>
+        <td>Accurate calculations & analysis</td><td>Minor errors</td><td>Basic understanding</td><td>Incorrect or incomplete</td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+
+<article>
+  <h3>Grade 12 – Term 4</h3>
+  <table>
+    <thead>
+      <tr><th>Topic</th><th>Excellent</th><th>Good</th><th>Fair</th><th>Needs Improvement</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <a href="resources/Grade%2012%20Mathematics.pdf#page=360">Revision & Exam Preparation (pp. 360–440)</a>
+          <br><button class="toggle-btn">Show Questions</button>
+          <div class="questions hidden">
+            <form class="quiz" id="mathsGrade12Term4">
+              <p>Q1: ∫2x dx</p>
+              <label><input type="radio" name="q1" value="a">x² + C</label>
+              <label><input type="radio" name="q1" value="b">2x²</label>
+              <label><input type="radio" name="q1" value="c">2x + C</label>
+
+              <p>Q2: Derivative of cos(x)</p>
+              <label><input type="radio" name="q2" value="a">–sin(x)</label>
+              <label><input type="radio" name="q2" value="b">sin(x)</label>
+              <label><input type="radio" name="q2" value="c">cos(x)</label>
+
+              <p>Q3: Solve: log₁₀(1000)</p>
+              <label><input type="radio" name="q3" value="a">3</label>
+              <label><input type="radio" name="q3" value="b">2</label>
+              <label><input type="radio" name="q3" value="c">10</label>
+
+              <p>Q4: Mean of 5, 10, 15</p>
+              <label><input type="radio" name="q4" value="a">10</label>
+              <label><input type="radio" name="q4" value="b">15</label>
+              <label><input type="radio" name="q4" value="c">5</label>
+
+              <p>Q5: Variance of {2,4}</p>
+              <label><input type="radio" name="q5" value="a">1</label>
+              <label><input type="radio" name="q5" value="b">2</label>
+              <label><input type="radio" name="q5" value="c">0</label>
+
+              <p>Q6: Probability of rolling a 6 on a fair die</p>
+              <label><input type="radio" name="q6" value="a">1/6</label>
+              <label><input type="radio" name="q6" value="b">1/2</label>
+              <label><input type="radio" name="q6" value="c">1/3</label>
+
+              <p>Q7: Solve: x² – 9 = 0</p>
+              <label><input type="radio" name="q7" value="a">x = ±3</label>
+              <label><input type="radio" name="q7" value="b">x = ±9</label>
+              <label><input type="radio" name="q7" value="c">x = 0</label>
+
+              <p>Q8: Compound interest formula</p>
+              <label><input type="radio" name="q8" value="a">A = P(1 + i)^n</label>
+              <label><input type="radio" name="q8" value="b">A = P + i</label>
+              <label><input type="radio" name="q8" value="c">A = Pn</label>
+
+              <p>Q9: Derivative of eˣ</p>
+              <label><input type="radio" name="q9" value="a">eˣ</label>
+              <label><input type="radio" name="q9" value="b">ln(x)</label>
+              <label><input type="radio" name="q9" value="c">x</label>
+
+              <p>Q10: Z-score formula</p>
+              <label><input type="radio" name="q10" value="a">(x–μ)/σ</label>
+              <label><input type="radio" name="q10" value="b">Σx/n</label>
+              <label><input type="radio" name="q10" value="c">Σ(x–μ)²/n</label>
+
+              <button type="button" class="submit-btn">Check Answers</button>
+            </form>
+          </div>
+        </td>
+        <td>Comprehensive, well‑structured solutions</td><td>Good preparation</td><td>Basic revision</td><td>Incomplete or poor</td>
+      </tr>
+    </tbody>
+  </table>
+</article>
 </div>
 
 <!-- Science Rubric -->
