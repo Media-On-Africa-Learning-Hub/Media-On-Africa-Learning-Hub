@@ -24,6 +24,13 @@ const answerKeys = {
   mathsGrade11Term4: { q1:'a', q2:'a', q3:'a', q4:'a', q5:'a', q6:'a', q7:'a', q8:'a', q9:'a', q10:'a' }
 };
 
+  // Grade 12
+  mathsGrade12Term1: { q1:'a', q2:'a', q3:'a', q4:'a', q5:'a', q6:'a', q7:'a', q8:'a', q9:'a', q10:'a' },
+  mathsGrade12Term2: { q1:'a', q2:'a', q3:'a', q4:'a', q5:'a', q6:'a', q7:'a', q8:'a', q9:'a', q10:'a' },
+  mathsGrade12Term3: { q1:'a', q2:'a', q3:'a', q4:'a', q5:'a', q6:'a', q7:'a', q8:'a', q9:'a', q10:'a' },
+  mathsGrade12Term4: { q1:'a', q2:'a', q3:'a', q4:'a', q5:'a', q6:'a', q7:'a', q8:'a', q9:'a', q10:'a' }
+};
+
 // Quiz scoring logic with feedback + highlights + reattempt
 document.querySelectorAll('.submit-btn').forEach(btn => {
   btn.addEventListener('click', () => {
