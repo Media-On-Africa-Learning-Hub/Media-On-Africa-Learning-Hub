@@ -1,11 +1,16 @@
 // Toggle expand/collapse for questions
 document.querySelectorAll('.toggle-btn').forEach(btn => {
   btn.addEventListener('click', () => {
-    const questions = btn.nextElementSibling;
-    questions.classList.toggle('hidden');
-    btn.textContent = questions.classList.contains('hidden') 
-      ? 'Show Questions' 
-      : 'Hide Questions';
+    // Find the parent <td> and then the .questions div inside it
+    const container = btn.closest('td');
+    const questions = container.querySelector('.questions');
+
+    if (questions) {
+      questions.classList.toggle('hidden');
+      btn.textContent = questions.classList.contains('hidden') 
+        ? 'Show Questions' 
+        : 'Hide Questions';
+    }
   });
 });
 
