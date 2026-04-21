@@ -17,7 +17,7 @@ const answerKeys = {
   quizTerm4: { q1:'a', q2:'a', q3:'a', q4:'a', q5:'a', q6:'a', q7:'a', q8:'a', q9:'a', q10:'a' }
 };
 
-// Quiz scoring logic with feedback
+// Quiz scoring logic with feedback + highlights
 document.querySelectorAll('.submit-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     const form = btn.closest('form');
@@ -25,8 +25,11 @@ document.querySelectorAll('.submit-btn').forEach(btn => {
     const answers = answerKeys[quizId];
     let score = 0;
 
-    // Clear any previous feedback
+    // Clear any previous feedback and highlights
     form.querySelectorAll('.feedback').forEach(fb => fb.remove());
+    form.querySelectorAll('label').forEach(label => {
+      label.classList.remove('correct-answer', 'incorrect-answer');
+    });
 
     Object.keys(answers).forEach(q => {
       const selected = form.querySelector(`input[name="${q}"]:checked`);
@@ -40,9 +43,11 @@ document.querySelectorAll('.submit-btn').forEach(btn => {
           score++;
           feedback.textContent = " ✓ Correct";
           feedback.style.color = "green";
+          selected.parentElement.classList.add('correct-answer');
         } else {
           feedback.textContent = " ✗ Incorrect (Correct: " + correctAnswer.toUpperCase() + ")";
           feedback.style.color = "red";
+          selected.parentElement.classList.add('incorrect-answer');
         }
 
         // Append feedback right after the chosen option
