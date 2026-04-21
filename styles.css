@@ -1499,6 +1499,24 @@ th, td {
   background: #218838;   /* darker green on hover */
 }
 
+/* Style the Clear/Reattempt button */
+.clear-btn {
+  margin-top: 10px;
+  margin-left: 8px;      /* small gap from Check Answers */
+  background: #dc3545;   /* red background */
+  color: #fff;           /* white text */
+  border: none;
+  padding: 8px 14px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 1em;
+  font-weight: bold;
+}
+
+.clear-btn:hover {
+  background: #c82333;   /* darker red on hover */
+}
+
 /* Feedback styling for correct/incorrect answers */
 .feedback {
   margin-left: 8px;
