@@ -1420,6 +1420,7 @@ blockquote:hover {
     flex: 1 1 100%;
   }
 }
+
 /* Base table styling */
 table {
   width: 100%;
@@ -1466,26 +1467,34 @@ th, td {
 .quiz p {
   margin: 8px 0 4px;
   font-weight: bold;
+  color: #222; /* dark text */
 }
 
 .quiz label {
   display: block;
   margin-left: 10px;
   font-weight: normal;
+  color: #222; /* dark text */
 }
 
+.quiz input[type="radio"] {
+  margin-right: 6px;
+}
+
+/* Style the Check Answers button */
 .submit-btn {
   margin-top: 10px;
-  background: #28a745;
-  color: white;
+  background: #28a745;   /* green background */
+  color: #fff;           /* white text */
   border: none;
   padding: 6px 12px;
   cursor: pointer;
   border-radius: 4px;
+  font-size: 0.9em;
 }
 
 .submit-btn:hover {
-  background: #218838;
+  background: #218838;   /* darker green on hover */
 }
 
 /* 📱 Mobile-friendly adjustments */
@@ -1528,7 +1537,6 @@ th, td {
     margin-left: 0;
   }
 }
-
 
 
 
