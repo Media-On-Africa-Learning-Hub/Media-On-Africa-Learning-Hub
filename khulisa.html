@@ -7,14 +7,8 @@
   <link rel="stylesheet" href="styles.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300;400;700&family=Poppins:wght@300;400;500;600;700&display=swap"
-    rel="stylesheet"
-  />
-  <link
-    rel="stylesheet"
-    href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-  />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 <body>
 
@@ -42,53 +36,58 @@
 <section class="header big-header">
   <div class="text-box">
     <h1>Support</h1>
+    <p>Holistic care and guidance for learners through Khulisa Social Solutions.</p>
   </div>
 </section>
 
 <!-- Support Content -->
-<section class="About-us">
+<main>
+  <!-- About -->
+  <section class="feature-block">
+    <h3>About Khulisa</h3>
+    <img src="i_turn0image10" alt="Community support illustration" loading="lazy">
+    <p>
+      Khulisa Social Solutions is a non-profit organization dedicated to uplifting communities
+      through social cohesion, youth development, and counseling services. Learners gain access
+      to professional support, mentorship, and resources that extend beyond academics.
+    </p>
+    <a href="https://khulisa.org.za" target="_blank" class="hero-btn">Visit Website</a>
+  </section>
 
-<!-- Overview -->
-<div class="feature-block core-features">
-  <h3>About Khulisa</h3>
-  <img src="i_turn0image10" alt="Community support illustration" style="max-width:100%; border-radius:8px; margin:1rem 0;">
-  <p>
-    Khulisa Social Solutions is a non-profit organization dedicated to uplifting communities
-    through social cohesion, youth development, and counseling services. By integrating Khulisa
-    into our Learning Hub, learners gain access to professional support, mentorship, and resources
-    that extend beyond academics.
-  </p>
-  <a href="https://khulisa.org.za" target="_blank" class="hero-btn">VISIT WEBSITE</a>
-</div>
+  <!-- Contact -->
+  <section class="feature-block">
+    <h3>Contact a Counselor</h3>
+    <img src="i_turn0image1" alt="Counseling session illustration" loading="lazy">
+    <form id="contactCounselor" action="mailto:info@khulisa.org.za" method="post" enctype="text/plain">
+      <label for="name">Name</label>
+      <input id="name" type="text" name="name" required>
+      
+      <label for="email">Email</label>
+      <input id="email" type="email" name="email" required>
+      
+      <label for="message">Message</label>
+      <textarea id="message" name="message" rows="4" required></textarea>
+      
+      <button type="submit" class="hero-btn">Send Message</button>
+    </form>
+  </section>
 
-<!-- Contact Counselor -->
-<div class="feature-block community-support">
-  <h3>Contact a Counselor</h3>
-  <img src="i_turn0image1" alt="Counseling session illustration" style="max-width:100%; border-radius:8px; margin:1rem 0;">
-  <form id="contactCounselor" action="mailto:info@khulisa.org.za" method="post" enctype="text/plain">
-    <label>Name:<br><input type="text" name="name" required></label><br>
-    <label>Email:<br><input type="email" name="email" required></label><br>
-    <label>Message:<br><textarea name="message" rows="4" required></textarea></label><br>
-    <button type="submit" class="hero-btn">SEND MESSAGE</button>
-  </form>
-</div>
+  <!-- Booking -->
+  <section class="feature-block">
+    <h3>Book a Session</h3>
+    <img src="i_turn0image4" alt="Booking schedule illustration" loading="lazy">
+    <p>Arrange a counseling session with Khulisa through their scheduling system.</p>
+    <a href="https://calendly.com/khulisa-sessions" target="_blank" class="hero-btn">Book Session</a>
+  </section>
 
-<!-- Booking -->
-<div class="feature-block technical-strategy">
-  <h3>Book a Session</h3>
-  <img src="i_turn0image4" alt="Booking schedule illustration" style="max-width:100%; border-radius:8px; margin:1rem 0;">
-  <p>Arrange a counseling session with Khulisa through their scheduling system.</p>
-  <a href="https://calendly.com/khulisa-sessions" target="_blank" class="hero-btn">BOOK SESSION</a>
-</div>
-
-<!-- Direct Call -->
-<div class="feature-block long-term-impact">
-  <h3>Call Directly</h3>
-  <img src="i_turn0image7" alt="Youth empowerment illustration" style="max-width:100%; border-radius:8px; margin:1rem 0;">
-  <p>Speak to Khulisa Johannesburg office for immediate support.</p>
-  <a href="tel:0117888237" class="hero-btn">CALL 011 788 8237</a>
-</div>
-</section>
+  <!-- Call -->
+  <section class="feature-block">
+    <h3>Call Directly</h3>
+    <img src="i_turn0image7" alt="Youth empowerment illustration" loading="lazy">
+    <p>Speak to Khulisa Johannesburg office for immediate support.</p>
+    <a href="tel:0117888237" class="hero-btn">Call 011 788 8237</a>
+  </section>
+</main>
 
 <!-- Footer -->
 <footer class="Footer">
@@ -98,12 +97,12 @@
     community support, ensuring learners have access to both knowledge and care.
   </p>
   <div class="icons">
-    <i class="fa fa-facebook"></i>
-    <i class="fa fa-twitter"></i>
-    <i class="fa fa-instagram"></i>
-    <i class="fa fa-linkedin"></i>
+    <a href="#"><i class="fab fa-facebook"></i></a>
+    <a href="#"><i class="fab fa-twitter"></i></a>
+    <a href="#"><i class="fab fa-instagram"></i></a>
+    <a href="#"><i class="fab fa-linkedin"></i></a>
   </div>
-  <p>Made with <i class="fa fa-heart-o"></i> by Media On Africa</p>
+  <p>Made with <i class="fa fa-heart"></i> by Media On Africa</p>
 </footer>
 
 <script>
