@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Support - Media On Africa Learning Hub</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300;400;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+  />
+</head>
+<body>
+
+<!-- Navigation -->
+<nav>
+  <div class="nav-links" id="navLinks">
+    <i class="fa fa-times" onclick="hidemenu()"></i>
+    <ul>
+      <li><a href="index.html">HOME</a></li>
+      <li><a href="About.html">ABOUT</a></li>
+      <li><a href="Subjects.html">SUBJECTS</a></li>
+      <li><a href="quizzes.html">QUIZZES</a></li>
+      <li><a href="forum.html">DISCUSSION</a></li>
+      <li><a href="mental_wellness.html">WELLNESS</a></li>
+      <li><a href="blog.html">BLOG</a></li>
+      <li><a href="contact.html">CONTACT</a></li>
+      <li><a href="library.html">LIBRARY</a></li>
+      <li><a href="khulisa.html" class="active">SUPPORT</a></li>
+    </ul>
+  </div>
+  <i class="fa fa-bars" onclick="showmenu()"></i>
+</nav>
+
+<!-- Header -->
+<section class="header big-header">
+  <div class="text-box">
+    <h1>Support</h1>
+  </div>
+</section>
+
+<!-- Support Content -->
+<section class="About-us">
+
+<!-- Overview -->
+<div class="feature-block core-features">
+  <h3>About Khulisa</h3>
+  <img src="i_turn0image10" alt="Community support illustration" style="max-width:100%; border-radius:8px; margin:1rem 0;">
+  <p>
+    Khulisa Social Solutions is a non-profit organization dedicated to uplifting communities
+    through social cohesion, youth development, and counseling services. By integrating Khulisa
+    into our Learning Hub, learners gain access to professional support, mentorship, and resources
+    that extend beyond academics.
+  </p>
+  <a href="https://khulisa.org.za" target="_blank" class="hero-btn">VISIT WEBSITE</a>
+</div>
+
+<!-- Contact Counselor -->
+<div class="feature-block community-support">
+  <h3>Contact a Counselor</h3>
+  <img src="i_turn0image1" alt="Counseling session illustration" style="max-width:100%; border-radius:8px; margin:1rem 0;">
+  <form id="contactCounselor" action="mailto:info@khulisa.org.za" method="post" enctype="text/plain">
+    <label>Name:<br><input type="text" name="name" required></label><br>
+    <label>Email:<br><input type="email" name="email" required></label><br>
+    <label>Message:<br><textarea name="message" rows="4" required></textarea></label><br>
+    <button type="submit" class="hero-btn">SEND MESSAGE</button>
+  </form>
+</div>
+
+<!-- Booking -->
+<div class="feature-block technical-strategy">
+  <h3>Book a Session</h3>
+  <img src="i_turn0image4" alt="Booking schedule illustration" style="max-width:100%; border-radius:8px; margin:1rem 0;">
+  <p>Arrange a counseling session with Khulisa through their scheduling system.</p>
+  <a href="https://calendly.com/khulisa-sessions" target="_blank" class="hero-btn">BOOK SESSION</a>
+</div>
+
+<!-- Direct Call -->
+<div class="feature-block long-term-impact">
+  <h3>Call Directly</h3>
+  <img src="i_turn0image7" alt="Youth empowerment illustration" style="max-width:100%; border-radius:8px; margin:1rem 0;">
+  <p>Speak to Khulisa Johannesburg office for immediate support.</p>
+  <a href="tel:0117888237" class="hero-btn">CALL 011 788 8237</a>
+</div>
+</section>
+
+<!-- Footer -->
+<footer class="Footer">
+  <h4>Support</h4>
+  <p>
+    Partnering with Khulisa allows us to extend academic learning into holistic
+    community support, ensuring learners have access to both knowledge and care.
+  </p>
+  <div class="icons">
+    <i class="fa fa-facebook"></i>
+    <i class="fa fa-twitter"></i>
+    <i class="fa fa-instagram"></i>
+    <i class="fa fa-linkedin"></i>
+  </div>
+  <p>Made with <i class="fa fa-heart-o"></i> by Media On Africa</p>
+</footer>
+
+<script>
+  var navLinks = document.getElementById("navLinks");
+  function showmenu() { navLinks.style.right = "0"; }
+  function hidemenu() { navLinks.style.right = "-200px"; }
+</script>
+
+<script src="//code.tidio.co/uqdod81sfajvlkpiujfsjo49za71xsuc.js" async></script>
+</body>
+</html>
