@@ -17,7 +17,7 @@ const answerKeys = {
   quizTerm4: { q1:'a', q2:'a', q3:'a', q4:'a', q5:'a', q6:'a', q7:'a', q8:'a', q9:'a', q10:'a' }
 };
 
-// Quiz scoring logic with feedback + highlights
+// Quiz scoring logic with feedback + highlights + reattempt
 document.querySelectorAll('.submit-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     const form = btn.closest('form');
@@ -50,12 +50,35 @@ document.querySelectorAll('.submit-btn').forEach(btn => {
           selected.parentElement.classList.add('incorrect-answer');
         }
 
-        // Append feedback right after the chosen option
         selected.parentElement.appendChild(feedback);
       }
     });
 
     alert(`You scored ${score} out of ${Object.keys(answers).length}`);
+
+    // Show Reattempt button if not already present
+    if (!form.querySelector('.clear-btn')) {
+      const clearBtn = document.createElement('button');
+      clearBtn.type = 'button';
+      clearBtn.textContent = 'Reattempt';
+      clearBtn.classList.add('clear-btn');
+      btn.insertAdjacentElement('afterend', clearBtn);
+
+      clearBtn.addEventListener('click', () => {
+        // Reset quiz selections
+        form.querySelectorAll('input[type="radio"]').forEach(input => {
+          input.checked = false;
+        });
+
+        // Remove feedback and highlights
+        form.querySelectorAll('.feedback').forEach(fb => fb.remove());
+        form.querySelectorAll('label').forEach(label => {
+          label.classList.remove('correct-answer', 'incorrect-answer');
+        });
+
+        // Remove the Reattempt button itself
+        clearBtn.remove();
+      });
+    }
   });
 });
-
