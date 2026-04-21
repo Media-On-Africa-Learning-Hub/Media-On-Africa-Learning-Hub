@@ -9,12 +9,19 @@ document.querySelectorAll('.toggle-btn').forEach(btn => {
   });
 });
 
-// Centralized answer keys for Grade 10
+// Centralized answer keys for Grade 10 and Grade 11
 const answerKeys = {
-  quizTerm1: { q1:'a', q2:'a', q3:'a', q4:'a', q5:'a', q6:'a', q7:'a', q8:'a', q9:'a', q10:'c' },
-  quizTerm2: { q1:'a', q2:'a', q3:'a', q4:'a', q5:'a', q6:'a', q7:'a', q8:'a', q9:'a', q10:'a' },
-  quizTerm3: { q1:'a', q2:'a', q3:'a', q4:'a', q5:'a', q6:'a', q7:'a', q8:'b', q9:'a', q10:'a' },
-  quizTerm4: { q1:'a', q2:'a', q3:'a', q4:'a', q5:'a', q6:'a', q7:'a', q8:'a', q9:'a', q10:'a' }
+  // Grade 10
+  mathsGrade10Term1: { q1:'a', q2:'a', q3:'a', q4:'a', q5:'a', q6:'a', q7:'a', q8:'a', q9:'a', q10:'c' },
+  mathsGrade10Term2: { q1:'a', q2:'a', q3:'a', q4:'a', q5:'a', q6:'a', q7:'a', q8:'a', q9:'a', q10:'a' },
+  mathsGrade10Term3: { q1:'a', q2:'a', q3:'a', q4:'a', q5:'a', q6:'a', q7:'a', q8:'b', q9:'a', q10:'a' },
+  mathsGrade10Term4: { q1:'a', q2:'a', q3:'a', q4:'a', q5:'a', q6:'a', q7:'a', q8:'a', q9:'a', q10:'a' },
+
+  // Grade 11
+  mathsGrade11Term1: { q1:'a', q2:'a', q3:'a', q4:'a', q5:'a', q6:'a', q7:'a', q8:'a', q9:'a', q10:'a' },
+  mathsGrade11Term2: { q1:'a', q2:'a', q3:'a', q4:'a', q5:'a', q6:'a', q7:'a', q8:'a', q9:'a', q10:'a' },
+  mathsGrade11Term3: { q1:'a', q2:'a', q3:'a', q4:'a', q5:'a', q6:'a', q7:'a', q8:'a', q9:'a', q10:'a' },
+  mathsGrade11Term4: { q1:'a', q2:'a', q3:'a', q4:'a', q5:'a', q6:'a', q7:'a', q8:'a', q9:'a', q10:'a' }
 };
 
 // Quiz scoring logic with feedback + highlights + reattempt
@@ -82,3 +89,4 @@ document.querySelectorAll('.submit-btn').forEach(btn => {
     }
   });
 });
+
