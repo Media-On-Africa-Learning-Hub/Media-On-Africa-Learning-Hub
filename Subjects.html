@@ -131,58 +131,294 @@
 
   <!-- Grade 10 -->
   <article>
-    <h3>Grade 10 – Term 1</h3>
-    <table>
-      <thead>
-        <tr><th>Topic</th><th>Excellent</th><th>Good</th><th>Fair</th><th>Needs Improvement</th></tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><a href="resources/Grade%2010%20Mathematics.pdf#page=6">Algebra & Number Patterns (pp. 6–56)</a></td>
-          <td>Accurate solutions</td><td>Minor errors</td><td>Partial understanding</td><td>Frequent errors</td>
-        </tr>
-      </tbody>
-    </table>
-  </article>
+  <h3>Grade 10 – Term 1</h3>
+  <table>
+    <thead>
+      <tr><th>Topic</th><th>Excellent</th><th>Good</th><th>Fair</th><th>Needs Improvement</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <a href="resources/Grade%2010%20Mathematics.pdf#page=6">Algebra & Number Patterns (pp. 6–56)</a>
+          <br>
+          <button class="toggle-btn">Show Questions</button>
+          <div class="questions hidden">
+            <form class="quiz" id="quiz-term1">
+              <p>1. Solve for x: 2x + 5 = 15</p>
+              <label><input type="radio" name="q1" value="a"> x = 5</label><br>
+              <label><input type="radio" name="q1" value="b"> x = 10</label><br>
+              <label><input type="radio" name="q1" value="c"> x = –5</label><br>
 
-  <article>
-    <h3>Grade 10 – Term 2</h3>
-    <table>
-      <thead><tr><th>Topic</th><th>Excellent</th><th>Good</th><th>Fair</th><th>Needs Improvement</th></tr></thead>
-      <tbody>
-        <tr>
-          <td><a href="resources/Grade%2010%20Mathematics.pdf#page=60">Functions, Graphs & Geometry (pp. 60–314)</a></td>
-          <td>Clear, precise application</td><td>Mostly correct</td><td>Basic graphs/diagrams</td><td>Incomplete or incorrect</td>
-        </tr>
-      </tbody>
-    </table>
-  </article>
+              <p>2. Factorize: x² + 5x + 6</p>
+              <label><input type="radio" name="q2" value="a"> (x + 2)(x + 3)</label><br>
+              <label><input type="radio" name="q2" value="b"> (x – 2)(x – 3)</label><br>
+              <label><input type="radio" name="q2" value="c"> (x + 1)(x + 6)</label><br>
 
-  <article>
-    <h3>Grade 10 – Term 3</h3>
-    <table>
-      <thead><tr><th>Topic</th><th>Excellent</th><th>Good</th><th>Fair</th><th>Needs Improvement</th></tr></thead>
-      <tbody>
-        <tr>
-          <td><a href="resources/Grade%2010%20Mathematics.pdf#page=330">Trigonometry & Measurement (pp. 330–381)</a></td>
-          <td>Accurate ratios & calculations</td><td>Minor errors</td><td>Basic understanding</td><td>Incorrect or incomplete</td>
-        </tr>
-      </tbody>
-    </table>
-  </article>
+              <p>3. Expand: (x + 3)(x – 2)</p>
+              <label><input type="radio" name="q3" value="a"> x² + x – 6</label><br>
+              <label><input type="radio" name="q3" value="b"> x² – 5x + 6</label><br>
+              <label><input type="radio" name="q3" value="c"> x² + 6x – 6</label><br>
 
-  <article>
-    <h3>Grade 10 – Term 4</h3>
-    <table>
-      <thead><tr><th>Topic</th><th>Excellent</th><th>Good</th><th>Fair</th><th>Needs Improvement</th></tr></thead>
-      <tbody>
-        <tr>
-          <td><a href="resources/Grade%2010%20Mathematics.pdf#page=390">Probability & Statistics (pp. 390–489)</a></td>
-          <td>Strong application & analysis</td><td>Mostly correct</td><td>Basic skills</td><td>Incomplete or inaccurate</td>
-        </tr>
-      </tbody>
-    </table>
-  </article>
+              <p>4. Simplify: (2x² – 3x + 4) – (x² – 5x – 2)</p>
+              <label><input type="radio" name="q4" value="a"> x² + 2x + 6</label><br>
+              <label><input type="radio" name="q4" value="b"> x² – 8x + 2</label><br>
+              <label><input type="radio" name="q4" value="c"> 3x² – 8x + 2</label><br>
+
+              <p>5. Find the next 3 terms in the sequence: 2, 4, 8, …</p>
+              <label><input type="radio" name="q5" value="a"> 16, 32, 64</label><br>
+              <label><input type="radio" name="q5" value="b"> 10, 12, 14</label><br>
+              <label><input type="radio" name="q5" value="c"> 20, 40, 80</label><br>
+
+              <p>6. Determine the nth term of the sequence: 3, 6, 9, …</p>
+              <label><input type="radio" name="q6" value="a"> Tn = 3n</label><br>
+              <label><input type="radio" name="q6" value="b"> Tn = 2n</label><br>
+              <label><input type="radio" name="q6" value="c"> Tn = n + 3</label><br>
+
+              <p>7. Solve simultaneously: x + y = 10, 2x – y = 4</p>
+              <label><input type="radio" name="q7" value="a"> x = 4, y = 6</label><br>
+              <label><input type="radio" name="q7" value="b"> x = 6, y = 4</label><br>
+              <label><input type="radio" name="q7" value="c"> x = 5, y = 5</label><br>
+
+              <p>8. Evaluate: (x² – y²) ÷ (x – y)</p>
+              <label><input type="radio" name="q8" value="a"> x + y</label><br>
+              <label><input type="radio" name="q8" value="b"> x – y</label><br>
+              <label><input type="radio" name="q8" value="c"> x² – y²</label><br>
+
+              <p>9. Write the first 5 terms of the pattern: Tn = 2n + 1</p>
+              <label><input type="radio" name="q9" value="a"> 3, 5, 7, 9, 11</label><br>
+              <label><input type="radio" name="q9" value="b"> 1, 3, 5, 7, 9</label><br>
+              <label><input type="radio" name="q9" value="c"> 2, 4, 6, 8, 10</label><br>
+
+              <p>10. Classify the sequence 1, 4, 9, 16, …</p>
+              <label><input type="radio" name="q10" value="a"> Arithmetic</label><br>
+              <label><input type="radio" name="q10" value="b"> Geometric</label><br>
+              <label><input type="radio" name="q10" value="c"> Neither</label><br>
+
+              <button type="button" class="submit-btn">Check Answers</button>
+            </form>
+          </div>
+        </td>
+        <td>Accurate solutions</td><td>Minor errors</td><td>Partial understanding</td><td>Frequent errors</td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+
+<article>
+  <h3>Grade 10 – Term 2</h3>
+  <table>
+    <thead><tr><th>Topic</th><th>Excellent</th><th>Good</th><th>Fair</th><th>Needs Improvement</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>
+          <a href="resources/Grade%2010%20Mathematics.pdf#page=60">Functions, Graphs & Geometry (pp. 60–314)</a>
+          <br>
+          <button class="toggle-btn">Show Questions</button>
+          <div class="questions hidden">
+            <form class="quiz" id="quizTerm2">
+              <p>1. Plot y = 2x + 3 for x = –2 to 2</p>
+              <label><input type="radio" name="q1" value="a"> Straight line</label><br>
+              <label><input type="radio" name="q1" value="b"> Parabola</label><br>
+              <label><input type="radio" name="q1" value="c"> Hyperbola</label><br>
+
+              <p>2. Find the x-intercept of y = –3x + 6</p>
+              <label><input type="radio" name="q2" value="a"> x = 2</label><br>
+              <label><input type="radio" name="q2" value="b"> x = –2</label><br>
+              <label><input type="radio" name="q2" value="c"> x = 6</label><br>
+
+              <p>3. Gradient of line through (2,3) and (4,7)</p>
+              <label><input type="radio" name="q3" value="a"> 2</label><br>
+              <label><input type="radio" name="q3" value="b"> 1</label><br>
+              <label><input type="radio" name="q3" value="c"> 4</label><br>
+
+              <p>4. Sketch y = x² – 4x + 3</p>
+              <label><input type="radio" name="q4" value="a"> Parabola opening upwards</label><br>
+              <label><input type="radio" name="q4" value="b"> Straight line</label><br>
+              <label><input type="radio" name="q4" value="c"> Circle</label><br>
+
+              <p>5. Equation of line parallel to y = 2x + 1 through (0,5)</p>
+              <label><input type="radio" name="q5" value="a"> y = 2x + 5</label><br>
+              <label><input type="radio" name="q5" value="b"> y = –2x + 5</label><br>
+              <label><input type="radio" name="q5" value="c"> y = x + 5</label><br>
+
+              <p>6. Area of triangle with base 6 cm and height 4 cm</p>
+              <label><input type="radio" name="q6" value="a"> 12 cm²</label><br>
+              <label><input type="radio" name="q6" value="b"> 24 cm²</label><br>
+              <label><input type="radio" name="q6" value="c"> 18 cm²</label><br>
+
+              <p>7. Hypotenuse of right triangle with sides 5 cm and 12 cm</p>
+              <label><input type="radio" name="q7" value="a"> 13 cm</label><br>
+              <label><input type="radio" name="q7" value="b"> 12 cm</label><br>
+              <label><input type="radio" name="q7" value="c"> 10 cm</label><br>
+
+              <p>8. Midpoint of line segment joining (–2,4) and (6,8)</p>
+              <label><input type="radio" name="q8" value="a"> (2,6)</label><br>
+              <label><input type="radio" name="q8" value="b"> (4,6)</label><br>
+              <label><input type="radio" name="q8" value="c"> (2,8)</label><br>
+
+              <p>9. Opposite sides of a parallelogram are...</p>
+              <label><input type="radio" name="q9" value="a"> Equal</label><br>
+              <label><input type="radio" name="q9" value="b"> Unequal</label><br>
+              <label><input type="radio" name="q9" value="c"> Perpendicular</label><br>
+
+              <p>10. Volume of cylinder with radius 3 cm and height 10 cm</p>
+              <label><input type="radio" name="q10" value="a"> 282.6 cm³</label><br>
+              <label><input type="radio" name="q10" value="b"> 94.2 cm³</label><br>
+              <label><input type="radio" name="q10" value="c"> 188.4 cm³</label><br>
+
+              <button type="button" class="submit-btn">Check Answers</button>
+            </form>
+          </div>
+        </td>
+        <td>Clear, precise application</td><td>Mostly correct</td><td>Basic graphs/diagrams</td><td>Incomplete or incorrect</td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+
+<article>
+  <h3>Grade 10 – Term 3</h3>
+  <table>
+    <thead><tr><th>Topic</th><th>Excellent</th><th>Good</th><th>Fair</th><th>Needs Improvement</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>
+          <a href="resources/Grade%2010%20Mathematics.pdf#page=330">Trigonometry & Measurement (pp. 330–381)</a>
+          <br>
+          <button class="toggle-btn">Show Questions</button>
+          <div class="questions hidden">
+            <form class="quiz" id="quizTerm3">
+              <p>1. Find sin θ if cos θ = 0.6 and θ is acute</p>
+              <label><input type="radio" name="q1" value="a"> 0.8</label><br>
+              <label><input type="radio" name="q1" value="b"> 0.4</label><br>
+              <label><input type="radio" name="q1" value="c"> 0.2</label><br>
+
+              <p>2. Solve for θ: tan θ = 1</p>
+              <label><input type="radio" name="q2" value="a"> 45°</label><br>
+              <label><input type="radio" name="q2" value="b"> 30°</label><br>
+              <label><input type="radio" name="q2" value="c"> 60°</label><br>
+
+              <p>3. Height of building if shadow = 20 m, angle of elevation = 30°</p>
+              <label><input type="radio" name="q3" value="a"> 11.55 m</label><br>
+              <label><input type="radio" name="q3" value="b"> 20 m</label><br>
+              <label><input type="radio" name="q3" value="c"> 10 m</label><br>
+
+              <p>4. Prove identity: sin²θ + cos²θ = ?</p>
+              <label><input type="radio" name="q4" value="a"> 1</label><br>
+              <label><input type="radio" name="q4" value="b"> 0</label><br>
+              <label><input type="radio" name="q4" value="c"> sin θ</label><br>
+
+              <p>5. Area of circle with radius 7 cm</p>
+              <label><input type="radio" name="q5" value="a"> 153.9 cm²</label><br>
+              <label><input type="radio" name="q5" value="b"> 49 cm²</label><br>
+              <label><input type="radio" name="q5" value="c"> 100 cm²</label><br>
+
+              <p>6. Convert 2.5 m into cm</p>
+              <label><input type="radio" name="q6" value="a"> 250 cm</label><br>
+              <label><input type="radio" name="q6" value="b"> 25 cm</label><br>
+              <label><input type="radio" name="q6" value="c"> 2.5 cm</label><br>
+
+              <p>7. Perimeter of rectangle with length 12 cm and width 8 cm</p>
+              <label><input type="radio" name="q7" value="a"> 40 cm</label><br>
+              <label><input type="radio" name="q7" value="b"> 20 cm</label><br>
+              <label><input type="radio" name="q7" value="c"> 96 cm</label><br>
+
+              <p>8. Volume of cone with radius 3 cm and height 9 cm</p>
+              <label><input type="radio" name="q8" value="a"> 84.8 cm³</label><br>
+              <label><input type="radio" name="q8" value="b"> 254.5 cm³</label><br>
+              <label><input type="radio" name="q8" value="c"> 100 cm³</label><br>
+
+              <p>9. Angle in right triangle if opposite = 5 and hypotenuse = 13</p>
+              <label><input type="radio" name="q9" value="a"> 22.6°</label><br>
+              <label><input type="radio" name="q9" value="b"> 45°</label><br>
+              <label><input type="radio" name="q9" value="c"> 30°</label><br>
+
+              <p>10. Surface area of sphere with radius 6 cm</p>
+              <label><input type="radio" name="q10" value="a"> 452.4 cm²</label><br>
+              <label><input type="radio" name="q10" value="b"> 113.1 cm²</label><br>
+              <label><input type="radio" name="q10" value="c"> 300 cm²</label><br>
+
+              <button type="button" class="submit-btn">Check Answers</button>
+            </form>
+          </div>
+        </td>
+        <td>Accurate ratios & calculations</td><td>Minor errors</td><td>Basic understanding</td><td>Incorrect or incomplete</td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+  
+<article>
+  <h3>Grade 10 – Term 4</h3>
+  <table>
+    <thead><tr><th>Topic</th><th>Excellent</th><th>Good</th><th>Fair</th><th>Needs Improvement</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>
+          <a href="resources/Grade%2010%20Mathematics.pdf#page=390">Probability & Statistics (pp. 390–489)</a>
+          <br>
+          <button class="toggle-btn">Show Questions</button>
+          <div class="questions hidden">
+            <form class="quiz" id="quizTerm4">
+              <p>1. Probability of rolling a 4 on a fair die</p>
+              <label><input type="radio" name="q1" value="a"> 1/6</label><br>
+              <label><input type="radio" name="q1" value="b"> 1/4</label><br>
+              <label><input type="radio" name="q1" value="c"> 1/2</label><br>
+
+              <p>2. Mean of: 2, 4, 6, 8, 10</p>
+              <label><input type="radio" name="q2" value="a"> 6</label><br>
+              <label><input type="radio" name="q2" value="b"> 5</label><br>
+              <label><input type="radio" name="q2" value="c"> 4</label><br>
+
+              <p>3. Median of: 5, 7, 9, 11, 13</p>
+              <label><input type="radio" name="q3" value="a"> 9</label><br>
+              <label><input type="radio" name="q3" value="b"> 7</label><br>
+              <label><input type="radio" name="q3" value="c"> 11</label><br>
+
+              <p>4. Mode of: 2, 3, 3, 4, 5</p>
+              <label><input type="radio" name="q4" value="a"> 3</label><br>
+              <label><input type="radio" name="q4" value="b"> 2</label><br>
+              <label><input type="radio" name="q4" value="c"> 5</label><br>
+
+              <p>5. Range of: 12, 15, 18, 20</p>
+              <label><input type="radio" name="q5" value="a"> 8</label><br>
+              <label><input type="radio" name="q5" value="b"> 20</label><br>
+              <label><input type="radio" name="q5" value="c"> 12</label><br>
+
+              <p>6. Probability of tossing two heads with two coins</p>
+              <label><input type="radio" name="q6" value="a"> 1/4</label><br>
+              <label><input type="radio" name="q6" value="b"> 1/2</label><br>
+              <label><input type="radio" name="q6" value="c"> 1/3</label><br>
+
+              <p>7. Probability of selecting an even number from 1–10</p>
+              <label><input type="radio" name="q7" value="a"> 1/2</label><br>
+              <label><input type="radio" name="q7" value="b"> 1/5</label><br>
+              <label><input type="radio" name="q7" value="c"> 2/5</label><br>
+
+              <p>8. Interpret a pie chart showing 40% Maths, 30% Science, 30% English</p>
+              <label><input type="radio" name="q8" value="a"> Maths is the largest portion</label><br>
+              <label><input type="radio" name="q8" value="b"> Science is the largest portion</label><br>
+              <label><input type="radio" name="q8" value="c"> English is the largest portion</label><br>
+
+              <p>9. Probability of drawing a red card from a standard deck</p>
+              <label><input type="radio" name="q9" value="a"> 1/2</label><br>
+              <label><input type="radio" name="q9" value="b"> 1/4</label><br>
+              <label><input type="radio" name="q9" value="c"> 1/13</label><br>
+
+              <p>10. Probability of getting a 6 when tossing a fair die</p>
+              <label><input type="radio" name="q10" value="a"> 1/6</label><br>
+              <label><input type="radio" name="q10" value="b"> 1/12</label><br>
+              <label><input type="radio" name="q10" value="c"> 1/3</label><br>
+
+              <button type="button" class="submit-btn">Check Answers</button>
+            </form>
+          </div>
+        </td>
+        <td>Strong application & analysis</td><td>Mostly correct</td><td>Basic skills</td><td>Incomplete or inaccurate</td>
+      </tr>
+    </tbody>
+  </table>
+</article>
 
   <!-- Grade 11 -->
   <article>
