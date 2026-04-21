@@ -9,7 +9,7 @@ document.querySelectorAll('.toggle-btn').forEach(btn => {
   });
 });
 
-// Centralized answer keys for Grade 10 and Grade 11
+// Centralized answer keys for Grade 10, Grade 11, and Grade 12
 const answerKeys = {
   // Grade 10
   mathsGrade10Term1: { q1:'a', q2:'a', q3:'a', q4:'a', q5:'a', q6:'a', q7:'a', q8:'a', q9:'a', q10:'c' },
@@ -21,8 +21,7 @@ const answerKeys = {
   mathsGrade11Term1: { q1:'a', q2:'a', q3:'a', q4:'a', q5:'a', q6:'a', q7:'a', q8:'a', q9:'a', q10:'a' },
   mathsGrade11Term2: { q1:'a', q2:'a', q3:'a', q4:'a', q5:'a', q6:'a', q7:'a', q8:'a', q9:'a', q10:'a' },
   mathsGrade11Term3: { q1:'a', q2:'a', q3:'a', q4:'a', q5:'a', q6:'a', q7:'a', q8:'a', q9:'a', q10:'a' },
-  mathsGrade11Term4: { q1:'a', q2:'a', q3:'a', q4:'a', q5:'a', q6:'a', q7:'a', q8:'a', q9:'a', q10:'a' }
-};
+  mathsGrade11Term4: { q1:'a', q2:'a', q3:'a', q4:'a', q5:'a', q6:'a', q7:'a', q8:'a', q9:'a', q10:'a' },
 
   // Grade 12
   mathsGrade12Term1: { q1:'a', q2:'a', q3:'a', q4:'a', q5:'a', q6:'a', q7:'a', q8:'a', q9:'a', q10:'a' },
