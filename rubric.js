@@ -32,7 +32,25 @@ const answerKeys = {
   mathsGrade12Term1: { q1:'a', q2:'a', q3:'a', q4:'a', q5:'a', q6:'a', q7:'a', q8:'a', q9:'a', q10:'a' },
   mathsGrade12Term2: { q1:'a', q2:'a', q3:'a', q4:'a', q5:'a', q6:'a', q7:'a', q8:'a', q9:'a', q10:'a' },
   mathsGrade12Term3: { q1:'a', q2:'a', q3:'a', q4:'a', q5:'a', q6:'a', q7:'a', q8:'a', q9:'a', q10:'a' },
-  mathsGrade12Term4: { q1:'a', q2:'a', q3:'a', q4:'a', q5:'a', q6:'a', q7:'a', q8:'a', q9:'a', q10:'a' }
+  mathsGrade12Term4: { q1:'a', q2:'a', q3:'a', q4:'a', q5:'a', q6:'a', q7:'a', q8:'a', q9:'a', q10:'a' },
+
+    // Grade 10 Science
+  scienceGrade10Term1: { q1:'c', q2:'a', q3:'b', q4:'b', q5:'b', q6:'a', q7:'b', q8:'b', q9:'b', q10:'c' },
+  scienceGrade10Term2: { q1:'c', q2:'b', q3:'b', q4:'a', q5:'a', q6:'a', q7:'b', q8:'b', q9:'a', q10:'a' },
+  scienceGrade10Term3: { q1:'a', q2:'b', q3:'b', q4:'a', q5:'b', q6:'a', q7:'b', q8:'a', q9:'a', q10:'b' },
+  scienceGrade10Term4: { q1:'b', q2:'a', q3:'b', q4:'a', q5:'a', q6:'a', q7:'b', q8:'b', q9:'b', q10:'a' },
+
+  // Grade 11 Science
+  scienceGrade11Term1: { q1:'a', q2:'b', q3:'b', q4:'b', q5:'a', q6:'b', q7:'a', q8:'a', q9:'a', q10:'a' },
+  scienceGrade11Term2: { q1:'c', q2:'b', q3:'b', q4:'a', q5:'b', q6:'a', q7:'b', q8:'b', q9:'a', q10:'a' },
+  scienceGrade11Term3: { q1:'a', q2:'a', q3:'a', q4:'a', q5:'b', q6:'a', q7:'a', q8:'a', q9:'a', q10:'b' },
+  scienceGrade11Term4: { q1:'b', q2:'a', q3:'b', q4:'a', q5:'a', q6:'a', q7:'b', q8:'a', q9:'b', q10:'a' },
+
+  // Grade 12 Science
+  scienceGrade12Term1: { q1:'a', q2:'a', q3:'b', q4:'a', q5:'b', q6:'a', q7:'b', q8:'b', q9:'a', q10:'a' },
+  scienceGrade12Term2: { q1:'c', q2:'b', q3:'a', q4:'a', q5:'b', q6:'a', q7:'b', q8:'b', q9:'a', q10:'a' },
+  scienceGrade12Term3: { q1:'a', q2:'a', q3:'a', q4:'a', q5:'b', q6:'a', q7:'b', q8:'a', q9:'b', q10:'b' },
+  scienceGrade12Term4: { q1:'b', q2:'a', q3:'b', q4:'a', q5:'a', q6:'a', q7:'b', q8:'a', q9:'b', q10:'a' }
 };
 
 // Quiz scoring logic with feedback + highlights + reattempt
