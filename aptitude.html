@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Aptitude Test - Media On Africa Learning Hub</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300;400;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+  />
+  <style>
+    /* Small page-specific styles to match existing site */
+    .header.big-header { padding: 4rem 1rem; background: linear-gradient(180deg,#0f4c81 0%, #0b6aa3 100%); color:#fff; text-align:center; }
+    .text-box h1 { margin:0; font-size:2.2rem; font-weight:700; font-family:Poppins, sans-serif; }
+    .aptitude-intro { max-width:1000px; margin:1.5rem auto; padding:1rem; font-family:Poppins, sans-serif; }
+    .aptitude-grid { display:grid; grid-template-columns:1fr; gap:1.25rem; max-width:1000px; margin:0 auto; padding:1rem; }
+    @media(min-width:900px){ .aptitude-grid { grid-template-columns: 1fr 1fr; } }
+    .card { background:#fff; border-radius:8px; padding:1rem; box-shadow:0 2px 8px rgba(0,0,0,0.06); }
+    .card h3 { margin-top:0; font-size:1.1rem; }
+    .section-desc { color:#333; line-height:1.5; }
+    .toggle-btn { display:inline-block; margin-top:0.5rem; background:#0b6aa3; color:#fff; border:none; padding:0.5rem 0.75rem; border-radius:6px; cursor:pointer; font-family:Poppins, sans-serif; }
+    .questions { margin-top:0.75rem; display:none; }
+    .question { margin-bottom:0.75rem; }
+    .quiz-result { margin-top:0.5rem; font-weight:600; color:#0b6aa3; }
+    .controls { display:flex; gap:0.5rem; flex-wrap:wrap; margin-top:0.75rem; }
+    .hero-btn { background:#0b6aa3; color:#fff; padding:0.6rem 1rem; border-radius:6px; text-decoration:none; display:inline-block; }
+    .explain { font-size:0.95rem; color:#444; }
+    .footer-note { text-align:center; margin-top:1rem; color:#666; font-size:0.9rem; }
+    label { cursor:pointer; }
+  </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav>
+  <div class="nav-links" id="navLinks">
+    <i class="fa fa-times" onclick="hidemenu()"></i>
+    <ul>
+      <li><a href="index.html">HOME</a></li>
+      <li><a href="About.html">ABOUT</a></li>
+      <li><a href="Subjects.html">SUBJECTS</a></li>
+      <li><a href="quizzes.html">QUIZZES</a></li>
+      <li><a href="aptitude.html">APTITUDE TEST</a></li>
+      <li><a href="forum.html">DISCUSSION</a></li>
+      <li><a href="mental_wellness.html">WELLNESS</a></li>
+      <li><a href="blog.html">BLOG</a></li>
+      <li><a href="contact.html">CONTACT</a></li>
+      <li><a href="library.html">LIBRARY</a></li>
+      <li><a href="khulisa.html">SUPPORT</a></li>
+    </ul>
+  </div>
+  <i class="fa fa-bars" onclick="showmenu()"></i>
+</nav>
+
+<!-- Header -->
+<section class="header big-header">
+  <div class="text-box">
+    <h1>Aptitude Test</h1>
+  </div>
+</section>
+
+<!-- Page description -->
+<section class="aptitude-intro">
+  <div class="card">
+    <h3>About this Aptitude Test</h3>
+    <p class="section-desc">
+      The Aptitude Test is designed to help learners practise core reasoning skills used in academic assessments and entrance exams. It covers four focused areas: <strong>Logical Reasoning</strong>, <strong>Numerical Ability</strong>, <strong>Verbal Reasoning</strong>, and <strong>Abstract Reasoning</strong>. Each section contains ten multiple-choice questions with instant scoring and explanations to help students learn from mistakes.
+    </p>
+
+    <h4>How it works</h4>
+    <p class="explain">
+      Click <strong>Show Questions</strong> for any section to reveal the questions. Choose one answer per question and press <strong>Check Answers</strong> to see your score and the correct answers. Use the <strong>Reset</strong> button to try again. Each correct answer is worth one point.
+    </p>
+
+    <h4>Tips for students</h4>
+    <ul>
+      <li>Read each question carefully and eliminate obviously wrong options first.</li>
+      <li>Manage your time: spend no more than 1–2 minutes per question on practice runs.</li>
+      <li>Review explanations after checking answers to understand common traps.</li>
+    </ul>
+
+    <a href="Subjects.html" class="hero-btn">Explore Subjects</a>
+  </div>
+</section>
+
+<!-- Aptitude sections -->
+<section class="aptitude-grid">
+
+  <!-- Logical Reasoning -->
+  <div class="card" id="logical-card">
+    <h3>Logical Reasoning</h3>
+    <p class="section-desc">Questions test deduction, pattern recognition, and argument evaluation.</p>
+    <button class="toggle-btn" data-target="logical-questions">Show Questions</button>
+
+    <div class="questions" id="logical-questions">
+      <form class="quiz" id="quiz-logical">
+        <!-- 10 questions -->
+        <div class="question">
+          <p><strong>Q1.</strong> If all roses are flowers and some flowers fade quickly, which statement must be true?</p>
+          <label><input type="radio" name="q1" value="a"> All roses fade quickly</label><br>
+          <label><input type="radio" name="q1" value="b"> Some roses fade quickly</label><br>
+          <label><input type="radio" name="q1" value="c"> Some flowers are roses</label><br>
+          <label><input type="radio" name="q1" value="d"> None of the above</label>
+        </div>
+
+        <div class="question">
+          <p><strong>Q2.</strong> Find the next number: 2, 6, 12, 20, ?</p>
+          <label><input type="radio" name="q2" value="a"> 28</label><br>
+          <label><input type="radio" name="q2" value="b"> 30</label><br>
+          <label><input type="radio" name="q2" value="c"> 32</label><br>
+          <label><input type="radio" name="q2" value="d"> 34</label>
+        </div>
+
+        <div class="question">
+          <p><strong>Q3.</strong> If the statement "All A are B" is true and "Some B are C" is true, which is necessarily true?</p>
+          <label><input type="radio" name="q3" value="a"> All A are C</label><br>
+          <label><input type="radio" name="q3" value="b"> Some A are C</label><br>
+          <label><input type="radio" name="q3" value="c"> No A are C</label><br>
+          <label><input type="radio" name="q3" value="d"> Cannot be determined</label>
+        </div>
+
+        <div class="question">
+          <p><strong>Q4.</strong> Which completes the series: A, C, F, J, ?</p>
+          <label><input type="radio" name="q4" value="a"> O</label><br>
+          <label><input type="radio" name="q4" value="b"> N</label><br>
+          <label><input type="radio" name="q4" value="c"> M</label><br>
+          <label><input type="radio" name="q4" value="d"> P</label>
+        </div>
+
+        <div class="question">
+          <p><strong>Q5.</strong> If today is two days after Monday, what day was three days before yesterday?</p>
+          <label><input type="radio" name="q5" value="a"> Sunday</label><br>
+          <label><input type="radio" name="q5" value="b"> Saturday</label><br>
+          <label><input type="radio" name="q5" value="c"> Friday</label><br>
+          <label><input type="radio" name="q5" value="d"> Thursday</label>
+        </div>
+
+        <div class="question">
+          <p><strong>Q6.</strong> Which statement is the logical opposite of "All students passed the test"?</p>
+          <label><input type="radio" name="q6" value="a"> Some students failed the test</label><br>
+          <label><input type="radio" name="q6" value="b"> No student passed the test</label><br>
+          <label><input type="radio" name="q6" value="c"> At least one student failed the test</label><br>
+          <label><input type="radio" name="q6" value="d"> All students failed the test</label>
+        </div>
+
+        <div class="question">
+          <p><strong>Q7.</strong> Choose the odd one out: Triangle, Square, Circle, Pyramid</p>
+          <label><input type="radio" name="q7" value="a"> Triangle</label><br>
+          <label><input type="radio" name="q7" value="b"> Square</label><br>
+          <label><input type="radio" name="q7" value="c"> Circle</label><br>
+          <label><input type="radio" name="q7" value="d"> Pyramid</label>
+        </div>
+
+        <div class="question">
+          <p><strong>Q8.</strong> If P implies Q and Q implies R, which is true?</p>
+          <label><input type="radio" name="q8" value="a"> R implies P</label><br>
+          <label><input type="radio" name="q8" value="b"> P implies R</label><br>
+          <label><input type="radio" name="q8" value="c"> Q implies P</label><br>
+          <label><input type="radio" name="q8" value="d"> None of the above</label>
+        </div>
+
+        <div class="question">
+          <p><strong>Q9.</strong> Which of the following completes the pattern: 1, 4, 9, 16, ?</p>
+          <label><input type="radio" name="q9" value="a"> 20</label><br>
+          <label><input type="radio" name="q9" value="b"> 24</label><br>
+          <label><input type="radio" name="q9" value="c"> 25</label><br>
+          <label><input type="radio" name="q9" value="d"> 30</label>
+        </div>
+
+        <div class="question">
+          <p><strong>Q10.</strong> If two statements are contradictory, they are:</p>
+          <label><input type="radio" name="q10" value="a"> Both true</label><br>
+          <label><input type="radio" name="q10" value="b"> Both false</label><br>
+          <label><input type="radio" name="q10" value="c"> One true, one false</label><br>
+          <label><input type="radio" name="q10" value="d"> Cannot tell</label>
+        </div>
+
+        <div class="controls">
+          <button type="button" class="toggle-btn" onclick="checkAnswers('quiz-logical')">Check Answers</button>
+          <button type="button" class="toggle-btn" onclick="resetQuiz('quiz-logical')">Reset</button>
+          <div class="quiz-result" id="result-quiz-logical" aria-live="polite"></div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Numerical Ability -->
+  <div class="card" id="numerical-card">
+    <h3>Numerical Ability</h3>
+    <p class="section-desc">Questions focus on arithmetic, sequences, percentages, and basic algebra.</p>
+    <button class="toggle-btn" data-target="numerical-questions">Show Questions</button>
+
+    <div class="questions" id="numerical-questions">
+      <form class="quiz" id="quiz-numerical">
+        <div class="question">
+          <p><strong>Q1.</strong> What is 15% of 240?</p>
+          <label><input type="radio" name="q1" value="a"> 30</label><br>
+          <label><input type="radio" name="q1" value="b"> 36</label><br>
+          <label><input type="radio" name="q1" value="c"> 34</label><br>
+          <label><input type="radio" name="q1" value="d"> 32</label>
+        </div>
+
+        <div class="question">
+          <p><strong>Q2.</strong> Solve for x: 3x + 5 = 20</p>
+          <label><input type="radio" name="q2" value="a"> 3</label><br>
+          <label><input type="radio" name="q2" value="b"> 5</label><br>
+          <label><input type="radio" name="q2" value="c"> 15</label><br>
+          <label><input type="radio" name="q2" value="d"> 10</label>
+        </div>
+
+        <div class="question">
+          <p><strong>Q3.</strong> If a train travels 120 km in 1.5 hours, its average speed is:</p>
+          <label><input type="radio" name="q3" value="a"> 60 km/h</label><br>
+          <label><input type="radio" name="q3" value="b"> 80 km/h</label><br>
+          <label><input type="radio" name="q3" value="c"> 90 km/h</label><br>
+          <label><input type="radio" name="q3" value="d"> 100 km/h</label>
+        </div>
+
+        <div class="question">
+          <p><strong>Q4.</strong> What is the next number: 5, 10, 20, 40, ?</p>
+          <label><input type="radio" name="q4" value="a"> 60</label><br>
+          <label><input type="radio" name="q4" value="b"> 80</label><br>
+          <label><input type="radio" name="q4" value="c"> 100</label><br>
+          <label><input type="radio" name="q4" value="d"> 120</label>
+        </div>
+
+        <div class="question">
+          <p><strong>Q5.</strong> A shop reduces a R200 item by 25%. New price is:</p>
+          <label><input type="radio" name="q5" value="a"> R150</label><br>
+          <label><input type="radio" name="q5" value="b"> R160</label><br>
+          <label><input type="radio" name="q5" value="c"> R140</label><br>
+          <label><input type="radio" name="q5" value="d"> R170</label>
+        </div>
+
+        <div class="question">
+          <p><strong>Q6.</strong> If x = 4, evaluate 2x^2 - x</p>
+          <label><input type="radio" name="q6" value="a"> 24</label><br>
+          <label><input type="radio" name="q6" value="b"> 28</label><br>
+          <label><input type="radio" name="q6" value="c"> 30</label><br>
+          <label><input type="radio" name="q6" value="d"> 32</label>
+        </div>
+
+        <div class="question">
+          <p><strong>Q7.</strong> Which fraction equals 0.75?</p>
+          <label><input type="radio" name="q7" value="a"> 3/4</label><br>
+          <label><input type="radio" name="q7" value="b"> 2/3</label><br>
+          <label><input type="radio" name="q7" value="c"> 4/5</label><br>
+          <label><input type="radio" name="q7" value="d"> 1/2</label>
+        </div>
+
+        <div class="question">
+          <p><strong>Q8.</strong> 45 is what percent of 180?</p>
+          <label><input type="radio" name="q8" value="a"> 15%</label><br>
+          <label><input type="radio" name="q8" value="b"> 20%</label><br>
+          <label><input type="radio" name="q8" value="c"> 25%</label><br>
+          <label><input type="radio" name="q8" value="d"> 30%</label>
+        </div>
+
+        <div class="question">
+          <p><strong>Q9.</strong> If 7x = 56, x = ?</p>
+          <label><input type="radio" name="q9" value="a"> 6</label><br>
+          <label><input type="radio" name="q9" value="b"> 7</label><br>
+          <label><input type="radio" name="q9" value="c"> 8</label><br>
+          <label><input type="radio" name="q9" value="d"> 9</label>
+        </div>
+
+        <div class="question">
+          <p><strong>Q10.</strong> The average of 5 numbers is 12. The sum is:</p>
+          <label><input type="radio" name="q10" value="a"> 60</label><br>
+          <label><input type="radio" name="q10" value="b"> 50</label><br>
+          <label><input type="radio" name="q10" value="c"> 70</label><br>
+          <label><input type="radio" name="q10" value="d"> 55</label>
+        </div>
+
+        <div class="controls">
+          <button type="button" class="toggle-btn" onclick="checkAnswers('quiz-numerical')">Check Answers</button>
+          <button type="button" class="toggle-btn" onclick="resetQuiz('quiz-numerical')">Reset</button>
+          <div class="quiz-result" id="result-quiz-numerical" aria-live="polite"></div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Verbal Reasoning -->
+  <div class="card" id="verbal-card">
+    <h3>Verbal Reasoning</h3>
+    <p class="section-desc">Questions test vocabulary, comprehension, and sentence logic.</p>
+    <button class="toggle-btn" data-target="verbal-questions">Show Questions</button>
+
+    <div class="questions" id="verbal-questions">
+      <form class="quiz" id="quiz-verbal">
+        <div class="question">
+          <p><strong>Q1.</strong> Choose the synonym of "abundant".</p>
+          <label><input type="radio" name="q1" value="a"> Scarce</label><br>
+          <label><input type="radio" name="q1" value="b"> Plentiful</label><br>
+          <label><input type="radio" name="q1" value="c"> Tiny</label><br>
+          <label><input type="radio" name="q1" value="d"> Rare</label>
+        </div>
+
+        <div class="question">
+          <p><strong>Q2.</strong> Complete the sentence: She _____ to the store before it closed.</p>
+          <label><input type="radio" name="q2" value="a"> goes</label><br>
+          <label><input type="radio" name="q2" value="b"> went</label><br>
+          <label><input type="radio" name="q2" value="c"> will go</label><br>
+          <label><input type="radio" name="q2" value="d"> going</label>
+        </div>
+
+        <div class="question">
+          <p><strong>Q3.</strong> Which word is opposite of "optimistic"?</p>
+          <label><input type="radio" name="q3" value="a"> Hopeful</label><br>
+          <label><input type="radio" name="q3" value="b"> Pessimistic</label><br>
+          <label><input type="radio" name="q3" value="c"> Confident</label><br>
+          <label><input type="radio" name="q3" value="d"> Positive</label>
+        </div>
+
+        <div class="question">
+          <p><strong>Q4.</strong> Identify the correctly punctuated sentence.</p>
+          <label><input type="radio" name="q4" value="a"> Its time to go.</label><br>
+          <label><input type="radio" name="q4" value="b"> It's time to go.</label><br>
+          <label><input type="radio" name="q4" value="c"> Its' time to go.</label><br>
+          <label><input type="radio" name="q4" value="d"> Its time, to go.</label>
+        </div>
+
+        <div class="question">
+          <p><strong>Q5.</strong> Which word best completes: The committee reached a _____ decision.</p>
+          <label><input type="radio" name="q5" value="a"> unanimous</label><br>
+          <label><input type="radio" name="q5" value="b"> divided</label><br>
+          <label><input type="radio" name="q5" value="c"> solitary</label><br>
+          <label><input type="radio" name="q5" value="d"> random</label>
+        </div>
+
+        <div class="question">
+          <p><strong>Q6.</strong> Choose the correct plural: "Crisis"</p>
+          <label><input type="radio" name="q6" value="a"> Crisises</label><br>
+          <label><input type="radio" name="q6" value="b"> Crises</label><br>
+          <label><input type="radio" name="q6" value="c"> Crisis</label><br>
+          <label><input type="radio" name="q6" value="d"> Crisii</label>
+        </div>
+
+        <div class="question">
+          <p><strong>Q7.</strong> Which sentence is passive voice?</p>
+          <label><input type="radio" name="q7" value="a"> The chef cooked the meal.</label><br>
+          <label><input type="radio" name="q7" value="b"> The meal was cooked by the chef.</label><br>
+          <label><input type="radio" name="q7" value="c"> The chef is cooking the meal.</label><br>
+          <label><input type="radio" name="q7" value="d"> The chef will cook the meal.</label>
+        </div>
+
+        <div class="question">
+          <p><strong>Q8.</strong> Choose the best one-word summary: A short story about a child's first day at school.</p>
+          <label><input type="radio" name="q8" value="a"> Adventure</label><br>
+          <label><input type="radio" name="q8" value="b"> Biography</label><br>
+          <label><input type="radio" name="q8" value="c"> Memoir</label><br>
+          <label><input type="radio" name="q8" value="d"> Report</label>
+        </div>
+
+        <div class="question">
+          <p><strong>Q9.</strong> Which word fits: He is known for his _____ honesty.</p>
+          <label><input type="radio" name="q9" value="a"> impeccable</label><br>
+          <label><input type="radio" name="q9" value="b"> questionable</label><br>
+          <label><input type="radio" name="q9" value="c"> occasional</label><br>
+          <label><input type="radio" name="q9" value="d"> rare</label>
+        </div>
+
+        <div class="question">
+          <p><strong>Q10.</strong> Choose the correct comparative form: good → ?</p>
+          <label><input type="radio" name="q10" value="a"> gooder</label><br>
+          <label><input type="radio" name="q10" value="b"> better</label><br>
+          <label><input type="radio" name="q10" value="c"> more good</label><br>
+          <label><input type="radio" name="q10" value="d"> best</label>
+        </div>
+
+        <div class="controls">
+          <button type="button" class="toggle-btn" onclick="checkAnswers('quiz-verbal')">Check Answers</button>
+          <button type="button" class="toggle-btn" onclick="resetQuiz('quiz-verbal')">Reset</button>
+          <div class="quiz-result" id="result-quiz-verbal" aria-live="polite"></div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Abstract Reasoning -->
+  <div class="card" id="abstract-card">
+    <h3>Abstract Reasoning</h3>
+    <p class="section-desc">Questions assess pattern recognition and visual problem solving.</p>
+    <button class="toggle-btn" data-target="abstract-questions">Show Questions</button>
+
+    <div class="questions" id="abstract-questions">
+      <form class="quiz" id="quiz-abstract">
+        <div class="question">
+          <p><strong>Q1.</strong> Which shape completes the sequence: square, triangle, circle, square, triangle, ?</p>
+          <label><input type="radio" name="q1" value="a"> Circle</label><br>
+          <label><input type="radio" name="q1" value="b"> Square</label><br>
+          <label><input type="radio" name="q1" value="c"> Triangle</label><br>
+          <label><input type="radio" name="q1" value="d"> Hexagon</label>
+        </div>
+
+        <div class="question">
+          <p><strong>Q2.</strong> If a pattern rotates 90 degrees clockwise each step, what is orientation after two steps?</p>
+          <label><input type="radio" name="q2" value="a"> 90 degrees clockwise</label><br>
+          <label><input type="radio" name="q2" value="b"> 180 degrees clockwise</label><br>
+          <label><input type="radio" name="q2" value="c"> 270 degrees clockwise</label><br>
+          <label><input type="radio" name="q2" value="d"> Back to original</label>
+        </div>
+
+        <div class="question">
+          <p><strong>Q3.</strong> Which number completes the pattern: 2, 4, 8, 16, ?</p>
+          <label><input type="radio" name="q3" value="a"> 18</label><br>
+          <label><input type="radio" name="q3" value="b"> 24</label><br>
+          <label><input type="radio" name="q3" value="c"> 32</label><br>
+          <label><input type="radio" name="q3" value="d"> 30</label>
+        </div>
+
+        <div class="question">
+          <p><strong>Q4.</strong> Which of these does not belong: AB, BC, CD, EF</p>
+          <label><input type="radio" name="q4" value="a"> AB</label><br>
+          <label><input type="radio" name="q4" value="b"> BC</label><br>
+          <label><input type="radio" name="q4" value="c"> CD</label><br>
+          <label><input type="radio" name="q4" value="d"> EF</label>
+        </div>
+
+        <div class="question">
+          <p><strong>Q5.</strong> Mirror image question: If a shape is symmetrical across a vertical axis, which statement is true?</p>
+          <label><input type="radio" name="q5" value="a"> Left and right halves are identical</label><br>
+          <label><input type="radio" name="q5" value="b"> Top and bottom halves are identical</label><br>
+          <label><input type="radio" name="q5" value="c"> Shape has rotational symmetry</label><br>
+          <label><input type="radio" name="q5" value="d"> Shape is asymmetrical</label>
+        </div>
+
+        <div class="question">
+          <p><strong>Q6.</strong> Which completes the numeric pattern: 3, 6, 9, 12, ?</p>
+          <label><input type="radio" name="q6" value="a"> 14</label><br>
+          <label><input type="radio" name="q6" value="b"> 15</label><br>
+          <label><input type="radio" name="q6" value="c"> 16</label><br>
+          <label><input type="radio" name="q6" value="d"> 18</label>
+        </div>
+
+        <div class="question">
+          <p><strong>Q7.</strong> If every square is a rectangle and some rectangles are blue, which is true?</p>
+          <label><input type="radio" name="q7" value="a"> All squares are blue</label><br>
+          <label><input type="radio" name="q7" value="b"> Some squares may be blue</label><br>
+          <label><input type="radio" name="q7" value="c"> No square is blue</label><br>
+          <label><input type="radio" name="q7" value="d"> Cannot determine</label>
+        </div>
+
+        <div class="question">
+          <p><strong>Q8.</strong> Which option continues the pattern: ▲ ▼ ▲ ▼ ▲ ?</p>
+          <label><input type="radio" name="q8" value="a"> ▲</label><br>
+          <label><input type="radio" name="q8" value="b"> ▼</label><br>
+          <label><input type="radio" name="q8" value="c"> ◼</label><br>
+          <label><input type="radio" name="q8" value="d"> ◯</label>
+        </div>
+
+        <div class="question">
+          <p><strong>Q9.</strong> Which number is the odd one out: 2, 3, 5, 6, 7</p>
+          <label><input type="radio" name="q9" value="a"> 2</label><br>
+          <label><input type="radio" name="q9" value="b"> 3</label><br>
+          <label><input type="radio" name="q9" value="c"> 5</label><br>
+          <label><input type="radio" name="q9" value="d"> 6</label>
+        </div>
+
+        <div class="question">
+          <p><strong>Q10.</strong> If a pattern doubles then subtracts 1 each step starting at 1, next after 1 is:</p>
+          <label><input type="radio" name="q10" value="a"> 1</label><br>
+          <label><input type="radio" name="q10" value="b"> 2</label><br>
+          <label><input type="radio" name="q10" value="c"> 3</label><br>
+          <label><input type="radio" name="q10" value="d"> 4</label>
+        </div>
+
+        <div class="controls">
+          <button type="button" class="toggle-btn" onclick="checkAnswers('quiz-abstract')">Check Answers</button>
+          <button type="button" class="toggle-btn" onclick="resetQuiz('quiz-abstract')">Reset</button>
+          <div class="quiz-result" id="result-quiz-abstract" aria-live="polite"></div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</section>
+
+<!-- Footer -->
+<footer class="Footer">
+  <h4>About Us</h4>
+  <p>
+    By leveraging technology, we aim to empower students with the tools and support they need to succeed academically
+    regardless of their location, resources, or socioeconomic status.
+  </p>
+  <div class="icons">
+    <i class="fa fa-facebook"></i>
+    <i class="fa fa-twitter"></i>
+    <i class="fa fa-instagram"></i>
+    <i class="fa fa-linkedin"></i>
+  </div>
+  <p>Made with <i class="fa fa-heart-o"></i> by Media On Africa</p>
+  <p class="footer-note">This practice test is for learning and self-assessment only.</p>
+</footer>
+
+<!-- JavaScript for menu, toggles and quiz logic -->
+<script>
+  var navLinks = document.getElementById("navLinks");
+  function showmenu() { navLinks.style.right = "0"; }
+  function hidemenu() { navLinks.style.right = "-200px"; }
+
+  // Toggle question blocks
+  document.querySelectorAll('.toggle-btn[data-target]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var id = btn.getAttribute('data-target');
+      var el = document.getElementById(id);
+      if (!el) return;
+      if (el.style.display === 'block') {
+        el.style.display = 'none';
+        btn.textContent = 'Show Questions';
+      } else {
+        el.style.display = 'block';
+        btn.textContent = 'Hide Questions';
+      }
+    });
+  });
+
+  // Centralized answer keys
+  const answerKeys = {
+    'quiz-logical': { q1:'c', q2:'a', q3:'d', q4:'b', q5:'b', q6:'c', q7:'d', q8:'b', q9:'c', q10:'c' },
+    'quiz-numerical': { q1:'b', q2:'a', q3:'b', q4:'b', q5:'a', q6:'a', q7:'a', q8:'c', q9:'c', q10:'a' },
+    'quiz-verbal': { q1:'b', q2:'b', q3:'b', q4:'b', q5:'a', q6:'b', q7:'b', q8:'a', q9:'a', q10:'b' },
+    'quiz-abstract': { q1:'a', q2:'b', q3:'c', q4:'d', q5:'a', q6:'b', q7:'b', q8:'b', q9:'d', q10:'b' }
+  };
+
+  // Check answers and show results inline
+  function checkAnswers(formId) {
+    var form = document.getElementById(formId);
+    if (!form) return;
+    var key = answerKeys[formId];
+    var total = 0;
+    var correct = 0;
+    var missing = [];
+    for (var i = 1; i <= 10; i++) {
+      var name = 'q' + i;
+      var radios = form.elements[name];
+      if (!radios) continue;
+      total++;
+      var selected = null;
+      if (radios.length === undefined) {
+        if (radios.checked) selected = radios.value;
+      } else {
+        for (var r=0; r<radios.length; r++) {
+          if (radios[r].checked) { selected = radios[r].value; break; }
+        }
+      }
+      if (!selected) { missing.push(i); continue; }
+      if (key && key[name] === selected) correct++;
+    }
+
+    var resultEl = document.getElementById('result-' + formId);
+    var scoreText = 'Score: ' + correct + ' / ' + total;
+    if (missing.length) {
+      scoreText += ' — Unanswered: ' + missing.join(', ');
+    }
+    // Build brief feedback with correct answers
+    var answersList = '';
+    if (key) {
+      answersList = '<div style="margin-top:0.5rem; font-size:0.95rem; color:#333;">Correct answers: ';
+      var pairs = [];
+      for (var i=1;i<=10;i++){ pairs.push(i + ':' + (key['q'+i] ? key['q'+i].toUpperCase() : '-')); }
+      answersList += pairs.join(' | ') + '</div>';
+    }
+    resultEl.innerHTML = scoreText + answersList;
+    resultEl.focus();
+  }
+
+  // Reset quiz selections
+  function resetQuiz(formId) {
+    var form = document.getElementById(formId);
+    if (!form) return;
+    var inputs = form.querySelectorAll('input[type="radio"]');
+    inputs.forEach(function(i){ i.checked = false; });
+    var resultEl = document.getElementById('result-' + formId);
+    if (resultEl) resultEl.textContent = '';
+  }
+</script>
+
+<!-- Chatbot Embed -->
+<script src="//code.tidio.co/uqdod81sfajvlkpiujfsjo49za71xsuc.js" async></script>
+</body>
+</html>
