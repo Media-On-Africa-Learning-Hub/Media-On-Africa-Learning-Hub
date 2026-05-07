@@ -32,13 +32,51 @@
       <li><a href="mental_wellness.html">WELLNESS</a></li>
       <li><a href="blog.html">BLOG</a></li>
       <li><a href="contact.html">CONTACT</a></li>
-      <li><a href="library.html">LIBRARY</a></li>
+      <li><a href="library.html" class="active">LIBRARY</a></li>
       <li><a href="khulisa.html">SUPPORT</a></li>
     </ul>
   </div>
   <i class="fa fa-bars" onclick="showmenu()"></i>
 </nav>
 
+<!-- Library Section -->
+<section class="library">
+  <h2>📚 Learning Hub Library</h2>
+  <p>Search and access DBE-approved learning materials.</p>
+
+  <!-- Search Bar -->
+  <div class="library-search">
+    <input type="text" placeholder="Search books..." />
+    <i class="fa fa-search"></i>
+  </div>
+
+  <!-- Book Cards -->
+  <div class="library-grid">
+    <div class="book-card">
+      <h3>Science</h3>
+      <p>Explore DBE-approved Science resources.</p>
+      <a href="resources/Science.pdf" target="_blank" class="btn">
+        <i class="fa fa-download"></i> Download
+      </a>
+    </div>
+
+    <div class="book-card">
+      <h3>Technology</h3>
+      <p>Learn about Technology concepts and applications.</p>
+      <a href="resources/Technology.pdf" target="_blank" class="btn">
+        <i class="fa fa-download"></i> Download
+      </a>
+    </div>
+
+    <div class="book-card">
+      <h3>Art</h3>
+      <p>Discover creative Art materials and guides.</p>
+      <a href="resources/Art.pdf" target="_blank" class="btn">
+        <i class="fa fa-download"></i> Download
+      </a>
+    </div>
+  </div>
+</section>
 
 <!-- Footer -->
 <footer class="Footer">
@@ -64,31 +102,23 @@
   function hidemenu() {
     navLinks.style.right = "-200px";
   }
-</script>
 
-<!-- Chatbot Embed -->
-<script src="//code.tidio.co/uqdod81sfajvlkpiujfsjo49za71xsuc.js" async></script>
-  
-<script>
   // Search filter for library books
   const searchInput = document.querySelector(".library-search input");
   const bookCards = document.querySelectorAll(".book-card");
 
   searchInput.addEventListener("keyup", function () {
     const query = searchInput.value.toLowerCase();
-
     bookCards.forEach(card => {
       const title = card.querySelector("h3").textContent.toLowerCase();
       const description = card.querySelector("p").textContent.toLowerCase();
-
-      if (title.includes(query) || description.includes(query)) {
-        card.style.display = "block";
-      } else {
-        card.style.display = "none";
-      }
+      card.style.display = (title.includes(query) || description.includes(query)) ? "block" : "none";
     });
   });
 </script>
+
+<!-- Chatbot Embed -->
+<script src="//code.tidio.co/uqdod81sfajvlkpiujfsjo49za71xsuc.js" async></script>
 </body>
 </html>
 
