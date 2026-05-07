@@ -1202,7 +1202,7 @@ blockquote:hover {
 }
 
 /* ===== Library Page Styling ===== */
-.library .container {
+.library {
   max-width: 1200px;
   margin: auto;
   padding: 50px 20px;
@@ -1226,15 +1226,22 @@ blockquote:hover {
   display: flex;
   justify-content: center;
   margin-bottom: 30px;
+  position: relative;
+  width: 100%;
 }
 
 .library-search input {
   width: 60%;
-  padding: 10px 15px;
-  border: 1px solid #ccc;
-  border-radius: 6px 0 0 6px;
+  padding: 12px 15px;
+  border: 2px solid #2c3e50;
+  border-radius: 30px;
   outline: none;
   font-size: 1rem;
+  transition: box-shadow 0.3s ease;
+}
+
+.library-search input:focus {
+  box-shadow: 0 0 8px rgba(44,62,80,0.4);
 }
 
 .library-search button {
@@ -1253,30 +1260,36 @@ blockquote:hover {
 }
 
 /* Book Grid */
-.book-grid {
+.book-grid,
+.library-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 25px;
 }
 
 .book-card {
-  background: #f9f9f9;
+  background: #fff;
   padding: 25px;
   text-align: center;
-  border-radius: 10px;
+  border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.08);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .book-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 6px 12px rgba(0,0,0,0.12);
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.15);
 }
 
 .book-card i {
-  font-size: 45px;
+  font-size: 50px;
   color: #2c3e50;
   margin-bottom: 15px;
+  transition: color 0.3s ease;
+}
+
+.book-card:hover i {
+  color: #3498db;
 }
 
 .book-card h3 {
@@ -1291,19 +1304,31 @@ blockquote:hover {
   margin-bottom: 15px;
 }
 
+/* Buttons */
 .book-card .btn {
   display: inline-block;
   padding: 10px 18px;
-  background: #2c3e50;
+  background: linear-gradient(135deg, #2c3e50, #34495e);
   color: #fff;
   border-radius: 6px;
   text-decoration: none;
   font-size: 0.95rem;
-  transition: background 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .book-card .btn:hover {
-  background: #1a252f;
+  background: linear-gradient(135deg, #1a252f, #2c3e50);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* Responsive Tweaks */
+@media (max-width: 768px) {
+  .library-search input {
+    width: 80%;
+  }
+  .book-card {
+    padding: 20px;
+  }
 }
 
 /* === Forum Layout === */
