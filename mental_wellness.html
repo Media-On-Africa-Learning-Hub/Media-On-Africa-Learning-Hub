@@ -1,304 +1,1005 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mental Wellness Hub - Media On Africa</title>
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300;400;700&family=Poppins:wght@300;400;600;700&display=swap"
-    rel="stylesheet"
-  />
-  <link
-    rel="stylesheet"
-    href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-  />
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mental Wellness Hub - Media On Africa</title>
 
-<!-- Navigation -->
-<nav>
-  <div class="nav-links" id="navLinks">
-    <i class="fa fa-times" onclick="hidemenu()"></i>
-    <ul>
-      <li><a href="index.html">HOME</a></li>
-      <li><a href="About.html">ABOUT</a></li>
-      <li><a href="Subjects.html">SUBJECTS</a></li>
-      <li><a href="quizzes.html">QUIZZES</a></li>
-      <li><a href="aptitude.html">APTITUDE TEST</a></li>
-      <li><a href="forum.html">DISCUSSION</a></li>
-      <li><a href="mental_wellness.html">WELLNESS</a></li>
-      <li><a href="blog.html">BLOG</a></li>
-      <li><a href="contact.html">CONTACT</a></li>
-      <li><a href="library.html">LIBRARY</a></li>
-      <li><a href="khulisa.html">SUPPORT</a></li>
-    </ul>
-  </div>
-  <i class="fa fa-bars" onclick="showmenu()"></i>
-</nav>
-  
-<!-- Wellness Header -->
-<section class="header small-header">
-  <div class="text-box">
-    <h1>Mental Wellness Hub</h1>
-  </div>
-</section>
+    <!-- PWA Meta Tags -->
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#1a472a" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta name="apple-mobile-web-app-title" content="MoA Wellness" />
+    <link rel="apple-touch-icon" href="/icons/icon-192x192.png" />
 
-<!-- Wellness Content Blocks -->
-<section class="About-us two-column">
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300;400;700&family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
 
-  <div class="feature-block" id="daily-quote-block">
-    <h2>🌟 Daily Positivity</h2>
-    <p id="daily-quote"></p>
-    <p>Write down one thing you’re grateful for today and share it with a friend. Gratitude helps you focus on what you have, not what you lack.</p>
-  </div>
-
-  <div class="feature-block" id="encouragement">
-    <h2>💬 Words of Encouragement</h2>
-    <p id="encouragement-text"></p>
-  </div>
-
-  <div class="feature-block" id="safe-space">
-    <h1>🌿 A Safe Space for Students</h1>
-    <p>
-      Life as a student can be overwhelming. Between exams, expectations, and personal challenges, it’s easy to feel stressed or alone. This hub is here to remind you: your feelings matter, your well-being matters, and you are not alone.
-    </p>
-    <p>
-      Mental wellness is not about being happy all the time — it’s about learning to care for yourself, finding balance, and knowing when to pause. Here you’ll find comforting reads, practical exercises, and words of encouragement to help you feel grounded.
-    </p>
-    <img src="images/wellness.jpg" alt="Students practicing mindfulness" style="width:100%; border-radius:8px; margin-top:1rem;" />
-  </div>
-
-  <div class="feature-block" id="comforting-reads">
-    <h2>💡 Comforting Reads</h2>
-    <ul>
-      <li><strong>Managing Exam Stress:</strong> Break study sessions into smaller chunks, take short walks, and remind yourself that progress matters more than perfection.</li>
-      <li><strong>Mindful Breaks:</strong> Close your eyes for 2 minutes, breathe deeply, and notice how your body feels. This resets your focus.</li>
-      <li><strong>Dealing with Loneliness:</strong> Reach out to a friend, join a study group, or write down your thoughts. Connection can be found in small moments.</li>
-      <li><strong>Building Resilience:</strong> Think of challenges as stepping stones. Each difficulty you overcome adds strength to your journey.</li>
-    </ul>
-  </div>
-
-  <div class="feature-block" id="reflection-prompt">
-    <h2>📝 Reflection Prompt</h2>
-    <p id="reflection-prompt-text"></p>
-  </div>
-
-  <div class="feature-block" id="relaxation">
-    <h2>✨ Quick Relaxation Exercise</h2>
-    <p id="relaxation-exercise"></p>
-    <p>Try this 4-7-8 breathing technique:</p>
-    <ol>
-      <li>Inhale quietly through your nose for 4 seconds.</li>
-      <li>Hold your breath for 7 seconds.</li>
-      <li>Exhale completely through your mouth for 8 seconds.</li>
-      <li>Repeat 3–4 times to calm your mind.</li>
-    </ol>
-  </div>
-
-  <div class="feature-block" id="resources">
-    <h2>📚 Resources</h2>
-    <p>Explore more on mindfulness and student wellness:</p>
-    <ul>
-      <li><a href="https://www.mindful.org/" target="_blank">Mindful.org</a> — Articles and practices for everyday mindfulness.</li>
-      <li><a href="https://www.headspace.com/" target="_blank">Headspace</a> — Guided meditations and stress relief tools.</li>
-      <li><a href="https://www.who.int/health-topics/mental-health" target="_blank">WHO Mental Health</a> — Global resources on mental wellness.</li>
-    </ul>
-  </div>
-
- <div class="feature-block" id="wellness-video">
-  <h2>🎥 Relaxation Exercise Video</h2>
-  <p>Take a short break and follow along with this guided relaxation exercise.</p>
-
-  <div class="video-container">
-    <video controls width="100%" style="border-radius:8px;">
-      <source src="resources/Box%20breathing%20relaxation%20technique_%20how%20to%20calm%20feelings%20of%20stress%20or%20anxiety.mp4" type="video/mp4">
-    </video>
-  </div>
-</div>
-
-
-
-
-</section>
-
-<!-- Footer -->
-<section class="Footer">
-  <h4>Mental Wellness Hub</h4>
-  <p>
-    This space is dedicated to helping students feel supported, encouraged, and connected.  
-    Remember: taking care of your mind is just as important as taking care of your studies.
-  </p>
-  <div class="icons">
-    <i class="fa fa-facebook"></i>
-    <i class="fa fa-twitter"></i>
-    <i class="fa fa-instagram"></i>
-    <i class="fa fa-linkedin"></i>
-  </div>
-  <p>Made with <i class="fa fa-heart-o"></i> by Media On Africa</p>
-</section>
-
-
-<style>
-  /* Fade-in effect */
-  .fade {
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-  }
-  .fade.show {
-    opacity: 1;
-  }
-
-  /* Control buttons */
-  .control-btn {
-    display: inline-block;
-    margin: 8px;
-    padding: 6px 12px;
-    background: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-family: 'Poppins', sans-serif;
-  }
-  .control-btn:hover {
-    background: #45a049;
-  }
-</style>
-
-<script>
-  const quotes = [
-    "Every day may not be good, but there’s something good in every day.",
-    "You are stronger than you think, braver than you feel, and smarter than you believe.",
-    "Rest is not a waste of time — it’s how you recharge your mind and body.",
-    "Your value is not measured by grades, but by the kindness you show and the effort you give.",
-    "Even the darkest night will end, and the sun will rise.",
-    "Progress, not perfection — small steps lead to big change.",
-    "You are not alone. Someone cares about how you feel today.",
-    "Take one step at a time — small progress is still progress.",
-    "Your journey is unique, and that makes it powerful."
-  ];
-
-  const reflections = [
-    "What’s one thing you did well today?",
-    "What’s a small step you can take tomorrow to feel better?",
-    "What’s one challenge you overcame recently?",
-    "What’s something you’re grateful for right now?",
-    "What’s one kind thing you can do for yourself today?",
-    "What’s a moment this week that made you smile?",
-    "What’s one strength you’re proud of?",
-    "What’s a lesson you learned from a mistake?",
-    "What’s one way you showed kindness today?",
-    "What’s something you’re looking forward to?"
-  ];
-
-  const relaxationExercises = [
-    "Close your eyes and take 5 slow breaths, focusing only on the rise and fall of your chest.",
-    "Stretch your arms overhead, then gently roll your shoulders back to release tension.",
-    "Try progressive muscle relaxation: tense each muscle group for 5 seconds, then release.",
-    "Visualize a calm place — a beach, a forest, or anywhere peaceful — and imagine yourself there.",
-    "Do a quick body scan: notice how your head, shoulders, arms, and legs feel, and let go of tightness."
-  ];
-
-  const encouragements = [
-    "You are more than your grades, more than your struggles, and more than your mistakes.",
-    "Even when life feels heavy, you carry the ability to rise again.",
-    "Your effort matters, even when results take time.",
-    "You are worthy of rest, care, and compassion.",
-    "Every challenge you face is proof of your strength.",
-    "You have the courage to keep moving forward, even when it’s hard.",
-    "Your dreams are valid, and your potential is limitless."
-  ];
-
-  let intervals = {};
-  let delay = 6000; // 6 seconds per rotation
-
-  // Typing effect helper
-  function typeText(container, text) {
-    container.textContent = "";
-    let i = 0;
-    const typingInterval = setInterval(() => {
-      container.textContent += text.charAt(i);
-      i++;
-      if (i >= text.length) clearInterval(typingInterval);
-    }, 50);
-    container.classList.add("typing");
-  }
-
-   // Rotation logic
-  function rotateContent(containerId, array, useFade = false) {
-    const container = document.getElementById(containerId);
-    if (!container) return;
-    let index = 0;
-
-    function showMessage(text) {
-      if (useFade) {
-        container.classList.remove("show");
-        setTimeout(() => {
-          container.textContent = text;
-          container.classList.add("show");
-        }, 200);
-      } else {
-        container.textContent = text;
+    <style>
+      /* Fade-in effect */
+      .fade {
+        opacity: 0;
+        transition: opacity 1s ease-in-out;
       }
-    }
+      .fade.show {
+        opacity: 1;
+      }
 
-    showMessage(array[index]);
+      /* Control buttons */
+      .control-btn {
+        display: inline-block;
+        margin: 8px;
+        padding: 6px 12px;
+        background: #4caf50;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-family: "Poppins", sans-serif;
+      }
+      .control-btn:hover {
+        background: #45a049;
+      }
 
-    intervals[containerId] = setInterval(() => {
-      index = (index + 1) % array.length;
-      showMessage(array[index]);
-    }, delay);
-  }
+      /* Offline banner */
+      .offline-banner {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 12px 20px;
+        text-align: center;
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        right: 20px;
+        z-index: 10000;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        display: none;
+        backdrop-filter: blur(10px);
+        animation: slideUp 0.3s ease;
+      }
 
-  function startRotation() {
-    rotateContent("daily-quote", quotes); 
-    rotateContent("encouragement-text", encouragements, true);
-    rotateContent("reflection-prompt-text", reflections, true);
-    rotateContent("relaxation-exercise", relaxationExercises, true);
-  }
+      @keyframes slideUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
 
-  function pauseRotation() {
-    for (let id in intervals) clearInterval(intervals[id]);
-    intervals = {};
-    alert("Rotation paused. Current messages will stay visible.");
-  }
+      .offline-banner.show {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
 
-  function resumeRotation() {
-    if (Object.keys(intervals).length === 0) {
-      startRotation();
-      alert("Rotation resumed.");
-    }
-  }
+      /* Gratitude Journal */
+      .gratitude-journal {
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        border-radius: 12px;
+        padding: 20px;
+        margin: 20px 0;
+      }
 
-  document.addEventListener("DOMContentLoaded", function() {
-    // Add control buttons
-    const pauseButton = document.createElement("button");
-    pauseButton.innerText = "Pause Rotation";
-    pauseButton.className = "control-btn";
-    pauseButton.onclick = pauseRotation;
+      .gratitude-journal textarea {
+        width: 100%;
+        padding: 12px;
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+        font-family: inherit;
+        resize: vertical;
+        margin: 10px 0;
+      }
 
-    const resumeButton = document.createElement("button");
-    resumeButton.innerText = "Resume Rotation";
-    resumeButton.className = "control-btn";
-    resumeButton.onclick = resumeRotation;
+      .gratitude-list {
+        margin-top: 15px;
+      }
 
-    const footer = document.querySelector(".Footer");
-    footer.appendChild(pauseButton);
-    footer.appendChild(resumeButton);
+      .gratitude-item {
+        background: white;
+        padding: 10px;
+        margin: 8px 0;
+        border-radius: 8px;
+        border-left: 4px solid #4caf50;
+      }
 
-    // Start rotations
-    startRotation();
-  });
-</script>
+      .gratitude-date {
+        font-size: 11px;
+        color: #666;
+      }
 
+      /* Mood Tracker */
+      .mood-tracker {
+        background: white;
+        border-radius: 12px;
+        padding: 20px;
+        margin: 20px 0;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
 
+      .mood-buttons {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin: 15px 0;
+      }
 
+      .mood-btn {
+        flex: 1;
+        padding: 10px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 20px;
+        transition: transform 0.2s;
+      }
 
+      .mood-btn:hover {
+        transform: scale(1.05);
+      }
 
-<!-- Chatbot Embed -->
-<script src="//code.tidio.co/uqdod81sfajvlkpiujfsjo49za71xsuc.js" async></script>
-</body>
+      .mood-history {
+        margin-top: 15px;
+      }
+
+      .mood-history-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 8px;
+        border-bottom: 1px solid #eee;
+      }
+
+      /* Breathing Exercise Timer */
+      .breathing-timer {
+        text-align: center;
+        padding: 20px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border-radius: 12px;
+        margin: 20px 0;
+      }
+
+      .timer-circle {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 20px auto;
+        cursor: pointer;
+        transition: transform 0.3s;
+      }
+
+      .timer-circle:hover {
+        transform: scale(1.05);
+      }
+
+      .timer-number {
+        font-size: 48px;
+        font-weight: bold;
+      }
+
+      .timer-text {
+        font-size: 18px;
+        margin-top: 10px;
+      }
+
+      /* Notification Toast */
+      .notification-toast {
+        position: fixed;
+        top: 80px;
+        right: 20px;
+        background: #4caf50;
+        color: white;
+        padding: 12px 20px;
+        border-radius: 8px;
+        z-index: 10002;
+        animation: slideIn 0.3s ease;
+        display: none;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      }
+
+      @keyframes slideIn {
+        from {
+          opacity: 0;
+          transform: translateX(100px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      .notification-toast.show {
+        display: block;
+      }
+
+      .download-wellness-btn {
+        background: #4caf50;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 14px;
+        margin: 10px 0;
+        transition: background 0.3s;
+      }
+
+      .download-wellness-btn:hover {
+        background: #45a049;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav>
+      <div class="nav-links" id="navLinks">
+        <i class="fa fa-times" onclick="hidemenu()"></i>
+        <ul>
+          <li><a href="index.html">HOME</a></li>
+          <li><a href="About.html">ABOUT</a></li>
+          <li><a href="Subjects.html">SUBJECTS</a></li>
+          <li><a href="quizzes.html">QUIZZES</a></li>
+          <li><a href="aptitude.html">APTITUDE TEST</a></li>
+          <li><a href="forum.html">DISCUSSION</a></li>
+          <li><a href="mental_wellness.html">WELLNESS</a></li>
+          <li><a href="blog.html">BLOG</a></li>
+          <li><a href="contact.html">CONTACT</a></li>
+          <li><a href="library.html">LIBRARY</a></li>
+          <li><a href="khulisa.html">SUPPORT</a></li>
+        </ul>
+      </div>
+      <i class="fa fa-bars" onclick="showmenu()"></i>
+    </nav>
+
+    <!-- Wellness Header -->
+    <section class="header small-header">
+      <div class="text-box">
+        <h1>Mental Wellness Hub</h1>
+        <button id="downloadWellnessBtn" class="download-wellness-btn">
+          📥 Download Wellness Hub for Offline
+        </button>
+      </div>
+    </section>
+
+    <!-- Wellness Content Blocks -->
+    <section class="About-us two-column">
+      <div class="feature-block" id="daily-quote-block">
+        <h2>🌟 Daily Positivity</h2>
+        <p id="daily-quote"></p>
+        <p>
+          Write down one thing you’re grateful for today and share it with a
+          friend. Gratitude helps you focus on what you have, not what you lack.
+        </p>
+      </div>
+
+      <div class="feature-block" id="encouragement">
+        <h2>💬 Words of Encouragement</h2>
+        <p id="encouragement-text"></p>
+      </div>
+
+      <!-- Mood Tracker -->
+      <div class="mood-tracker">
+        <h2>😊 How are you feeling today?</h2>
+        <div class="mood-buttons">
+          <button class="mood-btn" data-mood="😊 Great">😊 Great</button>
+          <button class="mood-btn" data-mood="🙂 Good">🙂 Good</button>
+          <button class="mood-btn" data-mood="😐 Okay">😐 Okay</button>
+          <button class="mood-btn" data-mood="😕 Stressed">😕 Stressed</button>
+          <button class="mood-btn" data-mood="😔 Tired">😔 Tired</button>
+        </div>
+        <div id="moodHistory" class="mood-history"></div>
+      </div>
+
+      <!-- Gratitude Journal -->
+      <div class="gratitude-journal">
+        <h2>🙏 Gratitude Journal</h2>
+        <p>Take a moment to write down something you're grateful for today.</p>
+        <textarea
+          id="gratitudeInput"
+          rows="3"
+          placeholder="I'm grateful for..."
+        ></textarea>
+        <button id="saveGratitudeBtn" class="control-btn">
+          Save Gratitude Entry
+        </button>
+        <div id="gratitudeList" class="gratitude-list"></div>
+      </div>
+
+      <div class="feature-block" id="safe-space">
+        <h1>🌿 A Safe Space for Students</h1>
+        <p>
+          Life as a student can be overwhelming. Between exams, expectations,
+          and personal challenges, it's easy to feel stressed or alone. This hub
+          is here to remind you: your feelings matter, your well-being matters,
+          and you are not alone.
+        </p>
+        <p>
+          Mental wellness is not about being happy all the time — it's about
+          learning to care for yourself, finding balance, and knowing when to
+          pause. Here you'll find comforting reads, practical exercises, and
+          words of encouragement to help you feel grounded.
+        </p>
+        <img
+          src="images/wellness.jpg"
+          alt="Students practicing mindfulness"
+          style="width: 100%; border-radius: 8px; margin-top: 1rem"
+          onerror="
+            this.src = 'https://via.placeholder.com/600x400?text=Wellness+Image'
+          "
+        />
+      </div>
+
+      <!-- Breathing Exercise Timer -->
+      <div class="breathing-timer">
+        <h2>🧘 Guided Breathing Exercise</h2>
+        <p>Click the circle to start the 4-7-8 breathing technique</p>
+        <div class="timer-circle" id="timerCircle">
+          <div class="timer-number" id="timerNumber">4</div>
+        </div>
+        <div class="timer-text" id="timerText">Click to start</div>
+      </div>
+
+      <div class="feature-block" id="comforting-reads">
+        <h2>💡 Comforting Reads</h2>
+        <ul>
+          <li>
+            <strong>Managing Exam Stress:</strong> Break study sessions into
+            smaller chunks, take short walks, and remind yourself that progress
+            matters more than perfection.
+          </li>
+          <li>
+            <strong>Mindful Breaks:</strong> Close your eyes for 2 minutes,
+            breathe deeply, and notice how your body feels. This resets your
+            focus.
+          </li>
+          <li>
+            <strong>Dealing with Loneliness:</strong> Reach out to a friend,
+            join a study group, or write down your thoughts. Connection can be
+            found in small moments.
+          </li>
+          <li>
+            <strong>Building Resilience:</strong> Think of challenges as
+            stepping stones. Each difficulty you overcome adds strength to your
+            journey.
+          </li>
+        </ul>
+      </div>
+
+      <div class="feature-block" id="reflection-prompt">
+        <h2>📝 Reflection Prompt</h2>
+        <p id="reflection-prompt-text"></p>
+      </div>
+
+      <div class="feature-block" id="relaxation">
+        <h2>✨ Quick Relaxation Exercise</h2>
+        <p id="relaxation-exercise"></p>
+        <p>Try this 4-7-8 breathing technique:</p>
+        <ol>
+          <li>Inhale quietly through your nose for 4 seconds.</li>
+          <li>Hold your breath for 7 seconds.</li>
+          <li>Exhale completely through your mouth for 8 seconds.</li>
+          <li>Repeat 3–4 times to calm your mind.</li>
+        </ol>
+      </div>
+
+      <div class="feature-block" id="resources">
+        <h2>📚 Resources</h2>
+        <p>Explore more on mindfulness and student wellness:</p>
+        <ul>
+          <li>
+            <a href="https://www.mindful.org/" target="_blank">Mindful.org</a> —
+            Articles and practices for everyday mindfulness.
+          </li>
+          <li>
+            <a href="https://www.headspace.com/" target="_blank">Headspace</a> —
+            Guided meditations and stress relief tools.
+          </li>
+          <li>
+            <a
+              href="https://www.who.int/health-topics/mental-health"
+              target="_blank"
+              >WHO Mental Health</a
+            >
+            — Global resources on mental wellness.
+          </li>
+        </ul>
+      </div>
+
+      <div class="feature-block" id="wellness-video">
+        <h2>🎥 Relaxation Exercise Video</h2>
+        <p>
+          Take a short break and follow along with this guided relaxation
+          exercise.
+        </p>
+
+        <div class="video-container">
+          <video controls width="100%" style="border-radius: 8px">
+            <source
+              src="resources/Box%20breathing%20relaxation%20technique_%20how%20to%20calm%20feelings%20of%20stress%20or%20anxiety.mp4"
+              type="video/mp4"
+            />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <section class="Footer">
+      <h4>Mental Wellness Hub</h4>
+      <p>
+        This space is dedicated to helping students feel supported, encouraged,
+        and connected. Remember: taking care of your mind is just as important
+        as taking care of your studies.
+      </p>
+      <div class="icons">
+        <i class="fa fa-facebook"></i>
+        <i class="fa fa-twitter"></i>
+        <i class="fa fa-instagram"></i>
+        <i class="fa fa-linkedin"></i>
+      </div>
+      <p>Made with <i class="fa fa-heart-o"></i> by Media On Africa</p>
+    </section>
+
+    <!-- Offline Banner -->
+    <div id="offlineBanner" class="offline-banner">
+      <div style="display: flex; align-items: center; gap: 10px">
+        <span style="font-size: 20px">📡</span>
+        <span
+          >You are offline — wellness tools still work! Your journal entries and
+          mood logs are saved locally.</span
+        >
+      </div>
+      <div style="display: flex; gap: 10px">
+        <button
+          id="dismissBanner"
+          style="
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+          "
+        >
+          Dismiss
+        </button>
+        <button
+          id="retryConnection"
+          style="
+            background: white;
+            border: none;
+            color: #667eea;
+            padding: 5px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 500;
+          "
+        >
+          Retry Connection
+        </button>
+      </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="notificationToast" class="notification-toast"></div>
+
+    <!-- Service Worker Registration -->
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker
+            .register("/service-worker.js")
+            .then((registration) => {
+              console.log("ServiceWorker registered:", registration.scope);
+            })
+            .catch((error) => {
+              console.log("ServiceWorker registration failed:", error);
+            });
+        });
+      }
+    </script>
+
+    <!-- Dexie.js for IndexedDB -->
+    <script src="https://cdn.jsdelivr.net/npm/dexie@3.2.2/dist/dexie.js"></script>
+
+    <!-- Wellness Offline Logic -->
+    <script>
+      // Initialize IndexedDB
+      let db = null;
+
+      async function initWellnessDB() {
+        if (typeof Dexie === "undefined") {
+          await new Promise((resolve) => setTimeout(resolve, 500));
+        }
+
+        db = new Dexie("MediaOnAfricaWellness");
+        db.version(1).stores({
+          moodEntries: "++id, mood, timestamp, date",
+          gratitudeEntries: "++id, entry, timestamp, date",
+        });
+
+        await db.open();
+        console.log("Wellness IndexedDB ready");
+        await loadMoodHistory();
+        await loadGratitudeEntries();
+      }
+
+      // Mood Tracking
+      async function saveMood(mood) {
+        const entry = {
+          mood: mood,
+          timestamp: new Date().toISOString(),
+          date: new Date().toDateString(),
+        };
+
+        try {
+          await db.moodEntries.add(entry);
+          console.log("Mood saved:", mood);
+          await loadMoodHistory();
+          showNotification(`Mood saved: ${mood}`, "success");
+        } catch (error) {
+          console.error("Failed to save mood:", error);
+        }
+      }
+
+      async function loadMoodHistory() {
+        if (!db) return;
+
+        const entries = await db.moodEntries
+          .orderBy("timestamp")
+          .reverse()
+          .limit(10)
+          .toArray();
+        const container = document.getElementById("moodHistory");
+
+        if (!container) return;
+
+        if (entries.length === 0) {
+          container.innerHTML =
+            '<p style="color: #999; text-align: center;">No mood entries yet. How are you feeling today?</p>';
+          return;
+        }
+
+        container.innerHTML =
+          "<h3>Recent Moods</h3>" +
+          entries
+            .map(
+              (entry) => `
+      <div class="mood-history-item">
+        <span>${entry.mood}</span>
+        <span class="gratitude-date">${new Date(entry.timestamp).toLocaleString()}</span>
+      </div>
+    `,
+            )
+            .join("");
+      }
+
+      // Gratitude Journal
+      async function saveGratitudeEntry(entryText) {
+        if (!entryText.trim()) {
+          showNotification(
+            "Please write something you're grateful for",
+            "error",
+          );
+          return;
+        }
+
+        const entry = {
+          entry: entryText.trim(),
+          timestamp: new Date().toISOString(),
+          date: new Date().toDateString(),
+        };
+
+        try {
+          await db.gratitudeEntries.add(entry);
+          console.log("Gratitude saved:", entryText);
+          document.getElementById("gratitudeInput").value = "";
+          await loadGratitudeEntries();
+          showNotification(
+            "Gratitude saved! Thank you for sharing.",
+            "success",
+          );
+        } catch (error) {
+          console.error("Failed to save gratitude:", error);
+        }
+      }
+
+      async function loadGratitudeEntries() {
+        if (!db) return;
+
+        const entries = await db.gratitudeEntries
+          .orderBy("timestamp")
+          .reverse()
+          .limit(10)
+          .toArray();
+        const container = document.getElementById("gratitudeList");
+
+        if (!container) return;
+
+        if (entries.length === 0) {
+          container.innerHTML =
+            '<p style="color: #999; text-align: center;">No gratitude entries yet. Start your journal above!</p>';
+          return;
+        }
+
+        container.innerHTML = entries
+          .map(
+            (entry) => `
+      <div class="gratitude-item">
+        <div>🙏 ${escapeHtml(entry.entry)}</div>
+        <div class="gratitude-date">${new Date(entry.timestamp).toLocaleString()}</div>
+      </div>
+    `,
+          )
+          .join("");
+      }
+
+      function escapeHtml(text) {
+        const div = document.createElement("div");
+        div.textContent = text;
+        return div.innerHTML;
+      }
+
+      // Breathing Timer
+      let breathingInterval = null;
+      let currentPhase = "inhale";
+      let timeLeft = 4;
+
+      function startBreathingExercise() {
+        if (breathingInterval) {
+          clearInterval(breathingInterval);
+          breathingInterval = null;
+        }
+
+        currentPhase = "inhale";
+        timeLeft = 4;
+        updateTimerDisplay();
+
+        breathingInterval = setInterval(() => {
+          timeLeft--;
+
+          if (timeLeft <= 0) {
+            // Move to next phase
+            switch (currentPhase) {
+              case "inhale":
+                currentPhase = "hold";
+                timeLeft = 7;
+                document.getElementById("timerText").textContent =
+                  "Hold your breath...";
+                break;
+              case "hold":
+                currentPhase = "exhale";
+                timeLeft = 8;
+                document.getElementById("timerText").textContent =
+                  "Exhale slowly...";
+                break;
+              case "exhale":
+                currentPhase = "inhale";
+                timeLeft = 4;
+                document.getElementById("timerText").textContent =
+                  "Inhale deeply...";
+                break;
+            }
+          }
+
+          updateTimerDisplay();
+
+          if (
+            currentPhase === "inhale" &&
+            timeLeft === 4 &&
+            breathingInterval
+          ) {
+            // One full cycle complete
+            console.log("Breathing cycle complete");
+          }
+        }, 1000);
+      }
+
+      function updateTimerDisplay() {
+        const timerNumber = document.getElementById("timerNumber");
+        if (timerNumber) {
+          timerNumber.textContent = timeLeft;
+        }
+      }
+
+      function stopBreathingExercise() {
+        if (breathingInterval) {
+          clearInterval(breathingInterval);
+          breathingInterval = null;
+          document.getElementById("timerNumber").textContent = "4";
+          document.getElementById("timerText").textContent = "Click to start";
+        }
+      }
+
+      // Quotes and rotations (same as before)
+      const quotes = [
+        "Every day may not be good, but there’s something good in every day.",
+        "You are stronger than you think, braver than you feel, and smarter than you believe.",
+        "Rest is not a waste of time — it’s how you recharge your mind and body.",
+        "Your value is not measured by grades, but by the kindness you show and the effort you give.",
+        "Even the darkest night will end, and the sun will rise.",
+        "Progress, not perfection — small steps lead to big change.",
+        "You are not alone. Someone cares about how you feel today.",
+        "Take one step at a time — small progress is still progress.",
+        "Your journey is unique, and that makes it powerful.",
+      ];
+
+      const reflections = [
+        "What’s one thing you did well today?",
+        "What’s a small step you can take tomorrow to feel better?",
+        "What’s one challenge you overcame recently?",
+        "What’s something you’re grateful for right now?",
+        "What’s one kind thing you can do for yourself today?",
+        "What’s a moment this week that made you smile?",
+        "What’s one strength you’re proud of?",
+        "What’s a lesson you learned from a mistake?",
+        "What’s one way you showed kindness today?",
+        "What’s something you’re looking forward to?",
+      ];
+
+      const relaxationExercises = [
+        "Close your eyes and take 5 slow breaths, focusing only on the rise and fall of your chest.",
+        "Stretch your arms overhead, then gently roll your shoulders back to release tension.",
+        "Try progressive muscle relaxation: tense each muscle group for 5 seconds, then release.",
+        "Visualize a calm place — a beach, a forest, or anywhere peaceful — and imagine yourself there.",
+        "Do a quick body scan: notice how your head, shoulders, arms, and legs feel, and let go of tightness.",
+      ];
+
+      const encouragements = [
+        "You are more than your grades, more than your struggles, and more than your mistakes.",
+        "Even when life feels heavy, you carry the ability to rise again.",
+        "Your effort matters, even when results take time.",
+        "You are worthy of rest, care, and compassion.",
+        "Every challenge you face is proof of your strength.",
+        "You have the courage to keep moving forward, even when it’s hard.",
+        "Your dreams are valid, and your potential is limitless.",
+      ];
+
+      let intervals = {};
+      let delay = 6000;
+
+      function rotateContent(containerId, array) {
+        const container = document.getElementById(containerId);
+        if (!container) return;
+        let index = 0;
+
+        function showMessage(text) {
+          container.textContent = text;
+        }
+
+        showMessage(array[index]);
+
+        intervals[containerId] = setInterval(() => {
+          index = (index + 1) % array.length;
+          showMessage(array[index]);
+        }, delay);
+      }
+
+      function startRotation() {
+        rotateContent("daily-quote", quotes);
+        rotateContent("encouragement-text", encouragements);
+        rotateContent("reflection-prompt-text", reflections);
+        rotateContent("relaxation-exercise", relaxationExercises);
+      }
+
+      function stopRotation() {
+        for (let id in intervals) {
+          clearInterval(intervals[id]);
+        }
+        intervals = {};
+      }
+
+      // Download wellness hub for offline
+      async function downloadWellnessOffline() {
+        const btn = document.getElementById("downloadWellnessBtn");
+        const originalText = btn.innerHTML;
+        btn.innerHTML = "⏳ Downloading...";
+        btn.disabled = true;
+
+        if (navigator.serviceWorker && navigator.serviceWorker.controller) {
+          const assetsToCache = [
+            window.location.href,
+            "/styles.css",
+            "https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300;400;700&family=Poppins:wght@300;400;600;700&display=swap",
+            "https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css",
+            "https://cdn.jsdelivr.net/npm/dexie@3.2.2/dist/dexie.js",
+          ];
+
+          navigator.serviceWorker.controller.postMessage({
+            type: "CACHE_NEW_ASSETS",
+            urls: assetsToCache,
+          });
+
+          setTimeout(() => {
+            btn.innerHTML = "✓ Wellness Hub Saved!";
+            showNotification(
+              "Wellness Hub saved for offline access!",
+              "success",
+            );
+            setTimeout(() => {
+              btn.innerHTML = originalText;
+              btn.disabled = false;
+            }, 3000);
+          }, 2000);
+        } else {
+          btn.innerHTML = originalText;
+          btn.disabled = false;
+          showNotification("Please refresh and try again", "error");
+        }
+      }
+
+      function showNotification(message, type = "success") {
+        const toast = document.getElementById("notificationToast");
+        toast.textContent = message;
+        toast.style.background =
+          type === "success"
+            ? "#4CAF50"
+            : type === "error"
+              ? "#f44336"
+              : "#2196F3";
+        toast.classList.add("show");
+
+        setTimeout(() => {
+          toast.classList.remove("show");
+        }, 3000);
+      }
+
+      function updateOfflineUI() {
+        const isOffline = !navigator.onLine;
+        const banner = document.getElementById("offlineBanner");
+
+        if (isOffline) {
+          banner.classList.add("show");
+          showNotification("Offline mode - wellness tools still work!", "info");
+        } else {
+          banner.classList.remove("show");
+        }
+      }
+
+      // Navigation menu
+      var navLinks = document.getElementById("navLinks");
+      function showmenu() {
+        if (navLinks) navLinks.style.right = "0";
+      }
+      function hidemenu() {
+        if (navLinks) navLinks.style.right = "-200px";
+      }
+
+      // Initialize everything
+      document.addEventListener("DOMContentLoaded", async function () {
+        await initWellnessDB();
+        startRotation();
+        updateOfflineUI();
+
+        // Add control buttons to footer
+        const pauseButton = document.createElement("button");
+        pauseButton.innerText = "⏸ Pause Rotation";
+        pauseButton.className = "control-btn";
+        pauseButton.onclick = stopRotation;
+
+        const resumeButton = document.createElement("button");
+        resumeButton.innerText = "▶ Resume Rotation";
+        resumeButton.className = "control-btn";
+        resumeButton.onclick = startRotation;
+
+        const downloadButton = document.createElement("button");
+        downloadButton.innerText = "📥 Download for Offline";
+        downloadButton.className = "control-btn";
+        downloadButton.onclick = downloadWellnessOffline;
+
+        const footer = document.querySelector(".Footer");
+        footer.appendChild(pauseButton);
+        footer.appendChild(resumeButton);
+        footer.appendChild(downloadButton);
+
+        // Mood tracker buttons
+        document.querySelectorAll(".mood-btn").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const mood = btn.getAttribute("data-mood");
+            saveMood(mood);
+          });
+        });
+
+        // Gratitude journal
+        const saveGratitudeBtn = document.getElementById("saveGratitudeBtn");
+        if (saveGratitudeBtn) {
+          saveGratitudeBtn.addEventListener("click", () => {
+            const entry = document.getElementById("gratitudeInput").value;
+            saveGratitudeEntry(entry);
+          });
+        }
+
+        // Breathing exercise
+        const timerCircle = document.getElementById("timerCircle");
+        if (timerCircle) {
+          timerCircle.addEventListener("click", () => {
+            if (breathingInterval) {
+              stopBreathingExercise();
+            } else {
+              startBreathingExercise();
+            }
+          });
+        }
+
+        // Download button
+        const downloadBtn = document.getElementById("downloadWellnessBtn");
+        if (downloadBtn) {
+          downloadBtn.addEventListener("click", downloadWellnessOffline);
+        }
+
+        // Banner buttons
+        const dismissBtn = document.getElementById("dismissBanner");
+        if (dismissBtn) {
+          dismissBtn.addEventListener("click", () => {
+            document.getElementById("offlineBanner").classList.remove("show");
+          });
+        }
+
+        const retryBtn = document.getElementById("retryConnection");
+        if (retryBtn) {
+          retryBtn.addEventListener("click", () => {
+            if (navigator.onLine) {
+              location.reload();
+            } else {
+              showNotification(
+                "Still offline. Please check your connection.",
+                "error",
+              );
+            }
+          });
+        }
+      });
+
+      // Online/Offline listeners
+      window.addEventListener("online", () => {
+        updateOfflineUI();
+        showNotification("Back online!", "success");
+      });
+
+      window.addEventListener("offline", () => {
+        updateOfflineUI();
+      });
+    </script>
+
+    <!-- Chatbot Embed -->
+    <script
+      src="//code.tidio.co/uqdod81sfajvlkpiujfsjo49za71xsuc.js"
+      async
+    ></script>
+    <script>
+      // Handle Tidio chat offline
+      window.addEventListener("offline", () => {
+        const tidioFrame = document.querySelector("#tidio-chat-iframe");
+        if (tidioFrame) tidioFrame.style.display = "none";
+      });
+
+      window.addEventListener("online", () => {
+        const tidioFrame = document.querySelector("#tidio-chat-iframe");
+        if (tidioFrame) tidioFrame.style.display = "block";
+      });
+    </script>
+  </body>
 </html>

@@ -1,149 +1,220 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About - Media On Africa Learning Hub</title>
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300;400;700&family=Poppins:wght@300;400;500;600;700&display=swap"
-    rel="stylesheet"
-  />
-  <link
-    rel="stylesheet"
-    href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-  />
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About - Media On Africa Learning Hub</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300;400;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
 
-<!-- Navigation -->
-<nav>
-  <div class="nav-links" id="navLinks">
-    <i class="fa fa-times" onclick="hidemenu()"></i>
-    <ul>
-      <li><a href="index.html">HOME</a></li>
-      <li><a href="About.html">ABOUT</a></li>
-      <li><a href="Subjects.html">SUBJECTS</a></li>
-      <li><a href="quizzes.html">QUIZZES</a></li>
-      <li><a href="aptitude.html">APTITUDE TEST</a></li>
-      <li><a href="forum.html">DISCUSSION</a></li>
-      <li><a href="mental_wellness.html">WELLNESS</a></li>
-      <li><a href="blog.html">BLOG</a></li>
-      <li><a href="contact.html">CONTACT</a></li>
-      <li><a href="library.html">LIBRARY</a></li>
-      <li><a href="khulisa.html">SUPPORT</a></li>
-    </ul>
-  </div>
-  <i class="fa fa-bars" onclick="showmenu()"></i>
-</nav>
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#1a5fa8" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="MOA Hub" />
 
-<!-- Header -->
-<section class="header big-header">
-  <div class="text-box">
-    <h1>About Us</h1>
-  </div>
-</section>
+    <!-- Service Worker Registration -->
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", function () {
+          navigator.serviceWorker
+            .register("/service-worker.js")
+            .then(function (reg) {
+              console.log("[MOA] Service Worker registered:", reg.scope);
+            })
+            .catch(function (err) {
+              console.warn("[MOA] Service Worker registration failed:", err);
+            });
+        });
+      }
+    </script>
 
+    <!-- Offline / Online status banner -->
+    <style>
+      #moa-offline-banner {
+        display: none;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: #e67e22;
+        color: #fff;
+        text-align: center;
+        padding: 10px 16px;
+        font-size: 0.9rem;
+        font-family: sans-serif;
+        z-index: 9999;
+        box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.2);
+      }
+      #moa-offline-banner.online {
+        background: #2ecc71;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="moa-offline-banner">
+      📡 You're offline — cached content is available
+    </div>
+    <script>
+      (function () {
+        var banner = document.getElementById("moa-offline-banner");
+        function updateBanner() {
+          if (!navigator.onLine) {
+            banner.style.display = "block";
+            banner.classList.remove("online");
+            banner.textContent =
+              "📡 You're offline — cached content is available";
+          } else {
+            banner.classList.add("online");
+            banner.textContent = "✅ Back online!";
+            banner.style.display = "block";
+            setTimeout(function () {
+              banner.style.display = "none";
+            }, 3000);
+          }
+        }
+        window.addEventListener("online", updateBanner);
+        window.addEventListener("offline", updateBanner);
+        if (!navigator.onLine) updateBanner();
+      })();
+    </script>
 
-  <!-- About Us Content -->
-<section class="About-us">
-  
-  <!-- Core Features block -->
-  <div class="feature-block core-features">
-    <h3>Core Features</h3>
-    <p>
-      Our platform is built with an offline-first approach, ensuring that
-      learners can download lessons, quizzes, and study materials to use
-      without constant internet access. Interactive modules, gamified quizzes,
-      and multimedia lessons make learning engaging and fun. Teachers can
-      upload custom content, track student progress, and provide feedback in
-      real time. Accessibility is central to our design — with text-to-speech
-      options, simplified navigation, and mobile-friendly layouts that work
-      seamlessly on low-cost devices.
-    </p>
-  </div>
+    <!-- Navigation -->
+    <nav>
+      <div class="nav-links" id="navLinks">
+        <i class="fa fa-times" onclick="hidemenu()"></i>
+        <ul>
+          <li><a href="index.html">HOME</a></li>
+          <li><a href="About.html">ABOUT</a></li>
+          <li><a href="Subjects.html">SUBJECTS</a></li>
+          <li><a href="quizzes.html">QUIZZES</a></li>
+          <li><a href="aptitude.html">APTITUDE TEST</a></li>
+          <li><a href="forum.html">DISCUSSION</a></li>
+          <li><a href="mental_wellness.html">WELLNESS</a></li>
+          <li><a href="blog.html">BLOG</a></li>
+          <li><a href="contact.html">CONTACT</a></li>
+          <li><a href="library.html">LIBRARY</a></li>
+          <li><a href="khulisa.html">SUPPORT</a></li>
+        </ul>
+      </div>
+      <i class="fa fa-bars" onclick="showmenu()"></i>
+    </nav>
 
-  <!-- Community and Support block -->
-  <div class="feature-block community-support">
-    <h3>Community and Support</h3>
-    <p>
-      Learning is not just about individual progress — it’s about community.
-      Our peer-to-peer discussion forums allow learners to ask questions,
-      share insights, and collaborate on projects. Mentorship programs connect
-      students with educators and professionals who can guide them through
-      academic and career decisions. Parents and guardians are also included,
-      with dedicated spaces to monitor progress and access resources that help
-      them support their children’s learning journey.
-    </p>
-  </div>
+    <!-- Header -->
+    <section class="header big-header">
+      <div class="text-box">
+        <h1>About Us</h1>
+      </div>
+    </section>
 
-  <!-- Technical Strategy block -->
-  <div class="feature-block technical-strategy">
-    <h3>Technical Strategy</h3>
-    <p>
-      We understand the challenges of low-bandwidth environments, so our
-      platform is optimized with compressed video formats, audio-only lessons,
-      and lightweight interactive modules. Content delivery networks ensure
-      faster loading times, even in areas with unstable connections. Our
-      adaptive design allows the platform to scale across devices — from
-      smartphones to desktop computers — while maintaining a consistent user
-      experience. Security and privacy are prioritized, with encrypted data
-      storage and safe login systems to protect learners’ information.
-    </p>
-  </div>
+    <!-- About Us Content -->
+    <section class="About-us">
+      <!-- Core Features block -->
+      <div class="feature-block core-features">
+        <h3>Core Features</h3>
+        <p>
+          Our platform is built with an offline-first approach, ensuring that
+          learners can download lessons, quizzes, and study materials to use
+          without constant internet access. Interactive modules, gamified
+          quizzes, and multimedia lessons make learning engaging and fun.
+          Teachers can upload custom content, track student progress, and
+          provide feedback in real time. Accessibility is central to our design
+          — with text-to-speech options, simplified navigation, and
+          mobile-friendly layouts that work seamlessly on low-cost devices.
+        </p>
+      </div>
 
-  <!-- Long-Term Impact block -->
-  <div class="feature-block long-term-impact">
-    <h3>Long-Term Impact</h3>
-    <p>
-      Our mission is to narrow the achievement gap between urban and rural
-      learners by providing equal access to quality education. Over time, we
-      aim to build digital literacy, foster critical thinking, and empower
-      communities to embrace technology as a tool for growth. By equipping
-      learners with the skills they need to succeed in higher education and the
-      workplace, we are investing in Africa’s future leaders. This initiative
-      is not just about academics — it’s about creating opportunities,
-      uplifting communities, and driving sustainable change across the
-      continent.
-    </p>
-    <a href="Subjects.html" class="hero-btn">EXPLORE NOW</a>
-  </div>
+      <!-- Community and Support block -->
+      <div class="feature-block community-support">
+        <h3>Community and Support</h3>
+        <p>
+          Learning is not just about individual progress — it's about community.
+          Our peer-to-peer discussion forums allow learners to ask questions,
+          share insights, and collaborate on projects. Mentorship programs
+          connect students with educators and professionals who can guide them
+          through academic and career decisions. Parents and guardians are also
+          included, with dedicated spaces to monitor progress and access
+          resources that help them support their children's learning journey.
+        </p>
+      </div>
 
-</section>
+      <!-- Technical Strategy block -->
+      <div class="feature-block technical-strategy">
+        <h3>Technical Strategy</h3>
+        <p>
+          We understand the challenges of low-bandwidth environments, so our
+          platform is optimized with compressed video formats, audio-only
+          lessons, and lightweight interactive modules. Content delivery
+          networks ensure faster loading times, even in areas with unstable
+          connections. Our adaptive design allows the platform to scale across
+          devices — from smartphones to desktop computers — while maintaining a
+          consistent user experience. Security and privacy are prioritized, with
+          encrypted data storage and safe login systems to protect learners'
+          information.
+        </p>
+      </div>
 
+      <!-- Long-Term Impact block -->
+      <div class="feature-block long-term-impact">
+        <h3>Long-Term Impact</h3>
+        <p>
+          Our mission is to narrow the achievement gap between urban and rural
+          learners by providing equal access to quality education. Over time, we
+          aim to build digital literacy, foster critical thinking, and empower
+          communities to embrace technology as a tool for growth. By equipping
+          learners with the skills they need to succeed in higher education and
+          the workplace, we are investing in Africa's future leaders. This
+          initiative is not just about academics — it's about creating
+          opportunities, uplifting communities, and driving sustainable change
+          across the continent.
+        </p>
+        <a href="Subjects.html" class="hero-btn">EXPLORE NOW</a>
+      </div>
+    </section>
 
-<!-- Footer -->
-<footer class="Footer">
-  <h4>About Us</h4>
-  <p>
-    By leveraging technology, we aim to empower students with
-    the tools and support they need to succeed academically<br>
-    regardless of their location, resources, or socioeconomic status.
-  </p>
-  <div class="icons">
-    <i class="fa fa-facebook"></i>
-    <i class="fa fa-twitter"></i>
-    <i class="fa fa-instagram"></i>
-    <i class="fa fa-linkedin"></i>
-  </div>
-  <p>Made with <i class="fa fa-heart-o"></i> by Media On Africa</p>
-</footer>
+    <!-- Footer -->
+    <footer class="Footer">
+      <h4>About Us</h4>
+      <p>
+        By leveraging technology, we aim to empower students with the tools and
+        support they need to succeed academically<br />
+        regardless of their location, resources, or socioeconomic status.
+      </p>
+      <div class="icons">
+        <i class="fa fa-facebook"></i>
+        <i class="fa fa-twitter"></i>
+        <i class="fa fa-instagram"></i>
+        <i class="fa fa-linkedin"></i>
+      </div>
+      <p>Made with <i class="fa fa-heart-o"></i> by Media On Africa</p>
+    </footer>
 
-<!-- JavaScript for Toggle Menu -->
-<script>
-  var navLinks = document.getElementById("navLinks");
-  function showmenu() {
-    navLinks.style.right = "0";
-  }
-  function hidemenu() {
-    navLinks.style.right = "-200px";
-  }
-</script>
+    <!-- JavaScript for Toggle Menu -->
+    <script>
+      var navLinks = document.getElementById("navLinks");
+      function showmenu() {
+        navLinks.style.right = "0";
+      }
+      function hidemenu() {
+        navLinks.style.right = "-200px";
+      }
+    </script>
 
-<!-- Chatbot Embed -->
-<script src="//code.tidio.co/uqdod81sfajvlkpiujfsjo49za71xsuc.js" async></script>
-</body>
+    <!-- Chatbot Embed -->
+    <script
+      src="//code.tidio.co/uqdod81sfajvlkpiujfsjo49za71xsuc.js"
+      async
+    ></script>
+  </body>
 </html>
-

@@ -1,124 +1,978 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Library - Media On Africa Learning Hub</title>
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300;400;700&family=Poppins:wght@300;400;500;600;700&display=swap"
-    rel="stylesheet"
-  />
-  <link
-    rel="stylesheet"
-    href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-  />
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Library - Media On Africa Learning Hub</title>
 
-<!-- Navigation -->
-<nav>
-  <div class="nav-links" id="navLinks">
-    <i class="fa fa-times" onclick="hidemenu()"></i>
-    <ul>
-      <li><a href="index.html">HOME</a></li>
-      <li><a href="About.html">ABOUT</a></li>
-      <li><a href="Subjects.html">SUBJECTS</a></li>
-      <li><a href="quizzes.html">QUIZZES</a></li>
-      <li><a href="aptitude.html">APTITUDE TEST</a></li>
-      <li><a href="forum.html">DISCUSSION</a></li>
-      <li><a href="mental_wellness.html">WELLNESS</a></li>
-      <li><a href="blog.html">BLOG</a></li>
-      <li><a href="contact.html">CONTACT</a></li>
-      <li><a href="library.html" class="active">LIBRARY</a></li>
-      <li><a href="khulisa.html">SUPPORT</a></li>
-    </ul>
-  </div>
-  <i class="fa fa-bars" onclick="showmenu()"></i>
-</nav>
+    <!-- PWA Meta Tags -->
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#1a472a" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta name="apple-mobile-web-app-title" content="MoA Library" />
+    <link rel="apple-touch-icon" href="/icons/icon-192x192.png" />
 
-<!-- Library Section -->
-<section class="library">
-  <h2>📚 Learning Hub Library</h2>
-  <p>Search and access learning materials.</p>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300;400;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
 
-  <!-- Search Bar -->
-  <div class="library-search">
-    <input type="text" placeholder="Search books..." />
-    <i class="fa fa-search"></i>
-  </div>
+    <style>
+      /* Library-specific styles */
+      .library {
+        max-width: 1200px;
+        margin: 2rem auto;
+        padding: 0 2rem;
+      }
 
-  <!-- Book Cards -->
-  <div class="library-grid">
-    <div class="book-card">
-      <h3>Science</h3>
-      <p>Explore DBE-approved Science resources.</p>
-      <a href="resources/Science.pdf" target="_blank" class="btn">
-        <i class="fa fa-download"></i> Open book
-      </a>
+      .library h2 {
+        text-align: center;
+        color: #0b6aa3;
+        margin-bottom: 0.5rem;
+      }
+
+      .library > p {
+        text-align: center;
+        color: #666;
+        margin-bottom: 2rem;
+      }
+
+      .library-search {
+        position: relative;
+        max-width: 500px;
+        margin: 0 auto 2rem;
+      }
+
+      .library-search input {
+        width: 100%;
+        padding: 12px 40px 12px 15px;
+        border: 2px solid #e0e0e0;
+        border-radius: 25px;
+        font-size: 16px;
+        transition: border-color 0.3s;
+      }
+
+      .library-search input:focus {
+        outline: none;
+        border-color: #0b6aa3;
+      }
+
+      .library-search i {
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #999;
+      }
+
+      .library-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+      }
+
+      .book-card {
+        background: white;
+        border-radius: 12px;
+        padding: 1.5rem;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        transition:
+          transform 0.3s,
+          box-shadow 0.3s;
+        position: relative;
+      }
+
+      .book-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+      }
+
+      .book-card h3 {
+        color: #0b6aa3;
+        margin-bottom: 0.5rem;
+        font-size: 1.5rem;
+      }
+
+      .book-card p {
+        color: #666;
+        margin-bottom: 1rem;
+        line-height: 1.5;
+      }
+
+      .book-actions {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-top: 1rem;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: #0b6aa3;
+        color: white;
+        padding: 8px 16px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-size: 14px;
+        transition: background 0.3s;
+        border: none;
+        cursor: pointer;
+      }
+
+      .btn:hover {
+        background: #0f4c81;
+      }
+
+      .btn-download {
+        background: #4caf50;
+      }
+
+      .btn-download:hover {
+        background: #45a049;
+      }
+
+      .btn-offline {
+        background: #ff9800;
+      }
+
+      .btn-offline:hover {
+        background: #f57c00;
+      }
+
+      .download-status {
+        font-size: 12px;
+        margin-top: 10px;
+        padding: 5px 10px;
+        border-radius: 6px;
+        display: none;
+      }
+
+      .download-status.show {
+        display: block;
+      }
+
+      .download-status.success {
+        background: #d4edda;
+        color: #155724;
+      }
+
+      .download-status.error {
+        background: #f8d7da;
+        color: #721c24;
+      }
+
+      .download-status.info {
+        background: #d1ecf1;
+        color: #0c5460;
+      }
+
+      .offline-badge {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: #4caf50;
+        color: white;
+        padding: 2px 8px;
+        border-radius: 12px;
+        font-size: 11px;
+        display: none;
+      }
+
+      .offline-badge.show {
+        display: inline-block;
+      }
+
+      /* Offline banner */
+      .offline-banner {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 12px 20px;
+        text-align: center;
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        right: 20px;
+        z-index: 10000;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        display: none;
+        backdrop-filter: blur(10px);
+        animation: slideUp 0.3s ease;
+      }
+
+      @keyframes slideUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .offline-banner.show {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      /* Notification toast */
+      .notification-toast {
+        position: fixed;
+        top: 80px;
+        right: 20px;
+        background: #4caf50;
+        color: white;
+        padding: 12px 20px;
+        border-radius: 8px;
+        z-index: 10002;
+        animation: slideIn 0.3s ease;
+        display: none;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        max-width: 350px;
+      }
+
+      @keyframes slideIn {
+        from {
+          opacity: 0;
+          transform: translateX(100px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      .notification-toast.show {
+        display: block;
+      }
+
+      /* Reading progress */
+      .reading-progress {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 0%;
+        height: 3px;
+        background: linear-gradient(90deg, #667eea, #764ba2);
+        z-index: 10001;
+        transition: width 0.2s;
+      }
+
+      /* Download all button */
+      .download-all-btn {
+        background: #2196f3;
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 16px;
+        margin: 20px auto;
+        display: block;
+        transition: background 0.3s;
+      }
+
+      .download-all-btn:hover {
+        background: #0b7dda;
+      }
+
+      .stats-bar {
+        background: #f0f7ff;
+        border-radius: 8px;
+        padding: 15px;
+        margin: 20px 0;
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        gap: 15px;
+      }
+
+      .stat-item {
+        text-align: center;
+      }
+
+      .stat-number {
+        font-size: 24px;
+        font-weight: bold;
+        color: #0b6aa3;
+      }
+
+      .stat-label {
+        font-size: 12px;
+        color: #666;
+      }
+
+      @media (max-width: 768px) {
+        .library {
+          padding: 0 1rem;
+        }
+
+        .offline-banner.show {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .stats-bar {
+          flex-direction: column;
+          align-items: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Reading Progress Bar -->
+    <div class="reading-progress" id="readingProgress"></div>
+
+    <!-- Navigation -->
+    <nav>
+      <div class="nav-links" id="navLinks">
+        <i class="fa fa-times" onclick="hidemenu()"></i>
+        <ul>
+          <li><a href="index.html">HOME</a></li>
+          <li><a href="About.html">ABOUT</a></li>
+          <li><a href="Subjects.html">SUBJECTS</a></li>
+          <li><a href="quizzes.html">QUIZZES</a></li>
+          <li><a href="aptitude.html">APTITUDE TEST</a></li>
+          <li><a href="forum.html">DISCUSSION</a></li>
+          <li><a href="mental_wellness.html">WELLNESS</a></li>
+          <li><a href="blog.html">BLOG</a></li>
+          <li><a href="contact.html">CONTACT</a></li>
+          <li><a href="library.html" class="active">LIBRARY</a></li>
+          <li><a href="khulisa.html">SUPPORT</a></li>
+        </ul>
+      </div>
+      <i class="fa fa-bars" onclick="showmenu()"></i>
+    </nav>
+
+    <!-- Library Section -->
+    <section class="library">
+      <h2>📚 Learning Hub Library</h2>
+      <p>
+        Search and access learning materials - available offline once downloaded
+      </p>
+
+      <!-- Stats Bar -->
+      <div class="stats-bar" id="statsBar">
+        <div class="stat-item">
+          <div class="stat-number" id="downloadedCount">0</div>
+          <div class="stat-label">Books Downloaded</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number" id="storageUsed">0</div>
+          <div class="stat-label">MB Used</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number" id="readingTime">0</div>
+          <div class="stat-label">Minutes Read</div>
+        </div>
+      </div>
+
+      <!-- Search Bar -->
+      <div class="library-search">
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Search books by title or description..."
+        />
+        <i class="fa fa-search"></i>
+      </div>
+
+      <button id="downloadAllBtn" class="download-all-btn">
+        📥 Download All Books for Offline
+      </button>
+
+      <!-- Book Cards -->
+      <div class="library-grid" id="libraryGrid">
+        <div
+          class="book-card"
+          data-book-id="science"
+          data-book-url="resources/Science.pdf"
+          data-book-size="2.5"
+        >
+          <span class="offline-badge" id="badge-science">✓ Downloaded</span>
+          <h3>🔬 Science</h3>
+          <p>
+            Explore DBE-approved Science resources including biology, chemistry,
+            and physics concepts with practical examples and exercises.
+          </p>
+          <div class="book-actions">
+            <a
+              href="resources/Science.pdf"
+              target="_blank"
+              class="btn"
+              id="open-science"
+            >
+              <i class="fa fa-book"></i> Open Book
+            </a>
+            <button
+              class="btn btn-download"
+              data-book="science"
+              data-url="resources/Science.pdf"
+              data-name="Science"
+            >
+              <i class="fa fa-download"></i> Save for Offline
+            </button>
+          </div>
+          <div id="status-science" class="download-status"></div>
+        </div>
+
+        <div
+          class="book-card"
+          data-book-id="technology"
+          data-book-url="resources/Technology.pdf"
+          data-book-size="3.1"
+        >
+          <span class="offline-badge" id="badge-technology">✓ Downloaded</span>
+          <h3>💻 Technology</h3>
+          <p>
+            Learn about Technology concepts, digital literacy, programming
+            basics, and modern technological applications.
+          </p>
+          <div class="book-actions">
+            <a
+              href="resources/Technology.pdf"
+              target="_blank"
+              class="btn"
+              id="open-technology"
+            >
+              <i class="fa fa-book"></i> Open Book
+            </a>
+            <button
+              class="btn btn-download"
+              data-book="technology"
+              data-url="resources/Technology.pdf"
+              data-name="Technology"
+            >
+              <i class="fa fa-download"></i> Save for Offline
+            </button>
+          </div>
+          <div id="status-technology" class="download-status"></div>
+        </div>
+
+        <div
+          class="book-card"
+          data-book-id="art"
+          data-book-url="resources/Art.pdf"
+          data-book-size="1.8"
+        >
+          <span class="offline-badge" id="badge-art">✓ Downloaded</span>
+          <h3>🎨 Art</h3>
+          <p>
+            Discover creative Art materials, drawing techniques, color theory,
+            and art history from African perspectives.
+          </p>
+          <div class="book-actions">
+            <a
+              href="resources/Art.pdf"
+              target="_blank"
+              class="btn"
+              id="open-art"
+            >
+              <i class="fa fa-book"></i> Open Book
+            </a>
+            <button
+              class="btn btn-download"
+              data-book="art"
+              data-url="resources/Art.pdf"
+              data-name="Art"
+            >
+              <i class="fa fa-download"></i> Save for Offline
+            </button>
+          </div>
+          <div id="status-art" class="download-status"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="Footer">
+      <h4>Library</h4>
+      <p>Access learning materials to support your academic journey.</p>
+      <div class="icons">
+        <i class="fa fa-facebook"></i>
+        <i class="fa fa-twitter"></i>
+        <i class="fa fa-instagram"></i>
+        <i class="fa fa-linkedin"></i>
+      </div>
+      <p>Made with <i class="fa fa-heart-o"></i> by Media On Africa</p>
+    </footer>
+
+    <!-- Offline Banner -->
+    <div id="offlineBanner" class="offline-banner">
+      <div style="display: flex; align-items: center; gap: 10px">
+        <span style="font-size: 20px">📡</span>
+        <span
+          >You are offline — downloaded books are still available to read!</span
+        >
+      </div>
+      <div style="display: flex; gap: 10px">
+        <button
+          id="dismissBanner"
+          style="
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+          "
+        >
+          Dismiss
+        </button>
+        <button
+          id="retryConnection"
+          style="
+            background: white;
+            border: none;
+            color: #667eea;
+            padding: 5px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 500;
+          "
+        >
+          Retry Connection
+        </button>
+      </div>
     </div>
 
-    <div class="book-card">
-      <h3>Technology</h3>
-      <p>Learn about Technology concepts and applications.</p>
-      <a href="resources/Technology.pdf" target="_blank" class="btn">
-        <i class="fa fa-download"></i> Open book
-      </a>
-    </div>
+    <!-- Notification Toast -->
+    <div id="notificationToast" class="notification-toast"></div>
 
-    <div class="book-card">
-      <h3>Art</h3>
-      <p>Discover creative Art materials and guides.</p>
-      <a href="resources/Art.pdf" target="_blank" class="btn">
-        <i class="fa fa-download"></i> Open book
-      </a>
-    </div>
-  </div>
-</section>
+    <!-- Service Worker Registration -->
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker
+            .register("/service-worker.js")
+            .then((registration) => {
+              console.log("ServiceWorker registered:", registration.scope);
+            })
+            .catch((error) => {
+              console.log("ServiceWorker registration failed:", error);
+            });
+        });
+      }
+    </script>
 
-<!-- Footer -->
-<footer class="Footer">
-  <h4>Library</h4>
-  <p>
-    Access learning materials to support your academic journey.
-  </p>
-  <div class="icons">
-    <i class="fa fa-facebook"></i>
-    <i class="fa fa-twitter"></i>
-    <i class="fa fa-instagram"></i>
-    <i class="fa fa-linkedin"></i>
-  </div>
-  <p>Made with <i class="fa fa-heart-o"></i> by Media On Africa</p>
-</footer>
+    <!-- Dexie.js for IndexedDB -->
+    <script src="https://cdn.jsdelivr.net/npm/dexie@3.2.2/dist/dexie.js"></script>
 
-<!-- JavaScript for Toggle Menu -->
-<script>
-  var navLinks = document.getElementById("navLinks");
-  function showmenu() {
-    navLinks.style.right = "0";
-  }
-  function hidemenu() {
-    navLinks.style.right = "-200px";
-  }
+    <!-- Library Offline Logic -->
+    <script>
+      // Initialize IndexedDB
+      let db = null;
+      let downloadedBooks = {};
 
-  // Search filter for library books
-  const searchInput = document.querySelector(".library-search input");
-  const bookCards = document.querySelectorAll(".book-card");
+      async function initLibraryDB() {
+        if (typeof Dexie === "undefined") {
+          await new Promise((resolve) => setTimeout(resolve, 500));
+        }
 
-  searchInput.addEventListener("keyup", function () {
-    const query = searchInput.value.toLowerCase();
-    bookCards.forEach(card => {
-      const title = card.querySelector("h3").textContent.toLowerCase();
-      const description = card.querySelector("p").textContent.toLowerCase();
-      card.style.display = (title.includes(query) || description.includes(query)) ? "block" : "none";
-    });
-  });
-</script>
+        db = new Dexie("MediaOnAfricaLibrary");
+        db.version(1).stores({
+          downloadedBooks:
+            "bookId, bookName, bookUrl, fileSize, downloadDate, lastOpened",
+          readingProgress: "bookId, pageNumber, percentage, lastUpdated",
+        });
 
-<!-- Chatbot Embed -->
-<script src="//code.tidio.co/uqdod81sfajvlkpiujfsjo49za71xsuc.js" async></script>
-</body>
+        await db.open();
+        console.log("Library IndexedDB ready");
+        await loadDownloadedBooks();
+        await updateStats();
+      }
+
+      // Download book for offline
+      async function downloadBook(bookId, bookUrl, bookName, fileSize) {
+        const statusDiv = document.getElementById(`status-${bookId}`);
+        const downloadBtn = document.querySelector(`[data-book="${bookId}"]`);
+
+        statusDiv.className = "download-status show info";
+        statusDiv.innerHTML =
+          '<span class="loading-spinner"></span> Downloading book...';
+        downloadBtn.disabled = true;
+
+        try {
+          // Fetch the PDF file
+          const response = await fetch(bookUrl);
+          if (!response.ok) throw new Error("Download failed");
+
+          const blob = await response.blob();
+
+          // Store in IndexedDB
+          await db.downloadedBooks.put({
+            bookId: bookId,
+            bookName: bookName,
+            bookUrl: bookUrl,
+            fileSize: fileSize,
+            downloadDate: new Date().toISOString(),
+            blob: blob,
+          });
+
+          // Mark as downloaded
+          downloadedBooks[bookId] = true;
+          updateBadge(bookId, true);
+
+          statusDiv.className = "download-status show success";
+          statusDiv.innerHTML = "✓ Book saved for offline reading!";
+          showNotification(`${bookName} book saved for offline!`, "success");
+
+          setTimeout(() => {
+            statusDiv.classList.remove("show");
+          }, 3000);
+
+          await updateStats();
+        } catch (error) {
+          console.error("Download failed:", error);
+          statusDiv.className = "download-status show error";
+          statusDiv.innerHTML = "✗ Download failed. Please try again.";
+          showNotification(`Failed to download ${bookName}`, "error");
+        } finally {
+          downloadBtn.disabled = false;
+          setTimeout(() => {
+            statusDiv.classList.remove("show");
+          }, 3000);
+        }
+      }
+
+      // Open book (online or offline)
+      async function openBook(bookId, bookUrl, bookName) {
+        const isDownloaded = downloadedBooks[bookId];
+
+        if (isDownloaded && db) {
+          // Open from cache
+          const book = await db.downloadedBooks
+            .where("bookId")
+            .equals(bookId)
+            .first();
+          if (book && book.blob) {
+            const url = URL.createObjectURL(book.blob);
+            window.open(url, "_blank");
+
+            // Update last opened
+            await db.downloadedBooks.update(book.id, {
+              lastOpened: new Date().toISOString(),
+            });
+            showNotification(`Opening ${bookName} from offline cache`, "info");
+          } else {
+            // Fallback to network
+            window.open(bookUrl, "_blank");
+          }
+        } else {
+          // Open from network
+          window.open(bookUrl, "_blank");
+        }
+
+        // Track reading time
+        trackReadingTime(bookId);
+      }
+
+      // Track reading time
+      let currentReadingBook = null;
+      let readingStartTime = null;
+
+      function trackReadingTime(bookId) {
+        if (currentReadingBook === bookId) return;
+
+        // Save previous reading time
+        if (currentReadingBook && readingStartTime) {
+          const timeSpent = Math.floor((Date.now() - readingStartTime) / 60000);
+          if (timeSpent > 0) {
+            saveReadingTime(currentReadingBook, timeSpent);
+          }
+        }
+
+        // Start tracking new book
+        currentReadingBook = bookId;
+        readingStartTime = Date.now();
+      }
+
+      async function saveReadingTime(bookId, minutes) {
+        let totalMinutes = parseInt(
+          localStorage.getItem(`reading_${bookId}`) || "0",
+        );
+        totalMinutes += minutes;
+        localStorage.setItem(`reading_${bookId}`, totalMinutes);
+        await updateStats();
+      }
+
+      // Load downloaded books from IndexedDB
+      async function loadDownloadedBooks() {
+        if (!db) return;
+
+        const books = await db.downloadedBooks.toArray();
+        books.forEach((book) => {
+          downloadedBooks[book.bookId] = true;
+          updateBadge(book.bookId, true);
+        });
+      }
+
+      function updateBadge(bookId, isDownloaded) {
+        const badge = document.getElementById(`badge-${bookId}`);
+        if (badge) {
+          if (isDownloaded) {
+            badge.classList.add("show");
+          } else {
+            badge.classList.remove("show");
+          }
+        }
+      }
+
+      // Update statistics
+      async function updateStats() {
+        if (!db) return;
+
+        const downloaded = await db.downloadedBooks.toArray();
+        document.getElementById("downloadedCount").textContent =
+          downloaded.length;
+
+        // Calculate total storage
+        let totalSize = 0;
+        downloaded.forEach((book) => {
+          if (book.blob) {
+            totalSize += book.blob.size;
+          }
+        });
+        const mbUsed = (totalSize / (1024 * 1024)).toFixed(1);
+        document.getElementById("storageUsed").textContent = mbUsed;
+
+        // Calculate total reading time
+        let totalReading = 0;
+        for (const book of ["science", "technology", "art"]) {
+          const minutes = parseInt(
+            localStorage.getItem(`reading_${book}`) || "0",
+          );
+          totalReading += minutes;
+        }
+        document.getElementById("readingTime").textContent = totalReading;
+      }
+
+      // Download all books
+      async function downloadAllBooks() {
+        const books = [
+          {
+            id: "science",
+            url: "resources/Science.pdf",
+            name: "Science",
+            size: 2.5,
+          },
+          {
+            id: "technology",
+            url: "resources/Technology.pdf",
+            name: "Technology",
+            size: 3.1,
+          },
+          { id: "art", url: "resources/Art.pdf", name: "Art", size: 1.8 },
+        ];
+
+        showNotification("Downloading all books...", "info");
+
+        for (const book of books) {
+          if (!downloadedBooks[book.id]) {
+            await downloadBook(book.id, book.url, book.name, book.size);
+            await new Promise((resolve) => setTimeout(resolve, 500)); // Small delay between downloads
+          }
+        }
+
+        showNotification("All books downloaded for offline!", "success");
+      }
+
+      // Search functionality
+      function setupSearch() {
+        const searchInput = document.getElementById("searchInput");
+        const bookCards = document.querySelectorAll(".book-card");
+
+        searchInput.addEventListener("keyup", function () {
+          const query = searchInput.value.toLowerCase();
+          bookCards.forEach((card) => {
+            const title = card.querySelector("h3").textContent.toLowerCase();
+            const description = card
+              .querySelector("p")
+              .textContent.toLowerCase();
+            const shouldShow =
+              title.includes(query) || description.includes(query);
+            card.style.display = shouldShow ? "block" : "none";
+          });
+        });
+      }
+
+      function showNotification(message, type = "success") {
+        const toast = document.getElementById("notificationToast");
+        toast.textContent = message;
+        toast.style.background =
+          type === "success"
+            ? "#4CAF50"
+            : type === "error"
+              ? "#f44336"
+              : "#2196F3";
+        toast.classList.add("show");
+
+        setTimeout(() => {
+          toast.classList.remove("show");
+        }, 3000);
+      }
+
+      function updateOfflineUI() {
+        const isOffline = !navigator.onLine;
+        const banner = document.getElementById("offlineBanner");
+
+        if (isOffline) {
+          banner.classList.add("show");
+          showNotification(
+            "Offline mode - downloaded books are available",
+            "info",
+          );
+        } else {
+          banner.classList.remove("show");
+        }
+      }
+
+      // Reading progress on scroll
+      function updateReadingProgress() {
+        const windowHeight = window.innerHeight;
+        const documentHeight = document.documentElement.scrollHeight;
+        const scrollTop =
+          window.pageYOffset || document.documentElement.scrollTop;
+        const scrollPercent =
+          (scrollTop / (documentHeight - windowHeight)) * 100;
+        const progressBar = document.getElementById("readingProgress");
+        if (progressBar) {
+          progressBar.style.width = scrollPercent + "%";
+        }
+      }
+
+      // Navigation menu
+      var navLinks = document.getElementById("navLinks");
+      function showmenu() {
+        if (navLinks) navLinks.style.right = "0";
+      }
+      function hidemenu() {
+        if (navLinks) navLinks.style.right = "-200px";
+      }
+
+      // Initialize everything
+      document.addEventListener("DOMContentLoaded", async () => {
+        await initLibraryDB();
+        setupSearch();
+        updateOfflineUI();
+
+        // Reading progress
+        window.addEventListener("scroll", updateReadingProgress);
+
+        // Download buttons
+        document.querySelectorAll(".btn-download").forEach((btn) => {
+          btn.addEventListener("click", (e) => {
+            const bookId = btn.getAttribute("data-book");
+            const bookUrl = btn.getAttribute("data-url");
+            const bookName = btn.getAttribute("data-name");
+            const bookCard = btn.closest(".book-card");
+            const fileSize = parseFloat(
+              bookCard.getAttribute("data-book-size") || "2",
+            );
+            downloadBook(bookId, bookUrl, bookName, fileSize);
+          });
+        });
+
+        // Open buttons
+        document.querySelectorAll(".btn").forEach((btn) => {
+          if (!btn.classList.contains("btn-download")) {
+            btn.addEventListener("click", (e) => {
+              e.preventDefault();
+              const bookCard = btn.closest(".book-card");
+              const bookId = bookCard.getAttribute("data-book-id");
+              const bookUrl = bookCard.getAttribute("data-book-url");
+              const bookName = bookCard.querySelector("h3").textContent;
+              openBook(bookId, bookUrl, bookName);
+            });
+          }
+        });
+
+        // Download all button
+        const downloadAllBtn = document.getElementById("downloadAllBtn");
+        if (downloadAllBtn) {
+          downloadAllBtn.addEventListener("click", downloadAllBooks);
+        }
+
+        // Banner buttons
+        const dismissBtn = document.getElementById("dismissBanner");
+        if (dismissBtn) {
+          dismissBtn.addEventListener("click", () => {
+            document.getElementById("offlineBanner").classList.remove("show");
+          });
+        }
+
+        const retryBtn = document.getElementById("retryConnection");
+        if (retryBtn) {
+          retryBtn.addEventListener("click", () => {
+            if (navigator.onLine) {
+              location.reload();
+            } else {
+              showNotification(
+                "Still offline. Please check your connection.",
+                "error",
+              );
+            }
+          });
+        }
+
+        // Save reading time before page unload
+        window.addEventListener("beforeunload", () => {
+          if (currentReadingBook && readingStartTime) {
+            const timeSpent = Math.floor(
+              (Date.now() - readingStartTime) / 60000,
+            );
+            if (timeSpent > 0) {
+              saveReadingTime(currentReadingBook, timeSpent);
+            }
+          }
+        });
+      });
+
+      // Online/Offline listeners
+      window.addEventListener("online", () => {
+        updateOfflineUI();
+        showNotification("Back online!", "success");
+      });
+
+      window.addEventListener("offline", () => {
+        updateOfflineUI();
+      });
+    </script>
+
+    <!-- Chatbot Embed -->
+    <script
+      src="//code.tidio.co/uqdod81sfajvlkpiujfsjo49za71xsuc.js"
+      async
+    ></script>
+    <script>
+      // Handle Tidio chat offline
+      window.addEventListener("offline", () => {
+        const tidioFrame = document.querySelector("#tidio-chat-iframe");
+        if (tidioFrame) tidioFrame.style.display = "none";
+      });
+
+      window.addEventListener("online", () => {
+        const tidioFrame = document.querySelector("#tidio-chat-iframe");
+        if (tidioFrame) tidioFrame.style.display = "block";
+      });
+    </script>
+  </body>
 </html>
-

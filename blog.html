@@ -1,131 +1,883 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Blog - Media On Africa Learning Hub</title>
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300;400;700&family=Poppins:wght@300;400;500;600;700&display=swap"
-    rel="stylesheet"
-  />
-  <link
-    rel="stylesheet"
-    href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-  />
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog - Media On Africa Learning Hub</title>
 
-<!-- Navigation -->
-<nav>
-  <div class="nav-links" id="navLinks">
-    <i class="fa fa-times" onclick="hidemenu()"></i>
-    <ul>
-      <li><a href="index.html">HOME</a></li>
-      <li><a href="About.html">ABOUT</a></li>
-      <li><a href="Subjects.html">SUBJECTS</a></li>
-      <li><a href="quizzes.html">QUIZZES</a></li>
-      <li><a href="aptitude.html">APTITUDE TEST</a></li>
-      <li><a href="forum.html">DISCUSSION</a></li>
-      <li><a href="mental_wellness.html">WELLNESS</a></li>
-      <li><a href="blog.html">BLOG</a></li>
-      <li><a href="contact.html">CONTACT</a></li>
-      <li><a href="library.html">LIBRARY</a></li>
-      <li><a href="khulisa.html">SUPPORT</a></li>
-    </ul>
-  </div>
-  <i class="fa fa-bars" onclick="showmenu()"></i>
-</nav>
+    <!-- PWA Meta Tags -->
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#1a472a" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta name="apple-mobile-web-app-title" content="MoA Blog" />
+    <link rel="apple-touch-icon" href="/icons/icon-192x192.png" />
 
-<!-- Blog Header -->
-<section class="header small-header">
-  <div class="text-box">
-    <h1>Blog</h1>
-  </div>
-</section>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300;400;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
 
-<!-- Blog Content -->
-<section class="blog-content grid-layout">
+    <style>
+      /* Blog-specific styles */
+      .blog-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem;
+      }
 
-  <!-- Blog Card 1 -->
-  <div class="blog-card">
-    <div class="blog-text">
-      <h2 class="blog-title">Why Humans Will Always Be Needed in the 5th Industrial Revolution</h2>
-      <p class="author">By <strong>Themba Netshifira</strong></p>
-      <p>
-        Many people were forced by the Covid-19 pandemic to adapt to new norms. While the pandemic led to an improvement in some skills, it also took away the human connection. The Fourth Industrial Revolution (4IR) talks about the tech era we’re in, while the Fifth IR refers to the human consciousness that we see ourselves returning to through technology.
-      </p>
-      <blockquote>
-        “We need human beings for both industries to integrate.”
-      </blockquote>
+      .grid-layout {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 2rem;
+      }
+
+      .blog-card {
+        background: white;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        transition:
+          transform 0.3s,
+          box-shadow 0.3s;
+      }
+
+      .blog-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+      }
+
+      .blog-text {
+        padding: 1.5rem;
+      }
+
+      .blog-title {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+        color: #0b6aa3;
+      }
+
+      .author {
+        color: #666;
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+      }
+
+      .blog-text blockquote {
+        background: #f0f7ff;
+        border-left: 4px solid #0b6aa3;
+        margin: 1rem 0;
+        padding: 0.75rem 1rem;
+        font-style: italic;
+        color: #333;
+        border-radius: 4px;
+      }
+
+      .author-note {
+        margin-top: 1rem;
+        font-size: 0.85rem;
+        color: #666;
+        border-top: 1px solid #eee;
+        padding-top: 1rem;
+      }
+
+      /* Offline banner */
+      .offline-banner {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 12px 20px;
+        text-align: center;
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        right: 20px;
+        z-index: 10000;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        display: none;
+        backdrop-filter: blur(10px);
+        animation: slideUp 0.3s ease;
+      }
+
+      @keyframes slideUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .offline-banner.show {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      /* Reading progress bar */
+      .reading-progress {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 0%;
+        height: 3px;
+        background: linear-gradient(90deg, #667eea, #764ba2);
+        z-index: 10001;
+        transition: width 0.2s;
+      }
+
+      /* Bookmark button */
+      .bookmark-btn {
+        background: transparent;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: #ccc;
+        transition: color 0.2s;
+        float: right;
+      }
+
+      .bookmark-btn.bookmarked {
+        color: #ffc107;
+      }
+
+      .bookmark-btn:hover {
+        color: #ffc107;
+      }
+
+      /* Reading time indicator */
+      .reading-time {
+        background: #e8f5e9;
+        padding: 4px 8px;
+        border-radius: 20px;
+        font-size: 0.75rem;
+        display: inline-block;
+        margin-top: 10px;
+      }
+
+      /* Comment section */
+      .comments-section {
+        max-width: 800px;
+        margin: 2rem auto;
+        padding: 2rem;
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .comments-section.hidden {
+        display: none;
+      }
+
+      .comment-input {
+        width: 100%;
+        padding: 12px;
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+        font-family: inherit;
+        resize: vertical;
+        margin: 10px 0;
+      }
+
+      .comment {
+        background: #f8f9fa;
+        padding: 12px;
+        margin: 10px 0;
+        border-radius: 8px;
+        border-left: 3px solid #0b6aa3;
+      }
+
+      .comment-author {
+        font-weight: 600;
+        color: #0b6aa3;
+        margin-bottom: 5px;
+      }
+
+      .comment-date {
+        font-size: 0.75rem;
+        color: #999;
+        margin-bottom: 8px;
+      }
+
+      /* Notification toast */
+      .notification-toast {
+        position: fixed;
+        top: 80px;
+        right: 20px;
+        background: #4caf50;
+        color: white;
+        padding: 12px 20px;
+        border-radius: 8px;
+        z-index: 10002;
+        animation: slideIn 0.3s ease;
+        display: none;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      }
+
+      @keyframes slideIn {
+        from {
+          opacity: 0;
+          transform: translateX(100px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      .notification-toast.show {
+        display: block;
+      }
+
+      /* Download button */
+      .download-blog-btn {
+        background: #4caf50;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 14px;
+        margin: 20px auto;
+        display: inline-block;
+        transition: background 0.3s;
+      }
+
+      .download-blog-btn:hover {
+        background: #45a049;
+      }
+
+      .button-container {
+        text-align: center;
+        margin: 20px 0;
+      }
+
+      @media (max-width: 768px) {
+        .grid-layout {
+          grid-template-columns: 1fr;
+        }
+
+        .offline-banner.show {
+          flex-direction: column;
+          text-align: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Reading Progress Bar -->
+    <div class="reading-progress" id="readingProgress"></div>
+
+    <!-- Navigation -->
+    <nav>
+      <div class="nav-links" id="navLinks">
+        <i class="fa fa-times" onclick="hidemenu()"></i>
+        <ul>
+          <li><a href="index.html">HOME</a></li>
+          <li><a href="About.html">ABOUT</a></li>
+          <li><a href="Subjects.html">SUBJECTS</a></li>
+          <li><a href="quizzes.html">QUIZZES</a></li>
+          <li><a href="aptitude.html">APTITUDE TEST</a></li>
+          <li><a href="forum.html">DISCUSSION</a></li>
+          <li><a href="mental_wellness.html">WELLNESS</a></li>
+          <li><a href="blog.html">BLOG</a></li>
+          <li><a href="contact.html">CONTACT</a></li>
+          <li><a href="library.html">LIBRARY</a></li>
+          <li><a href="khulisa.html">SUPPORT</a></li>
+        </ul>
+      </div>
+      <i class="fa fa-bars" onclick="showmenu()"></i>
+    </nav>
+
+    <!-- Blog Header -->
+    <section class="header small-header">
+      <div class="text-box">
+        <h1>Blog</h1>
+        <p>
+          Insights, stories, and perspectives from African educators and
+          students
+        </p>
+      </div>
+    </section>
+
+    <div class="button-container">
+      <button id="downloadBlogBtn" class="download-blog-btn">
+        📥 Download All Blog Posts for Offline
+      </button>
     </div>
-  </div>
 
-  <!-- Blog Card 2 -->
-  <div class="blog-card">
-    <div class="blog-text">
-      <h2 class="blog-title">My Journey with Technology</h2>
-      <p>
-        For the past seven years, I initiated a digital learning programme in Mpumalanga, training young people in computer and tech skills. While they were learning, some were out of touch with their peers even when they needed help. Emotional intelligence and communication are being lost, even as technical skills grow.
-      </p>
-      <blockquote>
-        “Today, many young people cannot effectively communicate and lack emotional intelligence.”
-      </blockquote>
+    <!-- Blog Content -->
+    <section class="blog-content grid-layout">
+      <!-- Blog Card 1 -->
+      <div class="blog-card" data-blog-id="1">
+        <div class="blog-text">
+          <button class="bookmark-btn" data-blog-id="1">☆</button>
+          <h2 class="blog-title">
+            Why Humans Will Always Be Needed in the 5th Industrial Revolution
+          </h2>
+          <p class="author">By <strong>Themba Netshifira</strong></p>
+          <span class="reading-time">⏱️ 4 min read</span>
+          <p>
+            Many people were forced by the Covid-19 pandemic to adapt to new
+            norms. While the pandemic led to an improvement in some skills, it
+            also took away the human connection. The Fourth Industrial
+            Revolution (4IR) talks about the tech era we're in, while the Fifth
+            IR refers to the human consciousness that we see ourselves returning
+            to through technology.
+          </p>
+          <blockquote>
+            "We need human beings for both industries to integrate."
+          </blockquote>
+          <button class="comment-toggle-btn" data-blog-id="1">
+            💬 View Comments
+          </button>
+        </div>
+      </div>
+
+      <!-- Blog Card 2 -->
+      <div class="blog-card" data-blog-id="2">
+        <div class="blog-text">
+          <button class="bookmark-btn" data-blog-id="2">☆</button>
+          <h2 class="blog-title">My Journey with Technology</h2>
+          <p class="author">By <strong>Themba Netshifira</strong></p>
+          <span class="reading-time">⏱️ 3 min read</span>
+          <p>
+            For the past seven years, I initiated a digital learning programme
+            in Mpumalanga, training young people in computer and tech skills.
+            While they were learning, some were out of touch with their peers
+            even when they needed help. Emotional intelligence and communication
+            are being lost, even as technical skills grow.
+          </p>
+          <blockquote>
+            "Today, many young people cannot effectively communicate and lack
+            emotional intelligence."
+          </blockquote>
+          <button class="comment-toggle-btn" data-blog-id="2">
+            💬 View Comments
+          </button>
+        </div>
+      </div>
+
+      <!-- Blog Card 3 -->
+      <div class="blog-card" data-blog-id="3">
+        <div class="blog-text">
+          <button class="bookmark-btn" data-blog-id="3">☆</button>
+          <h2 class="blog-title">Robots and Young People</h2>
+          <p class="author">By <strong>Themba Netshifira</strong></p>
+          <span class="reading-time">⏱️ 5 min read</span>
+          <p>
+            AI, robotics, and VR do not have senses — yet young people have
+            adopted some of those attributes. The 5th IR will revolutionise the
+            future of work, valuing soft skills and human consciousness over
+            pure technical ability.
+          </p>
+          <blockquote>"Humans are underrated." – Elon Musk</blockquote>
+          <p>
+            Tech layoffs show companies are doing more with less. Developers
+            will need to understand human development alongside product
+            creation. The 5th IR reminds us that technology is here to stay, but
+            humans will always be superior.
+          </p>
+          <p class="author-note">
+            <em
+              >Themba Netshifira is a member of ACTIVATE! Change Drivers writers
+              hub</em
+            >
+          </p>
+          <button class="comment-toggle-btn" data-blog-id="3">
+            💬 View Comments
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Comments Section (Hidden by default) -->
+    <div id="commentsSection" class="comments-section hidden">
+      <h3>💬 Discussion</h3>
+      <div id="commentsList"></div>
+      <textarea
+        id="commentInput"
+        class="comment-input"
+        rows="3"
+        placeholder="Share your thoughts on this article..."
+      ></textarea>
+      <input
+        type="text"
+        id="commentAuthor"
+        class="comment-input"
+        placeholder="Your name (optional)"
+        style="margin-top: 0"
+      />
+      <button
+        id="submitCommentBtn"
+        class="control-btn"
+        style="background: #0b6aa3"
+      >
+        Post Comment
+      </button>
+      <button
+        id="closeCommentsBtn"
+        class="control-btn"
+        style="background: #999"
+      >
+        Close
+      </button>
     </div>
-  </div>
 
-  <!-- Blog Card 3 -->
-  <div class="blog-card">
-    <div class="blog-text">
-      <h2 class="blog-title">Robots and Young People</h2>
+    <!-- Footer -->
+    <section class="Footer">
+      <h4>About Us</h4>
       <p>
-        AI, robotics, and VR do not have senses — yet young people have adopted some of those attributes. The 5th IR will revolutionise the future of work, valuing soft skills and human consciousness over pure technical ability.
+        By leveraging technology, we aim to empower students with the tools and
+        support they need to succeed academically<br />
+        regardless of their location, resources, or socioeconomic status
       </p>
-      <blockquote>
-        “Humans are underrated.” – Elon Musk
-      </blockquote>
-      <p>
-        Tech layoffs show companies are doing more with less. Developers will need to understand human development alongside product creation. The 5th IR reminds us that technology is here to stay, but humans will always be superior.
-      </p>
-      <p class="author-note">
-        <em>Themba Netshifira is a member of ACTIVATE! Change Drivers writers hub</em>
-      </p>
+      <div class="icons">
+        <i class="fa fa-facebook"></i>
+        <i class="fa fa-twitter"></i>
+        <i class="fa fa-instagram"></i>
+        <i class="fa fa-linkedin"></i>
+      </div>
+      <p>Made with <i class="fa fa-heart-o"></i> by Media On Africa</p>
+    </section>
+
+    <!-- Offline Banner -->
+    <div id="offlineBanner" class="offline-banner">
+      <div style="display: flex; align-items: center; gap: 10px">
+        <span style="font-size: 20px">📡</span>
+        <span>You are offline — blog posts are still available to read!</span>
+      </div>
+      <div style="display: flex; gap: 10px">
+        <button
+          id="dismissBanner"
+          style="
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+          "
+        >
+          Dismiss
+        </button>
+        <button
+          id="retryConnection"
+          style="
+            background: white;
+            border: none;
+            color: #667eea;
+            padding: 5px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 500;
+          "
+        >
+          Retry Connection
+        </button>
+      </div>
     </div>
-  </div>
-  
-</section>
 
-<!-- Footer -->
-<section class="Footer">
-  <h4>About Us</h4>
-  <p>
-    By leveraging technology, we aim to empower students with
-    the tools and support they need to succeed academically<br>
-    regardless of their location, resources, or socioeconomic status
-  </p>
-  <div class="icons">
-    <i class="fa fa-facebook"></i>
-    <i class="fa fa-twitter"></i>
-    <i class="fa fa-instagram"></i>
-    <i class="fa fa-linkedin"></i>
-  </div>
-  <p>Made with <i class="fa fa-heart-o"></i> by Media On Africa</p>
-</section>
+    <!-- Notification Toast -->
+    <div id="notificationToast" class="notification-toast"></div>
 
-<!-- JavaScript for Toggle Menu -->
-<script>
-  var navLinks = document.getElementById("navLinks");
-  function showmenu() {
-    navLinks.style.right = "0";
-  }
-  function hidemenu() {
-    navLinks.style.right = "-200px";
-  }
-</script>
+    <!-- Service Worker Registration -->
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker
+            .register("/service-worker.js")
+            .then((registration) => {
+              console.log("ServiceWorker registered:", registration.scope);
+            })
+            .catch((error) => {
+              console.log("ServiceWorker registration failed:", error);
+            });
+        });
+      }
+    </script>
 
-<!-- Chatbot Embed -->
-<script src="//code.tidio.co/uqdod81sfajvlkpiujfsjo49za71xsuc.js" async></script>
-</body>
+    <!-- Dexie.js for IndexedDB -->
+    <script src="https://cdn.jsdelivr.net/npm/dexie@3.2.2/dist/dexie.js"></script>
+
+    <!-- Blog Offline Logic -->
+    <script>
+      // Initialize IndexedDB
+      let db = null;
+      let currentBlogId = null;
+
+      async function initBlogDB() {
+        if (typeof Dexie === "undefined") {
+          await new Promise((resolve) => setTimeout(resolve, 500));
+        }
+
+        db = new Dexie("MediaOnAfricaBlog");
+        db.version(1).stores({
+          bookmarks: "++id, blogId, timestamp",
+          comments: "++id, blogId, author, content, timestamp",
+        });
+
+        await db.open();
+        console.log("Blog IndexedDB ready");
+        await loadBookmarks();
+      }
+
+      // Bookmark functionality
+      async function toggleBookmark(blogId, btnElement) {
+        const existingBookmark = await db.bookmarks
+          .where("blogId")
+          .equals(blogId)
+          .first();
+
+        if (existingBookmark) {
+          await db.bookmarks.delete(existingBookmark.id);
+          btnElement.classList.remove("bookmarked");
+          btnElement.textContent = "☆";
+          showNotification("Removed from bookmarks", "info");
+        } else {
+          await db.bookmarks.add({
+            blogId: blogId,
+            timestamp: new Date().toISOString(),
+          });
+          btnElement.classList.add("bookmarked");
+          btnElement.textContent = "★";
+          showNotification("Added to bookmarks", "success");
+        }
+      }
+
+      async function loadBookmarks() {
+        if (!db) return;
+
+        const bookmarks = await db.bookmarks.toArray();
+        const bookmarkIds = new Set(bookmarks.map((b) => b.blogId));
+
+        document.querySelectorAll(".bookmark-btn").forEach((btn) => {
+          const blogId = parseInt(btn.getAttribute("data-blog-id"));
+          if (bookmarkIds.has(blogId)) {
+            btn.classList.add("bookmarked");
+            btn.textContent = "★";
+          } else {
+            btn.classList.remove("bookmarked");
+            btn.textContent = "☆";
+          }
+        });
+      }
+
+      // Comments functionality
+      async function loadComments(blogId) {
+        if (!db) return;
+
+        const comments = await db.comments
+          .where("blogId")
+          .equals(blogId)
+          .reverse()
+          .toArray();
+        const container = document.getElementById("commentsList");
+
+        if (comments.length === 0) {
+          container.innerHTML =
+            '<p style="color: #999; text-align: center;">No comments yet. Start the discussion!</p>';
+          return;
+        }
+
+        container.innerHTML = comments
+          .map(
+            (comment) => `
+      <div class="comment">
+        <div class="comment-author">${escapeHtml(comment.author || "Anonymous")}</div>
+        <div class="comment-date">${new Date(comment.timestamp).toLocaleString()}</div>
+        <div>${escapeHtml(comment.content)}</div>
+      </div>
+    `,
+          )
+          .join("");
+      }
+
+      async function addComment(blogId, author, content) {
+        if (!content.trim()) {
+          showNotification("Please enter a comment", "error");
+          return;
+        }
+
+        const comment = {
+          blogId: blogId,
+          author: author.trim() || "Anonymous",
+          content: content.trim(),
+          timestamp: new Date().toISOString(),
+        };
+
+        try {
+          await db.comments.add(comment);
+          await loadComments(blogId);
+          document.getElementById("commentInput").value = "";
+          document.getElementById("commentAuthor").value = "";
+          showNotification("Comment saved locally!", "success");
+
+          // If online, could sync to server here
+          if (navigator.onLine) {
+            // await syncCommentToServer(comment);
+          }
+        } catch (error) {
+          console.error("Failed to save comment:", error);
+          showNotification("Failed to save comment", "error");
+        }
+      }
+
+      function escapeHtml(text) {
+        if (!text) return "";
+        const div = document.createElement("div");
+        div.textContent = text;
+        return div.innerHTML;
+      }
+
+      function showNotification(message, type = "success") {
+        const toast = document.getElementById("notificationToast");
+        toast.textContent = message;
+        toast.style.background =
+          type === "success"
+            ? "#4CAF50"
+            : type === "error"
+              ? "#f44336"
+              : "#2196F3";
+        toast.classList.add("show");
+
+        setTimeout(() => {
+          toast.classList.remove("show");
+        }, 3000);
+      }
+
+      // Reading progress bar
+      function updateReadingProgress() {
+        const windowHeight = window.innerHeight;
+        const documentHeight = document.documentElement.scrollHeight;
+        const scrollTop =
+          window.pageYOffset || document.documentElement.scrollTop;
+        const scrollPercent =
+          (scrollTop / (documentHeight - windowHeight)) * 100;
+        const progressBar = document.getElementById("readingProgress");
+        if (progressBar) {
+          progressBar.style.width = scrollPercent + "%";
+        }
+      }
+
+      // Download blog for offline
+      async function downloadBlogOffline() {
+        const btn = document.getElementById("downloadBlogBtn");
+        const originalText = btn.innerHTML;
+        btn.innerHTML = "⏳ Downloading blog posts...";
+        btn.disabled = true;
+
+        if (navigator.serviceWorker && navigator.serviceWorker.controller) {
+          const assetsToCache = [
+            window.location.href,
+            "/styles.css",
+            "https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300;400;700&family=Poppins:wght@300;400;600;700&display=swap",
+            "https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css",
+            "https://cdn.jsdelivr.net/npm/dexie@3.2.2/dist/dexie.js",
+          ];
+
+          navigator.serviceWorker.controller.postMessage({
+            type: "CACHE_NEW_ASSETS",
+            urls: assetsToCache,
+          });
+
+          setTimeout(() => {
+            btn.innerHTML = "✓ Blog Saved for Offline!";
+            showNotification(
+              "All blog posts saved for offline reading!",
+              "success",
+            );
+            setTimeout(() => {
+              btn.innerHTML = originalText;
+              btn.disabled = false;
+            }, 3000);
+          }, 2000);
+        } else {
+          btn.innerHTML = originalText;
+          btn.disabled = false;
+          showNotification("Please refresh and try again", "error");
+        }
+      }
+
+      function updateOfflineUI() {
+        const isOffline = !navigator.onLine;
+        const banner = document.getElementById("offlineBanner");
+
+        if (isOffline) {
+          banner.classList.add("show");
+          showNotification(
+            "Offline mode - blog posts available for reading",
+            "info",
+          );
+        } else {
+          banner.classList.remove("show");
+        }
+      }
+
+      // Navigation menu
+      var navLinks = document.getElementById("navLinks");
+      function showmenu() {
+        if (navLinks) navLinks.style.right = "0";
+      }
+      function hidemenu() {
+        if (navLinks) navLinks.style.right = "-200px";
+      }
+
+      // Track read articles in localStorage
+      function markAsRead(blogId) {
+        let readArticles = JSON.parse(
+          localStorage.getItem("read_articles") || "[]",
+        );
+        if (!readArticles.includes(blogId)) {
+          readArticles.push(blogId);
+          localStorage.setItem("read_articles", JSON.stringify(readArticles));
+        }
+      }
+
+      // Initialize everything
+      document.addEventListener("DOMContentLoaded", async () => {
+        await initBlogDB();
+        updateOfflineUI();
+
+        // Reading progress
+        window.addEventListener("scroll", updateReadingProgress);
+
+        // Bookmark buttons
+        document.querySelectorAll(".bookmark-btn").forEach((btn) => {
+          btn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            const blogId = parseInt(btn.getAttribute("data-blog-id"));
+            toggleBookmark(blogId, btn);
+          });
+        });
+
+        // Comment toggle
+        const commentsSection = document.getElementById("commentsSection");
+        let currentBlogId = null;
+
+        document.querySelectorAll(".comment-toggle-btn").forEach((btn) => {
+          btn.addEventListener("click", async () => {
+            const blogId = parseInt(btn.getAttribute("data-blog-id"));
+            currentBlogId = blogId;
+            commentsSection.classList.remove("hidden");
+            await loadComments(blogId);
+            commentsSection.scrollIntoView({ behavior: "smooth" });
+          });
+        });
+
+        // Submit comment
+        const submitBtn = document.getElementById("submitCommentBtn");
+        if (submitBtn) {
+          submitBtn.addEventListener("click", () => {
+            if (currentBlogId) {
+              const author = document.getElementById("commentAuthor").value;
+              const content = document.getElementById("commentInput").value;
+              addComment(currentBlogId, author, content);
+            }
+          });
+        }
+
+        // Close comments
+        const closeBtn = document.getElementById("closeCommentsBtn");
+        if (closeBtn) {
+          closeBtn.addEventListener("click", () => {
+            commentsSection.classList.add("hidden");
+            currentBlogId = null;
+          });
+        }
+
+        // Download button
+        const downloadBtn = document.getElementById("downloadBlogBtn");
+        if (downloadBtn) {
+          downloadBtn.addEventListener("click", downloadBlogOffline);
+        }
+
+        // Banner buttons
+        const dismissBtn = document.getElementById("dismissBanner");
+        if (dismissBtn) {
+          dismissBtn.addEventListener("click", () => {
+            document.getElementById("offlineBanner").classList.remove("show");
+          });
+        }
+
+        const retryBtn = document.getElementById("retryConnection");
+        if (retryBtn) {
+          retryBtn.addEventListener("click", () => {
+            if (navigator.onLine) {
+              location.reload();
+            } else {
+              showNotification(
+                "Still offline. Please check your connection.",
+                "error",
+              );
+            }
+          });
+        }
+
+        // Mark articles as read when clicked
+        document.querySelectorAll(".blog-card").forEach((card) => {
+          card.addEventListener("click", () => {
+            const blogId = parseInt(card.getAttribute("data-blog-id"));
+            markAsRead(blogId);
+          });
+        });
+
+        // Display reading stats
+        const readArticles = JSON.parse(
+          localStorage.getItem("read_articles") || "[]",
+        );
+        if (readArticles.length > 0) {
+          const statsDiv = document.createElement("div");
+          statsDiv.style.textAlign = "center";
+          statsDiv.style.margin = "10px";
+          statsDiv.style.fontSize = "0.9rem";
+          statsDiv.style.color = "#666";
+          statsDiv.innerHTML = `📚 You've read ${readArticles.length} of 3 articles`;
+          document.querySelector(".button-container").appendChild(statsDiv);
+        }
+      });
+
+      // Online/Offline listeners
+      window.addEventListener("online", () => {
+        updateOfflineUI();
+        showNotification("Back online!", "success");
+      });
+
+      window.addEventListener("offline", () => {
+        updateOfflineUI();
+      });
+    </script>
+
+    <!-- Chatbot Embed -->
+    <script
+      src="//code.tidio.co/uqdod81sfajvlkpiujfsjo49za71xsuc.js"
+      async
+    ></script>
+    <script>
+      // Handle Tidio chat offline
+      window.addEventListener("offline", () => {
+        const tidioFrame = document.querySelector("#tidio-chat-iframe");
+        if (tidioFrame) tidioFrame.style.display = "none";
+      });
+
+      window.addEventListener("online", () => {
+        const tidioFrame = document.querySelector("#tidio-chat-iframe");
+        if (tidioFrame) tidioFrame.style.display = "block";
+      });
+    </script>
+  </body>
 </html>

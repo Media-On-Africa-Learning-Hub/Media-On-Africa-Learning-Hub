@@ -1,117 +1,1048 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Support - Media On Africa Learning Hub</title>
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Support - Media On Africa Learning Hub</title>
 
-<!-- Navigation -->
-<nav>
-  <div class="nav-links" id="navLinks">
-    <i class="fa fa-times" onclick="hidemenu()"></i>
-    <ul>
-      <li><a href="index.html">HOME</a></li>
-      <li><a href="About.html">ABOUT</a></li>
-      <li><a href="Subjects.html">SUBJECTS</a></li>
-      <li><a href="quizzes.html">QUIZZES</a></li>
-      <li><a href="aptitude.html">APTITUDE TEST</a></li>
-      <li><a href="forum.html">DISCUSSION</a></li>
-      <li><a href="mental_wellness.html">WELLNESS</a></li>
-      <li><a href="blog.html">BLOG</a></li>
-      <li><a href="contact.html">CONTACT</a></li>
-      <li><a href="library.html">LIBRARY</a></li>
-      <li><a href="khulisa.html">SUPPORT</a></li>
-    </ul>
-  </div>
-  <i class="fa fa-bars" onclick="showmenu()"></i>
-</nav>
+    <!-- PWA Meta Tags -->
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#1a472a" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta name="apple-mobile-web-app-title" content="MoA Support" />
+    <link rel="apple-touch-icon" href="/icons/icon-192x192.png" />
 
-<!-- Header -->
-<section class="header big-header">
-  <div class="text-box">
-    <h1>Support</h1>
-    <p>Holistic care and guidance for learners through Khulisa Social Solutions.</p>
-  </div>
-</section>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
 
-<!-- Support Content -->
-<main>
-  <!-- About -->
-  <section class="feature-block">
-    <h3>About Khulisa</h3>
-    <img src="i_turn0image10" alt="Community support illustration" loading="lazy">
-    <p>
-      Khulisa Social Solutions is a non-profit organization dedicated to uplifting communities
-      through social cohesion, youth development, and counseling services. Learners gain access
-      to professional support, mentorship, and resources that extend beyond academics.
-    </p>
-    <a href="https://khulisa.org.za" target="_blank" class="hero-btn">Visit Website</a>
-  </section>
+    <style>
+      /* Support-specific styles */
+      main {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+      }
 
-  <!-- Contact -->
-  <section class="feature-block">
-    <h3>Contact a Counselor</h3>
-    <img src="i_turn0image1" alt="Counseling session illustration" loading="lazy">
-    <form id="contactCounselor" action="mailto:info@khulisa.org.za" method="post" enctype="text/plain">
-      <label for="name">Name</label>
-      <input id="name" type="text" name="name" required>
-      
-      <label for="email">Email</label>
-      <input id="email" type="email" name="email" required>
-      
-      <label for="message">Message</label>
-      <textarea id="message" name="message" rows="4" required></textarea>
-      
-      <button type="submit" class="hero-btn">Send Message</button>
-    </form>
-  </section>
+      .feature-block {
+        background: white;
+        border-radius: 12px;
+        padding: 1.5rem;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s;
+      }
 
-  <!-- Booking -->
-  <section class="feature-block">
-    <h3>Book a Session</h3>
-    <img src="i_turn0image4" alt="Booking schedule illustration" loading="lazy">
-    <p>Arrange a counseling session with Khulisa through their scheduling system.</p>
-    <a href="https://calendly.com/khulisa-sessions" target="_blank" class="hero-btn">Book Session</a>
-  </section>
+      .feature-block:hover {
+        transform: translateY(-5px);
+      }
 
-  <!-- Call -->
-  <section class="feature-block">
-    <h3>Call Directly</h3>
-    <img src="i_turn0image7" alt="Youth empowerment illustration" loading="lazy">
-    <p>Speak to Khulisa Johannesburg office for immediate support.</p>
-    <a href="tel:0117888237" class="hero-btn">Call 011 788 8237</a>
-  </section>
-</main>
+      .feature-block h3 {
+        color: #0b6aa3;
+        margin-bottom: 1rem;
+        font-size: 1.5rem;
+      }
 
-<!-- Footer -->
-<footer class="Footer">
-  <h4>Support</h4>
-  <p>
-    Partnering with Khulisa allows us to extend academic learning into holistic
-    community support, ensuring learners have access to both knowledge and care.
-  </p>
-  <div class="icons">
-    <a href="#"><i class="fab fa-facebook"></i></a>
-    <a href="#"><i class="fab fa-twitter"></i></a>
-    <a href="#"><i class="fab fa-instagram"></i></a>
-    <a href="#"><i class="fab fa-linkedin"></i></a>
-  </div>
-  <p>Made with <i class="fa fa-heart"></i> by Media On Africa</p>
-</footer>
+      .feature-block img {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+        margin-bottom: 1rem;
+      }
 
-<script>
-  var navLinks = document.getElementById("navLinks");
-  function showmenu() { navLinks.style.right = "0"; }
-  function hidemenu() { navLinks.style.right = "-200px"; }
-</script>
+      .feature-block form {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
 
-<script src="//code.tidio.co/uqdod81sfajvlkpiujfsjo49za71xsuc.js" async></script>
-</body>
+      .feature-block label {
+        font-weight: 600;
+        color: #333;
+      }
+
+      .feature-block input,
+      .feature-block textarea {
+        padding: 10px;
+        border: 2px solid #e0e0e0;
+        border-radius: 6px;
+        font-family: inherit;
+        transition: border-color 0.3s;
+      }
+
+      .feature-block input:focus,
+      .feature-block textarea:focus {
+        outline: none;
+        border-color: #0b6aa3;
+      }
+
+      .hero-btn {
+        display: inline-block;
+        background: #0b6aa3;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 6px;
+        text-decoration: none;
+        text-align: center;
+        transition: background 0.3s;
+        border: none;
+        cursor: pointer;
+      }
+
+      .hero-btn:hover {
+        background: #0f4c81;
+      }
+
+      .emergency-btn {
+        background: #dc3545;
+      }
+
+      .emergency-btn:hover {
+        background: #c82333;
+      }
+
+      /* Offline banner */
+      .offline-banner {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 12px 20px;
+        text-align: center;
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        right: 20px;
+        z-index: 10000;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        display: none;
+        backdrop-filter: blur(10px);
+        animation: slideUp 0.3s ease;
+      }
+
+      @keyframes slideUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .offline-banner.show {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      /* Notification toast */
+      .notification-toast {
+        position: fixed;
+        top: 80px;
+        right: 20px;
+        background: #4caf50;
+        color: white;
+        padding: 12px 20px;
+        border-radius: 8px;
+        z-index: 10002;
+        animation: slideIn 0.3s ease;
+        display: none;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        max-width: 350px;
+      }
+
+      @keyframes slideIn {
+        from {
+          opacity: 0;
+          transform: translateX(100px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      .notification-toast.show {
+        display: block;
+      }
+
+      /* Queue status */
+      .queue-status {
+        background: #e8f5e9;
+        border-radius: 8px;
+        padding: 15px;
+        margin-bottom: 20px;
+        display: none;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .queue-status.show {
+        display: flex;
+      }
+
+      .queue-badge {
+        background: #ff9800;
+        color: white;
+        border-radius: 20px;
+        padding: 4px 12px;
+        font-size: 12px;
+        font-weight: bold;
+      }
+
+      .sync-now-btn {
+        background: #4caf50;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 20px;
+        cursor: pointer;
+        font-size: 12px;
+        transition: background 0.3s;
+      }
+
+      .sync-now-btn:hover {
+        background: #45a049;
+      }
+
+      /* Form status */
+      .form-status {
+        margin-top: 10px;
+        padding: 10px;
+        border-radius: 6px;
+        display: none;
+      }
+
+      .form-status.show {
+        display: block;
+      }
+
+      .form-status.success {
+        background: #d4edda;
+        color: #155724;
+        border: 1px solid #c3e6cb;
+      }
+
+      .form-status.error {
+        background: #f8d7da;
+        color: #721c24;
+        border: 1px solid #f5c6cb;
+      }
+
+      .form-status.info {
+        background: #d1ecf1;
+        color: #0c5460;
+        border: 1px solid #bee5eb;
+      }
+
+      .loading-spinner {
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        border: 2px solid #f3f3f3;
+        border-top: 2px solid #0b6aa3;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin-right: 8px;
+        vertical-align: middle;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* Emergency resources */
+      .emergency-resources {
+        background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+        color: white;
+        padding: 1.5rem;
+        border-radius: 12px;
+        text-align: center;
+      }
+
+      .emergency-resources h3 {
+        color: white;
+      }
+
+      .emergency-number {
+        font-size: 24px;
+        font-weight: bold;
+        margin: 10px 0;
+      }
+
+      .download-support-btn {
+        background: #4caf50;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 14px;
+        margin-top: 10px;
+        transition: background 0.3s;
+      }
+
+      .download-support-btn:hover {
+        background: #45a049;
+      }
+
+      @media (max-width: 768px) {
+        main {
+          padding: 1rem;
+        }
+
+        .offline-banner.show {
+          flex-direction: column;
+          text-align: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav>
+      <div class="nav-links" id="navLinks">
+        <i class="fa fa-times" onclick="hidemenu()"></i>
+        <ul>
+          <li><a href="index.html">HOME</a></li>
+          <li><a href="About.html">ABOUT</a></li>
+          <li><a href="Subjects.html">SUBJECTS</a></li>
+          <li><a href="quizzes.html">QUIZZES</a></li>
+          <li><a href="aptitude.html">APTITUDE TEST</a></li>
+          <li><a href="forum.html">DISCUSSION</a></li>
+          <li><a href="mental_wellness.html">WELLNESS</a></li>
+          <li><a href="blog.html">BLOG</a></li>
+          <li><a href="contact.html">CONTACT</a></li>
+          <li><a href="library.html">LIBRARY</a></li>
+          <li><a href="khulisa.html">SUPPORT</a></li>
+        </ul>
+      </div>
+      <i class="fa fa-bars" onclick="showmenu()"></i>
+    </nav>
+
+    <!-- Header -->
+    <section class="header big-header">
+      <div class="text-box">
+        <h1>Support</h1>
+        <p>
+          Holistic care and guidance for learners through Khulisa Social
+          Solutions.
+        </p>
+        <button id="downloadSupportBtn" class="download-support-btn">
+          📥 Download Support Page for Offline
+        </button>
+      </div>
+    </section>
+
+    <!-- Support Content -->
+    <main>
+      <!-- Emergency Support -->
+      <div class="emergency-resources">
+        <h3>🚨 Emergency Support</h3>
+        <p>If you're in crisis, help is available 24/7</p>
+        <div class="emergency-number">
+          <i class="fas fa-phone-alt"></i> 0800 567 567
+        </div>
+        <p>South African Suicide Crisis Helpline</p>
+        <a
+          href="tel:0800567567"
+          class="hero-btn"
+          style="background: white; color: #dc3545; margin-top: 10px"
+        >
+          <i class="fas fa-phone"></i> Call Now
+        </a>
+      </div>
+
+      <!-- About Khulisa -->
+      <section class="feature-block">
+        <h3><i class="fas fa-hand-holding-heart"></i> About Khulisa</h3>
+        <img
+          src="images/khulisa-support.jpg"
+          alt="Community support illustration"
+          loading="lazy"
+          onerror="
+            this.src =
+              'https://via.placeholder.com/400x250?text=Khulisa+Support'
+          "
+        />
+        <p>
+          Khulisa Social Solutions is a non-profit organization dedicated to
+          uplifting communities through social cohesion, youth development, and
+          counseling services. Learners gain access to professional support,
+          mentorship, and resources that extend beyond academics.
+        </p>
+        <a href="https://khulisa.org.za" target="_blank" class="hero-btn">
+          <i class="fas fa-external-link-alt"></i> Visit Website
+        </a>
+      </section>
+
+      <!-- Contact Counselor with Offline Support -->
+      <section class="feature-block">
+        <h3><i class="fas fa-envelope"></i> Contact a Counselor</h3>
+        <img
+          src="images/counseling.jpg"
+          alt="Counseling session illustration"
+          loading="lazy"
+          onerror="
+            this.src =
+              'https://via.placeholder.com/400x250?text=Counseling+Session'
+          "
+        />
+
+        <!-- Queue Status -->
+        <div id="queueStatus" class="queue-status">
+          <div>
+            <i class="fas fa-clock"></i>
+            <span id="queueMessage">You have pending messages</span>
+            <span id="queueCount" class="queue-badge">0</span>
+          </div>
+          <button id="syncNowBtn" class="sync-now-btn">
+            <i class="fas fa-sync-alt"></i> Send Now
+          </button>
+        </div>
+
+        <form id="contactCounselor">
+          <label for="name"><i class="fas fa-user"></i> Name</label>
+          <input
+            id="name"
+            type="text"
+            name="name"
+            placeholder="Your full name"
+            required
+          />
+
+          <label for="email"><i class="fas fa-envelope"></i> Email</label>
+          <input
+            id="email"
+            type="email"
+            name="email"
+            placeholder="Your email address"
+            required
+          />
+
+          <label for="phone"
+            ><i class="fas fa-phone"></i> Phone (Optional)</label
+          >
+          <input
+            id="phone"
+            type="tel"
+            name="phone"
+            placeholder="Your phone number"
+          />
+
+          <label for="message"><i class="fas fa-comment"></i> Message</label>
+          <textarea
+            id="message"
+            name="message"
+            rows="4"
+            placeholder="How can we help you?"
+            required
+          ></textarea>
+
+          <button type="submit" class="hero-btn">
+            <i class="fas fa-paper-plane"></i> Send Message
+          </button>
+        </form>
+        <div id="formStatus" class="form-status"></div>
+      </section>
+
+      <!-- Book a Session -->
+      <section class="feature-block">
+        <h3><i class="fas fa-calendar-alt"></i> Book a Session</h3>
+        <img
+          src="images/booking.jpg"
+          alt="Booking schedule illustration"
+          loading="lazy"
+          onerror="
+            this.src = 'https://via.placeholder.com/400x250?text=Book+a+Session'
+          "
+        />
+        <p>
+          Arrange a counseling session with Khulisa through their scheduling
+          system.
+        </p>
+        <a
+          href="https://calendly.com/khulisa-sessions"
+          target="_blank"
+          class="hero-btn"
+        >
+          <i class="fas fa-calendar-check"></i> Book Session
+        </a>
+      </section>
+
+      <!-- Call Directly -->
+      <section class="feature-block">
+        <h3><i class="fas fa-phone-alt"></i> Call Directly</h3>
+        <img
+          src="images/youth-support.jpg"
+          alt="Youth empowerment illustration"
+          loading="lazy"
+          onerror="
+            this.src =
+              'https://via.placeholder.com/400x250?text=Call+for+Support'
+          "
+        />
+        <p>Speak to Khulisa Johannesburg office for immediate support.</p>
+        <a href="tel:0117888237" class="hero-btn">
+          <i class="fas fa-phone"></i> Call 011 788 8237
+        </a>
+        <p style="margin-top: 10px; font-size: 12px; color: #666">
+          Available: Mon-Fri, 9am-5pm
+        </p>
+      </section>
+
+      <!-- Resources -->
+      <section class="feature-block">
+        <h3><i class="fas fa-download"></i> Offline Resources</h3>
+        <img
+          src="images/resources.jpg"
+          alt="Resources illustration"
+          loading="lazy"
+          onerror="
+            this.src = 'https://via.placeholder.com/400x250?text=Resources'
+          "
+        />
+        <p>Download these resources for offline access to support materials.</p>
+        <button
+          id="downloadResourcesBtn"
+          class="hero-btn"
+          style="background: #4caf50; width: 100%; margin-top: 10px"
+        >
+          <i class="fas fa-download"></i> Download Support Resources
+        </button>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="Footer">
+      <h4>Support</h4>
+      <p>
+        Partnering with Khulisa allows us to extend academic learning into
+        holistic community support, ensuring learners have access to both
+        knowledge and care.
+      </p>
+      <div class="icons">
+        <a href="#"><i class="fab fa-facebook"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-linkedin"></i></a>
+      </div>
+      <p>Made with <i class="fa fa-heart"></i> by Media On Africa</p>
+    </footer>
+
+    <!-- Offline Banner -->
+    <div id="offlineBanner" class="offline-banner">
+      <div style="display: flex; align-items: center; gap: 10px">
+        <span style="font-size: 20px">📡</span>
+        <span
+          >You are offline — messages will be saved and sent when you
+          reconnect</span
+        >
+      </div>
+      <div style="display: flex; gap: 10px">
+        <button
+          id="dismissBanner"
+          style="
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+          "
+        >
+          Dismiss
+        </button>
+        <button
+          id="retryConnection"
+          style="
+            background: white;
+            border: none;
+            color: #667eea;
+            padding: 5px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 500;
+          "
+        >
+          Retry Connection
+        </button>
+      </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="notificationToast" class="notification-toast"></div>
+
+    <!-- Service Worker Registration -->
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker
+            .register("/service-worker.js")
+            .then((registration) => {
+              console.log("ServiceWorker registered:", registration.scope);
+            })
+            .catch((error) => {
+              console.log("ServiceWorker registration failed:", error);
+            });
+        });
+      }
+    </script>
+
+    <!-- Dexie.js for IndexedDB -->
+    <script src="https://cdn.jsdelivr.net/npm/dexie@3.2.2/dist/dexie.js"></script>
+
+    <!-- Support Offline Logic -->
+    <script>
+      // Initialize IndexedDB
+      let db = null;
+
+      async function initSupportDB() {
+        if (typeof Dexie === "undefined") {
+          await new Promise((resolve) => setTimeout(resolve, 500));
+        }
+
+        db = new Dexie("MediaOnAfricaSupport");
+        db.version(1).stores({
+          supportMessages:
+            "++id, name, email, phone, message, timestamp, synced, retryCount",
+        });
+
+        await db.open();
+        console.log("Support IndexedDB ready");
+        await updateQueueStatus();
+
+        if (navigator.onLine) {
+          await syncPendingMessages();
+        }
+      }
+
+      // Save message offline
+      async function saveSupportMessage(name, email, phone, message) {
+        const messageData = {
+          name: name.trim(),
+          email: email.trim(),
+          phone: phone.trim() || "",
+          message: message.trim(),
+          timestamp: new Date().toISOString(),
+          synced: false,
+          retryCount: 0,
+        };
+
+        try {
+          const id = await db.supportMessages.add(messageData);
+          console.log("Support message saved offline with ID:", id);
+          await updateQueueStatus();
+          return { success: true, id: id };
+        } catch (error) {
+          console.error("Failed to save message:", error);
+          return { success: false, error: error };
+        }
+      }
+
+      // Send message to Khulisa
+      async function sendSupportMessage(message) {
+        try {
+          // In production, replace with actual API endpoint
+          const response = await fetch("/api/support/contact", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              name: message.name,
+              email: message.email,
+              phone: message.phone,
+              message: message.message,
+              timestamp: message.timestamp,
+            }),
+          });
+
+          if (response.ok) {
+            return { success: true };
+          } else {
+            throw new Error("Server returned " + response.status);
+          }
+        } catch (error) {
+          console.error("Failed to send message:", error);
+          return { success: false, error: error };
+        }
+      }
+
+      // Sync pending messages
+      async function syncPendingMessages() {
+        if (!db) return;
+
+        const pendingMessages = await db.supportMessages
+          .where("synced")
+          .equals(false)
+          .toArray();
+
+        if (pendingMessages.length === 0) return;
+
+        showNotification(
+          `Sending ${pendingMessages.length} pending message(s)...`,
+          "info",
+        );
+
+        let syncedCount = 0;
+
+        for (const message of pendingMessages) {
+          const result = await sendSupportMessage(message);
+
+          if (result.success) {
+            await db.supportMessages.update(message.id, { synced: true });
+            syncedCount++;
+            console.log("Message synced:", message.id);
+          } else if (message.retryCount >= 3) {
+            await db.supportMessages.update(message.id, {
+              synced: "failed",
+              retryCount: message.retryCount + 1,
+            });
+          } else {
+            await db.supportMessages.update(message.id, {
+              retryCount: message.retryCount + 1,
+            });
+          }
+        }
+
+        await updateQueueStatus();
+
+        if (syncedCount > 0) {
+          showNotification(
+            `Successfully sent ${syncedCount} message(s) to Khulisa!`,
+            "success",
+          );
+        }
+      }
+
+      // Update queue status UI
+      async function updateQueueStatus() {
+        if (!db) return;
+
+        const pendingCount = await db.supportMessages
+          .where("synced")
+          .equals(false)
+          .count();
+        const queueStatus = document.getElementById("queueStatus");
+        const queueCountSpan = document.getElementById("queueCount");
+        const queueMessageSpan = document.getElementById("queueMessage");
+
+        if (pendingCount > 0) {
+          queueStatus.classList.add("show");
+          queueCountSpan.textContent = pendingCount;
+          queueMessageSpan.textContent =
+            pendingCount === 1
+              ? "You have 1 pending message"
+              : `You have ${pendingCount} pending messages`;
+        } else {
+          queueStatus.classList.remove("show");
+        }
+      }
+
+      // Handle form submission
+      async function handleFormSubmit(event) {
+        event.preventDefault();
+
+        const name = document.getElementById("name").value;
+        const email = document.getElementById("email").value;
+        const phone = document.getElementById("phone").value;
+        const message = document.getElementById("message").value;
+        const submitBtn = event.target.querySelector('button[type="submit"]');
+        const formStatus = document.getElementById("formStatus");
+
+        // Validate
+        if (!name || !email || !message) {
+          showFormStatus("Please fill in all required fields", "error");
+          return;
+        }
+
+        if (!email.includes("@")) {
+          showFormStatus("Please enter a valid email address", "error");
+          return;
+        }
+
+        // Disable button and show loading
+        submitBtn.disabled = true;
+        submitBtn.innerHTML =
+          '<span class="loading-spinner"></span> Sending...';
+
+        if (!navigator.onLine) {
+          // Offline: Save to IndexedDB
+          const result = await saveSupportMessage(name, email, phone, message);
+
+          if (result.success) {
+            showFormStatus(
+              "📡 You are offline. Your message has been saved and will be sent when you reconnect.",
+              "info",
+            );
+            document.getElementById("contactCounselor").reset();
+            showNotification(
+              "Support message saved locally! Will send when online.",
+              "success",
+            );
+          } else {
+            showFormStatus(
+              "Failed to save your message. Please try again.",
+              "error",
+            );
+          }
+        } else {
+          // Online: Try to send immediately
+          const messageData = {
+            name,
+            email,
+            phone,
+            message,
+            timestamp: new Date().toISOString(),
+          };
+          const result = await sendSupportMessage(messageData);
+
+          if (result.success) {
+            showFormStatus(
+              "✓ Message sent successfully! A counselor will respond within 24 hours.",
+              "success",
+            );
+            document.getElementById("contactCounselor").reset();
+            showNotification(
+              "Message sent to Khulisa successfully!",
+              "success",
+            );
+          } else {
+            const saved = await saveSupportMessage(name, email, phone, message);
+            if (saved.success) {
+              showFormStatus(
+                "⚠️ Message saved locally due to a server issue. Will retry sending automatically.",
+                "info",
+              );
+              showNotification(
+                "Message saved locally. Will retry sending.",
+                "info",
+              );
+            } else {
+              showFormStatus(
+                "Failed to send message. Please try again later.",
+                "error",
+              );
+            }
+          }
+        }
+
+        // Re-enable button
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
+      }
+
+      function showFormStatus(message, type) {
+        const formStatus = document.getElementById("formStatus");
+        formStatus.textContent = message;
+        formStatus.className = `form-status show ${type}`;
+
+        setTimeout(() => {
+          formStatus.classList.remove("show");
+        }, 5000);
+      }
+
+      function showNotification(message, type = "success") {
+        const toast = document.getElementById("notificationToast");
+        toast.textContent = message;
+        toast.style.background =
+          type === "success"
+            ? "#4CAF50"
+            : type === "error"
+              ? "#f44336"
+              : "#2196F3";
+        toast.classList.add("show");
+
+        setTimeout(() => {
+          toast.classList.remove("show");
+        }, 4000);
+      }
+
+      // Download support page for offline
+      async function downloadSupportOffline() {
+        const btn = document.getElementById("downloadSupportBtn");
+        const originalText = btn.innerHTML;
+        btn.innerHTML = "⏳ Downloading...";
+        btn.disabled = true;
+
+        if (navigator.serviceWorker && navigator.serviceWorker.controller) {
+          const assetsToCache = [
+            window.location.href,
+            "/styles.css",
+            "https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap",
+            "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css",
+            "https://cdn.jsdelivr.net/npm/dexie@3.2.2/dist/dexie.js",
+          ];
+
+          navigator.serviceWorker.controller.postMessage({
+            type: "CACHE_NEW_ASSETS",
+            urls: assetsToCache,
+          });
+
+          setTimeout(() => {
+            btn.innerHTML = "✓ Support Page Saved!";
+            showNotification(
+              "Support page saved for offline access!",
+              "success",
+            );
+            setTimeout(() => {
+              btn.innerHTML = originalText;
+              btn.disabled = false;
+            }, 3000);
+          }, 2000);
+        } else {
+          btn.innerHTML = originalText;
+          btn.disabled = false;
+          showNotification("Please refresh and try again", "error");
+        }
+      }
+
+      function updateOfflineUI() {
+        const isOffline = !navigator.onLine;
+        const banner = document.getElementById("offlineBanner");
+
+        if (isOffline) {
+          banner.classList.add("show");
+          showNotification(
+            "Offline mode - support messages will be saved locally",
+            "info",
+          );
+        } else {
+          banner.classList.remove("show");
+          syncPendingMessages();
+        }
+      }
+
+      // Navigation menu
+      var navLinks = document.getElementById("navLinks");
+      function showmenu() {
+        if (navLinks) navLinks.style.right = "0";
+      }
+      function hidemenu() {
+        if (navLinks) navLinks.style.right = "-200px";
+      }
+
+      // Initialize
+      document.addEventListener("DOMContentLoaded", async () => {
+        await initSupportDB();
+        updateOfflineUI();
+
+        // Form submission
+        const form = document.getElementById("contactCounselor");
+        if (form) {
+          form.addEventListener("submit", handleFormSubmit);
+        }
+
+        // Sync now button
+        const syncBtn = document.getElementById("syncNowBtn");
+        if (syncBtn) {
+          syncBtn.addEventListener("click", async () => {
+            if (navigator.onLine) {
+              syncBtn.innerHTML =
+                '<span class="loading-spinner"></span> Sending...';
+              await syncPendingMessages();
+              syncBtn.innerHTML = '<i class="fas fa-sync-alt"></i> Send Now';
+            } else {
+              showNotification(
+                "Cannot sync while offline. Please connect to the internet.",
+                "error",
+              );
+            }
+          });
+        }
+
+        // Download button
+        const downloadBtn = document.getElementById("downloadSupportBtn");
+        if (downloadBtn) {
+          downloadBtn.addEventListener("click", downloadSupportOffline);
+        }
+
+        // Download resources button
+        const resourcesBtn = document.getElementById("downloadResourcesBtn");
+        if (resourcesBtn) {
+          resourcesBtn.addEventListener("click", downloadSupportOffline);
+        }
+
+        // Banner buttons
+        const dismissBtn = document.getElementById("dismissBanner");
+        if (dismissBtn) {
+          dismissBtn.addEventListener("click", () => {
+            document.getElementById("offlineBanner").classList.remove("show");
+          });
+        }
+
+        const retryBtn = document.getElementById("retryConnection");
+        if (retryBtn) {
+          retryBtn.addEventListener("click", () => {
+            if (navigator.onLine) {
+              location.reload();
+            } else {
+              showNotification(
+                "Still offline. Please check your connection.",
+                "error",
+              );
+            }
+          });
+        }
+      });
+
+      // Online/Offline listeners
+      window.addEventListener("online", async () => {
+        updateOfflineUI();
+        showNotification("Back online! Sending pending messages...", "success");
+        await syncPendingMessages();
+      });
+
+      window.addEventListener("offline", () => {
+        updateOfflineUI();
+        showNotification(
+          "Offline mode - support messages will be saved locally",
+          "info",
+        );
+      });
+    </script>
+
+    <!-- Chatbot Embed -->
+    <script
+      src="//code.tidio.co/uqdod81sfajvlkpiujfsjo49za71xsuc.js"
+      async
+    ></script>
+    <script>
+      // Handle Tidio chat offline
+      window.addEventListener("offline", () => {
+        const tidioFrame = document.querySelector("#tidio-chat-iframe");
+        if (tidioFrame) tidioFrame.style.display = "none";
+      });
+
+      window.addEventListener("online", () => {
+        const tidioFrame = document.querySelector("#tidio-chat-iframe");
+        if (tidioFrame) tidioFrame.style.display = "block";
+      });
+    </script>
+  </body>
 </html>

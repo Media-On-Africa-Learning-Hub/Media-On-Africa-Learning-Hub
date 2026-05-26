@@ -4,6 +4,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Aptitude Test - Media On Africa Learning Hub</title>
+  
+  <!-- PWA Meta Tags -->
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#1a472a">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="MoA Learning">
+  <link rel="apple-touch-icon" href="/icons/icon-192x192.png">
+  
   <link rel="stylesheet" href="styles.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -15,6 +24,7 @@
     rel="stylesheet"
     href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
   />
+  
   <style>
     /* Small page-specific styles to match existing site */
     .header.big-header { padding: 4rem 1rem; background: linear-gradient(180deg,#0f4c81 0%, #0b6aa3 100%); color:#fff; text-align:center; }
@@ -25,15 +35,63 @@
     .card { background:#fff; border-radius:8px; padding:1rem; box-shadow:0 2px 8px rgba(0,0,0,0.06); }
     .card h3 { margin-top:0; font-size:1.1rem; }
     .section-desc { color:#333; line-height:1.5; }
-    .toggle-btn { display:inline-block; margin-top:0.5rem; background:#0b6aa3; color:#fff; border:none; padding:0.5rem 0.75rem; border-radius:6px; cursor:pointer; font-family:Poppins, sans-serif; }
+    .toggle-btn { display:inline-block; margin-top:0.5rem; background:#0b6aa3; color:#fff; border:none; padding:0.5rem 0.75rem; border-radius:6px; cursor:pointer; font-family:Poppins, sans-serif; transition: background 0.3s; }
+    .toggle-btn:hover { background:#0f4c81; }
     .questions { margin-top:0.75rem; display:none; }
-    .question { margin-bottom:0.75rem; }
+    .question { margin-bottom:0.75rem; padding: 10px; background: #f9f9f9; border-radius: 6px; }
     .quiz-result { margin-top:0.5rem; font-weight:600; color:#0b6aa3; }
     .controls { display:flex; gap:0.5rem; flex-wrap:wrap; margin-top:0.75rem; }
     .hero-btn { background:#0b6aa3; color:#fff; padding:0.6rem 1rem; border-radius:6px; text-decoration:none; display:inline-block; }
     .explain { font-size:0.95rem; color:#444; }
     .footer-note { text-align:center; margin-top:1rem; color:#666; font-size:0.9rem; }
     label { cursor:pointer; }
+    
+    /* Offline progress indicator */
+    .offline-progress {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #4CAF50;
+      color: white;
+      padding: 8px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      z-index: 999;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      display: none;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .offline-progress.show {
+      display: flex;
+    }
+    
+    .download-lesson-btn {
+      background: #2196F3;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      margin-top: 15px;
+      transition: background 0.3s;
+    }
+    
+    .download-lesson-btn:hover {
+      background: #0b7dda;
+    }
+    
+    .progress-saved-badge {
+      display: inline-block;
+      background: #4CAF50;
+      color: white;
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-size: 11px;
+      margin-left: 10px;
+    }
   </style>
 </head>
 <body>
@@ -81,6 +139,15 @@
       Click <strong>Show Questions</strong> to reveal a section. Select your answers, then press <strong>Check Answers</strong> to see your score and feedback. Use <strong>Reset</strong> to try again.
     </p>
 
+    <h4>📱 Offline Mode</h4>
+    <p class="explain" id="offline-status">
+      This page works offline! Your quiz progress is automatically saved locally and will sync when you're back online.
+    </p>
+    
+    <button class="download-lesson-btn" id="downloadOfflineBtn">
+      📥 Download Aptitude Test for Offline
+    </button>
+
     <h4>Tips for Success</h4>
     <ul>
       <li>Read carefully and eliminate wrong options first.</li>
@@ -98,7 +165,7 @@
 
   <!-- Logical Reasoning -->
   <div class="card" id="logical-card">
-    <h3>Logical Reasoning</h3>
+    <h3>Logical Reasoning <span id="logical-progress-badge" class="progress-saved-badge" style="display:none;">✓ Saved</span></h3>
     <p class="section-desc">Questions test deduction, pattern recognition, and argument evaluation.</p>
     <button class="toggle-btn" data-target="logical-questions">Show Questions</button>
 
@@ -196,7 +263,7 @@
 
   <!-- Numerical Ability -->
   <div class="card" id="numerical-card">
-    <h3>Numerical Ability</h3>
+    <h3>Numerical Ability <span id="numerical-progress-badge" class="progress-saved-badge" style="display:none;">✓ Saved</span></h3>
     <p class="section-desc">Questions focus on arithmetic, sequences, percentages, and basic algebra.</p>
     <button class="toggle-btn" data-target="numerical-questions">Show Questions</button>
 
@@ -293,7 +360,7 @@
 
   <!-- Verbal Reasoning -->
   <div class="card" id="verbal-card">
-    <h3>Verbal Reasoning</h3>
+    <h3>Verbal Reasoning <span id="verbal-progress-badge" class="progress-saved-badge" style="display:none;">✓ Saved</span></h3>
     <p class="section-desc">Questions test vocabulary, comprehension, and sentence logic.</p>
     <button class="toggle-btn" data-target="verbal-questions">Show Questions</button>
 
@@ -390,7 +457,7 @@
 
   <!-- Abstract Reasoning -->
   <div class="card" id="abstract-card">
-    <h3>Abstract Reasoning</h3>
+    <h3>Abstract Reasoning <span id="abstract-progress-badge" class="progress-saved-badge" style="display:none;">✓ Saved</span></h3>
     <p class="section-desc">Questions assess pattern recognition and visual problem solving.</p>
     <button class="toggle-btn" data-target="abstract-questions">Show Questions</button>
 
@@ -487,6 +554,12 @@
 
 </section>
 
+<!-- Offline progress indicator -->
+<div id="offlineProgress" class="offline-progress">
+  <span>📡</span>
+  <span id="progressMessage">Saving progress...</span>
+</div>
+
 <!-- Footer -->
 <footer class="Footer">
   <h4>About Us</h4>
@@ -504,8 +577,60 @@
   <p class="footer-note">This practice test is for learning and self-assessment only.</p>
 </footer>
 
-<!-- JavaScript for menu, toggles and quiz logic -->
+<!-- Service Worker Registration -->
 <script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/service-worker.js')
+      .then(registration => {
+        console.log('ServiceWorker registered successfully:', registration.scope);
+        
+        // Check for updates
+        registration.addEventListener('updatefound', () => {
+          const newWorker = registration.installing;
+          console.log('Service Worker update found!');
+          
+          newWorker.addEventListener('statechange', () => {
+            if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+              showUpdateNotification();
+            }
+          });
+        });
+      })
+      .catch(error => {
+        console.log('ServiceWorker registration failed:', error);
+      });
+  });
+}
+
+function showUpdateNotification() {
+  const notification = document.createElement('div');
+  notification.innerHTML = `
+    <div style="position:fixed; top:20px; right:20px; background:#2196F3; color:white; padding:15px 20px; border-radius:8px; z-index:10003; box-shadow:0 4px 12px rgba(0,0,0,0.15); animation:slideIn 0.3s ease;">
+      <strong>🔄 New content available!</strong>
+      <p style="margin:5px 0 0; font-size:14px;">Refresh to get the latest version.</p>
+      <button onclick="location.reload()" style="margin-top:10px; background:white; color:#2196F3; border:none; padding:5px 15px; border-radius:5px; cursor:pointer;">Refresh Now</button>
+    </div>
+  `;
+  document.body.appendChild(notification);
+  setTimeout(() => notification.remove(), 10000);
+}
+</script>
+
+<!-- Load Dexie.js for IndexedDB -->
+<script src="https://cdn.jsdelivr.net/npm/dexie@3.2.2/dist/dexie.js"></script>
+
+<!-- Enhanced Quiz Logic with Offline Save -->
+<script>
+  // Answer keys
+  const answerKeys = {
+    'quiz-logical': { q1:'c', q2:'a', q3:'d', q4:'b', q5:'b', q6:'c', q7:'d', q8:'b', q9:'c', q10:'c' },
+    'quiz-numerical': { q1:'b', q2:'a', q3:'b', q4:'b', q5:'a', q6:'a', q7:'a', q8:'c', q9:'c', q10:'a' },
+    'quiz-verbal': { q1:'b', q2:'b', q3:'b', q4:'b', q5:'a', q6:'b', q7:'b', q8:'a', q9:'a', q10:'b' },
+    'quiz-abstract': { q1:'a', q2:'b', q3:'c', q4:'d', q5:'a', q6:'b', q7:'b', q8:'b', q9:'d', q10:'b' }
+  };
+
+  // Navigation menu
   var navLinks = document.getElementById("navLinks");
   function showmenu() { navLinks.style.right = "0"; }
   function hidemenu() { navLinks.style.right = "-200px"; }
@@ -526,15 +651,140 @@
     });
   });
 
-  // Centralized answer keys
-  const answerKeys = {
-    'quiz-logical': { q1:'c', q2:'a', q3:'d', q4:'b', q5:'b', q6:'c', q7:'d', q8:'b', q9:'c', q10:'c' },
-    'quiz-numerical': { q1:'b', q2:'a', q3:'b', q4:'b', q5:'a', q6:'a', q7:'a', q8:'c', q9:'c', q10:'a' },
-    'quiz-verbal': { q1:'b', q2:'b', q3:'b', q4:'b', q5:'a', q6:'b', q7:'b', q8:'a', q9:'a', q10:'b' },
-    'quiz-abstract': { q1:'a', q2:'b', q3:'c', q4:'d', q5:'a', q6:'b', q7:'b', q8:'b', q9:'d', q10:'b' }
-  };
-
-  // Check answers and show results inline
+  // IndexedDB Setup for Offline Progress
+  let db = null;
+  
+  async function initDB() {
+    if (typeof Dexie === 'undefined') {
+      console.log('Waiting for Dexie...');
+      await new Promise(resolve => setTimeout(resolve, 500));
+    }
+    
+    db = new Dexie('MediaOnAfricaDB');
+    db.version(1).stores({
+      quizProgress: '++id, quizId, answers, timestamp, synced'
+    });
+    
+    await db.open();
+    console.log('IndexedDB ready');
+    await loadSavedProgress();
+  }
+  
+  async function saveQuizProgress(quizId) {
+    const form = document.getElementById(quizId);
+    if (!form) return;
+    
+    const answers = {};
+    for (let i = 1; i <= 10; i++) {
+      const radios = form.elements['q' + i];
+      if (radios) {
+        if (radios.length === undefined) {
+          if (radios.checked) answers['q' + i] = radios.value;
+        } else {
+          for (let r = 0; r < radios.length; r++) {
+            if (radios[r].checked) {
+              answers['q' + i] = radios[r].value;
+              break;
+            }
+          }
+        }
+      }
+    }
+    
+    try {
+      await db.quizProgress.put({
+        quizId: quizId,
+        answers: answers,
+        timestamp: new Date().toISOString(),
+        synced: false
+      });
+      console.log('Progress saved for:', quizId);
+      showProgressBadge(quizId);
+      showOfflineIndicator('Progress saved offline ✓', 'success');
+    } catch (error) {
+      console.error('Failed to save progress:', error);
+    }
+  }
+  
+  async function loadSavedProgress() {
+    if (!db) await initDB();
+    
+    for (const quizId of ['quiz-logical', 'quiz-numerical', 'quiz-verbal', 'quiz-abstract']) {
+      const saved = await db.quizProgress.where('quizId').equals(quizId).first();
+      if (saved && saved.answers) {
+        restoreAnswers(quizId, saved.answers);
+        console.log('Restored progress for:', quizId);
+      }
+    }
+  }
+  
+  function restoreAnswers(quizId, answers) {
+    const form = document.getElementById(quizId);
+    if (!form) return;
+    
+    for (const [question, value] of Object.entries(answers)) {
+      const radios = form.elements[question];
+      if (radios) {
+        if (radios.length === undefined && radios.value === value) {
+          radios.checked = true;
+        } else {
+          for (let r = 0; r < radios.length; r++) {
+            if (radios[r].value === value) {
+              radios[r].checked = true;
+              break;
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  function showProgressBadge(quizId) {
+    const badgeMap = {
+      'quiz-logical': 'logical-progress-badge',
+      'quiz-numerical': 'numerical-progress-badge',
+      'quiz-verbal': 'verbal-progress-badge',
+      'quiz-abstract': 'abstract-progress-badge'
+    };
+    const badge = document.getElementById(badgeMap[quizId]);
+    if (badge) {
+      badge.style.display = 'inline-block';
+      setTimeout(() => {
+        badge.style.opacity = '0.5';
+        setTimeout(() => {
+          badge.style.display = 'none';
+          badge.style.opacity = '1';
+        }, 2000);
+      }, 3000);
+    }
+  }
+  
+  function showOfflineIndicator(message, type = 'info') {
+    const indicator = document.getElementById('offlineProgress');
+    const msgSpan = document.getElementById('progressMessage');
+    if (indicator && msgSpan) {
+      msgSpan.textContent = message;
+      indicator.classList.add('show');
+      setTimeout(() => {
+        indicator.classList.remove('show');
+      }, 2000);
+    }
+  }
+  
+  // Auto-save on radio change
+  function attachAutoSave() {
+    const quizzes = ['quiz-logical', 'quiz-numerical', 'quiz-verbal', 'quiz-abstract'];
+    quizzes.forEach(quizId => {
+      const form = document.getElementById(quizId);
+      if (form) {
+        form.addEventListener('change', () => {
+          saveQuizProgress(quizId);
+        });
+      }
+    });
+  }
+  
+  // Check answers and save results
   function checkAnswers(formId) {
     var form = document.getElementById(formId);
     if (!form) return;
@@ -542,6 +792,7 @@
     var total = 0;
     var correct = 0;
     var missing = [];
+    
     for (var i = 1; i <= 10; i++) {
       var name = 'q' + i;
       var radios = form.elements[name];
@@ -564,7 +815,7 @@
     if (missing.length) {
       scoreText += ' — Unanswered: ' + missing.join(', ');
     }
-    // Build brief feedback with correct answers
+    
     var answersList = '';
     if (key) {
       answersList = '<div style="margin-top:0.5rem; font-size:0.95rem; color:#333;">Correct answers: ';
@@ -573,10 +824,26 @@
       answersList += pairs.join(' | ') + '</div>';
     }
     resultEl.innerHTML = scoreText + answersList;
-    resultEl.focus();
+    
+    // Save the score result
+    saveQuizResult(formId, correct, total);
+  }
+  
+  async function saveQuizResult(quizId, score, total) {
+    if (!db) await initDB();
+    try {
+      await db.quizProgress.put({
+        quizId: quizId + '_result',
+        answers: { score: score, total: total, lastAttempt: new Date().toISOString() },
+        timestamp: new Date().toISOString(),
+        synced: false
+      });
+      console.log('Result saved for:', quizId);
+    } catch (error) {
+      console.error('Failed to save result:', error);
+    }
   }
 
-  // Reset quiz selections
   function resetQuiz(formId) {
     var form = document.getElementById(formId);
     if (!form) return;
@@ -584,10 +851,89 @@
     inputs.forEach(function(i){ i.checked = false; });
     var resultEl = document.getElementById('result-' + formId);
     if (resultEl) resultEl.textContent = '';
+    
+    // Clear saved progress for this quiz
+    if (db) {
+      db.quizProgress.where('quizId').equals(formId).delete();
+      showOfflineIndicator('Progress reset', 'info');
+    }
   }
+  
+  // Download offline content
+  document.getElementById('downloadOfflineBtn')?.addEventListener('click', async () => {
+    const btn = document.getElementById('downloadOfflineBtn');
+    btn.textContent = '⏳ Downloading...';
+    btn.disabled = true;
+    
+    // Request service worker to cache this page and assets
+    if (navigator.serviceWorker && navigator.serviceWorker.controller) {
+      const assetsToCache = [
+        window.location.href,
+        '/styles.css',
+        'https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300;400;700&family=Poppins:wght@300;400;500;600;700&display=swap',
+        'https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css',
+        'https://cdn.jsdelivr.net/npm/dexie@3.2.2/dist/dexie.js'
+      ];
+      
+      navigator.serviceWorker.controller.postMessage({
+        type: 'CACHE_NEW_ASSETS',
+        urls: assetsToCache
+      });
+      
+      setTimeout(() => {
+        btn.textContent = '✓ Downloaded for Offline!';
+        showOfflineIndicator('Aptitude test saved for offline use!', 'success');
+        setTimeout(() => {
+          btn.textContent = '📥 Download Aptitude Test for Offline';
+          btn.disabled = false;
+        }, 3000);
+      }, 2000);
+    } else {
+      btn.textContent = '📥 Download for Offline';
+      btn.disabled = false;
+      showOfflineIndicator('Please refresh and try again', 'error');
+    }
+  });
+  
+  // Check online status
+  window.addEventListener('online', () => {
+    showOfflineIndicator('Back online! Syncing your progress...', 'success');
+    if (db) {
+      db.quizProgress.where('synced').equals(false).modify({ synced: true });
+    }
+  });
+  
+  window.addEventListener('offline', () => {
+    showOfflineIndicator('You are offline - progress will be saved locally', 'info');
+  });
+  
+  // Initialize everything
+  document.addEventListener('DOMContentLoaded', async () => {
+    await initDB();
+    attachAutoSave();
+    
+    // Show offline status on load
+    if (!navigator.onLine) {
+      showOfflineIndicator('Offline mode - your progress is being saved locally', 'info');
+    } else {
+      console.log('Online mode - progress will sync automatically');
+    }
+  });
 </script>
 
-<!-- Chatbot Embed -->
+<!-- Chatbot Embed with offline handling -->
+<script>
+  // Handle Tidio chat offline gracefully
+  window.addEventListener('offline', () => {
+    const tidioFrame = document.querySelector('#tidio-chat-iframe');
+    if (tidioFrame) tidioFrame.style.display = 'none';
+  });
+  
+  window.addEventListener('online', () => {
+    const tidioFrame = document.querySelector('#tidio-chat-iframe');
+    if (tidioFrame) tidioFrame.style.display = 'block';
+  });
+</script>
 <script src="//code.tidio.co/uqdod81sfajvlkpiujfsjo49za71xsuc.js" async></script>
 </body>
 </html>

@@ -1,118 +1,859 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Discussion Forum - Media On Africa</title>
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300;400;700&family=Poppins:wght@300;400;600;700&display=swap"
-    rel="stylesheet"
-  />
-  <link
-    rel="stylesheet"
-    href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-  />
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Discussion Forum - Media On Africa</title>
 
-<!-- Navigation -->
-<nav>
-  <div class="nav-links" id="navLinks">
-    <i class="fa fa-times" onclick="hidemenu()"></i>
-    <ul>
-      <li><a href="index.html">HOME</a></li>
-      <li><a href="About.html">ABOUT</a></li>
-      <li><a href="Subjects.html">SUBJECTS</a></li>
-      <li><a href="quizzes.html">QUIZZES</a></li>
-      <li><a href="aptitude.html">APTITUDE TEST</a></li>
-      <li><a href="forum.html">DISCUSSION</a></li>
-      <li><a href="mental_wellness.html">WELLNESS</a></li>
-      <li><a href="blog.html">BLOG</a></li>
-      <li><a href="contact.html">CONTACT</a></li>
-      <li><a href="library.html">LIBRARY</a></li>
-      <li><a href="khulisa.html">SUPPORT</a></li>
-    </ul>
-  </div>
-  <i class="fa fa-bars" onclick="showmenu()"></i>
-</nav>
+    <!-- PWA Meta Tags -->
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#1a472a" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta name="apple-mobile-web-app-title" content="MoA Forum" />
+    <link rel="apple-touch-icon" href="/icons/icon-192x192.png" />
 
-<!-- Forum Header -->
-<section class="header small-header">
-  <div class="text-box">
-    <h1>Student Discussion Forum</h1>
-    <p>
-      Welcome! Use this space to ask questions, share tips, and collaborate with other students.
-    </p>
-  </div>
-</section>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300;400;700&family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
 
-<!-- Announcement Bar -->
-<div class="announcement-bar">
-  📢 New: Join our April study challenge!
-</div>
+    <style>
+      /* Offline-specific styles */
+      .offline-banner {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 12px 20px;
+        text-align: center;
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        right: 20px;
+        z-index: 10000;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        display: none;
+        backdrop-filter: blur(10px);
+        animation: slideUp 0.3s ease;
+      }
 
-<!-- Forum Content -->
-<main class="forum-content">
-  <!-- Forum Wrapper -->
-  <div class="forum-wrapper">
-    <h2>Latest Discussions</h2>
-    <div id="disqus_thread"></div>
+      @keyframes slideUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .offline-banner.show {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .offline-post-form {
+        background: #f8f9fa;
+        border-radius: 12px;
+        padding: 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .offline-post-form textarea {
+        width: 100%;
+        padding: 12px;
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+        font-family: inherit;
+        resize: vertical;
+        margin-bottom: 10px;
+      }
+
+      .offline-post-form input {
+        width: 100%;
+        padding: 10px;
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+        margin-bottom: 10px;
+        font-family: inherit;
+      }
+
+      .offline-posts {
+        margin-top: 20px;
+      }
+
+      .offline-post {
+        background: white;
+        border-radius: 12px;
+        padding: 15px;
+        margin-bottom: 15px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+        border-left: 4px solid #0b6aa3;
+      }
+
+      .offline-post h4 {
+        margin: 0 0 8px 0;
+        color: #0b6aa3;
+      }
+
+      .offline-post .post-meta {
+        font-size: 12px;
+        color: #666;
+        margin-bottom: 10px;
+      }
+
+      .offline-post .post-content {
+        color: #333;
+        line-height: 1.5;
+      }
+
+      .offline-badge {
+        background: #ff9800;
+        color: white;
+        padding: 2px 8px;
+        border-radius: 12px;
+        font-size: 11px;
+        margin-left: 10px;
+        display: inline-block;
+      }
+
+      .sync-status {
+        background: #e8f5e9;
+        border-radius: 8px;
+        padding: 10px;
+        margin-bottom: 20px;
+        display: none;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .sync-status.show {
+        display: flex;
+      }
+
+      .sync-btn {
+        background: #4caf50;
+        color: white;
+        border: none;
+        padding: 5px 15px;
+        border-radius: 20px;
+        cursor: pointer;
+        font-size: 12px;
+      }
+
+      .pending-count {
+        background: #ff9800;
+        color: white;
+        border-radius: 12px;
+        padding: 2px 8px;
+        font-size: 12px;
+        margin-left: 10px;
+      }
+
+      .forum-offline-mode {
+        background: #fff3cd;
+        border: 1px solid #ffeeba;
+        border-radius: 8px;
+        padding: 15px;
+        margin-bottom: 20px;
+        display: none;
+      }
+
+      .forum-offline-mode.show {
+        display: block;
+      }
+
+      .notification-toast {
+        position: fixed;
+        top: 80px;
+        right: 20px;
+        background: #4caf50;
+        color: white;
+        padding: 12px 20px;
+        border-radius: 8px;
+        z-index: 10002;
+        animation: slideIn 0.3s ease;
+        display: none;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      }
+
+      @keyframes slideIn {
+        from {
+          opacity: 0;
+          transform: translateX(100px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      .notification-toast.show {
+        display: block;
+      }
+
+      @media (max-width: 768px) {
+        .offline-banner.show {
+          flex-direction: column;
+          text-align: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav>
+      <div class="nav-links" id="navLinks">
+        <i class="fa fa-times" onclick="hidemenu()"></i>
+        <ul>
+          <li><a href="index.html">HOME</a></li>
+          <li><a href="About.html">ABOUT</a></li>
+          <li><a href="Subjects.html">SUBJECTS</a></li>
+          <li><a href="quizzes.html">QUIZZES</a></li>
+          <li><a href="aptitude.html">APTITUDE TEST</a></li>
+          <li><a href="forum.html">DISCUSSION</a></li>
+          <li><a href="mental_wellness.html">WELLNESS</a></li>
+          <li><a href="blog.html">BLOG</a></li>
+          <li><a href="contact.html">CONTACT</a></li>
+          <li><a href="library.html">LIBRARY</a></li>
+          <li><a href="khulisa.html">SUPPORT</a></li>
+        </ul>
+      </div>
+      <i class="fa fa-bars" onclick="showmenu()"></i>
+    </nav>
+
+    <!-- Forum Header -->
+    <section class="header small-header">
+      <div class="text-box">
+        <h1>Student Discussion Forum</h1>
+        <p>
+          Welcome! Use this space to ask questions, share tips, and collaborate
+          with other students.
+        </p>
+      </div>
+    </section>
+
+    <!-- Announcement Bar -->
+    <div class="announcement-bar" id="announcementBar">
+      📢 New: Join our April study challenge!
+    </div>
+
+    <!-- Forum Content -->
+    <main class="forum-content">
+      <!-- Forum Wrapper -->
+      <div class="forum-wrapper">
+        <h2>Latest Discussions</h2>
+
+        <!-- Offline Mode Indicator -->
+        <div id="offlineModeAlert" class="forum-offline-mode">
+          <i class="fa fa-wifi" style="margin-right: 10px"></i>
+          <strong>You're in Offline Mode</strong><br />
+          You can still create posts and reply to discussions. Your messages
+          will be saved locally and synced when you're back online.
+        </div>
+
+        <!-- Sync Status -->
+        <div id="syncStatus" class="sync-status">
+          <div>
+            <i class="fa fa-cloud-upload"></i>
+            <span id="syncMessage">You have pending posts to sync</span>
+            <span id="pendingCount" class="pending-count">0</span>
+          </div>
+          <button id="forceSyncBtn" class="sync-btn">Sync Now</button>
+        </div>
+
+        <!-- Offline Post Form -->
+        <div class="offline-post-form">
+          <h3><i class="fa fa-comment"></i> Start a Discussion</h3>
+          <input
+            type="text"
+            id="postTitle"
+            placeholder="Post title..."
+            maxlength="100"
+          />
+          <textarea
+            id="postContent"
+            rows="4"
+            placeholder="What would you like to discuss?"
+          ></textarea>
+          <input
+            type="text"
+            id="authorName"
+            placeholder="Your name (optional)"
+          />
+          <button
+            id="submitPostBtn"
+            class="hero-btn"
+            style="background: #0b6aa3"
+          >
+            <i class="fa fa-paper-plane"></i> Post Discussion
+          </button>
+        </div>
+
+        <!-- Offline Posts Container -->
+        <div id="offlinePostsContainer" class="offline-posts">
+          <h3>
+            Recent Discussions
+            <span id="offlineBadge" class="offline-badge" style="display: none"
+              >Offline Mode</span
+            >
+          </h3>
+          <div id="postsList"></div>
+        </div>
+
+        <!-- Disqus Forum (Online Mode) -->
+        <div id="disqusContainer">
+          <div id="disqus_thread"></div>
+          <noscript>Please enable JavaScript to view the forum.</noscript>
+        </div>
+      </div>
+
+      <!-- Sidebar -->
+      <aside class="forum-sidebar">
+        <h3><i class="fa fa-fire"></i> Trending Topics</h3>
+        <ul>
+          <li>
+            <a href="#" class="topic-link" data-topic="Math Exam Prep"
+              >📚 Math Exam Prep</a
+            >
+          </li>
+          <li>
+            <a href="#" class="topic-link" data-topic="Science Fair Ideas"
+              >🔬 Science Fair Ideas</a
+            >
+          </li>
+          <li>
+            <a href="#" class="topic-link" data-topic="Coding Challenges"
+              >💻 Coding Challenges</a
+            >
+          </li>
+          <li>
+            <a href="#" class="topic-link" data-topic="Wellness Tips"
+              >❤️ Wellness Tips</a
+            >
+          </li>
+        </ul>
+
+        <h3><i class="fa fa-download"></i> Offline Features</h3>
+        <ul>
+          <li>✓ Post without internet</li>
+          <li>✓ Auto-sync when online</li>
+          <li>✓ Read cached discussions</li>
+          <li>✓ Background sync support</li>
+        </ul>
+
+        <button
+          id="downloadForumBtn"
+          class="hero-btn"
+          style="background: #4caf50; width: 100%; margin-top: 20px"
+        >
+          📥 Save Forum for Offline
+        </button>
+      </aside>
+    </main>
+
+    <!-- Footer -->
+    <section class="Footer">
+      <h4>About Us</h4>
+      <p>
+        By leveraging technology, we aim to empower students with the tools and
+        support they need to succeed academically<br />
+        regardless of their location, resources, or socioeconomic status
+      </p>
+      <div class="icons">
+        <i class="fa fa-facebook"></i>
+        <i class="fa fa-twitter"></i>
+        <i class="fa fa-instagram"></i>
+        <i class="fa fa-linkedin"></i>
+      </div>
+      <p>Made with <i class="fa fa-heart-o"></i> by Media On Africa</p>
+    </section>
+
+    <!-- Offline Banner -->
+    <div id="offlineBanner" class="offline-banner">
+      <div style="display: flex; align-items: center; gap: 10px">
+        <span style="font-size: 20px">📡</span>
+        <span
+          >You are offline — posts will be saved locally and sync
+          automatically</span
+        >
+      </div>
+      <div style="display: flex; gap: 10px">
+        <button
+          id="dismissBanner"
+          style="
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+          "
+        >
+          Dismiss
+        </button>
+        <button
+          id="retryConnection"
+          style="
+            background: white;
+            border: none;
+            color: #667eea;
+            padding: 5px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 500;
+          "
+        >
+          Retry Connection
+        </button>
+      </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="notificationToast" class="notification-toast"></div>
+
+    <!-- Service Worker Registration -->
     <script>
-      var disqus_config = function () {
-        this.page.url = window.location.href;  
-        this.page.identifier = "sitewide-forum"; 
-      };
-      (function() {
-        var d = document, s = d.createElement('script');
-        s.src = 'https://mediaonafrica.disqus.com/embed.js';  
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-      })();
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker
+            .register("/service-worker.js")
+            .then((registration) => {
+              console.log("ServiceWorker registered:", registration.scope);
+            })
+            .catch((error) => {
+              console.log("ServiceWorker registration failed:", error);
+            });
+        });
+      }
     </script>
-    <noscript>Please enable JavaScript to view the forum.</noscript>
-  </div>
 
-  <!-- Sidebar -->
-  <aside class="forum-sidebar">
-    <h3><i class="fa fa-fire"></i> Trending Topics</h3>
-    <ul>
-      <li><a href="#"><i class="fa fa-book"></i> Math Exam Prep</a></li>
-      <li><a href="#"><i class="fa fa-flask"></i> Science Fair Ideas</a></li>
-      <li><a href="#"><i class="fa fa-code"></i> Coding Challenges</a></li>
-      <li><a href="#"><i class="fa fa-heart"></i> Wellness Tips</a></li>
-    </ul>
-  </aside>
-</main>
+    <!-- Dexie.js for IndexedDB -->
+    <script src="https://cdn.jsdelivr.net/npm/dexie@3.2.2/dist/dexie.js"></script>
 
-<!-- Footer -->
-<section class="Footer">
-  <h4>About Us</h4>
-  <p>
-    By leveraging technology, we aim to empower students with
-    the tools and support they need to succeed academically<br>
-    regardless of their location, resources, or socioeconomic status
-  </p>
-  <div class="icons">
-    <i class="fa fa-facebook"></i>
-    <i class="fa fa-twitter"></i> 
-    <i class="fa fa-instagram"></i> 
-    <i class="fa fa-linkedin"></i> 
-  </div>
-  <p>Made with <i class="fa fa-heart-o"></i> by Media On Africa</p>
-</section>
+    <!-- Forum Offline Logic -->
+    <script>
+      // Initialize IndexedDB
+      let db = null;
 
-<!-- JavaScript for Toggle Menu -->
-<script>
-  var navLinks = document.getElementById("navLinks");
-  function showmenu() { navLinks.style.right = "0"; }
-  function hidemenu() { navLinks.style.right = "-200px"; }
-</script>
+      async function initForumDB() {
+        if (typeof Dexie === "undefined") {
+          await new Promise((resolve) => setTimeout(resolve, 500));
+        }
 
-<!-- Chatbot Embed -->
-<script src="https://code.tidio.co/uqdod81sfajvlkpiujfsjo49za71xsuc.js" async></script>
-</body>
+        db = new Dexie("MediaOnAfricaForum");
+        db.version(1).stores({
+          forumPosts: "++id, title, content, author, timestamp, synced, topic",
+        });
+
+        await db.open();
+        console.log("Forum IndexedDB ready");
+        await loadOfflinePosts();
+        await checkPendingSync();
+      }
+
+      // Load and display offline posts
+      async function loadOfflinePosts() {
+        if (!db) return;
+
+        const posts = await db.forumPosts
+          .orderBy("timestamp")
+          .reverse()
+          .toArray();
+        displayPosts(posts);
+      }
+
+      function displayPosts(posts) {
+        const container = document.getElementById("postsList");
+        if (!container) return;
+
+        if (posts.length === 0) {
+          container.innerHTML =
+            '<p style="text-align: center; color: #999;">No discussions yet. Start the conversation!</p>';
+          return;
+        }
+
+        container.innerHTML = posts
+          .map(
+            (post) => `
+      <div class="offline-post" data-post-id="${post.id}">
+        <h4>
+          ${escapeHtml(post.title)}
+          ${!post.synced ? '<span class="offline-badge">Pending Sync</span>' : ""}
+        </h4>
+        <div class="post-meta">
+          <i class="fa fa-user"></i> ${escapeHtml(post.author || "Anonymous")} 
+          <i class="fa fa-clock-o" style="margin-left: 10px;"></i> ${new Date(post.timestamp).toLocaleString()}
+          ${post.topic ? `<i class="fa fa-tag" style="margin-left: 10px;"></i> ${escapeHtml(post.topic)}` : ""}
+        </div>
+        <div class="post-content">${escapeHtml(post.content)}</div>
+      </div>
+    `,
+          )
+          .join("");
+      }
+
+      function escapeHtml(text) {
+        if (!text) return "";
+        const div = document.createElement("div");
+        div.textContent = text;
+        return div.innerHTML;
+      }
+
+      // Save post offline
+      async function saveOfflinePost(title, content, author, topic = null) {
+        if (!title.trim() || !content.trim()) {
+          showNotification("Please enter both title and content", "error");
+          return false;
+        }
+
+        const post = {
+          title: title.trim(),
+          content: content.trim(),
+          author: author.trim() || "Anonymous",
+          timestamp: new Date().toISOString(),
+          synced: false,
+          topic: topic,
+        };
+
+        try {
+          const id = await db.forumPosts.add(post);
+          console.log("Post saved offline with ID:", id);
+          await loadOfflinePosts();
+          clearPostForm();
+          showNotification(
+            "Post saved locally! Will sync when online.",
+            "success",
+          );
+
+          // Show sync status if there are pending posts
+          await checkPendingSync();
+
+          return true;
+        } catch (error) {
+          console.error("Failed to save post:", error);
+          showNotification("Failed to save post", "error");
+          return false;
+        }
+      }
+
+      function clearPostForm() {
+        document.getElementById("postTitle").value = "";
+        document.getElementById("postContent").value = "";
+        document.getElementById("authorName").value = "";
+      }
+
+      // Sync pending posts to Disqus/Server
+      async function syncPendingPosts() {
+        if (!db) return;
+
+        const pendingPosts = await db.forumPosts
+          .where("synced")
+          .equals(false)
+          .toArray();
+
+        if (pendingPosts.length === 0) {
+          showNotification("No pending posts to sync", "info");
+          return;
+        }
+
+        showNotification(`Syncing ${pendingPosts.length} posts...`, "info");
+
+        for (const post of pendingPosts) {
+          try {
+            // Here you would integrate with your backend API
+            // For now, we'll simulate sync and mark as synced
+            await simulateApiCall(post);
+
+            // Mark as synced
+            await db.forumPosts.update(post.id, { synced: true });
+            console.log("Post synced:", post.id);
+          } catch (error) {
+            console.error("Failed to sync post:", error);
+          }
+        }
+
+        await loadOfflinePosts();
+        await checkPendingSync();
+        showNotification(
+          `Synced ${pendingPosts.length} posts successfully!`,
+          "success",
+        );
+      }
+
+      async function simulateApiCall(post) {
+        // Simulate API delay
+        await new Promise((resolve) => setTimeout(resolve, 500));
+
+        // Log the post that would be sent to server
+        console.log("Would send to server:", post);
+
+        // Here you would make an actual API call:
+        // const response = await fetch('/api/forum/post', {
+        //   method: 'POST',
+        //   headers: { 'Content-Type': 'application/json' },
+        //   body: JSON.stringify(post)
+        // });
+
+        return true;
+      }
+
+      async function checkPendingSync() {
+        if (!db) return;
+
+        const pendingCount = await db.forumPosts
+          .where("synced")
+          .equals(false)
+          .count();
+        const syncStatus = document.getElementById("syncStatus");
+        const pendingCountSpan = document.getElementById("pendingCount");
+
+        if (pendingCount > 0) {
+          syncStatus.classList.add("show");
+          pendingCountSpan.textContent = pendingCount;
+        } else {
+          syncStatus.classList.remove("show");
+        }
+      }
+
+      // Offline mode handling
+      function updateOfflineUI() {
+        const isOffline = !navigator.onLine;
+        const offlineAlert = document.getElementById("offlineModeAlert");
+        const disqusContainer = document.getElementById("disqusContainer");
+        const offlineBadge = document.getElementById("offlineBadge");
+        const banner = document.getElementById("offlineBanner");
+
+        if (isOffline) {
+          offlineAlert.classList.add("show");
+          if (disqusContainer) {
+            disqusContainer.style.display = "none";
+          }
+          if (offlineBadge) {
+            offlineBadge.style.display = "inline-block";
+          }
+          banner.classList.add("show");
+        } else {
+          offlineAlert.classList.remove("show");
+          if (disqusContainer) {
+            disqusContainer.style.display = "block";
+            // Reload Disqus if needed
+            if (typeof DISQUS !== "undefined") {
+              DISQUS.reset({
+                reload: true,
+                config: function () {
+                  this.page.identifier = "sitewide-forum";
+                  this.page.url = window.location.href;
+                },
+              });
+            }
+          }
+          if (offlineBadge) {
+            offlineBadge.style.display = "none";
+          }
+          banner.classList.remove("show");
+
+          // Auto-sync when coming back online
+          syncPendingPosts();
+        }
+      }
+
+      function showNotification(message, type = "success") {
+        const toast = document.getElementById("notificationToast");
+        toast.textContent = message;
+        toast.style.background =
+          type === "success"
+            ? "#4CAF50"
+            : type === "error"
+              ? "#f44336"
+              : "#2196F3";
+        toast.classList.add("show");
+
+        setTimeout(() => {
+          toast.classList.remove("show");
+        }, 3000);
+      }
+
+      // Download forum for offline
+      async function downloadForumOffline() {
+        const btn = document.getElementById("downloadForumBtn");
+        const originalText = btn.innerHTML;
+        btn.innerHTML = "⏳ Downloading...";
+        btn.disabled = true;
+
+        if (navigator.serviceWorker && navigator.serviceWorker.controller) {
+          const assetsToCache = [
+            window.location.href,
+            "/styles.css",
+            "https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300;400;700&family=Poppins:wght@300;400;600;700&display=swap",
+            "https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css",
+            "https://cdn.jsdelivr.net/npm/dexie@3.2.2/dist/dexie.js",
+          ];
+
+          navigator.serviceWorker.controller.postMessage({
+            type: "CACHE_NEW_ASSETS",
+            urls: assetsToCache,
+          });
+
+          setTimeout(() => {
+            btn.innerHTML = "✓ Forum Saved for Offline!";
+            showNotification("Forum page saved for offline access!", "success");
+            setTimeout(() => {
+              btn.innerHTML = originalText;
+              btn.disabled = false;
+            }, 3000);
+          }, 2000);
+        } else {
+          btn.innerHTML = originalText;
+          btn.disabled = false;
+          showNotification("Please refresh and try again", "error");
+        }
+      }
+
+      // Set up topic links
+      function setupTopicLinks() {
+        document.querySelectorAll(".topic-link").forEach((link) => {
+          link.addEventListener("click", (e) => {
+            e.preventDefault();
+            const topic = link.getAttribute("data-topic");
+            const titleInput = document.getElementById("postTitle");
+            if (titleInput) {
+              titleInput.value = `[${topic}] `;
+              titleInput.focus();
+            }
+          });
+        });
+      }
+
+      // Navigation menu
+      var navLinks = document.getElementById("navLinks");
+      function showmenu() {
+        if (navLinks) navLinks.style.right = "0";
+      }
+      function hidemenu() {
+        if (navLinks) navLinks.style.right = "-200px";
+      }
+
+      // Event listeners
+      document.addEventListener("DOMContentLoaded", async () => {
+        await initForumDB();
+        updateOfflineUI();
+        setupTopicLinks();
+
+        // Submit post
+        const submitBtn = document.getElementById("submitPostBtn");
+        if (submitBtn) {
+          submitBtn.addEventListener("click", () => {
+            const title = document.getElementById("postTitle").value;
+            const content = document.getElementById("postContent").value;
+            const author = document.getElementById("authorName").value;
+            saveOfflinePost(title, content, author);
+          });
+        }
+
+        // Sync button
+        const syncBtn = document.getElementById("forceSyncBtn");
+        if (syncBtn) {
+          syncBtn.addEventListener("click", () => syncPendingPosts());
+        }
+
+        // Download button
+        const downloadBtn = document.getElementById("downloadForumBtn");
+        if (downloadBtn) {
+          downloadBtn.addEventListener("click", () => downloadForumOffline());
+        }
+
+        // Dismiss banner
+        const dismissBtn = document.getElementById("dismissBanner");
+        if (dismissBtn) {
+          dismissBtn.addEventListener("click", () => {
+            document.getElementById("offlineBanner").classList.remove("show");
+          });
+        }
+
+        // Retry connection
+        const retryBtn = document.getElementById("retryConnection");
+        if (retryBtn) {
+          retryBtn.addEventListener("click", () => {
+            if (navigator.onLine) {
+              location.reload();
+            } else {
+              showNotification(
+                "Still offline. Please check your connection.",
+                "error",
+              );
+            }
+          });
+        }
+      });
+
+      // Online/Offline event listeners
+      window.addEventListener("online", () => {
+        updateOfflineUI();
+        showNotification("Back online! Syncing your posts...", "success");
+      });
+
+      window.addEventListener("offline", () => {
+        updateOfflineUI();
+        showNotification(
+          "You are offline. Posts will be saved locally.",
+          "info",
+        );
+      });
+    </script>
+
+    <!-- Disqus Forum Embed (modified for offline awareness) -->
+    <script>
+      // Only load Disqus if online
+      if (navigator.onLine) {
+        var disqus_config = function () {
+          this.page.url = window.location.href;
+          this.page.identifier = "sitewide-forum";
+        };
+        (function () {
+          var d = document,
+            s = d.createElement("script");
+          s.src = "https://mediaonafrica.disqus.com/embed.js";
+          s.setAttribute("data-timestamp", +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      } else {
+        // Hide Disqus container when offline
+        document.getElementById("disqusContainer").style.display = "none";
+      }
+    </script>
+
+    <!-- Chatbot Embed with offline handling -->
+    <script
+      src="https://code.tidio.co/uqdod81sfajvlkpiujfsjo49za71xsuc.js"
+      async
+    ></script>
+    <script>
+      // Handle Tidio chat offline
+      window.addEventListener("offline", () => {
+        const tidioFrame = document.querySelector("#tidio-chat-iframe");
+        if (tidioFrame) tidioFrame.style.display = "none";
+      });
+
+      window.addEventListener("online", () => {
+        const tidioFrame = document.querySelector("#tidio-chat-iframe");
+        if (tidioFrame) tidioFrame.style.display = "block";
+      });
+    </script>
+  </body>
 </html>
-
