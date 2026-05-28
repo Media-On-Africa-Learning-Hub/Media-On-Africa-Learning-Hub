@@ -5,8 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Support - Media On Africa Learning Hub</title>
 
-    <!-- PWA Meta Tags -->
-    <link rel="manifest" href="/manifest.json" />
+    <!-- Base path for GitHub Pages -->
+    <base href="/Media-On-Africa-Learning-Hub/" />
+
+    <!-- PWA Meta Tags - Updated for GitHub Pages -->
+    <link rel="manifest" href="/Media-On-Africa-Learning-Hub/manifest.json" />
     <meta name="theme-color" content="#1a472a" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta
@@ -328,17 +331,17 @@
       <div class="nav-links" id="navLinks">
         <i class="fa fa-times" onclick="hidemenu()"></i>
         <ul>
-          <li><a href="index.html">HOME</a></li>
-          <li><a href="About.html">ABOUT</a></li>
-          <li><a href="Subjects.html">SUBJECTS</a></li>
-          <li><a href="quizzes.html">QUIZZES</a></li>
-          <li><a href="aptitude.html">APTITUDE TEST</a></li>
-          <li><a href="forum.html">DISCUSSION</a></li>
-          <li><a href="mental_wellness.html">WELLNESS</a></li>
-          <li><a href="blog.html">BLOG</a></li>
-          <li><a href="contact.html">CONTACT</a></li>
-          <li><a href="library.html">LIBRARY</a></li>
-          <li><a href="khulisa.html">SUPPORT</a></li>
+          <li><a href="/Media-On-Africa-Learning-Hub/index.html">HOME</a></li>
+          <li><a href="/Media-On-Africa-Learning-Hub/About.html">ABOUT</a></li>
+          <li><a href="/Media-On-Africa-Learning-Hub/Subjects.html">SUBJECTS</a></li>
+          <li><a href="/Media-On-Africa-Learning-Hub/quizzes.html">QUIZZES</a></li>
+          <li><a href="/Media-On-Africa-Learning-Hub/aptitude.html">APTITUDE TEST</a></li>
+          <li><a href="/Media-On-Africa-Learning-Hub/forum.html">DISCUSSION</a></li>
+          <li><a href="/Media-On-Africa-Learning-Hub/mental_wellness.html">WELLNESS</a></li>
+          <li><a href="/Media-On-Africa-Learning-Hub/blog.html">BLOG</a></li>
+          <li><a href="/Media-On-Africa-Learning-Hub/contact.html">CONTACT</a></li>
+          <li><a href="/Media-On-Africa-Learning-Hub/library.html">LIBRARY</a></li>
+          <li><a href="/Media-On-Africa-Learning-Hub/khulisa.html">SUPPORT</a></li>
         </ul>
       </div>
       <i class="fa fa-bars" onclick="showmenu()"></i>
@@ -597,12 +600,12 @@
     <!-- Notification Toast -->
     <div id="notificationToast" class="notification-toast"></div>
 
-    <!-- Service Worker Registration -->
+    <!-- Service Worker Registration - Updated for GitHub Pages -->
     <script>
       if ("serviceWorker" in navigator) {
         window.addEventListener("load", () => {
           navigator.serviceWorker
-            .register("/service-worker.js")
+            .register("/Media-On-Africa-Learning-Hub/service-worker.js")
             .then((registration) => {
               console.log("ServiceWorker registered:", registration.scope);
             })
@@ -893,7 +896,7 @@
         if (navigator.serviceWorker && navigator.serviceWorker.controller) {
           const assetsToCache = [
             window.location.href,
-            "/styles.css",
+            "/Media-On-Africa-Learning-Hub/styles.css",
             "https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap",
             "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css",
             "https://cdn.jsdelivr.net/npm/dexie@3.2.2/dist/dexie.js",
