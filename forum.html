@@ -5,8 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Discussion Forum - Media On Africa</title>
 
-    <!-- PWA Meta Tags -->
-    <link rel="manifest" href="/manifest.json" />
+    <!-- Base path for GitHub Pages -->
+    <base href="/Media-On-Africa-Learning-Hub/" />
+
+    <!-- PWA Meta Tags - Updated for GitHub Pages -->
+    <link rel="manifest" href="/Media-On-Africa-Learning-Hub/manifest.json" />
     <meta name="theme-color" content="#1a472a" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta
@@ -427,12 +430,12 @@
     <!-- Notification Toast -->
     <div id="notificationToast" class="notification-toast"></div>
 
-    <!-- Service Worker Registration -->
+    <!-- Service Worker Registration - Updated for GitHub Pages -->
     <script>
       if ("serviceWorker" in navigator) {
         window.addEventListener("load", () => {
           navigator.serviceWorker
-            .register("/service-worker.js")
+            .register("/Media-On-Africa-Learning-Hub/service-worker.js")
             .then((registration) => {
               console.log("ServiceWorker registered:", registration.scope);
             })
@@ -699,7 +702,7 @@
         if (navigator.serviceWorker && navigator.serviceWorker.controller) {
           const assetsToCache = [
             window.location.href,
-            "/styles.css",
+            "/Media-On-Africa-Learning-Hub/styles.css",
             "https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300;400;700&family=Poppins:wght@300;400;600;700&display=swap",
             "https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css",
             "https://cdn.jsdelivr.net/npm/dexie@3.2.2/dist/dexie.js",

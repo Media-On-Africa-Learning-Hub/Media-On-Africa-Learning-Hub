@@ -5,8 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Library - Media On Africa Learning Hub</title>
 
-    <!-- PWA Meta Tags -->
-    <link rel="manifest" href="/manifest.json" />
+    <!-- Base path for GitHub Pages -->
+    <base href="/Media-On-Africa-Learning-Hub/" />
+
+    <!-- PWA Meta Tags - Updated for GitHub Pages -->
+    <link rel="manifest" href="/Media-On-Africa-Learning-Hub/manifest.json" />
     <meta name="theme-color" content="#1a472a" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta
@@ -557,12 +560,12 @@
     <!-- Notification Toast -->
     <div id="notificationToast" class="notification-toast"></div>
 
-    <!-- Service Worker Registration -->
+    <!-- Service Worker Registration - Updated for GitHub Pages -->
     <script>
       if ("serviceWorker" in navigator) {
         window.addEventListener("load", () => {
           navigator.serviceWorker
-            .register("/service-worker.js")
+            .register("/Media-On-Africa-Learning-Hub/service-worker.js")
             .then((registration) => {
               console.log("ServiceWorker registered:", registration.scope);
             })

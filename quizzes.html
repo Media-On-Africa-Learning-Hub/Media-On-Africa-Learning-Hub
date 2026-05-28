@@ -4,6 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Quizzes - Media On Africa Learning Hub</title>
+  
+  <!-- Base path for GitHub Pages -->
+  <base href="/Media-On-Africa-Learning-Hub/" />
+  
   <link rel="stylesheet" href="styles.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -15,6 +19,30 @@
     rel="stylesheet"
     href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
   />
+  
+  <!-- PWA Manifest - Updated for GitHub Pages -->
+  <link rel="manifest" href="/Media-On-Africa-Learning-Hub/manifest.json" />
+  <meta name="theme-color" content="#1a5fa8" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="MOA Hub" />
+
+  <!-- Service Worker Registration - Updated for GitHub Pages -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('/Media-On-Africa-Learning-Hub/service-worker.js')
+          .then(function (reg) {
+            console.log('[MOA] Service Worker registered:', reg.scope);
+          })
+          .catch(function (err) {
+            console.warn('[MOA] Service Worker registration failed:', err);
+          });
+      });
+    }
+  </script>
+
   <style>
     /* Revamped Quiz Styling */
     .quizzes {
@@ -91,29 +119,6 @@
     }
     #moa-offline-banner.online { background: #2ecc71; }
   </style>
-
-  <!-- PWA Manifest -->
-  <link rel="manifest" href="/manifest.json" />
-  <meta name="theme-color" content="#1a5fa8" />
-  <meta name="mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-  <meta name="apple-mobile-web-app-title" content="MOA Hub" />
-
-  <!-- Service Worker Registration -->
-  <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', function () {
-        navigator.serviceWorker.register('/service-worker.js')
-          .then(function (reg) {
-            console.log('[MOA] Service Worker registered:', reg.scope);
-          })
-          .catch(function (err) {
-            console.warn('[MOA] Service Worker registration failed:', err);
-          });
-      });
-    }
-  </script>
 </head>
 <body>
 
@@ -253,10 +258,9 @@
   function hidemenu() { navLinks.style.right = "-200px"; }
 </script>
 
-<!-- Quiz Scripts -->
+<!-- Quiz Scripts - Updated paths for GitHub Pages -->
 <script src="quiz-data.js"></script>
 <script src="quiz-script.js"></script>
 
 </body>
 </html>
-

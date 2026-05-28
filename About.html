@@ -16,20 +16,23 @@
       href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
     />
 
-    <!-- PWA Manifest -->
-    <link rel="manifest" href="/manifest.json" />
+    <!-- Base path for GitHub Pages -->
+    <base href="/Media-On-Africa-Learning-Hub/" />
+
+    <!-- PWA Manifest - Updated for GitHub Pages subdirectory -->
+    <link rel="manifest" href="/Media-On-Africa-Learning-Hub/manifest.json" />
     <meta name="theme-color" content="#1a5fa8" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <meta name="apple-mobile-web-app-title" content="MOA Hub" />
 
-    <!-- Service Worker Registration -->
+    <!-- Service Worker Registration - Updated for GitHub Pages subdirectory -->
     <script>
       if ("serviceWorker" in navigator) {
         window.addEventListener("load", function () {
           navigator.serviceWorker
-            .register("/service-worker.js")
+            .register("/Media-On-Africa-Learning-Hub/service-worker.js")
             .then(function (reg) {
               console.log("[MOA] Service Worker registered:", reg.scope);
             })

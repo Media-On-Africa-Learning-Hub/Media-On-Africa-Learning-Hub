@@ -5,8 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Aptitude Test - Media On Africa Learning Hub</title>
   
-  <!-- PWA Meta Tags -->
-  <link rel="manifest" href="/manifest.json">
+  <!-- Base path for GitHub Pages -->
+  <base href="/Media-On-Africa-Learning-Hub/" />
+  
+  <!-- PWA Meta Tags - Updated for GitHub Pages -->
+  <link rel="manifest" href="/Media-On-Africa-Learning-Hub/manifest.json">
   <meta name="theme-color" content="#1a472a">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -577,11 +580,11 @@
   <p class="footer-note">This practice test is for learning and self-assessment only.</p>
 </footer>
 
-<!-- Service Worker Registration -->
+<!-- Service Worker Registration - Updated for GitHub Pages -->
 <script>
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/service-worker.js')
+    navigator.serviceWorker.register('/Media-On-Africa-Learning-Hub/service-worker.js')
       .then(registration => {
         console.log('ServiceWorker registered successfully:', registration.scope);
         
@@ -869,7 +872,7 @@ function showUpdateNotification() {
     if (navigator.serviceWorker && navigator.serviceWorker.controller) {
       const assetsToCache = [
         window.location.href,
-        '/styles.css',
+        '/Media-On-Africa-Learning-Hub/styles.css',
         'https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300;400;700&family=Poppins:wght@300;400;500;600;700&display=swap',
         'https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css',
         'https://cdn.jsdelivr.net/npm/dexie@3.2.2/dist/dexie.js'
