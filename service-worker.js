@@ -1,24 +1,26 @@
 // Enhanced Service Worker for Media On Africa - WITH MEDIA CACHING
-const CACHE_NAME = "moa-v3";
+// Version for GitHub Pages subdirectory
+const CACHE_NAME = "moa-v4";
 const MEDIA_CACHE = "moa-media-v1";
+const BASE_PATH = "/Media-On-Africa-Learning-Hub";
 
-// All pages and assets to cache
+// All pages and assets to cache - WITH subdirectory path
 const PRECACHE_URLS = [
-  "/",
-  "/index.html",
-  "/About.html",
-  "/Subjects.html",
-  "/quizzes.html",
-  "/aptitude.html",
-  "/forum.html",
-  "/mental_wellness.html",
-  "/blog.html",
-  "/contact.html",
-  "/library.html",
-  "/khulisa.html",
-  "/styles.css",
-  "/offline.html",
-  "/manifest.json",
+  `${BASE_PATH}/`,
+  `${BASE_PATH}/index.html`,
+  `${BASE_PATH}/About.html`,
+  `${BASE_PATH}/Subjects.html`,
+  `${BASE_PATH}/quizzes.html`,
+  `${BASE_PATH}/aptitude.html`,
+  `${BASE_PATH}/forum.html`,
+  `${BASE_PATH}/mental_wellness.html`,
+  `${BASE_PATH}/blog.html`,
+  `${BASE_PATH}/contact.html`,
+  `${BASE_PATH}/library.html`,
+  `${BASE_PATH}/khulisa.html`,
+  `${BASE_PATH}/styles.css`,
+  `${BASE_PATH}/offline.html`,
+  `${BASE_PATH}/manifest.json`,
 ];
 
 // Image extensions to cache
@@ -53,7 +55,8 @@ self.addEventListener("install", (event) => {
         console.log("[SW] Caching", PRECACHE_URLS.length, "files");
         return cache.addAll(PRECACHE_URLS);
       })
-      .then(() => self.skipWaiting()),
+      .then(() => self.skipWaiting())
+      .catch((err) => console.error("[SW] Install failed:", err))
   );
 });
 
@@ -70,10 +73,10 @@ self.addEventListener("activate", (event) => {
               console.log("[SW] Removing old cache:", key);
               return caches.delete(key);
             }
-          }),
+          })
         );
       })
-      .then(() => self.clients.claim()),
+      .then(() => self.clients.claim())
   );
 });
 
@@ -98,7 +101,7 @@ self.addEventListener("fetch", (event) => {
             return response;
           });
         });
-      }),
+      })
     );
     return;
   }
@@ -120,7 +123,7 @@ self.addEventListener("fetch", (event) => {
             return response;
           });
         });
-      }),
+      })
     );
     return;
   }
@@ -147,9 +150,9 @@ self.addEventListener("fetch", (event) => {
         })
         .catch(() => {
           if (event.request.headers.get("accept").includes("text/html")) {
-            return caches.match("/offline.html");
+            return caches.match(`${BASE_PATH}/offline.html`);
           }
         });
-    }),
+    })
   );
 });
