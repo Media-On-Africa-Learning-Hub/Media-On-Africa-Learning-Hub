@@ -4,10 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Subjects - Media On Africa Learning Hub</title>
-    
+
     <!-- Base path for GitHub Pages -->
     <base href="/Media-On-Africa-Learning-Hub/" />
-    
+
     <link rel="stylesheet" href="styles.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -20,7 +20,7 @@
       href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
     />
 
-    <!-- PWA Manifest - Updated for GitHub Pages -->
+    <!-- PWA Manifest -->
     <link rel="manifest" href="/Media-On-Africa-Learning-Hub/manifest.json" />
     <meta name="theme-color" content="#1a5fa8" />
     <meta name="mobile-web-app-capable" content="yes" />
@@ -28,7 +28,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <meta name="apple-mobile-web-app-title" content="MOA Hub" />
 
-    <!-- Service Worker Registration - Updated for GitHub Pages -->
+    <!-- Service Worker Registration -->
     <script>
       if ("serviceWorker" in navigator) {
         window.addEventListener("load", function () {
@@ -63,6 +63,41 @@
       }
       #moa-offline-banner.online {
         background: #2ecc71;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: #0b6aa3;
+        color: white;
+        padding: 8px 16px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-size: 14px;
+        transition: background 0.3s;
+        border: none;
+        cursor: pointer;
+        margin: 5px;
+      }
+
+      .btn:hover {
+        background: #0f4c81;
+      }
+
+      .btn-download {
+        background: #4caf50;
+      }
+
+      .btn-download:hover {
+        background: #45a049;
+      }
+
+      .subject-col p {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
       }
     </style>
   </head>
@@ -101,15 +136,35 @@
         <ul>
           <li><a href="/Media-On-Africa-Learning-Hub/index.html">HOME</a></li>
           <li><a href="/Media-On-Africa-Learning-Hub/About.html">ABOUT</a></li>
-          <li><a href="/Media-On-Africa-Learning-Hub/Subjects.html">SUBJECTS</a></li>
-          <li><a href="/Media-On-Africa-Learning-Hub/quizzes.html">QUIZZES</a></li>
-          <li><a href="/Media-On-Africa-Learning-Hub/aptitude.html">APTITUDE TEST</a></li>
-          <li><a href="/Media-On-Africa-Learning-Hub/forum.html">DISCUSSION</a></li>
-          <li><a href="/Media-On-Africa-Learning-Hub/mental_wellness.html">WELLNESS</a></li>
+          <li>
+            <a href="/Media-On-Africa-Learning-Hub/Subjects.html">SUBJECTS</a>
+          </li>
+          <li>
+            <a href="/Media-On-Africa-Learning-Hub/quizzes.html">QUIZZES</a>
+          </li>
+          <li>
+            <a href="/Media-On-Africa-Learning-Hub/aptitude.html"
+              >APTITUDE TEST</a
+            >
+          </li>
+          <li>
+            <a href="/Media-On-Africa-Learning-Hub/forum.html">DISCUSSION</a>
+          </li>
+          <li>
+            <a href="/Media-On-Africa-Learning-Hub/mental_wellness.html"
+              >WELLNESS</a
+            >
+          </li>
           <li><a href="/Media-On-Africa-Learning-Hub/blog.html">BLOG</a></li>
-          <li><a href="/Media-On-Africa-Learning-Hub/contact.html">CONTACT</a></li>
-          <li><a href="/Media-On-Africa-Learning-Hub/library.html">LIBRARY</a></li>
-          <li><a href="/Media-On-Africa-Learning-Hub/khulisa.html">SUPPORT</a></li>
+          <li>
+            <a href="/Media-On-Africa-Learning-Hub/contact.html">CONTACT</a>
+          </li>
+          <li>
+            <a href="/Media-On-Africa-Learning-Hub/library.html">LIBRARY</a>
+          </li>
+          <li>
+            <a href="/Media-On-Africa-Learning-Hub/khulisa.html">SUPPORT</a>
+          </li>
         </ul>
       </div>
       <i class="fa fa-bars" onclick="showmenu()"></i>
@@ -123,7 +178,7 @@
       </div>
     </section>
 
-    <!-- Grade 8 -->
+    <!-- GRADE 8 -->
     <section class="subjects">
       <h1>Grade 8</h1>
       <div class="row">
@@ -131,42 +186,74 @@
           <i class="fa fa-calculator"></i>
           <h3>Mathematics</h3>
           <p>
-            <a href="resources/Grade%208%20Mathematics.pdf" target="_blank"
-              >Download Textbook</a
+            <a
+              href="resources/Gr8A_Mathematics_Learner_Eng.pdf"
+              target="_blank"
+              class="btn"
             >
+              <i class="fa fa-book"></i> Open Book
+            </a>
+            <button
+              class="btn btn-download"
+              data-book="grade8-maths"
+              data-url="resources/Gr8A_Mathematics_Learner_Eng.pdf"
+              data-name="Grade 8 Mathematics"
+            >
+              <i class="fa fa-download"></i> Save for Offline
+            </button>
           </p>
         </div>
         <div class="subject-col science">
           <i class="fa fa-flask"></i>
           <h3>Natural Science</h3>
           <p>
-            <a href="resources/Grade%208%20Science.pdf" target="_blank"
-              >Download Textbook</a
+            <a
+              href="resources/natural-sciences-grade-8.pdf"
+              target="_blank"
+              class="btn"
             >
+              <i class="fa fa-book"></i> Open Book
+            </a>
+            <button
+              class="btn btn-download"
+              data-book="grade8-science"
+              data-url="resources/natural-sciences-grade-8.pdf"
+              data-name="Grade 8 Natural Science"
+            >
+              <i class="fa fa-download"></i> Save for Offline
+            </button>
           </p>
         </div>
         <div class="subject-col tech">
           <i class="fa fa-cogs"></i>
           <h3>Technology</h3>
           <p>
-            <a href="resources/Grade%208%20Technology.pdf" target="_blank"
-              >Download Textbook</a
+            <a
+              href="resources/siyavula-TechnologyGrade8-col11052.pdf"
+              target="_blank"
+              class="btn"
             >
+              <i class="fa fa-book"></i> Open Book
+            </a>
+            <button
+              class="btn btn-download"
+              data-book="grade8-tech"
+              data-url="resources/siyavula-TechnologyGrade8-col11052.pdf"
+              data-name="Grade 8 Technology"
+            >
+              <i class="fa fa-download"></i> Save for Offline
+            </button>
           </p>
         </div>
         <div class="subject-col art">
           <i class="fa fa-paint-brush"></i>
           <h3>Creative Arts</h3>
-          <p>
-            <a href="resources/Grade%208%20Arts.pdf" target="_blank"
-              >Download Textbook</a
-            >
-          </p>
+          <p>Coming Soon</p>
         </div>
       </div>
     </section>
 
-    <!-- Grade 9 -->
+    <!-- GRADE 9 -->
     <section class="subjects">
       <h1>Grade 9</h1>
       <div class="row">
@@ -174,42 +261,70 @@
           <i class="fa fa-calculator"></i>
           <h3>Mathematics</h3>
           <p>
-            <a href="resources/Grade%209%20Mathematics.pdf" target="_blank"
-              >Download Textbook</a
+            <a
+              href="resources/Gr9A_Mathematics_Learner_Eng.pdf"
+              target="_blank"
+              class="btn"
             >
+              <i class="fa fa-book"></i> Open Book
+            </a>
+            <button
+              class="btn btn-download"
+              data-book="grade9-maths"
+              data-url="resources/Gr9A_Mathematics_Learner_Eng.pdf"
+              data-name="Grade 9 Mathematics"
+            >
+              <i class="fa fa-download"></i> Save for Offline
+            </button>
           </p>
         </div>
         <div class="subject-col science">
           <i class="fa fa-flask"></i>
           <h3>Natural Science</h3>
           <p>
-            <a href="resources/Grade%209%20Science.pdf" target="_blank"
-              >Download Textbook</a
+            <a
+              href="resources/natural-sciences-grade-9.pdf"
+              target="_blank"
+              class="btn"
             >
+              <i class="fa fa-book"></i> Open Book
+            </a>
+            <button
+              class="btn btn-download"
+              data-book="grade9-science"
+              data-url="resources/natural-sciences-grade-9.pdf"
+              data-name="Grade 9 Natural Science"
+            >
+              <i class="fa fa-download"></i> Save for Offline
+            </button>
           </p>
         </div>
         <div class="subject-col tech">
           <i class="fa fa-cogs"></i>
           <h3>Technology</h3>
           <p>
-            <a href="resources/Grade%209%20Technology.pdf" target="_blank"
-              >Download Textbook</a
+            <a href="resources/Technology.pdf" target="_blank" class="btn">
+              <i class="fa fa-book"></i> Open Book
+            </a>
+            <button
+              class="btn btn-download"
+              data-book="grade9-tech"
+              data-url="resources/Technology.pdf"
+              data-name="Grade 9 Technology"
             >
+              <i class="fa fa-download"></i> Save for Offline
+            </button>
           </p>
         </div>
         <div class="subject-col art">
           <i class="fa fa-paint-brush"></i>
           <h3>Creative Arts</h3>
-          <p>
-            <a href="resources/Grade%209%20Arts.pdf" target="_blank"
-              >Download Textbook</a
-            >
-          </p>
+          <p>Coming Soon</p>
         </div>
       </div>
     </section>
 
-    <!-- Grade 10 -->
+    <!-- GRADE 10 -->
     <section class="subjects">
       <h1>Grade 10</h1>
       <div class="row">
@@ -256,7 +371,7 @@
       </div>
     </section>
 
-    <!-- Grade 11 -->
+    <!-- GRADE 11 -->
     <section class="subjects">
       <h1>Grade 11</h1>
       <div class="row">
@@ -303,7 +418,7 @@
       </div>
     </section>
 
-    <!-- Grade 12 -->
+    <!-- GRADE 12 -->
     <section class="subjects">
       <h1>Grade 12</h1>
       <div class="row">
@@ -350,200 +465,6 @@
       </div>
     </section>
 
-    <!-- Assessment Rubric -->
-    <section class="subjects rubric">
-      <h1>Assessment Rubric</h1>
-
-      <!-- Mathematics Rubric -->
-      <div class="rubric-block math">
-        <h2><i class="fa fa-calculator"></i> Mathematics</h2>
-
-        <!-- Grade 10 -->
-        <article>
-          <h3>Grade 10 – Term 1</h3>
-          <table>
-            <thead>
-              <tr>
-                <th>Topic</th>
-                <th>Excellent</th>
-                <th>Good</th>
-                <th>Fair</th>
-                <th>Needs Improvement</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <a href="resources/Grade%2010%20Mathematics.pdf#page=6"
-                    >Algebra & Number Patterns (pp. 6–56)</a
-                  >
-                  <br />
-                  <button class="toggle-btn">Show Questions</button>
-                  <div class="questions hidden">
-                    <form class="quiz" id="mathsGrade10Term1">
-                      <p>1. Solve for x: 2x + 5 = 15</p>
-                      <label
-                        ><input type="radio" name="q1" value="a" /> x = 5</label
-                      ><br />
-                      <label
-                        ><input type="radio" name="q1" value="b" /> x =
-                        10</label
-                      ><br />
-                      <label
-                        ><input type="radio" name="q1" value="c" /> x =
-                        –5</label
-                      ><br />
-
-                      <p>2. Factorize: x² + 5x + 6</p>
-                      <label
-                        ><input type="radio" name="q2" value="a" /> (x + 2)(x +
-                        3)</label
-                      ><br />
-                      <label
-                        ><input type="radio" name="q2" value="b" /> (x – 2)(x –
-                        3)</label
-                      ><br />
-                      <label
-                        ><input type="radio" name="q2" value="c" /> (x + 1)(x +
-                        6)</label
-                      ><br />
-
-                      <p>3. Expand: (x + 3)(x – 2)</p>
-                      <label
-                        ><input type="radio" name="q3" value="a" /> x² + x –
-                        6</label
-                      ><br />
-                      <label
-                        ><input type="radio" name="q3" value="b" /> x² – 5x +
-                        6</label
-                      ><br />
-                      <label
-                        ><input type="radio" name="q3" value="c" /> x² + 6x –
-                        6</label
-                      ><br />
-
-                      <p>4. Simplify: (2x² – 3x + 4) – (x² – 5x – 2)</p>
-                      <label
-                        ><input type="radio" name="q4" value="a" /> x² + 2x +
-                        6</label
-                      ><br />
-                      <label
-                        ><input type="radio" name="q4" value="b" /> x² – 8x +
-                        2</label
-                      ><br />
-                      <label
-                        ><input type="radio" name="q4" value="c" /> 3x² – 8x +
-                        2</label
-                      ><br />
-
-                      <p>
-                        5. Find the next 3 terms in the sequence: 2, 4, 8, …
-                      </p>
-                      <label
-                        ><input type="radio" name="q5" value="a" /> 16, 32,
-                        64</label
-                      ><br />
-                      <label
-                        ><input type="radio" name="q5" value="b" /> 10, 12,
-                        14</label
-                      ><br />
-                      <label
-                        ><input type="radio" name="q5" value="c" /> 20, 40,
-                        80</label
-                      ><br />
-
-                      <p>
-                        6. Determine the nth term of the sequence: 3, 6, 9, …
-                      </p>
-                      <label
-                        ><input type="radio" name="q6" value="a" /> Tn =
-                        3n</label
-                      ><br />
-                      <label
-                        ><input type="radio" name="q6" value="b" /> Tn =
-                        2n</label
-                      ><br />
-                      <label
-                        ><input type="radio" name="q6" value="c" /> Tn = n +
-                        3</label
-                      ><br />
-
-                      <p>7. Solve simultaneously: x + y = 10, 2x – y = 4</p>
-                      <label
-                        ><input type="radio" name="q7" value="a" /> x = 4, y =
-                        6</label
-                      ><br />
-                      <label
-                        ><input type="radio" name="q7" value="b" /> x = 6, y =
-                        4</label
-                      ><br />
-                      <label
-                        ><input type="radio" name="q7" value="c" /> x = 5, y =
-                        5</label
-                      ><br />
-
-                      <p>8. Evaluate: (x² – y²) ÷ (x – y)</p>
-                      <label
-                        ><input type="radio" name="q8" value="a" /> x + y</label
-                      ><br />
-                      <label
-                        ><input type="radio" name="q8" value="b" /> x – y</label
-                      ><br />
-                      <label
-                        ><input type="radio" name="q8" value="c" /> x² –
-                        y²</label
-                      ><br />
-
-                      <p>
-                        9. Write the first 5 terms of the pattern: Tn = 2n + 1
-                      </p>
-                      <label
-                        ><input type="radio" name="q9" value="a" /> 3, 5, 7, 9,
-                        11</label
-                      ><br />
-                      <label
-                        ><input type="radio" name="q9" value="b" /> 1, 3, 5, 7,
-                        9</label
-                      ><br />
-                      <label
-                        ><input type="radio" name="q9" value="c" /> 2, 4, 6, 8,
-                        10</label
-                      ><br />
-
-                      <p>10. Classify the sequence 1, 4, 9, 16, …</p>
-                      <label
-                        ><input type="radio" name="q10" value="a" />
-                        Arithmetic</label
-                      ><br />
-                      <label
-                        ><input type="radio" name="q10" value="b" />
-                        Geometric</label
-                      ><br />
-                      <label
-                        ><input type="radio" name="q10" value="c" />
-                        Neither</label
-                      ><br />
-
-                      <button type="button" class="submit-btn">
-                        Check Answers
-                      </button>
-                    </form>
-                  </div>
-                </td>
-                <td>Accurate solutions</td>
-                <td>Minor errors</td>
-                <td>Partial understanding</td>
-                <td>Frequent errors</td>
-              </tr>
-            </tbody>
-          </table>
-        </article>
-
-        <!-- Note: Due to length, remaining rubric sections are identical to your original -->
-        <!-- They will work with the base path automatically -->
-      </div>
-    </section>
-
     <!-- Footer -->
     <footer class="Footer">
       <div class="icons">
@@ -555,7 +476,6 @@
       <p>Made with <i class="fa fa-heart-o"></i> by Media On Africa</p>
     </footer>
 
-    <!-- JavaScript for Toggle Menu -->
     <script>
       var navLinks = document.getElementById("navLinks");
       function showmenu() {
@@ -566,13 +486,58 @@
       }
     </script>
 
-    <!-- Chatbot Embed -->
     <script
       src="//code.tidio.co/uqdod81sfajvlkpiujfsjo49za71xsuc.js"
       async
     ></script>
 
-    <!-- Rubric Quiz Logic -->
-    <script src="rubric.js"></script>
+    <script>
+      document.querySelectorAll(".btn-download").forEach((button) => {
+        button.addEventListener("click", async function (e) {
+          e.preventDefault();
+          const bookUrl = this.getAttribute("data-url");
+          const bookName = this.getAttribute("data-name");
+          const originalText = this.innerHTML;
+
+          this.innerHTML = '<i class="fa fa-spinner fa-spin"></i> Saving...';
+          this.disabled = true;
+
+          try {
+            const response = await fetch(bookUrl);
+            const blob = await response.blob();
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = bookName + ".pdf";
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+
+            this.innerHTML = '<i class="fa fa-check"></i> Saved!';
+            setTimeout(() => {
+              this.innerHTML = originalText;
+              this.disabled = false;
+            }, 2000);
+
+            const banner = document.getElementById("moa-offline-banner");
+            if (banner) {
+              banner.style.display = "block";
+              banner.textContent = "✓ " + bookName + " saved to your device!";
+              setTimeout(() => {
+                banner.style.display = "none";
+              }, 3000);
+            }
+          } catch (error) {
+            this.innerHTML =
+              '<i class="fa fa-exclamation-triangle"></i> Failed';
+            setTimeout(() => {
+              this.innerHTML = originalText;
+              this.disabled = false;
+            }, 2000);
+          }
+        });
+      });
+    </script>
   </body>
 </html>
