@@ -49,6 +49,32 @@
       box-shadow: 0 -2px 8px rgba(0,0,0,0.2);
     }
     #moa-offline-banner.online { background: #2ecc71; }
+    
+    /* Green overlay for header background image - FIXES THE TEXT VISIBILITY */
+    .header {
+      position: relative;
+      background-image: url('css/gse-virtual-learning-NL.jpg');
+      background-size: cover;
+      background-position: center;
+      min-height: 100vh;
+      width: 100%;
+    }
+    
+    .header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(27, 94, 32, 0.7); /* Green overlay with 70% opacity */
+      z-index: 1;
+    }
+    
+    .header .text-box {
+      position: relative;
+      z-index: 2;
+    }
   </style>
 </head>
 <body>
