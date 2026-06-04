@@ -64,41 +64,6 @@
       #moa-offline-banner.online {
         background: #2ecc71;
       }
-
-      .btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        background: #0b6aa3;
-        color: white;
-        padding: 8px 16px;
-        border-radius: 6px;
-        text-decoration: none;
-        font-size: 14px;
-        transition: background 0.3s;
-        border: none;
-        cursor: pointer;
-        margin: 5px;
-      }
-
-      .btn:hover {
-        background: #0f4c81;
-      }
-
-      .btn-download {
-        background: #4caf50;
-      }
-
-      .btn-download:hover {
-        background: #45a049;
-      }
-
-      .subject-col p {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 10px;
-      }
     </style>
   </head>
   <body>
@@ -186,63 +151,21 @@
           <i class="fa fa-calculator"></i>
           <h3>Mathematics</h3>
           <p>
-            <a
-              href="resources/Gr8A_Mathematics_Learner_Eng.pdf"
-              target="_blank"
-              class="btn"
-            >
-              <i class="fa fa-book"></i> Open Book
-            </a>
-            <button
-              class="btn btn-download"
-              data-book="grade8-maths"
-              data-url="resources/Gr8A_Mathematics_Learner_Eng.pdf"
-              data-name="Grade 8 Mathematics"
-            >
-              <i class="fa fa-download"></i> Save for Offline
-            </button>
+            <a href="resources/Gr8A_Mathematics_Learner_Eng.pdf" target="_blank">Download Textbook</a>
           </p>
         </div>
         <div class="subject-col science">
           <i class="fa fa-flask"></i>
           <h3>Natural Science</h3>
           <p>
-            <a
-              href="resources/natural-sciences-grade-8.pdf"
-              target="_blank"
-              class="btn"
-            >
-              <i class="fa fa-book"></i> Open Book
-            </a>
-            <button
-              class="btn btn-download"
-              data-book="grade8-science"
-              data-url="resources/natural-sciences-grade-8.pdf"
-              data-name="Grade 8 Natural Science"
-            >
-              <i class="fa fa-download"></i> Save for Offline
-            </button>
+            <a href="resources/natural-sciences-grade-8.pdf" target="_blank">Download Textbook</a>
           </p>
         </div>
         <div class="subject-col tech">
           <i class="fa fa-cogs"></i>
           <h3>Technology</h3>
           <p>
-            <a
-              href="resources/siyavula-TechnologyGrade8-col11052.pdf"
-              target="_blank"
-              class="btn"
-            >
-              <i class="fa fa-book"></i> Open Book
-            </a>
-            <button
-              class="btn btn-download"
-              data-book="grade8-tech"
-              data-url="resources/siyavula-TechnologyGrade8-col11052.pdf"
-              data-name="Grade 8 Technology"
-            >
-              <i class="fa fa-download"></i> Save for Offline
-            </button>
+            <a href="resources/siyavula-TechnologyGrade8-col11052.pdf" target="_blank">Download Textbook</a>
           </p>
         </div>
         <div class="subject-col art">
@@ -261,59 +184,21 @@
           <i class="fa fa-calculator"></i>
           <h3>Mathematics</h3>
           <p>
-            <a
-              href="resources/Gr9A_Mathematics_Learner_Eng.pdf"
-              target="_blank"
-              class="btn"
-            >
-              <i class="fa fa-book"></i> Open Book
-            </a>
-            <button
-              class="btn btn-download"
-              data-book="grade9-maths"
-              data-url="resources/Gr9A_Mathematics_Learner_Eng.pdf"
-              data-name="Grade 9 Mathematics"
-            >
-              <i class="fa fa-download"></i> Save for Offline
-            </button>
+            <a href="resources/Gr9A_Mathematics_Learner_Eng.pdf" target="_blank">Download Textbook</a>
           </p>
         </div>
         <div class="subject-col science">
           <i class="fa fa-flask"></i>
           <h3>Natural Science</h3>
           <p>
-            <a
-              href="resources/natural-sciences-grade-9.pdf"
-              target="_blank"
-              class="btn"
-            >
-              <i class="fa fa-book"></i> Open Book
-            </a>
-            <button
-              class="btn btn-download"
-              data-book="grade9-science"
-              data-url="resources/natural-sciences-grade-9.pdf"
-              data-name="Grade 9 Natural Science"
-            >
-              <i class="fa fa-download"></i> Save for Offline
-            </button>
+            <a href="resources/natural-sciences-grade-9.pdf" target="_blank">Download Textbook</a>
           </p>
         </div>
         <div class="subject-col tech">
           <i class="fa fa-cogs"></i>
           <h3>Technology</h3>
           <p>
-            <a href="resources/Technology.pdf" target="_blank" class="btn">
-              <i class="fa fa-book"></i> Open Book
-            </a>
-            <button
-              class="btn btn-download"
-              data-book="grade9-tech"
-              data-url="resources/Technology.pdf"
-              data-name="Grade 9 Technology"
-            >
-              <i class="fa fa-download"></i> Save for Offline
-            </button>
+            <a href="resources/Technology.pdf" target="_blank">Download Textbook</a>
           </p>
         </div>
         <div class="subject-col art">
@@ -490,54 +375,5 @@
       src="//code.tidio.co/uqdod81sfajvlkpiujfsjo49za71xsuc.js"
       async
     ></script>
-
-    <script>
-      document.querySelectorAll(".btn-download").forEach((button) => {
-        button.addEventListener("click", async function (e) {
-          e.preventDefault();
-          const bookUrl = this.getAttribute("data-url");
-          const bookName = this.getAttribute("data-name");
-          const originalText = this.innerHTML;
-
-          this.innerHTML = '<i class="fa fa-spinner fa-spin"></i> Saving...';
-          this.disabled = true;
-
-          try {
-            const response = await fetch(bookUrl);
-            const blob = await response.blob();
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement("a");
-            a.href = url;
-            a.download = bookName + ".pdf";
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
-
-            this.innerHTML = '<i class="fa fa-check"></i> Saved!';
-            setTimeout(() => {
-              this.innerHTML = originalText;
-              this.disabled = false;
-            }, 2000);
-
-            const banner = document.getElementById("moa-offline-banner");
-            if (banner) {
-              banner.style.display = "block";
-              banner.textContent = "✓ " + bookName + " saved to your device!";
-              setTimeout(() => {
-                banner.style.display = "none";
-              }, 3000);
-            }
-          } catch (error) {
-            this.innerHTML =
-              '<i class="fa fa-exclamation-triangle"></i> Failed';
-            setTimeout(() => {
-              this.innerHTML = originalText;
-              this.disabled = false;
-            }, 2000);
-          }
-        });
-      });
-    </script>
   </body>
 </html>
