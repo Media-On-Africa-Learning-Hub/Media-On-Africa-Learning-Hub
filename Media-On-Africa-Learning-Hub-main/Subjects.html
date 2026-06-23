@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Subjects - Media On Africa Learning Hub</title>
+
+    <!-- Base path for GitHub Pages - COMMENTED OUT FOR LOCAL TESTING -->
+    <!-- <base href="/Media-On-Africa-Learning-Hub/" /> -->
+
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
+    <!-- PWA Manifest - COMMENTED OUT FOR LOCAL TESTING -->
+    <!-- <link rel="manifest" href="/Media-On-Africa-Learning-Hub/manifest.json" /> -->
+    <meta name="theme-color" content="#1a5fa8" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="MOA Hub" />
+
+    <!-- Service Worker Registration - COMMENTED OUT FOR LOCAL TESTING -->
+    <!-- <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", function () {
+          navigator.serviceWorker
+            .register("/Media-On-Africa-Learning-Hub/service-worker.js")
+            .then(function (reg) {
+              console.log("[MOA] Service Worker registered:", reg.scope);
+            })
+            .catch(function (err) {
+              console.warn("[MOA] Service Worker registration failed:", err);
+            });
+        });
+      }
+    </script> -->
+
+    <!-- Offline banner styles -->
+    <style>
+      #moa-offline-banner {
+        display: none;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: #e67e22;
+        color: #fff;
+        text-align: center;
+        padding: 10px 16px;
+        font-size: 0.9rem;
+        font-family: sans-serif;
+        z-index: 9999;
+        box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.2);
+      }
+      #moa-offline-banner.online {
+        background: #2ecc71;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Offline Banner -->
+    <div id="moa-offline-banner">
+      📡 You're offline — cached content is available
+    </div>
+    <script>
+      (function () {
+        var b = document.getElementById("moa-offline-banner");
+        function u() {
+          if (!navigator.onLine) {
+            b.style.display = "block";
+            b.classList.remove("online");
+            b.textContent = "📡 You're offline — cached content is available";
+          } else {
+            b.classList.add("online");
+            b.textContent = "✅ Back online!";
+            b.style.display = "block";
+            setTimeout(function () {
+              b.style.display = "none";
+            }, 3000);
+          }
+        }
+        window.addEventListener("online", u);
+        window.addEventListener("offline", u);
+        if (!navigator.onLine) u();
+      })();
+    </script>
+
+    <!-- Navigation - USING RELATIVE PATHS FOR LOCAL TESTING -->
+    <nav>
+      <div class="nav-links" id="navLinks">
+        <i class="fa fa-times" onclick="hidemenu()"></i>
+        <ul>
+          <li><a href="index.html">HOME</a></li>
+          <li><a href="About.html">ABOUT</a></li>
+          <li><a href="Subjects.html">SUBJECTS</a></li>
+          <li><a href="quizzes.html">QUIZZES</a></li>
+          <li><a href="aptitude.html">APTITUDE TEST</a></li>
+          <li><a href="forum.html">DISCUSSION</a></li>
+          <li><a href="mental_wellness.html">WELLNESS</a></li>
+          <li><a href="blog.html">BLOG</a></li>
+          <li><a href="contact.html">CONTACT</a></li>
+          <li><a href="library.html">LIBRARY</a></li>
+          <li><a href="khulisa.html">SUPPORT</a></li>
+        </ul>
+      </div>
+      <i class="fa fa-bars" onclick="showmenu()"></i>
+    </nav>
+
+    <!-- Header -->
+    <section class="header small-header">
+      <div class="text-box">
+        <h1>Subjects</h1>
+        <p>Explore textbooks by grade level</p>
+      </div>
+    </section>
+
+    <!-- GRADE 8 -->
+    <section class="subjects">
+      <h1>Grade 8</h1>
+      <div class="row">
+        <div class="subject-col math">
+          <i class="fa fa-calculator"></i>
+          <h3>Mathematics</h3>
+          <p>
+            <a href="resources/Gr8A_Mathematics_Learner_Eng.pdf" target="_blank"
+              >Download Textbook</a
+            >
+          </p>
+        </div>
+        <div class="subject-col science">
+          <i class="fa fa-flask"></i>
+          <h3>Natural Science</h3>
+          <p>
+            <a href="resources/natural-sciences-grade-8.pdf" target="_blank"
+              >Download Textbook</a
+            >
+          </p>
+        </div>
+        <div class="subject-col tech">
+          <i class="fa fa-cogs"></i>
+          <h3>Technology</h3>
+          <p>
+            <a
+              href="resources/siyavula-TechnologyGrade8-col11052.pdf"
+              target="_blank"
+              >Download Textbook</a
+            >
+          </p>
+        </div>
+        <div class="subject-col art">
+          <i class="fa fa-paint-brush"></i>
+          <h3>Creative Arts</h3>
+          <p>Coming Soon</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- GRADE 9 -->
+    <section class="subjects">
+      <h1>Grade 9</h1>
+      <div class="row">
+        <div class="subject-col math">
+          <i class="fa fa-calculator"></i>
+          <h3>Mathematics</h3>
+          <p>
+            <a href="resources/Gr9A_Mathematics_Learner_Eng.pdf" target="_blank"
+              >Download Textbook</a
+            >
+          </p>
+        </div>
+        <div class="subject-col science">
+          <i class="fa fa-flask"></i>
+          <h3>Natural Science</h3>
+          <p>
+            <a href="resources/natural-sciences-grade-9.pdf" target="_blank"
+              >Download Textbook</a
+            >
+          </p>
+        </div>
+        <div class="subject-col tech">
+          <i class="fa fa-cogs"></i>
+          <h3>Technology</h3>
+          <p>
+            <a href="resources/Technology.pdf" target="_blank"
+              >Download Textbook</a
+            >
+          </p>
+        </div>
+        <div class="subject-col art">
+          <i class="fa fa-paint-brush"></i>
+          <h3>Creative Arts</h3>
+          <p>Coming Soon</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- GRADE 10 -->
+    <section class="subjects">
+      <h1>Grade 10</h1>
+      <div class="row">
+        <div class="subject-col math">
+          <i class="fa fa-calculator"></i>
+          <h3>Mathematics</h3>
+          <p>
+            <a href="resources/Grade%2010%20Mathematics.pdf" target="_blank"
+              >Download Textbook</a
+            >
+          </p>
+        </div>
+        <div class="subject-col science">
+          <i class="fa fa-flask"></i>
+          <h3>Science</h3>
+          <p>
+            <a
+              href="resources/Grade%2010%20Physical%20Science.pdf"
+              target="_blank"
+              >Download Textbook</a
+            >
+          </p>
+        </div>
+        <div class="subject-col tech">
+          <i class="fa fa-cogs"></i>
+          <h3>Technology</h3>
+          <p>
+            <a href="resources/Grade%2010%20CAT.pdf" target="_blank"
+              >Download Textbook</a
+            >
+          </p>
+        </div>
+        <div class="subject-col art">
+          <i class="fa fa-paint-brush"></i>
+          <h3>Art</h3>
+          <p>
+            <a
+              href="https://www.scribd.com/doc/65902963/VisArt10E-SampleEbook#from_embed"
+              target="_blank"
+              >Download Textbook</a
+            >
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- GRADE 11 -->
+    <section class="subjects">
+      <h1>Grade 11</h1>
+      <div class="row">
+        <div class="subject-col math">
+          <i class="fa fa-calculator"></i>
+          <h3>Mathematics</h3>
+          <p>
+            <a href="resources/Grade%2011%20Mathematics.pdf" target="_blank"
+              >Download Textbook</a
+            >
+          </p>
+        </div>
+        <div class="subject-col science">
+          <i class="fa fa-flask"></i>
+          <h3>Science</h3>
+          <p>
+            <a
+              href="resources/Grade%2011%20Physical%20Science.pdf"
+              target="_blank"
+              >Download Textbook</a
+            >
+          </p>
+        </div>
+        <div class="subject-col tech">
+          <i class="fa fa-cogs"></i>
+          <h3>Technology</h3>
+          <p>
+            <a href="resources/Grade%2011%20CAT.pdf" target="_blank"
+              >Download Textbook</a
+            >
+          </p>
+        </div>
+        <div class="subject-col art">
+          <i class="fa fa-paint-brush"></i>
+          <h3>Art</h3>
+          <p>
+            <a
+              href="https://www.scribd.com/doc/101022170/Visual-Arts-Gr11-Learner-s-Guide#from_embed"
+              target="_blank"
+              >Download Textbook</a
+            >
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- GRADE 12 -->
+    <section class="subjects">
+      <h1>Grade 12</h1>
+      <div class="row">
+        <div class="subject-col math">
+          <i class="fa fa-calculator"></i>
+          <h3>Mathematics</h3>
+          <p>
+            <a href="resources/Grade%2012%20Mathematics.pdf" target="_blank"
+              >Download Textbook</a
+            >
+          </p>
+        </div>
+        <div class="subject-col science">
+          <i class="fa fa-flask"></i>
+          <h3>Science</h3>
+          <p>
+            <a
+              href="resources/Grade%2012%20Physical%20Science.pdf"
+              target="_blank"
+              >Download Textbook</a
+            >
+          </p>
+        </div>
+        <div class="subject-col tech">
+          <i class="fa fa-cogs"></i>
+          <h3>Technology</h3>
+          <p>
+            <a href="resources/Grade%2012%20CAT.pdf" target="_blank"
+              >Download Textbook</a
+            >
+          </p>
+        </div>
+        <div class="subject-col art">
+          <i class="fa fa-paint-brush"></i>
+          <h3>Art</h3>
+          <p>
+            <a
+              href="https://www.scribd.com/doc/143176140/Visual-Arts-Grade-12-Learner-s-Guide#from_embed"
+              target="_blank"
+              >Download Textbook</a
+            >
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="Footer">
+      <div class="icons">
+        <i class="fa fa-facebook"></i>
+        <i class="fa fa-twitter"></i>
+        <i class="fa fa-instagram"></i>
+        <i class="fa fa-linkedin"></i>
+      </div>
+      <p>Made with <i class="fa fa-heart-o"></i> by Media On Africa</p>
+    </footer>
+
+    <script>
+      var navLinks = document.getElementById("navLinks");
+      function showmenu() {
+        navLinks.style.right = "0";
+      }
+      function hidemenu() {
+        navLinks.style.right = "-200px";
+      }
+    </script>
+
+    <script
+      src="//code.tidio.co/uqdod81sfajvlkpiujfsjo49za71xsuc.js"
+      async
+    ></script>
+    <script src="cybersafe-integration.js"></script>
+  </body>
+</html>

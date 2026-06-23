@@ -1,0 +1,716 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Discussion Forum - Media On Africa</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300;400;700&family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
+    <!-- ✅ CyberSafe offline scripts — must load before cybersafe-integration.js -->
+    <script src="cybersafe-offline.js"></script>
+    <script src="cybersafe-queue.js"></script>
+
+    <style>
+      /* ── CyberSafe comment system styles ── */
+
+      #cs-name {
+        width: 100%;
+        padding: 10px 13px;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        font-family: "Poppins", sans-serif;
+        font-size: 0.9rem;
+        color: #2c3e50;
+        margin-bottom: 10px;
+        outline: none;
+        transition: border-color 0.2s, box-shadow 0.2s;
+        box-sizing: border-box;
+      }
+      #cs-name::placeholder { color: #aaa; }
+      #cs-name:focus { border-color: #ff6f61; box-shadow: 0 0 0 3px rgba(255,111,97,0.1); }
+
+      #cs-text {
+        width: 100%;
+        min-height: 120px;
+        padding: 12px 14px;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        font-family: "Poppins", sans-serif;
+        font-size: 0.92rem;
+        color: #2c3e50;
+        line-height: 1.6;
+        resize: vertical;
+        outline: none;
+        transition: border-color 0.2s, box-shadow 0.2s;
+        box-sizing: border-box;
+      }
+      #cs-text::placeholder { color: #aaa; }
+      #cs-text:focus { border-color: #ff6f61; box-shadow: 0 0 0 3px rgba(255,111,97,0.1); }
+      #cs-text.scan    { border-color: #f39c12; }
+      #cs-text.blocked { border-color: #e74c3c; }
+
+      .cs-toolbar {
+        display: flex; align-items: center; justify-content: space-between;
+        margin-top: 10px; gap: 10px; flex-wrap: wrap;
+      }
+
+      .cs-status {
+        display: flex; align-items: center; gap: 6px;
+        font-size: 0.78rem; color: #999;
+      }
+      .cs-dot {
+        width: 7px; height: 7px; border-radius: 50%;
+        background: #ccc; flex-shrink: 0; transition: background 0.3s;
+      }
+      .cs-status.scan .cs-dot    { background: #f39c12; animation: dpulse 1s infinite; }
+      .cs-status.safe .cs-dot    { background: #27ae60; }
+      .cs-status.blocked .cs-dot { background: #e74c3c; }
+      .cs-status.offline .cs-dot { background: #f6e05e; animation: dpulse 1.5s infinite; }
+      .cs-status.scan .cs-msg    { color: #d68910; }
+      .cs-status.safe .cs-msg    { color: #27ae60; font-weight: 600; }
+      .cs-status.blocked .cs-msg { color: #c0392b; font-weight: 600; }
+      .cs-status.offline .cs-msg { color: #b7791f; font-weight: 600; }
+      @keyframes dpulse { 0%,100% { opacity:1; } 50% { opacity:0.2; } }
+
+      #cs-btn {
+        background: #ff6f61; color: #fff; border: none; border-radius: 6px;
+        padding: 10px 22px; font-family: "Poppins", sans-serif;
+        font-size: 0.88rem; font-weight: 600; cursor: pointer;
+        transition: background 0.2s, transform 0.15s;
+      }
+      #cs-btn:hover:not(:disabled) { background: #e85d50; transform: translateY(-1px); }
+      #cs-btn:disabled { background: #ccc; cursor: not-allowed; transform: none; }
+
+      .cs-banner {
+        display: none; align-items: flex-start; gap: 10px;
+        padding: 11px 14px; border-radius: 7px; margin-top: 10px;
+        font-size: 0.84rem; line-height: 1.5;
+      }
+      .cs-banner.safe    { display:flex; background:#eafaf1; border:1px solid #a9dfbf; color:#1e8449; }
+      .cs-banner.threat  { display:flex; background:#fdf2f2; border:1px solid #f5b7b1; color:#c0392b; }
+      .cs-banner.offline { display:flex; background:#fffff0; border:1px solid #f6e05e; color:#744210; }
+      .cs-banner-icon    { font-size:1.05rem; flex-shrink:0; }
+      .cs-banner strong  { display:block; font-weight:700; margin-bottom:2px; }
+
+      /* ── Offline queued post style ── */
+      .cs-card.cs-offline-pending {
+        border-left-color: #f6e05e;
+        opacity: 0.9;
+      }
+      .cs-pending-badge {
+        display: inline-flex; align-items: center; gap: 4px;
+        background: #f6e05e22; border: 1px solid #f6e05e66;
+        color: #b7791f; border-radius: 4px; font-size: 0.68rem;
+        padding: 2px 7px; margin-left: 8px; vertical-align: middle;
+        font-weight: 600;
+      }
+
+      .cs-divider { border:none; border-top:2px solid #ff6f61; margin:22px 0 16px; }
+      .cs-count-row { display:flex; align-items:center; justify-content:space-between; margin-bottom:14px; }
+      .cs-count-row span { font-size:0.85rem; font-weight:600; color:#2c3e50; }
+      #cs-count { font-size:0.75rem; color:#888; background:#f0f0f0; padding:3px 10px; border-radius:20px; font-weight:400; }
+
+      #cs-list { display:flex; flex-direction:column; gap:14px; }
+      .cs-loading { text-align:center; padding:30px; color:#aaa; font-size:0.88rem; }
+      .cs-empty { text-align:center; padding:40px 20px; color:#bbb; font-size:0.9rem; border:1px dashed #e0e0e0; border-radius:8px; }
+      .cs-empty i { display:block; font-size:2rem; margin-bottom:10px; color:#ddd; }
+
+      .cs-card {
+        background:#fff; border:1px solid #eee; border-left:3px solid #ff6f61;
+        border-radius:8px; padding:14px 16px;
+        box-shadow:0 2px 6px rgba(0,0,0,0.05);
+        animation:cin 0.3s ease both; transition:box-shadow 0.2s;
+      }
+      .cs-card:hover { box-shadow:0 4px 12px rgba(0,0,0,0.09); }
+      @keyframes cin { from{opacity:0;transform:translateY(6px);} to{opacity:1;transform:translateY(0);} }
+
+      .cs-card-top { display:flex; align-items:center; gap:10px; margin-bottom:8px; }
+      .cs-av {
+        width:34px; height:34px; border-radius:50%;
+        background:linear-gradient(135deg,#ff6f61,#ff9966);
+        color:#fff; font-size:0.8rem; font-weight:700;
+        display:flex; align-items:center; justify-content:center;
+        flex-shrink:0; text-transform:uppercase;
+      }
+      .cs-card-meta { flex:1; }
+      .cs-card-name { font-size:0.87rem; font-weight:600; color:#2c3e50; display:block; }
+      .cs-card-time { font-size:0.7rem; color:#bbb; }
+      .cs-verified {
+        display:inline-flex; align-items:center; gap:3px;
+        font-size:0.62rem; font-weight:700; color:#27ae60;
+        background:#eafaf1; border:1px solid #a9dfbf;
+        border-radius:4px; padding:2px 6px;
+      }
+      .cs-card-body { font-size:0.9rem; color:#444; line-height:1.65; word-break:break-word; margin-bottom:10px; }
+      .cs-card-body a { color:#ff6f61; font-weight:600; text-decoration:none; }
+      .cs-card-body a:hover { text-decoration:underline; }
+
+      .cs-actions { display:flex; align-items:center; gap:12px; margin-top:8px; }
+      .cs-action-btn {
+        background:none; border:1px solid #e0e0e0; border-radius:20px;
+        padding:4px 10px; font-family:"Poppins",sans-serif; font-size:0.78rem;
+        color:#777; cursor:pointer; display:flex; align-items:center; gap:5px; transition:all 0.2s;
+      }
+      .cs-action-btn:hover { border-color:#ff6f61; color:#ff6f61; }
+      .cs-action-btn.liked    { background:#fff0ef; border-color:#ff6f61; color:#ff6f61; }
+      .cs-action-btn.disliked { background:#f0f0f0; border-color:#aaa; color:#666; }
+      .cs-reply-toggle {
+        background:none; border:none; font-family:"Poppins",sans-serif;
+        font-size:0.78rem; color:#0077cc; cursor:pointer; padding:4px 0; transition:color 0.2s;
+      }
+      .cs-reply-toggle:hover { color:#005fa3; }
+
+      .cs-replies { margin-top:12px; padding-top:10px; border-top:1px solid #f0f0f0; display:none; }
+      .cs-replies.open { display:block; }
+
+      .cs-reply-card { display:flex; gap:8px; margin-bottom:10px; }
+      .cs-reply-av {
+        width:26px; height:26px; border-radius:50%;
+        background:linear-gradient(135deg,#0077cc,#00bcd4);
+        color:#fff; font-size:0.65rem; font-weight:700;
+        display:flex; align-items:center; justify-content:center;
+        flex-shrink:0; text-transform:uppercase;
+      }
+      .cs-reply-body { flex:1; }
+      .cs-reply-name { font-size:0.8rem; font-weight:600; color:#2c3e50; }
+      .cs-reply-time { font-size:0.68rem; color:#bbb; margin-left:6px; }
+      .cs-reply-text { font-size:0.85rem; color:#555; line-height:1.5; margin-top:2px; }
+      .cs-reply-actions { display:flex; gap:8px; margin-top:5px; }
+      .cs-reply-action {
+        background:none; border:none; font-size:0.72rem; color:#aaa;
+        cursor:pointer; padding:0; display:flex; align-items:center; gap:3px;
+        font-family:"Poppins",sans-serif; transition:color 0.2s;
+      }
+      .cs-reply-action:hover { color:#ff6f61; }
+
+      .cs-reply-form { display:flex; gap:8px; margin-top:10px; align-items:flex-start; }
+      .cs-reply-input {
+        flex:1; padding:8px 11px; border:1px solid #ddd; border-radius:6px;
+        font-family:"Poppins",sans-serif; font-size:0.85rem; color:#2c3e50;
+        outline:none; resize:none; transition:border-color 0.2s;
+        min-height:38px; max-height:100px;
+      }
+      .cs-reply-input:focus { border-color:#0077cc; }
+      .cs-reply-submit {
+        background:#0077cc; color:#fff; border:none; border-radius:6px;
+        padding:8px 14px; font-family:"Poppins",sans-serif; font-size:0.8rem;
+        font-weight:600; cursor:pointer; white-space:nowrap; transition:background 0.2s;
+      }
+      .cs-reply-submit:hover { background:#005fa3; }
+      .cs-reply-submit:disabled { background:#ccc; cursor:not-allowed; }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav>
+      <div class="nav-links" id="navLinks">
+        <i class="fa fa-times" onclick="hidemenu()"></i>
+        <ul>
+          <li><a href="index.html">HOME</a></li>
+          <li><a href="About.html">ABOUT</a></li>
+          <li><a href="Subjects.html">SUBJECTS</a></li>
+          <li><a href="quizzes.html">QUIZZES</a></li>
+          <li><a href="forum.html">DISCUSSION</a></li>
+          <li><a href="mental_wellness.html">WELLNESS</a></li>
+          <li><a href="blog.html">BLOG</a></li>
+          <li><a href="contact.html">CONTACT</a></li>
+          <li><a href="library.html">LIBRARY</a></li>
+          <li><a href="khulisa.html" class="active">SUPPORT</a></li>
+        </ul>
+      </div>
+      <i class="fa fa-bars" onclick="showmenu()"></i>
+    </nav>
+
+    <!-- Forum Header -->
+    <section class="header small-header">
+      <div class="text-box">
+        <h1>Student Discussion Forum</h1>
+        <p>Welcome! Use this space to ask questions, share tips, and collaborate with other students.</p>
+      </div>
+    </section>
+
+    <!-- Announcement Bar -->
+    <div class="announcement-bar">📢 New: Join our April study challenge!</div>
+
+    <!-- Forum Content -->
+    <main class="forum-content">
+      <div class="forum-wrapper">
+        <h2>Latest Discussions</h2>
+
+        <input id="cs-name" type="text" placeholder="Your name" maxlength="50" autocomplete="off" />
+        <textarea id="cs-text" placeholder="Write a comment, ask a question, or share a tip." maxlength="1000"></textarea>
+
+        <div class="cs-banner" id="cs-banner">
+          <span class="cs-banner-icon"></span>
+          <div>
+            <strong class="cs-banner-title"></strong>
+            <span class="cs-banner-reason"></span>
+          </div>
+        </div>
+
+        <div class="cs-toolbar">
+          <div class="cs-status" id="cs-status">
+            <span class="cs-dot"></span>
+            <span class="cs-msg">🔐 Protected by CyberSafe Africa</span>
+          </div>
+          <button id="cs-btn">
+            <i class="fa fa-paper-plane"></i>&nbsp; Post Comment
+          </button>
+        </div>
+
+        <hr class="cs-divider" />
+
+        <div class="cs-count-row">
+          <span><i class="fa fa-comments" style="color:#ff6f61;margin-right:6px"></i>Community Comments</span>
+          <span id="cs-count">0 comments</span>
+        </div>
+
+        <div id="cs-list">
+          <div class="cs-loading"><i class="fa fa-spinner fa-spin"></i> Loading comments…</div>
+        </div>
+      </div>
+
+      <aside class="forum-sidebar">
+        <h3><i class="fa fa-fire"></i> Trending Topics</h3>
+        <ul>
+          <li><a href="#"><i class="fa fa-book"></i> Math Exam Prep</a></li>
+          <li><a href="#"><i class="fa fa-flask"></i> Science Fair Ideas</a></li>
+          <li><a href="#"><i class="fa fa-code"></i> Coding Challenges</a></li>
+          <li><a href="#"><i class="fa fa-heart"></i> Wellness Tips</a></li>
+        </ul>
+      </aside>
+    </main>
+
+    <!-- Footer -->
+    <section class="Footer">
+      <h4>About Us</h4>
+      <p>
+        By leveraging technology, we aim to empower students with the tools and support they need to succeed academically<br />
+        regardless of their location, resources, or socioeconomic status
+      </p>
+      <div class="icons">
+        <i class="fa fa-facebook"></i>
+        <i class="fa fa-twitter"></i>
+        <i class="fa fa-instagram"></i>
+        <i class="fa fa-linkedin"></i>
+      </div>
+      <p>Made with <i class="fa fa-heart-o"></i> by Media On Africa</p>
+    </section>
+
+    <script>
+      var navLinks = document.getElementById("navLinks");
+      function showmenu() { navLinks.style.right = "0"; }
+      function hidemenu() { navLinks.style.right = "-200px"; }
+    </script>
+
+    <!-- CyberSafe integration — loads after offline + queue scripts in <head> -->
+    <script src="cybersafe-integration.js"></script>
+
+    <script>
+      (function () {
+        const API      = "https://cybersafe-africa.onrender.com/api";
+        const LOCATION = "Media On Africa Learning Platform — Forum";
+
+        const nameEl   = document.getElementById("cs-name");
+        const textEl   = document.getElementById("cs-text");
+        const btnEl    = document.getElementById("cs-btn");
+        const statusEl = document.getElementById("cs-status");
+        const bannerEl = document.getElementById("cs-banner");
+        const listEl   = document.getElementById("cs-list");
+        const countEl  = document.getElementById("cs-count");
+
+        let total = 0;
+
+        /* ── status / banner helpers ── */
+        const setStatus = (state, msg) => {
+          statusEl.className = `cs-status ${state}`;
+          statusEl.querySelector(".cs-msg").textContent = msg;
+          textEl.className = (state === "scan" || state === "blocked") ? state : "";
+        };
+        const setBanner = (type, title, reason) => {
+          bannerEl.className = `cs-banner ${type}`;
+          const icons = { safe: "✅", threat: "🚨", offline: "⚡" };
+          bannerEl.querySelector(".cs-banner-icon").textContent = icons[type] || "⚠️";
+          bannerEl.querySelector(".cs-banner-title").textContent = title;
+          bannerEl.querySelector(".cs-banner-reason").textContent = reason;
+        };
+        const clearBanner = () => { bannerEl.className = "cs-banner"; };
+
+        const sanitize = (str) => str.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+        const linkify  = (str) => str.replace(/(https?:\/\/[^\s]+)/g, '<a href="$1" target="_blank" rel="noopener noreferrer">$1</a>');
+        const timeStr  = (iso) => {
+          const d = iso ? new Date(iso) : new Date();
+          return d.toLocaleString("en-ZA", { day:"numeric", month:"short", hour:"2-digit", minute:"2-digit" });
+        };
+
+        /* ── render a reply ── */
+        const buildReply = (reply, commentId) => {
+          const div = document.createElement("div");
+          div.className = "cs-reply-card";
+          div.dataset.replyId = reply._id;
+          div.innerHTML = `
+            <div class="cs-reply-av">${(reply.name || "S").charAt(0).toUpperCase()}</div>
+            <div class="cs-reply-body">
+              <span class="cs-reply-name">${sanitize(reply.name || "Student")}</span>
+              <span class="cs-reply-time">${timeStr(reply.createdAt)}</span>
+              <div class="cs-reply-text">${linkify(sanitize(reply.body))}</div>
+              <div class="cs-reply-actions">
+                <button class="cs-reply-action" data-action="like">
+                  <i class="fa fa-thumbs-up"></i> <span class="rl-count">${reply.likes || 0}</span>
+                </button>
+                <button class="cs-reply-action" data-action="dislike">
+                  <i class="fa fa-thumbs-down"></i> <span class="rd-count">${reply.dislikes || 0}</span>
+                </button>
+              </div>
+            </div>
+          `;
+
+          // Like/dislike only work online — silently skip if offline
+          div.querySelector('[data-action="like"]').addEventListener("click", async function () {
+            if (!navigator.onLine) return;
+            const res  = await fetch(`${API}/comments/${commentId}/replies/${reply._id}/like`, { method:"PATCH" });
+            const data = await res.json();
+            if (data.success) this.querySelector(".rl-count").textContent = data.likes;
+          });
+          div.querySelector('[data-action="dislike"]').addEventListener("click", async function () {
+            if (!navigator.onLine) return;
+            const res  = await fetch(`${API}/comments/${commentId}/replies/${reply._id}/dislike`, { method:"PATCH" });
+            const data = await res.json();
+            if (data.success) this.querySelector(".rd-count").textContent = data.dislikes;
+          });
+
+          return div;
+        };
+
+        /* ── render a full comment card ── */
+        const buildCard = (comment, isOfflinePending = false) => {
+          const card = document.createElement("div");
+          card.className = "cs-card" + (isOfflinePending ? " cs-offline-pending" : "");
+          card.dataset.id = comment._id || ("offline-" + Date.now());
+
+          const verifiedBadge = isOfflinePending
+            ? `<span class="cs-pending-badge">⏳ AI scan pending</span>`
+            : `<span class="cs-verified"><i class="fa fa-shield"></i> Verified safe</span>`;
+
+          card.innerHTML = `
+            <div class="cs-card-top">
+              <div class="cs-av">${(comment.name || "S").charAt(0).toUpperCase()}</div>
+              <div class="cs-card-meta">
+                <span class="cs-card-name">${sanitize(comment.name || "Student")}</span>
+                <span class="cs-card-time">${timeStr(comment.createdAt)}</span>
+              </div>
+              ${verifiedBadge}
+            </div>
+            <div class="cs-card-body">${linkify(sanitize(comment.body))}</div>
+            <div class="cs-actions">
+              <button class="cs-action-btn like-btn">
+                <i class="fa fa-thumbs-up"></i> <span class="like-count">${comment.likes || 0}</span>
+              </button>
+              <button class="cs-action-btn dislike-btn">
+                <i class="fa fa-thumbs-down"></i> <span class="dislike-count">${comment.dislikes || 0}</span>
+              </button>
+              <button class="cs-reply-toggle">
+                <i class="fa fa-reply"></i> Reply
+                ${comment.replies?.length ? `(${comment.replies.length})` : ""}
+              </button>
+            </div>
+            <div class="cs-replies">
+              <div class="cs-replies-list"></div>
+              <div class="cs-reply-form">
+                <textarea class="cs-reply-input" placeholder="Write a reply…" maxlength="500" rows="1"></textarea>
+                <button class="cs-reply-submit">Reply</button>
+              </div>
+            </div>
+          `;
+
+          const repliesEl   = card.querySelector(".cs-replies");
+          const repliesList = card.querySelector(".cs-replies-list");
+          const replyToggle = card.querySelector(".cs-reply-toggle");
+          const replyInput  = card.querySelector(".cs-reply-input");
+          const replySubmit = card.querySelector(".cs-reply-submit");
+          const likeBtn     = card.querySelector(".like-btn");
+          const dislikeBtn  = card.querySelector(".dislike-btn");
+
+          (comment.replies || []).forEach((r) => repliesList.appendChild(buildReply(r, comment._id)));
+
+          replyToggle.addEventListener("click", () => repliesEl.classList.toggle("open"));
+
+          likeBtn.addEventListener("click", async function () {
+            if (!navigator.onLine || this.classList.contains("liked")) return;
+            const res  = await fetch(`${API}/comments/${comment._id}/like`, { method:"PATCH" });
+            const data = await res.json();
+            if (data.success) { this.querySelector(".like-count").textContent = data.likes; this.classList.add("liked"); }
+          });
+
+          dislikeBtn.addEventListener("click", async function () {
+            if (!navigator.onLine || this.classList.contains("disliked")) return;
+            const res  = await fetch(`${API}/comments/${comment._id}/dislike`, { method:"PATCH" });
+            const data = await res.json();
+            if (data.success) { this.querySelector(".dislike-count").textContent = data.dislikes; this.classList.add("disliked"); }
+          });
+
+          /* ── reply submit — also uses CyberSafeScan offline/online ── */
+          replySubmit.addEventListener("click", async () => {
+            const body = replyInput.value.trim();
+            if (!body) return;
+
+            replySubmit.disabled = true;
+            replySubmit.textContent = "Scanning…";
+
+            if (!navigator.onLine) {
+              // Call engine directly — same fix as main submit
+              const offResult = window.CyberSafeOfflineEngine
+                ? window.CyberSafeOfflineEngine.scan(body)
+                : { safe: false, threats: [{ label: "Engine unavailable" }], summary: "Offline engine not loaded — blocked for safety." };
+
+              if (!offResult.safe) {
+                replyInput.style.borderColor = "#e74c3c";
+                replyInput.title = offResult.summary;
+                setTimeout(() => { replyInput.style.borderColor = ""; replyInput.title = ""; }, 3000);
+                replySubmit.disabled = false;
+                replySubmit.textContent = "Reply";
+                return;
+              }
+
+              // Queue reply for AI scan later
+              if (window.CyberSafeQueue) {
+                await window.CyberSafeQueue.enqueue(body, {
+                  type: "reply", commentId: comment._id, author: "Student", offlineResult: offResult
+                });
+              }
+
+              // Show pending reply in UI
+              repliesList.appendChild(buildReply({
+                _id: "pending-" + Date.now(), name: "Student",
+                body, createdAt: new Date().toISOString(), likes: 0, dislikes: 0
+              }, comment._id));
+
+              replyInput.value = "";
+              repliesEl.classList.add("open");
+              const count = repliesList.querySelectorAll(".cs-reply-card").length;
+              replyToggle.innerHTML = `<i class="fa fa-reply"></i> Reply (${count})`;
+              replySubmit.disabled = false;
+              replySubmit.textContent = "Reply";
+              return;
+            }
+
+            // Online: original API path
+            try {
+              const res  = await fetch(`${API}/comments/${comment._id}/replies`, {
+                method:"POST",
+                headers:{"Content-Type":"application/json"},
+                body: JSON.stringify({ name:"Student", body, location:LOCATION }),
+              });
+              const data = await res.json();
+
+              if (data.blocked) {
+                replyInput.style.borderColor = "#e74c3c";
+                replyInput.title = data.threat?.reason || "Reply blocked";
+                setTimeout(() => { replyInput.style.borderColor = ""; replyInput.title = ""; }, 3000);
+              } else if (data.success) {
+                repliesList.appendChild(buildReply(data.data, comment._id));
+                replyInput.value = "";
+                repliesEl.classList.add("open");
+                const count = repliesList.querySelectorAll(".cs-reply-card").length;
+                replyToggle.innerHTML = `<i class="fa fa-reply"></i> Reply (${count})`;
+              }
+            } catch {
+              replyInput.style.borderColor = "#e74c3c";
+              replyInput.title = "Reply failed — no connection.";
+              setTimeout(() => { replyInput.style.borderColor = ""; replyInput.title = ""; }, 3000);
+            }
+
+            replySubmit.disabled = false;
+            replySubmit.textContent = "Reply";
+          });
+
+          replyInput.addEventListener("keydown", (e) => {
+            if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); replySubmit.click(); }
+          });
+
+          return card;
+        };
+
+        /* ── load all comments on page load ── */
+        const loadComments = async () => {
+          if (!navigator.onLine) {
+            listEl.innerHTML = `
+              <div class="cs-empty">
+                <i class="fa fa-wifi"></i>
+                You're offline. Previously loaded comments aren't cached yet.<br>
+                <small>Connect to load community comments. Your posts will sync when you're back online.</small>
+              </div>`;
+            countEl.textContent = "offline";
+            return;
+          }
+
+          try {
+            const res  = await fetch(`${API}/comments?t=${Date.now()}`, { headers:{"Cache-Control":"no-cache"} });
+            const data = await res.json();
+
+            listEl.innerHTML = "";
+            const comments = data.data || [];
+            total = comments.length;
+            countEl.textContent = `${total} comment${total !== 1 ? "s" : ""}`;
+
+            if (comments.length === 0) {
+              listEl.innerHTML = `<div class="cs-empty"><i class="fa fa-comment-o"></i>No comments yet. Be the first to start the discussion!</div>`;
+              return;
+            }
+
+            comments.forEach((c) => {
+              try {
+                c._id = c._id?.$oid || c._id?.toString() || c._id;
+                listEl.appendChild(buildCard(c));
+              } catch (err) {
+                console.error("Failed to render comment:", err, c);
+              }
+            });
+          } catch (err) {
+            console.error("loadComments failed:", err);
+            listEl.innerHTML = `<div class="cs-empty"><i class="fa fa-comment-o"></i>Could not load comments.</div>`;
+          }
+        };
+
+        /* ── submit new comment — online + offline paths ── */
+        const submit = async () => {
+          const text = textEl.value.trim();
+          if (!text) { textEl.focus(); return; }
+
+          btnEl.disabled = true;
+          clearBanner();
+
+          /* ════════════════════════════
+             OFFLINE PATH
+          ════════════════════════════ */
+          if (!navigator.onLine) {
+            setStatus("scan", "Scanning with offline engine…");
+
+            // Call the offline engine DIRECTLY — do not rely on CyberSafeScan
+            // which is defined in cybersafe-integration.js and may not be ready yet
+            const offResult = window.CyberSafeOfflineEngine
+              ? window.CyberSafeOfflineEngine.scan(text)
+              : { safe: false, riskLevel: "HIGH", threats: [{ label: "Engine unavailable" }], summary: "Offline engine not loaded — blocked for safety." };
+
+            // Block on ANY detected threat (HIGH or MEDIUM) — do not post
+            if (!offResult.safe) {
+              setStatus("blocked", `${offResult.threats[0]?.label || "Threat"} blocked`);
+              setBanner(
+                "threat",
+                `${offResult.threats[0]?.label || "Threat detected"} — offline scan`,
+                offResult.summary
+              );
+              textEl.animate(
+                [{transform:"translateX(0)"},{transform:"translateX(-6px)"},{transform:"translateX(6px)"},{transform:"translateX(-4px)"},{transform:"translateX(4px)"},{transform:"translateX(0)"}],
+                {duration:380, easing:"ease-out"}
+              );
+              btnEl.disabled = false;
+              return;
+            }
+
+            // Option B: post locally + queue for AI sync
+            const authorName = nameEl.value.trim() || "Student";
+            const localComment = {
+              _id: "offline-" + Date.now(),
+              name: authorName,
+              body: text,
+              createdAt: new Date().toISOString(),
+              likes: 0, dislikes: 0, replies: []
+            };
+
+            listEl.querySelector(".cs-empty")?.remove();
+            listEl.prepend(buildCard(localComment, true)); // show with ⏳ badge
+            total++;
+            countEl.textContent = `${total} comment${total !== 1 ? "s" : ""}`;
+
+            textEl.value = "";
+            nameEl.value = "";
+            setStatus("offline", "⚡ Saved offline — queued for AI scan");
+            setBanner(
+              "offline",
+              "Posted offline",
+              "Your comment passed offline safety checks and will be AI-scanned when you reconnect."
+            );
+            setTimeout(() => {
+              setStatus("", "🔐 Protected by CyberSafe Africa");
+              clearBanner();
+            }, 5000);
+
+            btnEl.disabled = false;
+            return;
+          }
+
+          /* ════════════════════════════
+             ONLINE PATH (unchanged)
+          ════════════════════════════ */
+          setStatus("scan", "Scanning your comment…");
+
+          try {
+            const res  = await fetch(`${API}/comments`, {
+              method:"POST",
+              headers:{"Content-Type":"application/json"},
+              body: JSON.stringify({
+                name: nameEl.value.trim() || "Student",
+                body: text,
+                location: LOCATION,
+              }),
+            });
+            const data = await res.json();
+
+            if (data.blocked) {
+              setStatus("blocked", `${data.threat.type} blocked`);
+              setBanner(
+                "threat",
+                `${data.threat.type} detected — ${data.threat.confidence}% confidence`,
+                data.threat.reason || "This comment was flagged as harmful."
+              );
+              textEl.animate(
+                [{transform:"translateX(0)"},{transform:"translateX(-6px)"},{transform:"translateX(6px)"},{transform:"translateX(-4px)"},{transform:"translateX(4px)"},{transform:"translateX(0)"}],
+                {duration:380,easing:"ease-out"}
+              );
+            } else if (data.success) {
+              listEl.querySelector(".cs-empty")?.remove();
+              listEl.prepend(buildCard(data.data));
+              total++;
+              countEl.textContent = `${total} comment${total !== 1 ? "s" : ""}`;
+              textEl.value = "";
+              nameEl.value = "";
+              setStatus("safe", "Comment posted ✓");
+              setBanner("safe", "Comment approved", "Passed all CyberSafe safety checks.");
+              setTimeout(() => { setStatus("", "🔐 Protected by CyberSafe Africa"); clearBanner(); }, 3500);
+            }
+          } catch {
+            setStatus("", "🔐 Protected by CyberSafe Africa");
+            setBanner("threat", "Connection error", "Could not reach the server. Please try again.");
+          }
+
+          btnEl.disabled = false;
+        };
+
+        textEl.addEventListener("input", () => { setStatus("", "🔐 Protected by CyberSafe Africa"); clearBanner(); });
+        btnEl.addEventListener("click", submit);
+        textEl.addEventListener("keydown", (e) => { if ((e.ctrlKey || e.metaKey) && e.key === "Enter") submit(); });
+
+        // Reload comments when connection comes back
+        window.addEventListener("online", () => {
+          if (listEl.querySelector(".cs-empty")) loadComments();
+        });
+
+        loadComments();
+      })();
+    </script>
+
+    <!-- Chatbot Embed -->
+    <script src="https://code.tidio.co/uqdod81sfajvlkpiujfsjo49za71xsuc.js" async></script>
+  </body>
+</html>
