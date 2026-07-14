@@ -1,0 +1,543 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Library - Media On Africa Learning Hub</title>
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#1a472a" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="MoA Library" />
+  <link rel="apple-touch-icon" href="/icons/icon-192x192.png" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300;400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <script src="cybersafe-offline.js"></script>
+  <script src="cybersafe-queue.js"></script>
+  <style>
+    .library { max-width: 1200px; margin: 2rem auto; padding: 0 2rem; }
+    .library h2 { text-align: center; color: #0b6aa3; margin-bottom: .5rem; }
+    .library > p { text-align: center; color: #666; margin-bottom: 2rem; }
+
+    /* ── Grade filter tabs ── */
+    .grade-filter {
+      display: flex; gap: 8px; justify-content: center;
+      flex-wrap: wrap; margin-bottom: 1.5rem;
+    }
+    .gf-btn {
+      padding: 6px 18px; border-radius: 999px; font-size: .8rem;
+      font-weight: 600; border: 1.5px solid #ddd; background: #f5f5f5;
+      color: #777; cursor: pointer; transition: .18s;
+      font-family: 'Poppins', sans-serif;
+    }
+    .gf-btn:hover  { border-color: #0b6aa3; color: #0b6aa3; }
+    .gf-btn.active { background: #0b6aa3; color: #fff; border-color: #0b6aa3; }
+
+    /* ── Subject sections ── */
+    .lib-section { margin-bottom: 2.5rem; }
+    .lib-section-header {
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 1rem; padding-bottom: .5rem;
+      border-bottom: 2px solid #e0e0e0;
+    }
+    .lib-section-icon {
+      width: 36px; height: 36px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; flex-shrink: 0;
+    }
+    .lib-section-title { font-size: 1rem; font-weight: 700; color: #1a1d2e; }
+    .lib-section-count {
+      font-size: .72rem; color: #777; background: #f0f0f0;
+      padding: 2px 10px; border-radius: 999px; border: 1px solid #ddd;
+    }
+
+    /* ── Book grid ── */
+    .library-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .book-card {
+      background: white; border-radius: 12px; padding: 1.25rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,.08);
+      transition: transform .3s, box-shadow .3s; position: relative;
+    }
+    .book-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,.13); }
+
+    .offline-badge {
+      position: absolute; top: 10px; right: 10px;
+      background: #4caf50; color: white; padding: 2px 8px;
+      border-radius: 12px; font-size: 11px; display: none;
+    }
+    .offline-badge.show { display: inline-block; }
+
+    .book-grade-pill {
+      display: inline-block; font-size: .62rem; font-weight: 700;
+      padding: 2px 9px; border-radius: 999px; margin-bottom: .6rem;
+      background: #e8f0fe; color: #1a6fb5;
+    }
+    .book-icon {
+      width: 44px; height: 44px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem; margin-bottom: .75rem;
+    }
+    .book-card h3 { color: #0b6aa3; margin-bottom: .3rem; font-size: 1rem; }
+    .book-card p  { color: #666; margin-bottom: .75rem; line-height: 1.5; font-size: .85rem; }
+    .book-term    { font-size: .7rem; font-weight: 600; color: #888; margin-bottom: .6rem; }
+
+    .book-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: #0b6aa3; color: white; padding: 7px 14px;
+      border-radius: 6px; text-decoration: none; font-size: .78rem;
+      transition: background .3s; border: none; cursor: pointer;
+      font-family: 'Poppins', sans-serif;
+    }
+    .btn:hover         { background: #0f4c81; }
+    .btn-download      { background: #4caf50; }
+    .btn-download:hover{ background: #45a049; }
+    .btn-download:disabled { background: #ccc; cursor: not-allowed; }
+
+    .download-status { font-size: 12px; margin-top: 8px; padding: 5px 10px; border-radius: 6px; display: none; }
+    .download-status.show    { display: block; }
+    .download-status.success { background: #d4edda; color: #155724; }
+    .download-status.error   { background: #f8d7da; color: #721c24; }
+    .download-status.info    { background: #d1ecf1; color: #0c5460; }
+
+    /* ── Search ── */
+    .library-search { position: relative; max-width: 500px; margin: 0 auto 1.5rem; }
+    .library-search input {
+      width: 100%; padding: 12px 40px 12px 15px; border: 2px solid #e0e0e0;
+      border-radius: 25px; font-size: 16px; transition: border-color .3s;
+    }
+    .library-search input:focus { outline: none; border-color: #0b6aa3; }
+    .library-search i { position: absolute; right: 15px; top: 50%; transform: translateY(-50%); color: #999; }
+
+    /* ── Stats ── */
+    .stats-bar {
+      background: #f0f7ff; border-radius: 8px; padding: 15px; margin: 20px 0;
+      display: flex; justify-content: space-around; flex-wrap: wrap; gap: 15px;
+    }
+    .stat-item { text-align: center; }
+    .stat-number { font-size: 24px; font-weight: bold; color: #0b6aa3; }
+    .stat-label  { font-size: 12px; color: #666; }
+
+    .download-all-btn {
+      background: #2196f3; color: white; border: none; padding: 12px 24px;
+      border-radius: 8px; cursor: pointer; font-size: 16px;
+      margin: 20px auto; display: block; transition: background .3s;
+      font-family: 'Poppins', sans-serif;
+    }
+    .download-all-btn:hover { background: #0b7dda; }
+
+    /* ── Offline banner ── */
+    .offline-banner {
+      background: linear-gradient(135deg,#667eea,#764ba2); color: white;
+      padding: 12px 20px; position: fixed; bottom: 20px; left: 20px; right: 20px;
+      z-index: 10000; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,.15);
+      display: none; backdrop-filter: blur(10px);
+    }
+    .offline-banner.show { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+
+    .notification-toast {
+      position: fixed; top: 80px; right: 20px; background: #4caf50; color: white;
+      padding: 12px 20px; border-radius: 8px; z-index: 10002; display: none;
+      box-shadow: 0 4px 12px rgba(0,0,0,.15); max-width: 350px;
+    }
+    .notification-toast.show { display: block; }
+
+    .reading-progress {
+      position: fixed; top: 0; left: 0; width: 0%; height: 3px;
+      background: linear-gradient(90deg,#667eea,#764ba2); z-index: 10001; transition: width .2s;
+    }
+
+    @media(max-width:768px){
+      .library { padding: 0 1rem; }
+      .offline-banner.show { flex-direction: column; text-align: center; }
+      .stats-bar { flex-direction: column; align-items: center; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="reading-progress" id="readingProgress"></div>
+
+<nav>
+  <div class="nav-links" id="navLinks">
+    <i class="fa fa-times" onclick="hidemenu()"></i>
+    <ul>
+      <li><a href="index.html">HOME</a></li>
+      <li><a href="About.html">ABOUT</a></li>
+      <li><a href="Subjects.html">SUBJECTS</a></li>
+      <li><a href="quizzes.html">QUIZZES</a></li>
+      <li><a href="aptitude.html">REASONING SKILLS</a></li>
+      <li><a href="forum.html">DISCUSSION</a></li>
+      <li><a href="mental_wellness.html">WELLNESS</a></li>
+      <li><a href="blog.html">BLOG</a></li>
+      <li><a href="contact.html">CONTACT</a></li>
+      <li><a href="library.html" class="active">LIBRARY</a></li>
+      <li><a href="khulisa.html">SUPPORT</a></li>
+    </ul>
+  </div>
+  <i class="fa fa-bars" onclick="showmenu()"></i>
+</nav>
+
+<section class="library">
+  <h2>📚 Learning Hub Library</h2>
+  <p>Search and access learning materials — available offline once downloaded</p>
+
+  <div class="stats-bar">
+    <div class="stat-item"><div class="stat-number" id="downloadedCount">0</div><div class="stat-label">Books Downloaded</div></div>
+    <div class="stat-item"><div class="stat-number" id="storageUsed">0</div><div class="stat-label">MB Used</div></div>
+    <div class="stat-item"><div class="stat-number" id="totalBooks">0</div><div class="stat-label">Total Books</div></div>
+  </div>
+
+  <div class="library-search">
+    <input type="text" id="searchInput" placeholder="Search by subject, grade or term..." />
+    <i class="fa fa-search"></i>
+  </div>
+
+  <!-- Grade filter -->
+  <div class="grade-filter" id="gradeFilter">
+    <button class="gf-btn active" data-grade="all">All Grades</button>
+    <button class="gf-btn" data-grade="8">Grade 8</button>
+    <button class="gf-btn" data-grade="9">Grade 9</button>
+    <button class="gf-btn" data-grade="10">Grade 10</button>
+    <button class="gf-btn" data-grade="11">Grade 11</button>
+    <button class="gf-btn" data-grade="12">Grade 12</button>
+  </div>
+
+  <button id="downloadAllBtn" class="download-all-btn">📥 Download All Books for Offline</button>
+
+  <div id="libraryContent"></div>
+</section>
+
+<footer class="Footer">
+  <h4>Library</h4>
+  <p>Access learning materials to support your academic journey.</p>
+  <div class="icons">
+    <i class="fa fa-facebook"></i><i class="fa fa-twitter"></i>
+    <i class="fa fa-instagram"></i><i class="fa fa-linkedin"></i>
+  </div>
+  <p>Made with <i class="fa fa-heart-o"></i> by Media On Africa</p>
+</footer>
+
+<div id="offlineBanner" class="offline-banner">
+  <div style="display:flex;align-items:center;gap:10px">
+    <span style="font-size:20px">📡</span>
+    <span>You are offline — downloaded books are still available!</span>
+  </div>
+  <div style="display:flex;gap:10px">
+    <button id="dismissBanner" style="background:rgba(255,255,255,.2);border:none;color:white;padding:5px 15px;border-radius:20px;cursor:pointer">Dismiss</button>
+    <button id="retryConnection" style="background:white;border:none;color:#667eea;padding:5px 15px;border-radius:20px;cursor:pointer;font-weight:500">Retry</button>
+  </div>
+</div>
+<div id="notificationToast" class="notification-toast"></div>
+
+<script>
+if("serviceWorker"in navigator){
+  window.addEventListener("load",()=>navigator.serviceWorker.register("service-worker.js")
+    .then(r=>console.log("SW registered:",r.scope)).catch(e=>console.log("SW failed:",e)));
+}
+</script>
+<script src="https://cdn.jsdelivr.net/npm/dexie@3.2.2/dist/dexie.js"></script>
+
+<script>
+var navLinks=document.getElementById("navLinks");
+function showmenu(){navLinks.style.right="0"}
+function hidemenu(){navLinks.style.right="-200px"}
+
+// ── ALL BOOKS — matching your actual folder structure ──────────────────────
+const BOOKS = [
+  // Grade 8
+  {id:"g8-maths-t1", grade:8, subject:"Mathematics",   term:1, icon:"fa-calculator", bg:"#dbeafe", fg:"#1a6fb5", url:"resources/GR8/Mathematics/grade8-term1.pdf",     available:true},
+  {id:"g8-maths-t2", grade:8, subject:"Mathematics",   term:2, icon:"fa-calculator", bg:"#dbeafe", fg:"#1a6fb5", url:"resources/GR8/Mathematics/grade8-term2.pdf",     available:true},
+  {id:"g8-maths-t3", grade:8, subject:"Mathematics",   term:3, icon:"fa-calculator", bg:"#dbeafe", fg:"#1a6fb5", url:"resources/GR8/Mathematics/grade8-term3.pdf",     available:false},
+  {id:"g8-maths-t4", grade:8, subject:"Mathematics",   term:4, icon:"fa-calculator", bg:"#dbeafe", fg:"#1a6fb5", url:"resources/GR8/Mathematics/grade8-term4.pdf",     available:false},
+  {id:"g8-sci-t1",   grade:8, subject:"Natural Science",term:1,icon:"fa-flask",      bg:"#d1fae5", fg:"#1a8c4e", url:"resources/GR8/Natural Sciences/grade8-term1.pdf",available:false},
+  {id:"g8-sci-t2",   grade:8, subject:"Natural Science",term:2,icon:"fa-flask",      bg:"#d1fae5", fg:"#1a8c4e", url:"resources/GR8/Natural Sciences/grade8-term2.pdf",available:false},
+  {id:"g8-sci-t3",   grade:8, subject:"Natural Science",term:3,icon:"fa-flask",      bg:"#d1fae5", fg:"#1a8c4e", url:"resources/GR8/Natural Sciences/grade8-term3.pdf",available:false},
+  {id:"g8-sci-t4",   grade:8, subject:"Natural Science",term:4,icon:"fa-flask",      bg:"#d1fae5", fg:"#1a8c4e", url:"resources/GR8/Natural Sciences/grade8-term4.pdf",available:false},
+  {id:"g8-tech-t1",  grade:8, subject:"Technology",    term:1, icon:"fa-cogs",       bg:"#ede9fe", fg:"#6c4bb5", url:"resources/GR8/Technology/grade8-term1.pdf",      available:true},
+  {id:"g8-tech-t2",  grade:8, subject:"Technology",    term:2, icon:"fa-cogs",       bg:"#ede9fe", fg:"#6c4bb5", url:"resources/GR8/Technology/grade8-term2.pdf",      available:true},
+  {id:"g8-tech-t3",  grade:8, subject:"Technology",    term:3, icon:"fa-cogs",       bg:"#ede9fe", fg:"#6c4bb5", url:"resources/GR8/Technology/grade8-term3.pdf",      available:false},
+  {id:"g8-tech-t4",  grade:8, subject:"Technology",    term:4, icon:"fa-cogs",       bg:"#ede9fe", fg:"#6c4bb5", url:"resources/GR8/Technology/grade8-term4.pdf",      available:false},
+  {id:"g8-art-t1",   grade:8, subject:"Creative Arts", term:1, icon:"fa-paint-brush",bg:"#fee2d5", fg:"#c94f2a", url:"resources/GR8/Creative Arts/grade8-term1.pdf",   available:false},
+  {id:"g8-art-t2",   grade:8, subject:"Creative Arts", term:2, icon:"fa-paint-brush",bg:"#fee2d5", fg:"#c94f2a", url:"resources/GR8/Creative Arts/grade8-term2.pdf",   available:false},
+  {id:"g8-art-t3",   grade:8, subject:"Creative Arts", term:3, icon:"fa-paint-brush",bg:"#fee2d5", fg:"#c94f2a", url:"resources/GR8/Creative Arts/grade8-term3.pdf",   available:false},
+  {id:"g8-art-t4",   grade:8, subject:"Creative Arts", term:4, icon:"fa-paint-brush",bg:"#fee2d5", fg:"#c94f2a", url:"resources/GR8/Creative Arts/grade8-term4.pdf",   available:false},
+
+  // Grade 9
+  {id:"g9-maths-t1", grade:9, subject:"Mathematics",   term:1, icon:"fa-calculator", bg:"#dbeafe", fg:"#1a6fb5", url:"resources/Gr9/Mathematics/grade9-term1.pdf",     available:true},
+  {id:"g9-maths-t2", grade:9, subject:"Mathematics",   term:2, icon:"fa-calculator", bg:"#dbeafe", fg:"#1a6fb5", url:"resources/Gr9/Mathematics/grade9-term2.pdf",     available:true},
+  {id:"g9-maths-t3", grade:9, subject:"Mathematics",   term:3, icon:"fa-calculator", bg:"#dbeafe", fg:"#1a6fb5", url:"resources/Gr9/Mathematics/grade9-term3.pdf",     available:false},
+  {id:"g9-maths-t4", grade:9, subject:"Mathematics",   term:4, icon:"fa-calculator", bg:"#dbeafe", fg:"#1a6fb5", url:"resources/Gr9/Mathematics/grade9-term4.pdf",     available:false},
+  {id:"g9-sci-t1",   grade:9, subject:"Natural Science",term:1,icon:"fa-flask",      bg:"#d1fae5", fg:"#1a8c4e", url:"resources/Gr9/Natural Sciences/grade9-term1.pdf",available:true},
+  {id:"g9-sci-t2",   grade:9, subject:"Natural Science",term:2,icon:"fa-flask",      bg:"#d1fae5", fg:"#1a8c4e", url:"resources/Gr9/Natural Sciences/grade9-term2.pdf",available:true},
+  {id:"g9-sci-t3",   grade:9, subject:"Natural Science",term:3,icon:"fa-flask",      bg:"#d1fae5", fg:"#1a8c4e", url:"resources/Gr9/Natural Sciences/grade9-term3.pdf",available:true},
+  {id:"g9-sci-t4",   grade:9, subject:"Natural Science",term:4,icon:"fa-flask",      bg:"#d1fae5", fg:"#1a8c4e", url:"resources/Gr9/Natural Sciences/grade9-term4.pdf",available:true},
+  {id:"g9-tech-t1",  grade:9, subject:"Technology",    term:1, icon:"fa-cogs",       bg:"#ede9fe", fg:"#6c4bb5", url:"resources/Gr9/Technology/grade9-term1.pdf",      available:true},
+  {id:"g9-tech-t2",  grade:9, subject:"Technology",    term:2, icon:"fa-cogs",       bg:"#ede9fe", fg:"#6c4bb5", url:"resources/Gr9/Technology/grade9-term2.pdf",      available:true},
+  {id:"g9-tech-t3",  grade:9, subject:"Technology",    term:3, icon:"fa-cogs",       bg:"#ede9fe", fg:"#6c4bb5", url:"resources/Gr9/Technology/grade9-term3.pdf",      available:true},
+  {id:"g9-tech-t4",  grade:9, subject:"Technology",    term:4, icon:"fa-cogs",       bg:"#ede9fe", fg:"#6c4bb5", url:"resources/Gr9/Technology/grade9-term4.pdf",      available:true},
+  {id:"g9-art-t1",   grade:9, subject:"Creative Arts", term:1, icon:"fa-paint-brush",bg:"#fee2d5", fg:"#c94f2a", url:"resources/Gr9/Creative Arts/grade9-term1.pdf",   available:false},
+  {id:"g9-art-t2",   grade:9, subject:"Creative Arts", term:2, icon:"fa-paint-brush",bg:"#fee2d5", fg:"#c94f2a", url:"resources/Gr9/Creative Arts/grade9-term2.pdf",   available:false},
+  {id:"g9-art-t3",   grade:9, subject:"Creative Arts", term:3, icon:"fa-paint-brush",bg:"#fee2d5", fg:"#c94f2a", url:"resources/Gr9/Creative Arts/grade9-term3.pdf",   available:false},
+  {id:"g9-art-t4",   grade:9, subject:"Creative Arts", term:4, icon:"fa-paint-brush",bg:"#fee2d5", fg:"#c94f2a", url:"resources/Gr9/Creative Arts/grade9-term4.pdf",   available:false},
+
+  // Grade 10
+  {id:"g10-maths-t1",grade:10,subject:"Mathematics",   term:1, icon:"fa-calculator", bg:"#dbeafe", fg:"#1a6fb5", url:"resources/GR10/Mathematics/grade10-term1.pdf",   available:true},
+  {id:"g10-maths-t2",grade:10,subject:"Mathematics",   term:2, icon:"fa-calculator", bg:"#dbeafe", fg:"#1a6fb5", url:"resources/GR10/Mathematics/grade10-term2.pdf",   available:true},
+  {id:"g10-maths-t3",grade:10,subject:"Mathematics",   term:3, icon:"fa-calculator", bg:"#dbeafe", fg:"#1a6fb5", url:"resources/GR10/Mathematics/grade10-term3.pdf",   available:true},
+  {id:"g10-maths-t4",grade:10,subject:"Mathematics",   term:4, icon:"fa-calculator", bg:"#dbeafe", fg:"#1a6fb5", url:"resources/GR10/Mathematics/grade10-term4.pdf",   available:true},
+  {id:"g10-sci-t1",  grade:10,subject:"Physical Science",term:1,icon:"fa-flask",     bg:"#d1fae5", fg:"#1a8c4e", url:"resources/GR10/Physical Sciences/grade10-term1.pdf",available:true},
+  {id:"g10-sci-t2",  grade:10,subject:"Physical Science",term:2,icon:"fa-flask",     bg:"#d1fae5", fg:"#1a8c4e", url:"resources/GR10/Physical Sciences/grade10-term2.pdf",available:true},
+  {id:"g10-sci-t3",  grade:10,subject:"Physical Science",term:3,icon:"fa-flask",     bg:"#d1fae5", fg:"#1a8c4e", url:"resources/GR10/Physical Sciences/grade10-term3.pdf",available:true},
+  {id:"g10-sci-t4",  grade:10,subject:"Physical Science",term:4,icon:"fa-flask",     bg:"#d1fae5", fg:"#1a8c4e", url:"resources/GR10/Physical Sciences/grade10-term4.pdf",available:true},
+  {id:"g10-cat-t1",  grade:10,subject:"CAT",           term:1, icon:"fa-desktop",    bg:"#ccf2f4", fg:"#0b7b8a", url:"resources/GR10/CAT/grade10-term1.pdf",           available:true},
+  {id:"g10-cat-t2",  grade:10,subject:"CAT",           term:2, icon:"fa-desktop",    bg:"#ccf2f4", fg:"#0b7b8a", url:"resources/GR10/CAT/grade10-term2.pdf",           available:true},
+  {id:"g10-cat-t3",  grade:10,subject:"CAT",           term:3, icon:"fa-desktop",    bg:"#ccf2f4", fg:"#0b7b8a", url:"resources/GR10/CAT/grade10-term3.pdf",           available:true},
+  {id:"g10-cat-t4",  grade:10,subject:"CAT",           term:4, icon:"fa-desktop",    bg:"#ccf2f4", fg:"#0b7b8a", url:"resources/GR10/CAT/grade10-term4.pdf",           available:true},
+
+  // Grade 11
+  {id:"g11-maths-t1",grade:11,subject:"Mathematics",   term:1, icon:"fa-calculator", bg:"#dbeafe", fg:"#1a6fb5", url:"resources/GR11/Mathematics/grade11-term1.pdf",   available:true},
+  {id:"g11-maths-t2",grade:11,subject:"Mathematics",   term:2, icon:"fa-calculator", bg:"#dbeafe", fg:"#1a6fb5", url:"resources/GR11/Mathematics/grade11-term2.pdf",   available:true},
+  {id:"g11-maths-t3",grade:11,subject:"Mathematics",   term:3, icon:"fa-calculator", bg:"#dbeafe", fg:"#1a6fb5", url:"resources/GR11/Mathematics/grade11-term3.pdf",   available:true},
+  {id:"g11-maths-t4",grade:11,subject:"Mathematics",   term:4, icon:"fa-calculator", bg:"#dbeafe", fg:"#1a6fb5", url:"resources/GR11/Mathematics/grade11-term4.pdf",   available:true},
+  {id:"g11-sci-t1",  grade:11,subject:"Physical Science",term:1,icon:"fa-flask",     bg:"#d1fae5", fg:"#1a8c4e", url:"resources/GR11/Physical Science/grade11-term1.pdf",available:true},
+  {id:"g11-sci-t2",  grade:11,subject:"Physical Science",term:2,icon:"fa-flask",     bg:"#d1fae5", fg:"#1a8c4e", url:"resources/GR11/Physical Science/grade11-term2.pdf",available:true},
+  {id:"g11-sci-t3",  grade:11,subject:"Physical Science",term:3,icon:"fa-flask",     bg:"#d1fae5", fg:"#1a8c4e", url:"resources/GR11/Physical Science/grade11-term3.pdf",available:true},
+  {id:"g11-sci-t4",  grade:11,subject:"Physical Science",term:4,icon:"fa-flask",     bg:"#d1fae5", fg:"#1a8c4e", url:"resources/GR11/Physical Science/grade11-term4.pdf",available:true},
+  {id:"g11-cat-t1",  grade:11,subject:"CAT",           term:1, icon:"fa-desktop",    bg:"#ccf2f4", fg:"#0b7b8a", url:"resources/GR11/CAT/grade11-term1.pdf",           available:true},
+  {id:"g11-cat-t2",  grade:11,subject:"CAT",           term:2, icon:"fa-desktop",    bg:"#ccf2f4", fg:"#0b7b8a", url:"resources/GR11/CAT/grade11-term2.pdf",           available:true},
+  {id:"g11-cat-t3",  grade:11,subject:"CAT",           term:3, icon:"fa-desktop",    bg:"#ccf2f4", fg:"#0b7b8a", url:"resources/GR11/CAT/grade11-term3.pdf",           available:true},
+  {id:"g11-cat-t4",  grade:11,subject:"CAT",           term:4, icon:"fa-desktop",    bg:"#ccf2f4", fg:"#0b7b8a", url:"resources/GR11/CAT/grade11-term4.pdf",           available:true},
+
+  // Grade 12
+  {id:"g12-maths-t1",grade:12,subject:"Mathematics",   term:1, icon:"fa-calculator", bg:"#dbeafe", fg:"#1a6fb5", url:"resources/GR12/Mathematics/grade12-term1.pdf",   available:true},
+  {id:"g12-maths-t2",grade:12,subject:"Mathematics",   term:2, icon:"fa-calculator", bg:"#dbeafe", fg:"#1a6fb5", url:"resources/GR12/Mathematics/grade12-term2.pdf",   available:true},
+  {id:"g12-maths-t3",grade:12,subject:"Mathematics",   term:3, icon:"fa-calculator", bg:"#dbeafe", fg:"#1a6fb5", url:"resources/GR12/Mathematics/grade12-term3.pdf",   available:true},
+  {id:"g12-maths-t4",grade:12,subject:"Mathematics",   term:4, icon:"fa-calculator", bg:"#dbeafe", fg:"#1a6fb5", url:"resources/GR12/Mathematics/grade12-term4.pdf",   available:true},
+  {id:"g12-sci-t1",  grade:12,subject:"Physical Science",term:1,icon:"fa-flask",     bg:"#d1fae5", fg:"#1a8c4e", url:"resources/GR12/Physical Sciences/grade12-term1.pdf",available:true},
+  {id:"g12-sci-t2",  grade:12,subject:"Physical Science",term:2,icon:"fa-flask",     bg:"#d1fae5", fg:"#1a8c4e", url:"resources/GR12/Physical Sciences/grade12-term2.pdf",available:true},
+  {id:"g12-sci-t3",  grade:12,subject:"Physical Science",term:3,icon:"fa-flask",     bg:"#d1fae5", fg:"#1a8c4e", url:"resources/GR12/Physical Sciences/grade12-term3.pdf",available:true},
+  {id:"g12-sci-t4",  grade:12,subject:"Physical Science",term:4,icon:"fa-flask",     bg:"#d1fae5", fg:"#1a8c4e", url:"resources/GR12/Physical Sciences/grade12-term4.pdf",available:true},
+  {id:"g12-cat-t1",  grade:12,subject:"CAT",           term:1, icon:"fa-desktop",    bg:"#ccf2f4", fg:"#0b7b8a", url:"resources/GR12/CAT/grade12-term1.pdf",           available:true},
+  {id:"g12-cat-t2",  grade:12,subject:"CAT",           term:2, icon:"fa-desktop",    bg:"#ccf2f4", fg:"#0b7b8a", url:"resources/GR12/CAT/grade12-term2.pdf",           available:true},
+  {id:"g12-cat-t3",  grade:12,subject:"CAT",           term:3, icon:"fa-desktop",    bg:"#ccf2f4", fg:"#0b7b8a", url:"resources/GR12/CAT/grade12-term3.pdf",           available:true},
+  {id:"g12-cat-t4",  grade:12,subject:"CAT",           term:4, icon:"fa-desktop",    bg:"#ccf2f4", fg:"#0b7b8a", url:"resources/GR12/CAT/grade12-term4.pdf",           available:false},
+];
+
+document.getElementById("totalBooks").textContent = BOOKS.filter(b=>b.available).length;
+
+// ── IndexedDB ──────────────────────────────────────────────────────────────
+let db = null;
+let downloadedBooks = {};
+
+async function initLibraryDB() {
+  if(typeof Dexie==="undefined") await new Promise(r=>setTimeout(r,500));
+  db = new Dexie("MoALibrary3");
+  db.version(1).stores({ books:"bookId,title,downloadDate" });
+  await db.open();
+  const saved = await db.books.toArray();
+  saved.forEach(b=>{ downloadedBooks[b.bookId]=true; updateBadge(b.bookId,true); });
+  await updateStats();
+}
+
+async function updateStats() {
+  if(!db) return;
+  const saved = await db.books.toArray();
+  document.getElementById("downloadedCount").textContent = saved.length;
+  let total = 0;
+  saved.forEach(b=>{ if(b.blob) total += b.blob.size; });
+  document.getElementById("storageUsed").textContent = (total/(1024*1024)).toFixed(1);
+}
+
+function updateBadge(bookId, downloaded) {
+  const badge = document.getElementById("badge-"+bookId);
+  if(badge) badge.classList.toggle("show", downloaded);
+  const btn = document.getElementById("savebtn-"+bookId);
+  if(btn && downloaded){ btn.innerHTML='<i class="fa fa-check"></i> Saved'; btn.disabled=true; }
+}
+
+async function saveBook(bookId, bookUrl, title) {
+  if(!bookUrl || bookUrl==="#") return;
+  const btn = document.getElementById("savebtn-"+bookId);
+  const status = document.getElementById("status-"+bookId);
+  if(btn) { btn.disabled=true; btn.innerHTML='<i class="fa fa-spinner fa-spin"></i>'; }
+  if(status) { status.className="download-status show info"; status.textContent="Downloading..."; }
+  try {
+    const res = await fetch(bookUrl);
+    if(!res.ok) throw new Error("fetch failed");
+    const blob = await res.blob();
+    await db.books.put({bookId, title, bookUrl, downloadDate:new Date().toISOString(), blob});
+    downloadedBooks[bookId] = true;
+    updateBadge(bookId, true);
+    if(status){ status.className="download-status show success"; status.textContent="✓ Saved for offline"; }
+    showNotification(title+" saved!","success");
+    await updateStats();
+  } catch(err) {
+    if(status){ status.className="download-status show error"; status.textContent="✗ Save failed. Check the file exists."; }
+    if(btn){ btn.disabled=false; btn.innerHTML='<i class="fa fa-download"></i> Save'; }
+    showNotification("Failed to save — is the PDF uploaded?","error");
+  }
+  setTimeout(()=>{ if(status) status.classList.remove("show"); }, 3500);
+}
+
+async function openBook(bookId, bookUrl, title) {
+  if(downloadedBooks[bookId] && db) {
+    const book = await db.books.get(bookId);
+    if(book && book.blob){ window.open(URL.createObjectURL(book.blob),"_blank"); showNotification("Opening from offline cache","info"); return; }
+  }
+  window.open(bookUrl,"_blank");
+}
+
+// ── Render ─────────────────────────────────────────────────────────────────
+const SUBJECTS_ORDER = ["Mathematics","Physical Science","Natural Science","Technology","CAT","Creative Arts"];
+
+function buildCard(book) {
+  const title = `${book.subject} — Grade ${book.grade} Term ${book.term}`;
+  return `
+    <div class="book-card" data-grade="${book.grade}" data-search="${title.toLowerCase()}">
+      <span class="offline-badge" id="badge-${book.id}">✓ Saved</span>
+      <div class="book-grade-pill">Grade ${book.grade}</div>
+      <div class="book-icon" style="background:${book.bg};color:${book.fg}">
+        <i class="fa ${book.icon}"></i>
+      </div>
+      <h3>${book.subject}</h3>
+      <p class="book-term">Term ${book.term}</p>
+      <div class="book-actions">
+        ${book.available
+          ? `<button class="btn" onclick="openBook('${book.id}','${book.url}','${title.replace(/'/g,"\\'")}')">
+               <i class="fa fa-book"></i> Open
+             </button>
+             <button class="btn btn-download" id="savebtn-${book.id}"
+               onclick="saveBook('${book.id}','${book.url}','${title.replace(/'/g,"\\'")}')">
+               <i class="fa fa-download"></i> Save
+             </button>`
+          : `<button class="btn" style="background:#ccc;cursor:default" disabled>
+               <i class="fa fa-clock-o"></i> Coming soon
+             </button>`
+        }
+      </div>
+      <div id="status-${book.id}" class="download-status"></div>
+    </div>`;
+}
+
+function renderLibrary(gradeFilter="all", search="") {
+  const content = document.getElementById("libraryContent");
+  content.innerHTML = "";
+  const searchL = search.toLowerCase();
+
+  const filtered = BOOKS.filter(b => {
+    const gradeOk = gradeFilter==="all" || b.grade===parseInt(gradeFilter);
+    const searchOk = !searchL || `${b.subject} grade ${b.grade} term ${b.term}`.toLowerCase().includes(searchL);
+    return gradeOk && searchOk;
+  });
+
+  // Group by subject
+  const grouped = {};
+  filtered.forEach(b => {
+    if(!grouped[b.subject]) grouped[b.subject] = [];
+    grouped[b.subject].push(b);
+  });
+
+  // Render in subject order
+  SUBJECTS_ORDER.forEach(sub => {
+    if(!grouped[sub] || !grouped[sub].length) return;
+    const books = grouped[sub];
+    const icons = {"Mathematics":"fa-calculator","Physical Science":"fa-flask","Natural Science":"fa-flask","Technology":"fa-cogs","CAT":"fa-desktop","Creative Arts":"fa-paint-brush"};
+    const colors = {"Mathematics":"#dbeafe","Physical Science":"#d1fae5","Natural Science":"#d1fae5","Technology":"#ede9fe","CAT":"#ccf2f4","Creative Arts":"#fee2d5"};
+    const fgs    = {"Mathematics":"#1a6fb5","Physical Science":"#1a8c4e","Natural Science":"#1a8c4e","Technology":"#6c4bb5","CAT":"#0b7b8a","Creative Arts":"#c94f2a"};
+
+    const section = document.createElement("div");
+    section.className = "lib-section";
+    section.innerHTML = `
+      <div class="lib-section-header">
+        <div class="lib-section-icon" style="background:${colors[sub]};color:${fgs[sub]}">
+          <i class="fa ${icons[sub]||'fa-book'}"></i>
+        </div>
+        <span class="lib-section-title">${sub}</span>
+        <span class="lib-section-count">${books.length} book${books.length!==1?'s':''}</span>
+      </div>
+      <div class="library-grid">
+        ${books.map(buildCard).join("")}
+      </div>`;
+    content.appendChild(section);
+
+    // Reapply saved state
+    books.forEach(b=>{ if(downloadedBooks[b.id]) updateBadge(b.id,true); });
+  });
+
+  if(!content.children.length) {
+    content.innerHTML = '<p style="text-align:center;color:#aaa;padding:3rem">No books found.</p>';
+  }
+}
+
+// ── Controls ───────────────────────────────────────────────────────────────
+let currentGrade = "all";
+
+document.querySelectorAll(".gf-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".gf-btn").forEach(b=>b.classList.remove("active"));
+    btn.classList.add("active");
+    currentGrade = btn.getAttribute("data-grade");
+    renderLibrary(currentGrade, document.getElementById("searchInput").value);
+  });
+});
+
+document.getElementById("searchInput").addEventListener("input", function(){
+  renderLibrary(currentGrade, this.value);
+});
+
+document.getElementById("downloadAllBtn").addEventListener("click", async () => {
+  showNotification("Saving all available books...","info");
+  const available = BOOKS.filter(b=>b.available && !downloadedBooks[b.id]);
+  for(const b of available) {
+    await saveBook(b.id, b.url, `${b.subject} Grade ${b.grade} Term ${b.term}`);
+  }
+  showNotification("All books saved!","success");
+});
+
+document.getElementById("dismissBanner")?.addEventListener("click",()=>document.getElementById("offlineBanner").classList.remove("show"));
+document.getElementById("retryConnection")?.addEventListener("click",()=>navigator.onLine?location.reload():showNotification("Still offline.","error"));
+
+function showNotification(msg,type="success"){
+  const t=document.getElementById("notificationToast");
+  t.textContent=msg; t.style.background=type==="success"?"#4CAF50":type==="error"?"#f44336":"#2196F3";
+  t.classList.add("show"); setTimeout(()=>t.classList.remove("show"),3000);
+}
+
+function updateOfflineUI(){
+  document.getElementById("offlineBanner").classList.toggle("show",!navigator.onLine);
+}
+
+window.addEventListener("scroll",()=>{
+  const s=window.pageYOffset||document.documentElement.scrollTop;
+  const h=document.documentElement.scrollHeight-window.innerHeight;
+  const bar=document.getElementById("readingProgress");
+  if(bar) bar.style.width=(h>0?(s/h*100):0)+"%";
+});
+
+window.addEventListener("online",()=>{ updateOfflineUI(); showNotification("Back online!","success"); });
+window.addEventListener("offline",()=>updateOfflineUI());
+
+document.addEventListener("DOMContentLoaded", async()=>{
+  await initLibraryDB();
+  renderLibrary();
+  updateOfflineUI();
+});
+</script>
+
+<script src="cybersafe-integration.js"></script>
+<script src="//code.tidio.co/uqdod81sfajvlkpiujfsjo49za71xsuc.js" async></script>
+<script>
+window.addEventListener("offline",()=>{const t=document.querySelector("#tidio-chat-iframe");if(t)t.style.display="none"});
+window.addEventListener("online",()=>{const t=document.querySelector("#tidio-chat-iframe");if(t)t.style.display="block"});
+</script>
+</body>
+</html>

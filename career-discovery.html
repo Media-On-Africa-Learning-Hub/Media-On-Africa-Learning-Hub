@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Career Discovery Assessment - Media On Africa Learning Hub</title>
+
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#1a472a">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="MoA Learning">
+  <link rel="apple-touch-icon" href="/icons/icon-192x192.png">
+
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300;400;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+  />
+
+  <style>
+    .header.big-header { padding: 4rem 1rem; background: linear-gradient(180deg,#0f4c81 0%, #0b6aa3 100%); color:#fff; text-align:center; }
+    .text-box h1 { margin:0; font-size:2.2rem; font-weight:700; font-family:Poppins, sans-serif; }
+    .text-box .subtitle { margin-top:0.5rem; font-size:1rem; opacity:0.9; font-family:Poppins, sans-serif; }
+    .aptitude-intro { max-width:1000px; margin:1.5rem auto; padding:1rem; font-family:Poppins, sans-serif; }
+    .aptitude-grid { display:grid; grid-template-columns:1fr; gap:1.25rem; max-width:1000px; margin:0 auto; padding:1rem; }
+    .card { background:#fff; border-radius:8px; padding:1rem; box-shadow:0 2px 8px rgba(0,0,0,0.06); }
+    .card h3 { margin-top:0; font-size:1.1rem; }
+    .section-desc { color:#333; line-height:1.5; }
+    .toggle-btn { display:inline-block; margin-top:0.5rem; background:#0b6aa3; color:#fff; border:none; padding:0.5rem 0.75rem; border-radius:6px; cursor:pointer; font-family:Poppins, sans-serif; transition: background 0.3s; font-size:0.95rem; }
+    .toggle-btn:hover { background:#0f4c81; }
+    .toggle-btn:disabled { background:#9db8c9; cursor:not-allowed; }
+    .questions { margin-top:0.75rem; display:none; }
+    .controls { display:flex; gap:0.5rem; flex-wrap:wrap; margin-top:0.75rem; align-items:center; }
+    .hero-btn { background:#0b6aa3; color:#fff; padding:0.6rem 1rem; border-radius:6px; text-decoration:none; display:inline-block; }
+    .explain { font-size:0.95rem; color:#444; }
+    .footer-note { text-align:center; margin-top:1rem; color:#666; font-size:0.9rem; }
+    label { cursor:pointer; }
+    .progress-saved-badge { display:inline-block; background:#4CAF50; color:white; padding:2px 8px; border-radius:12px; font-size:11px; margin-left:10px; }
+
+    .cta-card { background:linear-gradient(135deg,#0f4c81,#0b6aa3); color:#fff; border-radius:8px; padding:1.25rem; box-shadow:0 2px 8px rgba(0,0,0,0.1); }
+    .cta-card h3 { color:#fff; margin-top:0; }
+    .cta-card p { color:#eaf4fb; line-height:1.5; }
+    .cta-buttons { display:flex; gap:0.6rem; flex-wrap:wrap; margin-top:0.75rem; }
+    .cta-btn { background:#fff; color:#0b6aa3; padding:0.55rem 0.9rem; border-radius:6px; text-decoration:none; font-weight:600; font-size:0.92rem; }
+    .cta-btn.secondary { background:transparent; color:#fff; border:1.5px solid rgba(255,255,255,0.7); }
+
+    /* Likert */
+    .likert-legend { font-size:0.82rem; color:#666; display:flex; justify-content:space-between; max-width:340px; margin-bottom:0.5rem; }
+    .likert-item { margin-bottom:0.75rem; padding:0.75rem; background:#f9f9f9; border-radius:6px; }
+    .likert-text { margin:0 0 0.5rem; color:#222; font-size:0.96rem; }
+    .likert-scale { display:flex; gap:0.6rem; }
+    .likert-option { display:flex; flex-direction:column; align-items:center; font-size:0.75rem; color:#555; gap:2px; }
+
+    /* Chips (strengths / values) */
+    .chip-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(160px,1fr)); gap:0.5rem; }
+    .chip { position:relative; }
+    .chip input { position:absolute; opacity:0; }
+    .chip label { display:block; padding:0.5rem 0.75rem; border:1.5px solid #cfe0ea; border-radius:20px; text-align:center; font-size:0.85rem; color:#0b6aa3; transition: all 0.15s; }
+    .chip input:checked + label { background:#0b6aa3; color:#fff; border-color:#0b6aa3; font-weight:600; }
+    .chip-counter { font-size:0.85rem; color:#666; margin-top:0.5rem; }
+
+    /* Work preference pairs */
+    .pref-item { margin-bottom:0.75rem; }
+    .pref-label { font-size:0.85rem; color:#666; margin-bottom:0.35rem; text-transform:uppercase; letter-spacing:0.03em; }
+    .pref-pair { display:grid; grid-template-columns:1fr 1fr; gap:0.5rem; }
+    .pref-box { position:relative; }
+    .pref-box input { position:absolute; opacity:0; }
+    .pref-box label { display:flex; align-items:center; justify-content:center; text-align:center; min-height:60px; padding:0.6rem; border:1.5px solid #cfe0ea; border-radius:8px; font-size:0.88rem; color:#333; }
+    .pref-box input:checked + label { background:#eaf4fb; border-color:#0b6aa3; color:#0b6aa3; font-weight:600; }
+
+    /* Report */
+    #reportSection { display:none; }
+    .report-hero { background:linear-gradient(135deg,#0f4c81,#0b6aa3); color:#fff; border-radius:10px; padding:1.5rem; text-align:center; }
+    .report-hero h2 { margin:0; font-family:Poppins, sans-serif; }
+    .report-hero p { color:#eaf4fb; margin-top:0.4rem; }
+    .report-grid { display:grid; grid-template-columns:1fr; gap:1rem; margin-top:1rem; }
+    @media(min-width:900px){ .report-grid { grid-template-columns:1fr 1fr; } .report-grid.wide { grid-template-columns:1fr; } }
+    .report-card h4 { margin-top:0; color:#0f4c81; font-family:Poppins, sans-serif; }
+    .tag-list { display:flex; flex-wrap:wrap; gap:0.4rem; margin-top:0.5rem; }
+    .tag { background:#eaf4fb; color:#0b6aa3; padding:0.3rem 0.7rem; border-radius:14px; font-size:0.82rem; }
+    .tag.career { background:#0b6aa3; color:#fff; }
+    .radar-wrap { display:flex; justify-content:center; }
+    .missing-note { background:#fff4e5; border:1px solid #f3c98b; color:#8a5a00; padding:0.6rem 0.8rem; border-radius:6px; font-size:0.88rem; margin-top:0.6rem; }
+
+    .offline-progress { position: fixed; bottom: 20px; right: 20px; background: #4CAF50; color: white; padding: 8px 12px; border-radius: 20px; font-size: 12px; z-index: 999; box-shadow: 0 2px 8px rgba(0,0,0,0.2); display: none; align-items: center; gap: 8px; }
+    .offline-progress.show { display: flex; }
+  </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav>
+  <div class="nav-links" id="navLinks">
+    <i class="fa fa-times" onclick="hidemenu()"></i>
+    <ul>
+      <li><a href="index.html">HOME</a></li>
+      <li><a href="About.html">ABOUT</a></li>
+      <li><a href="Subjects.html">SUBJECTS</a></li>
+      <li><a href="quizzes.html">QUIZZES</a></li>
+      <li><a href="aptitude.html">REASONING SKILLS</a></li>
+      <li><a href="forum.html">DISCUSSION</a></li>
+      <li><a href="mental_wellness.html">WELLNESS</a></li>
+      <li><a href="blog.html">BLOG</a></li>
+      <li><a href="contact.html">CONTACT</a></li>
+      <li><a href="library.html">LIBRARY</a></li>
+      <li><a href="khulisa.html">SUPPORT</a></li>
+    </ul>
+  </div>
+  <i class="fa fa-bars" onclick="showmenu()"></i>
+</nav>
+
+<!-- Header -->
+<section class="header big-header">
+  <div class="text-box">
+    <h1>Career Discovery Assessment</h1>
+    <p class="subtitle">Understand your interests, personality, strengths and learning style — and see which careers and subjects fit you</p>
+  </div>
+</section>
+
+<section class="aptitude-intro">
+  <div class="card">
+    <h3>About this Assessment</h3>
+    <p class="section-desc">
+      Unlike the Reasoning Skills Assessment, there are no right or wrong answers here. This assessment looks at
+      <strong>what you enjoy, how you work, and what matters to you</strong> — then generates a personalised report
+      with career and subject suggestions. It takes about 10-15 minutes and works offline.
+    </p>
+    <p class="explain">Complete all five sections below, then press <strong>Generate My Report</strong> at the bottom.</p>
+  </div>
+</section>
+
+<section class="aptitude-grid">
+
+  <!-- Section 1: Interests & Personality -->
+  <div class="card" id="interests-card">
+    <h3>1. Interests &amp; Personality <span id="interests-progress-badge" class="progress-saved-badge" style="display:none;">✓ Saved</span></h3>
+    <p class="section-desc">Rate how much you agree with each statement.</p>
+    <button class="toggle-btn" data-target="interests-questions">Show Questions</button>
+    <div class="questions" id="interests-questions">
+      <div class="likert-legend"><span>1 = Strongly Disagree</span><span>5 = Strongly Agree</span></div>
+      <form id="career-interests"></form>
+    </div>
+  </div>
+
+  <!-- Section 2: Strengths -->
+  <div class="card" id="strengths-card">
+    <h3>2. Strengths <span id="strengths-progress-badge" class="progress-saved-badge" style="display:none;">✓ Saved</span></h3>
+    <p class="section-desc">Choose up to 5 that people often say describe you.</p>
+    <button class="toggle-btn" data-target="strengths-questions">Show Questions</button>
+    <div class="questions" id="strengths-questions">
+      <form id="career-strengths"><div class="chip-grid" id="strengths-chip-grid"></div></form>
+      <div class="chip-counter" id="strengths-counter">Selected: 0 / 5</div>
+    </div>
+  </div>
+
+  <!-- Section 3: Learning Style -->
+  <div class="card" id="learning-card">
+    <h3>3. Learning Style <span id="learning-progress-badge" class="progress-saved-badge" style="display:none;">✓ Saved</span></h3>
+    <p class="section-desc">Choose the option that fits you best for each question.</p>
+    <button class="toggle-btn" data-target="learning-questions">Show Questions</button>
+    <div class="questions" id="learning-questions">
+      <form id="career-learning"></form>
+    </div>
+  </div>
+
+  <!-- Section 4: Work Preferences -->
+  <div class="card" id="workprefs-card">
+    <h3>4. Work Preferences <span id="workprefs-progress-badge" class="progress-saved-badge" style="display:none;">✓ Saved</span></h3>
+    <p class="section-desc">Pick the option you'd naturally lean towards.</p>
+    <button class="toggle-btn" data-target="workprefs-questions">Show Questions</button>
+    <div class="questions" id="workprefs-questions">
+      <form id="career-workprefs"></form>
+    </div>
+  </div>
+
+  <!-- Section 5: Values -->
+  <div class="card" id="values-card">
+    <h3>5. Values <span id="values-progress-badge" class="progress-saved-badge" style="display:none;">✓ Saved</span></h3>
+    <p class="section-desc">Choose up to 3 that matter most to you in a future career.</p>
+    <button class="toggle-btn" data-target="values-questions">Show Questions</button>
+    <div class="questions" id="values-questions">
+      <form id="career-values"><div class="chip-grid" id="values-chip-grid"></div></form>
+      <div class="chip-counter" id="values-counter">Selected: 0 / 3</div>
+    </div>
+  </div>
+
+</section>
+
+<section class="aptitude-intro">
+  <div class="card" style="text-align:center;">
+    <button class="toggle-btn" id="generateReportBtn" style="font-size:1rem; padding:0.75rem 1.5rem;">✨ Generate My Report</button>
+    <div id="generateMissingNote"></div>
+  </div>
+</section>
+
+<!-- Report -->
+<section class="aptitude-intro" id="reportSection">
+  <div class="report-hero">
+    <h2 id="reportPersonalityTitle">Your Career Discovery Report</h2>
+    <p id="reportPersonalityBlurb"></p>
+  </div>
+
+  <div class="report-grid">
+    <div class="card report-card">
+      <h4>Your Interest Profile</h4>
+      <div class="radar-wrap" id="radarChart"></div>
+    </div>
+    <div class="card report-card">
+      <h4>Your Strengths</h4>
+      <div class="tag-list" id="reportStrengths"></div>
+      <h4 style="margin-top:1rem;">Areas to Develop</h4>
+      <div class="tag-list" id="reportGrowth"></div>
+    </div>
+    <div class="card report-card">
+      <h4>Learning Style</h4>
+      <p id="reportLearningStyle" class="section-desc"></p>
+    </div>
+    <div class="card report-card">
+      <h4>Work Preferences</h4>
+      <ul id="reportWorkPrefs" class="section-desc"></ul>
+    </div>
+    <div class="card report-card">
+      <h4>What Matters to You</h4>
+      <div id="reportValues" class="section-desc"></div>
+    </div>
+    <div class="card report-card">
+      <h4>Subjects You May Enjoy</h4>
+      <div class="tag-list" id="reportSubjects"></div>
+    </div>
+  </div>
+
+  <div class="card report-card" style="margin-top:1rem;">
+    <h4>Careers That May Suit You</h4>
+    <div class="tag-list" id="reportCareers"></div>
+  </div>
+
+  <div class="cta-card" style="margin-top:1rem;">
+    <h3>🧩 See the full picture</h3>
+    <p>Combine this with your Reasoning Skills Assessment results for one complete report covering your personality, interests and cognitive strengths.</p>
+    <div class="cta-buttons">
+      <a href="aptitude.html" class="cta-btn secondary">Take the Reasoning Skills Assessment →</a>
+      <a href="combined-report.html" class="cta-btn">View My Combined Report</a>
+    </div>
+  </div>
+</section>
+
+<div id="offlineProgress" class="offline-progress">
+  <span>📡</span>
+  <span id="progressMessage">Saving progress...</span>
+</div>
+
+<!-- Footer -->
+<footer class="Footer">
+  <h4>About Us</h4>
+  <p>
+    By leveraging technology, we aim to empower students with the tools and support they need to succeed academically
+    regardless of their location, resources, or socioeconomic status.
+  </p>
+  <div class="icons">
+    <i class="fa fa-facebook"></i>
+    <i class="fa fa-twitter"></i>
+    <i class="fa fa-instagram"></i>
+    <i class="fa fa-linkedin"></i>
+  </div>
+  <p>Made with <i class="fa fa-heart-o"></i> by Media On Africa</p>
+  <p class="footer-note">This assessment is a self-discovery guide, not a professional psychometric evaluation.</p>
+</footer>
+
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('service-worker.js').catch(() => {});
+  });
+}
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/dexie@3.2.2/dist/dexie.js"></script>
+
+<script>
+  var navLinks = document.getElementById("navLinks");
+  function showmenu() { navLinks.style.right = "0"; }
+  function hidemenu() { navLinks.style.right = "-200px"; }
+
+  document.querySelectorAll('.toggle-btn[data-target]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var id = btn.getAttribute('data-target');
+      var el = document.getElementById(id);
+      if (!el) return;
+      if (el.style.display === 'block') { el.style.display = 'none'; btn.textContent = 'Show Questions'; }
+      else { el.style.display = 'block'; btn.textContent = 'Hide Questions'; }
+    });
+  });
+
+  /* ---------------- DATA ---------------- */
+
+  const RIASEC_ITEMS = [
+    {id:'ri_r1', type:'R', text:"I enjoy building, fixing or taking things apart to see how they work."},
+    {id:'ri_r2', type:'R', text:"I'd rather work with my hands and tools than sit at a desk all day."},
+    {id:'ri_r3', type:'R', text:"I like being outdoors or physically active rather than stuck in an office."},
+    {id:'ri_r4', type:'R', text:"I'm interested in how machines, electronics or engineering systems work."},
+    {id:'ri_i1', type:'I', text:"I enjoy solving complex problems and figuring out how things work logically."},
+    {id:'ri_i2', type:'I', text:"I like collecting data, researching and analysing information."},
+    {id:'ri_i3', type:'I', text:"I ask 'why' a lot and enjoy digging deeper into a topic."},
+    {id:'ri_i4', type:'I', text:"I enjoy science, mathematics or working with computers and technology."},
+    {id:'ri_a1', type:'A', text:"I enjoy creating original things - art, music, writing or design."},
+    {id:'ri_a2', type:'A', text:"I like expressing myself in unconventional or imaginative ways."},
+    {id:'ri_a3', type:'A', text:"I prefer open-ended tasks where I can use my imagination."},
+    {id:'ri_a4', type:'A', text:"I enjoy performing, designing or producing creative work."},
+    {id:'ri_s1', type:'S', text:"I enjoy helping, teaching or supporting other people."},
+    {id:'ri_s2', type:'S', text:"I like working directly with people rather than alone with data or objects."},
+    {id:'ri_s3', type:'S', text:"I'm good at listening and understanding how others feel."},
+    {id:'ri_s4', type:'S', text:"I would enjoy a career focused on caring for or guiding others."},
+    {id:'ri_e1', type:'E', text:"I enjoy leading a team or convincing others of my ideas."},
+    {id:'ri_e2', type:'E', text:"I like taking initiative and starting new projects or ventures."},
+    {id:'ri_e3', type:'E', text:"I'm comfortable with competition, negotiation and taking risks."},
+    {id:'ri_e4', type:'E', text:"I enjoy selling, promoting or persuading people."},
+    {id:'ri_c1', type:'C', text:"I like following clear procedures, rules and structured plans."},
+    {id:'ri_c2', type:'C', text:"I enjoy organising information, files or schedules."},
+    {id:'ri_c3', type:'C', text:"I pay close attention to detail and accuracy in my work."},
+    {id:'ri_c4', type:'C', text:"I prefer tasks with a clear right way to do them, rather than ambiguity."}
+  ];
+
+  const RIASEC_DB = {
+    R: { name:'The Builder', desc:"You're hands-on and practical. You like tangible results, working with tools, machines or the outdoors, and learning by doing rather than sitting through theory.",
+      subjects:['Engineering Graphics & Design','Technical Mathematics','Physical Sciences','Agricultural Sciences','Consumer Studies'],
+      careers:['Electrician','Mechanical Engineer','Civil Engineer','Paramedic','Agricultural Technician','Pilot'],
+      growth:'Practical, hands-on skills — try a workshop, DIY project or technical hobby.' },
+    I: { name:'The Investigator', desc:"You're analytical and curious. You enjoy solving complex problems, working with data, and understanding how and why things work.",
+      subjects:['Mathematics','Physical Sciences','Life Sciences','Information Technology','Computer Applications Technology'],
+      careers:['Software Developer','Data Analyst','Cybersecurity Analyst','Doctor','Research Scientist','Actuary'],
+      growth:'Analytical thinking — practice puzzles, research tasks or breaking problems into steps.' },
+    A: { name:'The Creator', desc:"You're imaginative and expressive. You enjoy originality, design, and using creativity to communicate ideas.",
+      subjects:['Visual Arts','Design','Dramatic Arts','English Home Language','Information Technology'],
+      careers:['Graphic Designer','UX/UI Designer','Content Creator','Architect','Film & Video Editor','Journalist'],
+      growth:'Creative expression — sketch, write or experiment with design tools regularly.' },
+    S: { name:'The Helper', desc:"You're caring and people-focused. You enjoy teaching, supporting and understanding others, and building genuine connections.",
+      subjects:['Life Orientation','Life Sciences','History','English Home Language','Consumer Studies'],
+      careers:['Teacher','Social Worker','Nurse','Psychologist','HR Officer','Community Development Worker'],
+      growth:'Communication & empathy — practice active listening, group work or volunteering.' },
+    E: { name:'The Persuader', desc:"You're confident and driven. You like leading, taking initiative, and influencing outcomes in business, projects or public life.",
+      subjects:['Business Studies','Economics','Accounting','Mathematics','English Home Language'],
+      careers:['Entrepreneur','Marketing Manager','Sales Executive','Lawyer','Project Manager','Public Relations Officer'],
+      growth:'Confidence & leadership — take initiative in group projects and practice public speaking.' },
+    C: { name:'The Organiser', desc:"You're structured and detail-oriented. You enjoy order, accuracy and working within clear systems and procedures.",
+      subjects:['Accounting','Mathematics','Business Studies','Information Technology','Computer Applications Technology'],
+      careers:['Accountant','Bookkeeper','Data Administrator','Auditor','Logistics Coordinator','Bank Official'],
+      growth:'Organisation & planning — use checklists, plan projects ahead, and double-check details.' }
+  };
+
+  const VARK_ITEMS = [
+    {id:'vk1', text:"When learning something new, I prefer to:", options:[
+      {v:'a',type:'V',label:'Watch a video or look at diagrams'},
+      {v:'b',type:'A',label:'Listen to someone explain it'},
+      {v:'c',type:'R',label:'Read the instructions or notes'},
+      {v:'d',type:'K',label:'Try it out myself, hands-on'}]},
+    {id:'vk2', text:"When I picture a memory, I mostly remember:", options:[
+      {v:'a',type:'V',label:'Images and how things looked'},
+      {v:'b',type:'A',label:'Conversations and sounds'},
+      {v:'c',type:'R',label:'Notes or words I read/wrote'},
+      {v:'d',type:'K',label:'What I was doing or feeling'}]},
+    {id:'vk3', text:"To remember a phone number, I would:", options:[
+      {v:'a',type:'V',label:'Picture it visually'},
+      {v:'b',type:'A',label:'Say it out loud repeatedly'},
+      {v:'c',type:'R',label:'Write it down'},
+      {v:'d',type:'K',label:'Dial it a few times to memorise the pattern'}]},
+    {id:'vk4', text:"I understand a new app or tool best by:", options:[
+      {v:'a',type:'V',label:'Looking at screenshots or a flow diagram'},
+      {v:'b',type:'A',label:'Having someone talk me through it'},
+      {v:'c',type:'R',label:'Reading the manual or FAQ'},
+      {v:'d',type:'K',label:'Clicking around and figuring it out myself'}]},
+    {id:'vk5', text:"In class, I concentrate best when:", options:[
+      {v:'a',type:'V',label:'There are visual aids like slides or charts'},
+      {v:'b',type:'A',label:'The teacher explains things verbally'},
+      {v:'c',type:'R',label:'I can read the textbook myself'},
+      {v:'d',type:'K',label:"There's a hands-on activity or experiment"}]},
+    {id:'vk6', text:"When assembling furniture or a device, I prefer:", options:[
+      {v:'a',type:'V',label:'Diagrams with pictures'},
+      {v:'b',type:'A',label:'Someone talking me through each step'},
+      {v:'c',type:'R',label:'Written instructions'},
+      {v:'d',type:'K',label:'Just starting and learning as I go'}]},
+    {id:'vk7', text:"My notes usually include:", options:[
+      {v:'a',type:'V',label:'Diagrams, colours and mind maps'},
+      {v:'b',type:'A',label:"Phrases I'd say out loud to remember"},
+      {v:'c',type:'R',label:'Detailed written sentences'},
+      {v:'d',type:'K',label:'Few notes — I prefer to practice instead'}]},
+    {id:'vk8', text:"I enjoy learning through:", options:[
+      {v:'a',type:'V',label:'Infographics and videos'},
+      {v:'b',type:'A',label:'Discussions and podcasts'},
+      {v:'c',type:'R',label:'Books and articles'},
+      {v:'d',type:'K',label:'Experiments, sport or building things'}]}
+  ];
+
+  const VARK_DB = {
+    V: "Visual learner — you learn best through diagrams, videos, colour and images. Try mind maps, infographics and watching demonstrations.",
+    A: "Auditory learner — you learn best through discussion, explanation and listening. Try reading notes aloud, podcasts and study groups.",
+    R: "Read/Write learner — you learn best through reading and writing things down. Try detailed notes, lists and written summaries.",
+    K: "Kinesthetic learner — you learn best through hands-on practice and doing. Try experiments, practical exercises and real projects."
+  };
+
+  const WORKPREF_ITEMS = [
+    {id:'wp1', label:'Environment', a:'Indoors in an office or classroom', b:'Outdoors or on the move'},
+    {id:'wp2', label:'Focus', a:'Mostly working with people', b:'Mostly working with data, systems or objects'},
+    {id:'wp3', label:'Structure', a:'As part of a team, collaborating with others', b:'Independently, with my own space'},
+    {id:'wp4', label:'Approach', a:'Following a clear, set process', b:'Experimenting with new approaches'},
+    {id:'wp5', label:'Pace', a:'A fast-paced, high-energy environment', b:'A calm, steady environment'},
+    {id:'wp6', label:'Role', a:'Leading and deciding for the group', b:'Supporting and contributing to the group'}
+  ];
+
+  const STRENGTH_ITEMS = ['Critical Thinking','Problem Solving','Communication','Creativity','Organisation','Leadership','Empathy & Caring','Technical/Digital Skills','Attention to Detail','Persistence','Teamwork','Public Speaking'];
+  const STRENGTH_MAX = 5;
+
+  const VALUE_ITEMS = ['Money / Financial Reward','Helping Society','Job Security','Creativity & Self-Expression','Leadership & Influence','Independence & Flexibility','Work-Life Balance','Recognition & Achievement'];
+  const VALUE_MAX = 3;
+  const VALUE_TIPS = {
+    'Money / Financial Reward': "fields like finance, engineering, medicine and tech tend to offer strong earning potential.",
+    'Helping Society': "careers in healthcare, education, social work and NGOs let you make a direct impact.",
+    'Job Security': "government, education, healthcare and accounting are traditionally stable fields.",
+    'Creativity & Self-Expression': "design, media, arts and marketing let you express original ideas.",
+    'Leadership & Influence': "business, law, politics and project management offer clear leadership paths.",
+    'Independence & Flexibility': "freelancing, entrepreneurship and remote-friendly tech roles offer flexibility.",
+    'Work-Life Balance': "look for structured roles in fields like education, government or established corporates.",
+    'Recognition & Achievement': "competitive, results-driven fields like sales, sport science or entrepreneurship offer visible recognition."
+  };
+
+  /* ---------------- RENDER FORMS ---------------- */
+
+  function renderLikert() {
+    const form = document.getElementById('career-interests');
+    form.innerHTML = RIASEC_ITEMS.map(it => `
+      <div class="likert-item">
+        <p class="likert-text">${it.text}</p>
+        <div class="likert-scale">
+          ${[1,2,3,4,5].map(v => `<label class="likert-option"><input type="radio" name="${it.id}" value="${v}">${v}</label>`).join('')}
+        </div>
+      </div>`).join('');
+  }
+
+  function renderChips(containerId, items, groupName) {
+    const container = document.getElementById(containerId);
+    container.innerHTML = items.map((label, i) => `
+      <div class="chip">
+        <input type="checkbox" id="${groupName}_${i}" name="${groupName}" value="${label}">
+        <label for="${groupName}_${i}">${label}</label>
+      </div>`).join('');
+  }
+
+  function renderVark() {
+    const form = document.getElementById('career-learning');
+    form.innerHTML = VARK_ITEMS.map(q => `
+      <div class="likert-item">
+        <p class="likert-text">${q.text}</p>
+        ${q.options.map(opt => `<label style="display:block; margin:0.25rem 0;"><input type="radio" name="${q.id}" value="${opt.v}"> ${opt.label}</label>`).join('')}
+      </div>`).join('');
+  }
+
+  function renderWorkPrefs() {
+    const form = document.getElementById('career-workprefs');
+    form.innerHTML = WORKPREF_ITEMS.map(wp => `
+      <div class="pref-item">
+        <div class="pref-label">${wp.label}</div>
+        <div class="pref-pair">
+          <div class="pref-box"><input type="radio" id="${wp.id}_a" name="${wp.id}" value="a"><label for="${wp.id}_a">${wp.a}</label></div>
+          <div class="pref-box"><input type="radio" id="${wp.id}_b" name="${wp.id}" value="b"><label for="${wp.id}_b">${wp.b}</label></div>
+        </div>
+      </div>`).join('');
+  }
+
+  function enforceChipLimit(groupName, max, counterId) {
+    const boxes = document.querySelectorAll(`input[name="${groupName}"]`);
+    function update() {
+      const checked = document.querySelectorAll(`input[name="${groupName}"]:checked`);
+      document.getElementById(counterId).textContent = `Selected: ${checked.length} / ${max}`;
+      boxes.forEach(b => { if (!b.checked) b.disabled = checked.length >= max; });
+    }
+    boxes.forEach(b => b.addEventListener('change', update));
+    update();
+  }
+
+  /* ---------------- RADAR CHART ---------------- */
+
+  function buildRadarSVG(scores) {
+    const order = ['R','I','A','S','E','C'];
+    const cx = 160, cy = 160, maxR = 110, maxScore = 20;
+    function pt(i, r) { const ang = (Math.PI/180) * (-90 + i*60); return [cx + r*Math.cos(ang), cy + r*Math.sin(ang)]; }
+    let grid = '';
+    [0.25,0.5,0.75,1].forEach(f => {
+      const pts = order.map((t,i) => pt(i, maxR*f).join(',')).join(' ');
+      grid += `<polygon points="${pts}" fill="none" stroke="#dbe7ef" stroke-width="1"/>`;
+    });
+    let axes = '', labels = '';
+    order.forEach((t,i) => {
+      const [x,y] = pt(i, maxR);
+      axes += `<line x1="${cx}" y1="${cy}" x2="${x}" y2="${y}" stroke="#dbe7ef" stroke-width="1"/>`;
+      const [lx,ly] = pt(i, maxR + 24);
+      labels += `<text x="${lx}" y="${ly}" text-anchor="middle" font-size="11" fill="#0f4c81" font-family="Poppins, sans-serif">${RIASEC_DB[t].name.replace('The ','')}</text>`;
+    });
+    const dataPts = order.map((t,i) => pt(i, (scores[t]/maxScore) * maxR).join(',')).join(' ');
+    const dataPoly = `<polygon points="${dataPts}" fill="rgba(11,106,163,0.35)" stroke="#0b6aa3" stroke-width="2"/>`;
+    return `<svg viewBox="0 0 320 320" width="100%" height="300" xmlns="http://www.w3.org/2000/svg">${grid}${axes}${dataPoly}${labels}</svg>`;
+  }
+
+  /* ---------------- SCORING ---------------- */
+
+  function getRadioValue(form, name) {
+    const radios = form.elements[name];
+    if (!radios) return null;
+    if (radios.length === undefined) return radios.checked ? radios.value : null;
+    for (let r = 0; r < radios.length; r++) if (radios[r].checked) return radios[r].value;
+    return null;
+  }
+
+  function computeProfile() {
+    const formI = document.getElementById('career-interests');
+    const formL = document.getElementById('career-learning');
+    const formW = document.getElementById('career-workprefs');
+
+    const scores = {R:0,I:0,A:0,S:0,E:0,C:0};
+    let riasecAnswered = 0;
+    RIASEC_ITEMS.forEach(it => {
+      const val = getRadioValue(formI, it.id);
+      if (val) { scores[it.type] += parseInt(val, 10); riasecAnswered++; }
+    });
+
+    const varkCounts = {V:0,A:0,R:0,K:0};
+    let varkAnswered = 0;
+    VARK_ITEMS.forEach(q => {
+      const val = getRadioValue(formL, q.id);
+      if (val) {
+        const opt = q.options.find(o => o.v === val);
+        if (opt) { varkCounts[opt.type]++; varkAnswered++; }
+      }
+    });
+
+    const workPrefs = [];
+    let wpAnswered = 0;
+    WORKPREF_ITEMS.forEach(wp => {
+      const val = getRadioValue(formW, wp.id);
+      if (val) { workPrefs.push({ label: wp.label, choice: val === 'a' ? wp.a : wp.b }); wpAnswered++; }
+    });
+
+    const strengths = Array.from(document.querySelectorAll('input[name="strength"]:checked')).map(el => el.value);
+    const values = Array.from(document.querySelectorAll('input[name="value"]:checked')).map(el => el.value);
+
+    const missing = [];
+    if (riasecAnswered < RIASEC_ITEMS.length) missing.push('Interests & Personality');
+    if (strengths.length === 0) missing.push('Strengths');
+    if (varkAnswered < VARK_ITEMS.length) missing.push('Learning Style');
+    if (wpAnswered < WORKPREF_ITEMS.length) missing.push('Work Preferences');
+    if (values.length === 0) missing.push('Values');
+    if (missing.length) return { missing };
+
+    const sortedTypes = Object.keys(scores).sort((a,b) => scores[b] - scores[a]);
+    const primaryKey = sortedTypes[0], secondaryKey = sortedTypes[1], growthKey = sortedTypes[sortedTypes.length - 1];
+    const primary = RIASEC_DB[primaryKey], secondary = RIASEC_DB[secondaryKey], growth = RIASEC_DB[growthKey];
+
+    const subjects = Array.from(new Set([...primary.subjects, ...secondary.subjects.slice(0,3)])).slice(0,7);
+    const careers = Array.from(new Set([...primary.careers.slice(0,4), ...secondary.careers.slice(0,3)])).slice(0,7);
+
+    const maxVark = Math.max(...Object.values(varkCounts));
+    const dominantVark = Object.keys(varkCounts).filter(k => varkCounts[k] === maxVark);
+
+    return {
+      missing: [],
+      riasecScores: scores,
+      primaryKey, secondaryKey, growthKey,
+      personalityTitle: `${primary.name}${secondary ? ' with ' + secondary.name + ' traits' : ''}`,
+      personalityBlurb: primary.desc + (secondary ? ` You also show ${secondary.name.replace('The ','').toLowerCase()} traits: ${secondary.desc.split('. ')[0].toLowerCase()}.` : ''),
+      strengths, growthText: growth.growth,
+      varkCounts, dominantVark, learningStyleText: dominantVark.map(k => VARK_DB[k]).join(' '),
+      workPrefs, values,
+      subjects, careers
+    };
+  }
+
+  function renderReport(profile) {
+    document.getElementById('reportPersonalityTitle').textContent = `You're ${/^[aeiou]/i.test(profile.personalityTitle) ? 'an' : 'a'} ${profile.personalityTitle}`;
+    document.getElementById('reportPersonalityBlurb').textContent = profile.personalityBlurb;
+    document.getElementById('radarChart').innerHTML = buildRadarSVG(profile.riasecScores);
+    document.getElementById('reportStrengths').innerHTML = profile.strengths.map(s => `<span class="tag">${s}</span>`).join('');
+    document.getElementById('reportGrowth').innerHTML = `<span class="tag">${profile.growthText}</span>`;
+    document.getElementById('reportLearningStyle').textContent = profile.learningStyleText;
+    document.getElementById('reportWorkPrefs').innerHTML = profile.workPrefs.map(wp => `<li><strong>${wp.label}:</strong> ${wp.choice}</li>`).join('');
+    document.getElementById('reportValues').innerHTML = profile.values.map(v => `<p style="margin:0.3rem 0;"><strong>${v}</strong> — ${VALUE_TIPS[v] || ''}</p>`).join('');
+    document.getElementById('reportSubjects').innerHTML = profile.subjects.map(s => `<span class="tag">${s}</span>`).join('');
+    document.getElementById('reportCareers').innerHTML = profile.careers.map(c => `<span class="tag career">${c}</span>`).join('');
+    document.getElementById('reportSection').style.display = 'block';
+    document.getElementById('reportSection').scrollIntoView({ behavior:'smooth' });
+  }
+
+  /* ---------------- PERSISTENCE (Dexie / IndexedDB) ---------------- */
+
+  let db = null;
+
+  async function initDB() {
+    if (typeof Dexie === 'undefined') await new Promise(r => setTimeout(r, 500));
+    db = new Dexie('MediaOnAfricaDB');
+    db.version(1).stores({ quizProgress: '++id, quizId, answers, timestamp, synced' });
+    await db.open();
+    await loadSavedProgress();
+  }
+
+  const SECTION_FORMS = {
+    'career-interests': { formId:'career-interests', badge:'interests-progress-badge' },
+    'career-strengths': { formId:'career-strengths', badge:'strengths-progress-badge' },
+    'career-learning': { formId:'career-learning', badge:'learning-progress-badge' },
+    'career-workprefs': { formId:'career-workprefs', badge:'workprefs-progress-badge' },
+    'career-values': { formId:'career-values', badge:'values-progress-badge' }
+  };
+
+  function collectFormAnswers(formId) {
+    const form = document.getElementById(formId);
+    const answers = {};
+    form.querySelectorAll('input[type="radio"]:checked').forEach(el => { answers[el.name] = el.value; });
+    form.querySelectorAll('input[type="checkbox"]:checked').forEach(el => {
+      if (!answers[el.name]) answers[el.name] = [];
+      answers[el.name].push(el.value);
+    });
+    return answers;
+  }
+
+  function restoreFormAnswers(formId, answers) {
+    const form = document.getElementById(formId);
+    Object.entries(answers).forEach(([name, val]) => {
+      if (Array.isArray(val)) {
+        val.forEach(v => { const el = form.querySelector(`input[name="${name}"][value="${CSS.escape(v)}"]`); if (el) el.checked = true; });
+      } else {
+        const el = form.querySelector(`input[name="${name}"][value="${CSS.escape(val)}"]`);
+        if (el) el.checked = true;
+      }
+    });
+    form.dispatchEvent(new Event('change'));
+  }
+
+  async function saveSection(quizId) {
+    const conf = SECTION_FORMS[quizId];
+    const answers = collectFormAnswers(conf.formId);
+    try {
+      await db.quizProgress.put({ quizId, answers, timestamp: new Date().toISOString(), synced:false });
+      const badge = document.getElementById(conf.badge);
+      if (badge) { badge.style.display = 'inline-block'; setTimeout(() => badge.style.display = 'none', 2500); }
+      showOfflineIndicator('Progress saved offline ✓');
+    } catch (e) { console.error('Save failed', e); }
+  }
+
+  async function loadSavedProgress() {
+    for (const quizId of Object.keys(SECTION_FORMS)) {
+      const saved = await db.quizProgress.where('quizId').equals(quizId).first();
+      if (saved && saved.answers) restoreFormAnswers(SECTION_FORMS[quizId].formId, saved.answers);
+    }
+  }
+
+  function attachAutoSave() {
+    Object.keys(SECTION_FORMS).forEach(quizId => {
+      const form = document.getElementById(SECTION_FORMS[quizId].formId);
+      form.addEventListener('change', () => saveSection(quizId));
+    });
+  }
+
+  function showOfflineIndicator(message) {
+    const indicator = document.getElementById('offlineProgress');
+    const msgSpan = document.getElementById('progressMessage');
+    msgSpan.textContent = message;
+    indicator.classList.add('show');
+    setTimeout(() => indicator.classList.remove('show'), 2000);
+  }
+
+  async function saveCareerProfile(profile) {
+    if (!db) await initDB();
+    await db.quizProgress.put({ quizId:'career-profile-result', answers: profile, timestamp: new Date().toISOString(), synced:false });
+  }
+
+  /* ---------------- INIT ---------------- */
+
+  document.addEventListener('DOMContentLoaded', async () => {
+    renderLikert();
+    renderChips('strengths-chip-grid', STRENGTH_ITEMS, 'strength');
+    renderVark();
+    renderWorkPrefs();
+    renderChips('values-chip-grid', VALUE_ITEMS, 'value');
+    enforceChipLimit('strength', STRENGTH_MAX, 'strengths-counter');
+    enforceChipLimit('value', VALUE_MAX, 'values-counter');
+
+    await initDB();
+    attachAutoSave();
+
+    document.getElementById('generateReportBtn').addEventListener('click', async () => {
+      const profile = computeProfile();
+      const noteEl = document.getElementById('generateMissingNote');
+      if (profile.missing.length) {
+        noteEl.innerHTML = `<div class="missing-note">Please complete: ${profile.missing.join(', ')} before generating your report.</div>`;
+        return;
+      }
+      noteEl.innerHTML = '';
+      renderReport(profile);
+      await saveCareerProfile(profile);
+    });
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "public": true,
+  "outputDirectory": ".",
+  "routes": [
+    {
+      "src": "/resources/(.*)",
+      "dest": "/resources/$1"
+    }
+  ]
+}
