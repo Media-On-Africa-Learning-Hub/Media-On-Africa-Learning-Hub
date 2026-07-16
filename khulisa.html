@@ -277,29 +277,110 @@
         }
       }
 
-      /* Emergency resources - compact, professional/premium card */
+      /* ── Emergency Support — premium, calm, trustworthy crisis card ──
+         Design intent: steady and dignified, never alarming. Refined light
+         surface, hairline crimson accents, strong tap targets, full
+         keyboard-focus support, motion-safe micro-interactions. */
       .emergency-resources {
-        background: #ffffff;
+        position: relative;
+        background:
+          radial-gradient(120% 90% at 100% 0%, #fff6f6 0%, transparent 55%),
+          linear-gradient(175deg, #ffffff 0%, #fcf9f9 100%);
         color: #2b2b2b;
-        padding: 1.1rem 1.3rem;
-        border-radius: 10px;
-        border: 1px solid #f1d4d7;
-        border-left: 4px solid #b3202e;
+        padding: 1.35rem 1.45rem 1.4rem;
+        border-radius: 16px;
+        border: 1px solid #f0dcdf;
         text-align: left;
-        box-shadow: 0 2px 8px rgba(179, 32, 46, 0.06);
+        box-shadow:
+          0 1px 2px rgba(31, 31, 31, 0.04),
+          0 8px 22px rgba(179, 32, 46, 0.07);
         align-self: start;
+        overflow: hidden;
+        transition: box-shadow 0.3s ease, transform 0.3s ease;
+      }
+
+      /* Hairline gradient accent along the top edge */
+      .emergency-resources::before {
+        content: "";
+        position: absolute;
+        inset: 0 0 auto 0;
+        height: 3px;
+        background: linear-gradient(90deg, #b3202e 0%, #e05a67 55%, transparent 100%);
+        border-radius: 16px 16px 0 0;
+      }
+
+      .emergency-resources:hover {
+        box-shadow:
+          0 2px 4px rgba(31, 31, 31, 0.05),
+          0 14px 30px rgba(179, 32, 46, 0.12);
+        transform: translateY(-2px);
+      }
+
+      .emergency-header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 0.6rem;
+      }
+
+      .emergency-icon-chip {
+        width: 36px;
+        height: 36px;
+        min-width: 36px;
+        border-radius: 50%;
+        background: linear-gradient(180deg, #fdeef0 0%, #fbe3e6 100%);
+        box-shadow: 0 0 0 4px rgba(179, 32, 46, 0.06);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #b3202e;
+        font-size: 0.9rem;
       }
 
       .emergency-resources h3 {
-        color: #b3202e;
+        color: #1c1c1c;
         font-family: "Poppins", sans-serif;
-        font-size: 0.95rem;
+        font-size: 0.98rem;
         font-weight: 600;
         letter-spacing: 0.2px;
-        margin-bottom: 0.4rem;
-        display: flex;
+        margin: 0;
+        flex: 1;
+      }
+
+      .emergency-badge {
+        display: inline-flex;
         align-items: center;
-        gap: 8px;
+        gap: 6px;
+        font-family: "Poppins", sans-serif;
+        font-size: 0.62rem;
+        font-weight: 700;
+        letter-spacing: 0.7px;
+        color: #b3202e;
+        background: #fdecee;
+        border: 1px solid #f3cdd2;
+        padding: 3px 10px;
+        border-radius: 999px;
+        white-space: nowrap;
+      }
+
+      /* Gentle "live" dot inside the 24/7 badge */
+      .emergency-badge-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: #b3202e;
+        animation: emergency-pulse 2.4s ease-in-out infinite;
+      }
+
+      @keyframes emergency-pulse {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.35; }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .emergency-badge-dot { animation: none; }
+        .emergency-resources,
+        .emergency-resources .hero-btn { transition: none; }
       }
 
       .emergency-resources p {
@@ -307,31 +388,130 @@
         font-size: 0.8rem;
         color: #6b6b6b;
         margin: 2px 0;
-        line-height: 1.5;
+        line-height: 1.55;
       }
 
-      .emergency-number {
-        font-size: 1rem;
+      /* The number itself is a tap target now */
+      a.emergency-number {
+        display: inline-block;
+        font-size: 1.45rem;
         font-weight: 700;
         color: #b3202e;
-        margin: 6px 0 2px;
-        letter-spacing: 0.3px;
+        margin: 12px 0 1px;
+        letter-spacing: 0.5px;
+        font-family: "Poppins", sans-serif;
+        font-variant-numeric: tabular-nums;
+        text-decoration: none;
+        border-radius: 8px;
+        transition: color 0.2s ease;
+      }
+
+      a.emergency-number:hover {
+        color: #8f1a25;
+      }
+
+      a.emergency-number:focus-visible,
+      .emergency-resources .hero-btn:focus-visible {
+        outline: 3px solid rgba(179, 32, 46, 0.45);
+        outline-offset: 3px;
+      }
+
+      a.emergency-number i {
+        font-size: 0.85rem;
+        margin-right: 7px;
+        vertical-align: 3px;
+      }
+
+      .emergency-helpline-name {
+        font-size: 0.7rem !important;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: #9a9a9a !important;
+      }
+
+      .emergency-divider {
+        border: none;
+        border-top: 1px solid #f3e4e6;
+        margin: 13px 0;
       }
 
       .emergency-resources .hero-btn {
-        padding: 5px 14px;
-        font-size: 0.72rem;
+        padding: 11px 0;
+        width: 100%;
+        text-align: center;
+        font-size: 0.8rem;
         font-weight: 600;
-        margin-top: 8px;
+        margin-top: 2px;
         display: inline-block;
-        background: #b3202e;
+        background: linear-gradient(180deg, #c22432 0%, #a71c29 100%);
         color: #ffffff;
-        border-radius: 20px;
-        letter-spacing: 0.2px;
+        border-radius: 11px;
+        letter-spacing: 0.4px;
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.18),
+          0 3px 10px rgba(179, 32, 46, 0.25);
+        transition: box-shadow 0.25s ease, transform 0.25s ease;
       }
 
       .emergency-resources .hero-btn:hover {
-        background: #8f1a25;
+        background: linear-gradient(180deg, #b3202e 0%, #8f1a25 100%);
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.15),
+          0 6px 16px rgba(179, 32, 46, 0.32);
+        transform: translateY(-1px);
+      }
+
+      .emergency-resources .hero-btn:active {
+        transform: translateY(0);
+        box-shadow: 0 2px 6px rgba(179, 32, 46, 0.25);
+      }
+
+      .emergency-footnote {
+        font-size: 0.68rem !important;
+        color: #9a9a9a !important;
+        text-align: center;
+        margin-top: 9px !important;
+      }
+
+      /* About Khulisa — matched to Khulisa Social Solutions' website branding:
+         deep plum purple (top bar / hero overlay) + rich gold (nav bar / headline) */
+      .khulisa-about {
+        background: linear-gradient(160deg, #5c2161 0%, #431748 100%);
+      }
+
+      .feature-block.khulisa-about h3 {
+        color: #ffffff;
+      }
+
+      .feature-block.khulisa-about h3 i {
+        color: #e8b00e;
+      }
+
+      .feature-block.khulisa-about p.khulisa-about-text {
+        font-family: "Poppins", sans-serif;
+        font-size: 0.92rem;
+        line-height: 1.8;
+        color: #f4ecf6;
+        background: rgba(255, 255, 255, 0.07);
+        border-left: 4px solid #e0a50a;
+        padding: 14px 16px;
+        border-radius: 8px;
+      }
+
+      .khulisa-about .khulisa-highlight {
+        color: #f2c230;
+        font-weight: 700;
+      }
+
+      .khulisa-btn {
+        background: #e0a50a;
+        color: #431748;
+        font-weight: 700;
+      }
+
+      .khulisa-btn:hover {
+        background: #f2c230;
+        color: #431748;
       }
 
       .khulisa-text{
@@ -437,22 +617,34 @@
     <main>
       <!-- Emergency Support -->
       <div class="emergency-resources">
-        <h3>🚨 Emergency Support</h3>
-        <p>If you're in crisis, help is available 24/7</p>
-        <div class="emergency-number">
-          <i class="fas fa-phone-alt"></i> 0800 567 567
+        <div class="emergency-header">
+          <div class="emergency-icon-chip">
+            <i class="fas fa-heartbeat" aria-hidden="true"></i>
+          </div>
+          <h3>Emergency Support</h3>
+          <span class="emergency-badge"><span class="emergency-badge-dot" aria-hidden="true"></span>24/7</span>
         </div>
-        <p>South African Suicide Crisis Helpline</p>
+        <p>If you're in crisis, free and confidential help is available.</p>
         <a
           href="tel:0800567567"
-          class="hero-btn"
+          class="emergency-number"
+          aria-label="Call the South African Suicide Crisis Helpline on 0 8 0 0, 5 6 7, 5 6 7"
         >
-          <i class="fas fa-phone"></i> Call Now
+          <i class="fas fa-phone-alt" aria-hidden="true"></i> 0800 567 567
         </a>
+        <p class="emergency-helpline-name">South African Suicide Crisis Helpline</p>
+        <hr class="emergency-divider" />
+        <a
+          href="tel:0800567567"
+          class="hero-btn emergency-cta"
+        >
+          <i class="fas fa-phone" aria-hidden="true"></i> Call Now
+        </a>
+        <p class="emergency-footnote">Toll-free from all networks</p>
       </div>
 
       <!-- About Khulisa -->
-      <section class="feature-block">
+      <section class="feature-block khulisa-about">
         <h3><i class="fas fa-hand-holding-heart"></i> About Khulisa</h3>
         <img
           src="images/khulisa-support.jpg"
@@ -463,18 +655,16 @@
               'https://via.placeholder.com/400x250?text=Khulisa+Support'
           "
         />
-        <p style="font-family:'Poppins',sans-serif;font-size:.92rem;line-height:1.8;color:#444">
-          <span style="color:#e63946;font-weight:700">Khulisa Social Solutions</span> is a
-          <span style="color:#2a9d8f;font-weight:700">non-profit organisation</span> dedicated to
-          <span style="color:#e76f51;font-weight:700">uplifting communities</span> through
-          <span style="color:#457b9d;font-weight:700">social cohesion, youth development,</span> and
-          <span style="color:#6a4c93;font-weight:700">counselling services.</span>
+        <p class="khulisa-about-text">
+          <span class="khulisa-highlight">Khulisa Social Solutions</span> is a
+          non-profit organisation dedicated to
+          <span class="khulisa-highlight">uplifting communities</span> through
+          social cohesion, youth development, and counselling services.
           Learners gain access to
-          <span style="color:#e9c46a;font-weight:700">professional support,</span>
-          <span style="color:#2a9d8f;font-weight:700">mentorship,</span> and
-          <span style="color:#e63946;font-weight:700">resources</span> that extend beyond academics.
+          <span class="khulisa-highlight">professional support, mentorship,
+          and resources</span> that extend beyond academics.
         </p>
-        <a href="https://khulisa.org.za" target="_blank" class="hero-btn">
+        <a href="https://khulisa.org.za" target="_blank" class="hero-btn khulisa-btn">
           <i class="fas fa-external-link-alt"></i> Visit Website
         </a>
       </section>

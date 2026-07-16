@@ -2,11 +2,11 @@
  * Media On Africa Learning Hub — Service Worker
  * ─────────────────────────────────────────────
  * IMPORTANT: Bump CACHE_VERSION every time you push changes to live.
- * v1 → v2 → v3 → v4 → v5 → v6 etc.
+ * v1 → v2 → v3 → v4 → v5 → v6 → v7 etc.
  * This is what forces browsers to drop the old cache and fetch fresh files.
  */
 
-const CACHE_VERSION = 'media-on-africa-v6';
+const CACHE_VERSION = "media-on-africa-v7";
 const STATIC_CACHE  = `${CACHE_VERSION}-static`;
 const PDF_CACHE     = `${CACHE_VERSION}-pdfs`;
 
