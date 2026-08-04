@@ -1,0 +1,48 @@
+.quiz-decor {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.quiz-decor .bubble {
+  position: absolute;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #00c2ff 0%, #0072ff 50%, #9b59b6 100%);
+  opacity: 0.34;
+}
+
+.bubble--1 { width: 80px;  height: 80px;  left: 4%;  top: 8%;  }
+.bubble--2 { width: 60px;  height: 60px;  left: 8%;  top: 30%; }
+.bubble--3 { width: 110px; height: 110px; left: 2%;  top: 55%; }
+.bubble--4 { width: 70px;  height: 70px;  left: 7%;  top: 78%; }
+.bubble--5 { width: 90px;  height: 90px;  right: 5%; top: 15%; }
+.bubble--6 { width: 55px;  height: 55px;  right: 9%; top: 40%; }
+.bubble--7 { width: 100px; height: 100px; right: 3%; top: 62%; }
+.bubble--8 { width: 65px;  height: 65px;  right: 8%; top: 85%; }
+
+/* Subject icons — now the dominant, largest decorative element (bigger
+   than the bubbles), same JS-driven physics. */
+.quiz-decor .float-icon {
+  position: absolute;
+  font-size: 6.5rem !important; /* !important + the extra .quiz-decor ancestor
+    class both guard against Font Awesome's own .fa{font-size:inherit} rule,
+    which loads AFTER quizzes.css in quizzes.html and was silently winning
+    the cascade tie on specificity, shrinking every icon back down no
+    matter what size was set here. */
+  opacity: 0.55;
+}
+
+.float-icon--1 { color: var(--rainbow-1); left: 3%;  top: 20%; }
+.float-icon--2 { color: var(--rainbow-4); right: 4%; top: 25%; }
+.float-icon--3 { color: var(--rainbow-5); left: 5%;  top: 45%; }
+.float-icon--4 { color: var(--rainbow-6); right: 6%; top: 50%; }
+.float-icon--5 { color: var(--rainbow-1); left: 4%;  top: 68%; }
+.float-icon--6 { color: var(--rainbow-4); right: 5%; top: 72%; }
+
+@media (max-width: 1550px) {
+  .quiz-decor {
+    display: none; /* wide bounce amplitude needs a real gutter, or it'll swing into the cards */
+  }
+}

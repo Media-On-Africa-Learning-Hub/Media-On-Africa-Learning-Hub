@@ -1,962 +1,330 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Reasoning Skills Assessment - Media On Africa Learning Hub</title>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Reasoning Skills Assessment - Media On Africa Learning Hub</title>
 
-  <!-- PWA Meta Tags - Updated for GitHub Pages -->
-  <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#1a472a">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="MoA Learning">
-  <link rel="apple-touch-icon" href="/icons/icon-192x192.png">
+    <!-- PWA Meta Tags -->
+    <link rel="manifest" href="manifest.json" />
+    <meta name="theme-color" content="#0072ff" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta name="apple-mobile-web-app-title" content="MoA Learning" />
+    <link rel="apple-touch-icon" href="/icons/icon-192x192.png" />
 
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300;400;700&family=Poppins:wght@300;400;500;600;700&display=swap"
-    rel="stylesheet"
-  />
-  <link
-    rel="stylesheet"
-    href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-  />
-
-  <style>
-    .header.big-header { padding: 4rem 1rem; background: linear-gradient(180deg,#0f4c81 0%, #0b6aa3 100%); color:#fff; text-align:center; }
-    .text-box h1 { margin:0; font-size:2.2rem; font-weight:700; font-family:Poppins, sans-serif; }
-    .text-box .subtitle { margin-top:0.5rem; font-size:1rem; opacity:0.9; font-family:Poppins, sans-serif; }
-    .aptitude-intro { max-width:1000px; margin:1.5rem auto; padding:1rem; font-family:Poppins, sans-serif; }
-    .aptitude-grid { display:grid; grid-template-columns:1fr; gap:1.25rem; max-width:1000px; margin:0 auto; padding:1rem; }
-    @media(min-width:900px){ .aptitude-grid { grid-template-columns: 1fr 1fr; } }
-    .card { background:#fff; border-radius:8px; padding:1rem; box-shadow:0 2px 8px rgba(0,0,0,0.06); }
-    .card h3 { margin-top:0; font-size:1.1rem; }
-    .section-desc { color:#333; line-height:1.5; }
-    .toggle-btn { display:inline-block; margin-top:0.5rem; background:#0b6aa3; color:#fff; border:none; padding:0.5rem 0.75rem; border-radius:6px; cursor:pointer; font-family:Poppins, sans-serif; transition: background 0.3s; }
-    .toggle-btn:hover { background:#0f4c81; }
-    .questions { margin-top:0.75rem; display:none; }
-    .question { margin-bottom:0.75rem; padding: 10px; background: #f9f9f9; border-radius: 6px; }
-    .quiz-result { margin-top:0.5rem; font-weight:600; color:#0b6aa3; }
-    .controls { display:flex; gap:0.5rem; flex-wrap:wrap; margin-top:0.75rem; }
-    .hero-btn { background:#0b6aa3; color:#fff; padding:0.6rem 1rem; border-radius:6px; text-decoration:none; display:inline-block; }
-    .explain { font-size:0.95rem; color:#444; }
-    .footer-note { text-align:center; margin-top:1rem; color:#666; font-size:0.9rem; }
-    label { cursor:pointer; }
-
-    /* Cross-link CTA to the new Career Discovery Assessment */
-    .cta-card { background:linear-gradient(135deg,#0f4c81,#0b6aa3); color:#fff; border-radius:8px; padding:1.25rem; box-shadow:0 2px 8px rgba(0,0,0,0.1); }
-    .cta-card h3 { color:#fff; margin-top:0; }
-    .cta-card p { color:#eaf4fb; line-height:1.5; }
-    .cta-buttons { display:flex; gap:0.6rem; flex-wrap:wrap; margin-top:0.75rem; }
-    .cta-btn { background:#fff; color:#0b6aa3; padding:0.55rem 0.9rem; border-radius:6px; text-decoration:none; font-weight:600; font-size:0.92rem; }
-    .cta-btn.secondary { background:transparent; color:#fff; border:1.5px solid rgba(255,255,255,0.7); }
-    .rename-note { font-size:0.85rem; color:#666; margin-top:0.25rem; }
-
-    /* Offline progress indicator */
-    .offline-progress {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: #4CAF50;
-      color: white;
-      padding: 8px 12px;
-      border-radius: 20px;
-      font-size: 12px;
-      z-index: 999;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-      display: none;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .offline-progress.show {
-      display: flex;
-    }
-
-    .download-lesson-btn {
-      background: #2196F3;
-      color: white;
-      border: none;
-      padding: 8px 16px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 14px;
-      margin-top: 15px;
-      transition: background 0.3s;
-    }
-
-    .download-lesson-btn:hover {
-      background: #0b7dda;
-    }
-
-    .progress-saved-badge {
-      display: inline-block;
-      background: #4CAF50;
-      color: white;
-      padding: 2px 8px;
-      border-radius: 12px;
-      font-size: 11px;
-      margin-left: 10px;
-    }
-  </style>
-</head>
-<body>
-
-<!-- Navigation -->
-<nav>
-  <div class="nav-links" id="navLinks">
-    <i class="fa fa-times" onclick="hidemenu()"></i>
-    <ul>
-      <li><a href="index.html">HOME</a></li>
-      <li><a href="About.html">ABOUT</a></li>
-      <li><a href="Subjects.html">SUBJECTS</a></li>
-      <li><a href="quizzes.html">QUIZZES</a></li>
-      <li><a href="aptitude.html" class="active">REASONING SKILLS</a></li>
-      <li><a href="forum.html">DISCUSSION</a></li>
-      <li><a href="mental_wellness.html">WELLNESS</a></li>
-      <li><a href="blog.html">BLOG</a></li>
-      <li><a href="contact.html">CONTACT</a></li>
-      <li><a href="library.html">LIBRARY</a></li>
-      <li><a href="khulisa.html">SUPPORT</a></li>
-    </ul>
-  </div>
-  <i class="fa fa-bars" onclick="showmenu()"></i>
-</nav>
-
-<!-- Header -->
-<section class="header big-header">
-  <div class="text-box">
-    <h1>Reasoning Skills Assessment</h1>
-    <p class="subtitle">Formerly the Aptitude Test — logical, numerical, verbal and abstract reasoning practice</p>
-  </div>
-</section>
-
-<!-- Page description -->
-<section class="aptitude-intro">
-  <div class="card">
-    <h3>About this Assessment</h3>
-    <p class="section-desc">
-      Practise the core skills needed for exams and assessments. This test covers four key areas:
-      <strong>Logical Reasoning</strong>, <strong>Numerical Ability</strong>, <strong>Verbal Reasoning</strong>, and <strong>Abstract Reasoning</strong>.
-      Each section has 10 multiple-choice questions with instant scoring and clear explanations.
-    </p>
-    <p class="rename-note">Note: this page was previously called the "Aptitude Test." The questions and scoring are unchanged — only the name and framing have been updated.</p>
-
-    <h4>How it works</h4>
-    <p class="explain">
-      Click <strong>Show Questions</strong> to reveal a section. Select your answers, then press <strong>Check Answers</strong> to see your score and feedback. Use <strong>Reset</strong> to try again.
-    </p>
-
-    <h4>📱 Offline Mode</h4>
-    <p class="explain" id="offline-status">
-      This page works offline! Your quiz progress is automatically saved locally and will sync when you're back online.
-    </p>
-
-    <button class="download-lesson-btn" id="downloadOfflineBtn">
-      📥 Download Reasoning Skills Assessment for Offline
-    </button>
-
-    <h4>Tips for Success</h4>
-    <ul>
-      <li>Read carefully and eliminate wrong options first.</li>
-      <li>Spend 1–2 minutes per question for best practice.</li>
-      <li>Review explanations to learn from mistakes.</li>
-    </ul>
-
-    <a href="Subjects.html" class="hero-btn">Explore Subjects</a>
-  </div>
-
-  <div class="cta-card" style="margin-top:1.25rem;">
-    <h3>🧭 Want more than a score?</h3>
-    <p>
-      This assessment measures your reasoning skills. To find out which careers, subjects and work styles actually
-      suit <em>you</em> — your interests, personality, strengths and values — take the new
-      <strong>Career Discovery Assessment</strong>. Complete both and get one combined report.
-    </p>
-    <div class="cta-buttons">
-      <a href="career-discovery.html" class="cta-btn">Take the Career Discovery Assessment →</a>
-      <a href="combined-report.html" class="cta-btn secondary">View My Combined Report</a>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/aptitude.css" />
+    <link rel="stylesheet" href="css/side-decor.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+  <body class="reasoning-page">
+    <!-- Floating Side Decor -->
+    <div
+      class="quiz-decor"
+      data-bounce-target=".about-card, .cta-card, .card"
+      aria-hidden="true"
+    >
+      <div class="bubble bubble--1"></div>
+      <div class="bubble bubble--2"></div>
+      <div class="bubble bubble--3"></div>
+      <div class="bubble bubble--4"></div>
+      <div class="bubble bubble--5"></div>
+      <div class="bubble bubble--6"></div>
+      <div class="bubble bubble--7"></div>
+      <div class="bubble bubble--8"></div>
+      <i class="fa fa-lightbulb-o float-icon float-icon--1"></i>
+      <i class="fa fa-calculator float-icon float-icon--2"></i>
+      <i class="fa fa-puzzle-piece float-icon float-icon--3"></i>
+      <i class="fa fa-font float-icon float-icon--4"></i>
+      <i class="fa fa-cube float-icon float-icon--5"></i>
+      <i class="fa fa-check-circle float-icon float-icon--6"></i>
     </div>
-  </div>
-</section>
 
+    <!-- Navigation Bar -->
+    <nav class="navbar" id="mainNav">
+      <a href="index.html" class="nav-logo">
+        <i class="fa fa-graduation-cap logo-icon"></i> E-Learning Hub
+      </a>
+      <div class="nav-links" id="navLinks">
+        <button
+          type="button"
+          class="close-btn"
+          onclick="hidemenu()"
+          aria-label="Close menu"
+        >
+          <i class="fa fa-times" aria-hidden="true"></i>
+        </button>
+        <ul>
+          <li><a href="index.html">HOME</a></li>
+          <li><a href="Subjects.html">SUBJECTS</a></li>
+          <li><a href="quizzes.html">QUIZZES</a></li>
+          <li><a href="aptitude.html" class="active">REASONING SKILLS</a></li>
+          <li><a href="forum.html">DISCUSSION</a></li>
+          <li><a href="mental_wellness.html">WELLNESS</a></li>
+          <li><a href="blog.html">BLOG</a></li>
+          <li><a href="contact.html">CONTACT &amp; SUPPORT</a></li>
+        </ul>
+      </div>
+      <button
+        type="button"
+        class="open-btn"
+        id="menuToggle"
+        onclick="showmenu()"
+        aria-label="Open menu"
+        aria-expanded="false"
+        aria-controls="navLinks"
+      >
+        <i class="fa fa-bars" aria-hidden="true"></i>
+      </button>
+    </nav>
 
-<!-- Aptitude sections -->
-<section class="aptitude-grid">
+    <section
+      class="reasoning-page-header"
+      aria-label="Reasoning Skills Assessment"
+    >
+      <div class="reasoning-page-header__inner">
+        <span class="badge"
+          ><i class="fa fa-lightbulb-o"></i> Practice &amp; Prep</span
+        >
+        <h1>Reasoning Skills Assessment</h1>
+        <p>
+          Formerly the Aptitude Test — sharpen your logical, numerical, verbal
+          and abstract reasoning with instantly-scored practice questions.
+        </p>
+      </div>
+    </section>
 
-  <!-- Logical Reasoning -->
-  <div class="card" id="logical-card">
-    <h3>Logical Reasoning <span id="logical-progress-badge" class="progress-saved-badge" style="display:none;">✓ Saved</span></h3>
-    <p class="section-desc">Questions test deduction, pattern recognition, and argument evaluation.</p>
-    <button class="toggle-btn" data-target="logical-questions">Show Questions</button>
-
-    <div class="questions" id="logical-questions">
-      <form class="quiz" id="quiz-logical">
-        <!-- 10 questions -->
-        <div class="question">
-          <p><strong>Q1.</strong> If all roses are flowers and some flowers fade quickly, which statement must be true?</p>
-          <label><input type="radio" name="q1" value="a"> All roses fade quickly</label><br>
-          <label><input type="radio" name="q1" value="b"> Some roses fade quickly</label><br>
-          <label><input type="radio" name="q1" value="c"> Some flowers are roses</label><br>
-          <label><input type="radio" name="q1" value="d"> None of the above</label>
+    <main id="reasoningApp" aria-live="polite">
+      <!-- Page description -->
+      <div class="about-card enhanced-about">
+        <div class="about-hero-header">
+          <div class="about-title-group">
+            <span class="about-tag"
+              ><i class="fa fa-info-circle"></i> Assessment Guide</span
+            >
+            <h2>About this Assessment</h2>
+            <p class="about-lead">
+              Sharpen the core reasoning skills tested in exams and university
+              entries. Practice 4 key skill domains with instant scoring,
+              real-time progress tracking, and step-by-step solutions.
+            </p>
+          </div>
+          <div class="about-actions">
+            <button class="download-lesson-btn" id="downloadOfflineBtn">
+              <i class="fa fa-download"></i> Save for Offline
+            </button>
+            <a href="Subjects.html" class="btn-subjects-link">
+              Explore Subjects <i class="fa fa-arrow-right"></i>
+            </a>
+          </div>
         </div>
 
-        <div class="question">
-          <p><strong>Q2.</strong> Find the next number: 2, 6, 12, 20, ?</p>
-          <label><input type="radio" name="q2" value="a"> 28</label><br>
-          <label><input type="radio" name="q2" value="b"> 30</label><br>
-          <label><input type="radio" name="q2" value="c"> 32</label><br>
-          <label><input type="radio" name="q2" value="d"> 34</label>
+        <!-- Feature Grid -->
+        <div class="about-feature-grid">
+          <div class="feature-tile">
+            <div class="tile-icon"><i class="fa fa-cogs"></i></div>
+            <h4>How It Works</h4>
+            <p>
+              Select <strong>Show Questions</strong> to expand a section. Submit
+              your choices to view your score and detailed explanations
+              instantly.
+            </p>
+          </div>
+
+          <div class="feature-tile">
+            <div class="tile-icon"><i class="fa fa-wifi"></i></div>
+            <h4>Offline Ready</h4>
+            <p>
+              Progress saves locally on your device automatically and syncs back
+              seamlessly once you are back online.
+            </p>
+          </div>
+
+          <div class="feature-tile tile-wide">
+            <div class="tile-icon"><i class="fa fa-star"></i></div>
+            <h4>Tips for Success</h4>
+            <ul class="tips-list">
+              <li>
+                <i class="fa fa-check"></i> Eliminate obvious wrong choices
+                first
+              </li>
+              <li>
+                <i class="fa fa-check"></i> Aim for 1–2 minutes per question
+              </li>
+              <li>
+                <i class="fa fa-check"></i> Read explanations to learn from
+                mistakes
+              </li>
+            </ul>
+          </div>
         </div>
 
-        <div class="question">
-          <p><strong>Q3.</strong> If the statement "All A are B" is true and "Some B are C" is true, which is necessarily true?</p>
-          <label><input type="radio" name="q3" value="a"> All A are C</label><br>
-          <label><input type="radio" name="q3" value="b"> Some A are C</label><br>
-          <label><input type="radio" name="q3" value="c"> No A are C</label><br>
-          <label><input type="radio" name="q3" value="d"> Cannot be determined</label>
+        <div class="about-footer-note">
+          <i class="fa fa-refresh"></i> <strong>Note:</strong> Formerly titled
+          "Aptitude Test." All questions, scoring, and data remain unchanged.
         </div>
+      </div>
 
-        <div class="question">
-          <p><strong>Q4.</strong> Which completes the series: A, C, F, J, ?</p>
-          <label><input type="radio" name="q4" value="a"> O</label><br>
-          <label><input type="radio" name="q4" value="b"> N</label><br>
-          <label><input type="radio" name="q4" value="c"> M</label><br>
-          <label><input type="radio" name="q4" value="d"> P</label>
-        </div>
+      <!-- Quiz cards — rendered from reasoning-data.js by reasoning-render.js -->
+      <section class="reasoning-grid" id="reasoningGrid">
+        <p class="footer-note">Loading assessment…</p>
+      </section>
 
-        <div class="question">
-          <p><strong>Q5.</strong> If today is two days after Monday, what day was three days before yesterday?</p>
-          <label><input type="radio" name="q5" value="a"> Sunday</label><br>
-          <label><input type="radio" name="q5" value="b"> Saturday</label><br>
-          <label><input type="radio" name="q5" value="c"> Friday</label><br>
-          <label><input type="radio" name="q5" value="d"> Thursday</label>
+      <!-- Bottom CTA repeat -->
+      <!-- Bottom CTA repeat (Full Width) -->
+      <section
+        class="reasoning-intro"
+        style="width: 100%; max-width: 1350px; margin: 3rem auto"
+      >
+        <div class="cta-card">
+          <h3><i class="fa fa-check-circle"></i> Done with this assessment?</h3>
+          <p>
+            Take the Career Discovery Assessment next, then view your combined
+            report to see your full profile: reasoning skills, personality,
+            interests, learning style and recommended careers in one place.
+          </p>
+          <div class="cta-buttons">
+            <a href="career-discovery.html" class="cta-btn"
+              >Take the Career Discovery Assessment →</a
+            >
+            <a href="combined-report.html" class="cta-btn secondary"
+              >View My Combined Report</a
+            >
+          </div>
         </div>
+      </section>
+    </main>
 
-        <div class="question">
-          <p><strong>Q6.</strong> Which statement is the logical opposite of "All students passed the test"?</p>
-          <label><input type="radio" name="q6" value="a"> Some students failed the test</label><br>
-          <label><input type="radio" name="q6" value="b"> No student passed the test</label><br>
-          <label><input type="radio" name="q6" value="c"> At least one student failed the test</label><br>
-          <label><input type="radio" name="q6" value="d"> All students failed the test</label>
-        </div>
-
-        <div class="question">
-          <p><strong>Q7.</strong> Choose the odd one out: Triangle, Square, Circle, Pyramid</p>
-          <label><input type="radio" name="q7" value="a"> Triangle</label><br>
-          <label><input type="radio" name="q7" value="b"> Square</label><br>
-          <label><input type="radio" name="q7" value="c"> Circle</label><br>
-          <label><input type="radio" name="q7" value="d"> Pyramid</label>
-        </div>
-
-        <div class="question">
-          <p><strong>Q8.</strong> If P implies Q and Q implies R, which is true?</p>
-          <label><input type="radio" name="q8" value="a"> R implies P</label><br>
-          <label><input type="radio" name="q8" value="b"> P implies R</label><br>
-          <label><input type="radio" name="q8" value="c"> Q implies P</label><br>
-          <label><input type="radio" name="q8" value="d"> None of the above</label>
-        </div>
-
-        <div class="question">
-          <p><strong>Q9.</strong> Which of the following completes the pattern: 1, 4, 9, 16, ?</p>
-          <label><input type="radio" name="q9" value="a"> 20</label><br>
-          <label><input type="radio" name="q9" value="b"> 24</label><br>
-          <label><input type="radio" name="q9" value="c"> 25</label><br>
-          <label><input type="radio" name="q9" value="d"> 30</label>
-        </div>
-
-        <div class="question">
-          <p><strong>Q10.</strong> If two statements are contradictory, they are:</p>
-          <label><input type="radio" name="q10" value="a"> Both true</label><br>
-          <label><input type="radio" name="q10" value="b"> Both false</label><br>
-          <label><input type="radio" name="q10" value="c"> One true, one false</label><br>
-          <label><input type="radio" name="q10" value="d"> Cannot tell</label>
-        </div>
-
-        <div class="controls">
-          <button type="button" class="toggle-btn" onclick="checkAnswers('quiz-logical')">Check Answers</button>
-          <button type="button" class="toggle-btn" onclick="resetQuiz('quiz-logical')">Reset</button>
-          <div class="quiz-result" id="result-quiz-logical" aria-live="polite"></div>
-        </div>
-      </form>
+    <!-- Offline progress indicator -->
+    <div id="offlineProgress" class="offline-progress">
+      <span>📡</span>
+      <span id="progressMessage">Saving progress...</span>
     </div>
-  </div>
 
-  <!-- Numerical Ability -->
-  <div class="card" id="numerical-card">
-    <h3>Numerical Ability <span id="numerical-progress-badge" class="progress-saved-badge" style="display:none;">✓ Saved</span></h3>
-    <p class="section-desc">Questions focus on arithmetic, sequences, percentages, and basic algebra.</p>
-    <button class="toggle-btn" data-target="numerical-questions">Show Questions</button>
-
-    <div class="questions" id="numerical-questions">
-      <form class="quiz" id="quiz-numerical">
-        <div class="question">
-          <p><strong>Q1.</strong> What is 15% of 240?</p>
-          <label><input type="radio" name="q1" value="a"> 30</label><br>
-          <label><input type="radio" name="q1" value="b"> 36</label><br>
-          <label><input type="radio" name="q1" value="c"> 34</label><br>
-          <label><input type="radio" name="q1" value="d"> 32</label>
+        <footer class="site-footer">
+      <div class="footer-container">
+        <div class="footer-brand">
+          <h3>
+            <i class="fa fa-graduation-cap"></i> E-Learning Hub
+          </h3>
+          <p>
+            Empowering high school learners across South Africa with zero-data,
+            accessible, and high-quality e-learning tools.
+          </p>
         </div>
 
-        <div class="question">
-          <p><strong>Q2.</strong> Solve for x: 3x + 5 = 20</p>
-          <label><input type="radio" name="q2" value="a"> 3</label><br>
-          <label><input type="radio" name="q2" value="b"> 5</label><br>
-          <label><input type="radio" name="q2" value="c"> 15</label><br>
-          <label><input type="radio" name="q2" value="d"> 10</label>
+        <div class="footer-socials">
+          <h4>Connect With Us</h4>
+          <div class="social-icons">
+            <a href="#" aria-label="Facebook"><i class="fa fa-facebook"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fa fa-twitter"></i></a>
+            <a href="#" aria-label="Instagram"
+              ><i class="fa fa-instagram"></i
+            ></a>
+            <a href="#" aria-label="LinkedIn"><i class="fa fa-linkedin"></i></a>
+          </div>
         </div>
+      </div>
+      <div class="footer-bottom">
+        <p>
+          Made with <i class="fa fa-heart text-danger"></i> for South African
+          learners by DataPulse
+        </p>
+      </div>
+    </footer>
 
-        <div class="question">
-          <p><strong>Q3.</strong> If a train travels 120 km in 1.5 hours, its average speed is:</p>
-          <label><input type="radio" name="q3" value="a"> 60 km/h</label><br>
-          <label><input type="radio" name="q3" value="b"> 80 km/h</label><br>
-          <label><input type="radio" name="q3" value="c"> 90 km/h</label><br>
-          <label><input type="radio" name="q3" value="d"> 100 km/h</label>
-        </div>
+    <script>
+      var navLinks = document.getElementById("navLinks");
+      var mainNav = document.getElementById("mainNav");
+      var menuToggle = document.getElementById("menuToggle");
 
-        <div class="question">
-          <p><strong>Q4.</strong> What is the next number: 5, 10, 20, 40, ?</p>
-          <label><input type="radio" name="q4" value="a"> 60</label><br>
-          <label><input type="radio" name="q4" value="b"> 80</label><br>
-          <label><input type="radio" name="q4" value="c"> 100</label><br>
-          <label><input type="radio" name="q4" value="d"> 120</label>
-        </div>
-
-        <div class="question">
-          <p><strong>Q5.</strong> A shop reduces a R200 item by 25%. New price is:</p>
-          <label><input type="radio" name="q5" value="a"> R150</label><br>
-          <label><input type="radio" name="q5" value="b"> R160</label><br>
-          <label><input type="radio" name="q5" value="c"> R140</label><br>
-          <label><input type="radio" name="q5" value="d"> R170</label>
-        </div>
-
-        <div class="question">
-          <p><strong>Q6.</strong> If x = 4, evaluate 2x^2 - x</p>
-          <label><input type="radio" name="q6" value="a"> 24</label><br>
-          <label><input type="radio" name="q6" value="b"> 28</label><br>
-          <label><input type="radio" name="q6" value="c"> 30</label><br>
-          <label><input type="radio" name="q6" value="d"> 32</label>
-        </div>
-
-        <div class="question">
-          <p><strong>Q7.</strong> Which fraction equals 0.75?</p>
-          <label><input type="radio" name="q7" value="a"> 3/4</label><br>
-          <label><input type="radio" name="q7" value="b"> 2/3</label><br>
-          <label><input type="radio" name="q7" value="c"> 4/5</label><br>
-          <label><input type="radio" name="q7" value="d"> 1/2</label>
-        </div>
-
-        <div class="question">
-          <p><strong>Q8.</strong> 45 is what percent of 180?</p>
-          <label><input type="radio" name="q8" value="a"> 15%</label><br>
-          <label><input type="radio" name="q8" value="b"> 20%</label><br>
-          <label><input type="radio" name="q8" value="c"> 25%</label><br>
-          <label><input type="radio" name="q8" value="d"> 30%</label>
-        </div>
-
-        <div class="question">
-          <p><strong>Q9.</strong> If 7x = 56, x = ?</p>
-          <label><input type="radio" name="q9" value="a"> 6</label><br>
-          <label><input type="radio" name="q9" value="b"> 7</label><br>
-          <label><input type="radio" name="q9" value="c"> 8</label><br>
-          <label><input type="radio" name="q9" value="d"> 9</label>
-        </div>
-
-        <div class="question">
-          <p><strong>Q10.</strong> The average of 5 numbers is 12. The sum is:</p>
-          <label><input type="radio" name="q10" value="a"> 60</label><br>
-          <label><input type="radio" name="q10" value="b"> 50</label><br>
-          <label><input type="radio" name="q10" value="c"> 70</label><br>
-          <label><input type="radio" name="q10" value="d"> 55</label>
-        </div>
-
-        <div class="controls">
-          <button type="button" class="toggle-btn" onclick="checkAnswers('quiz-numerical')">Check Answers</button>
-          <button type="button" class="toggle-btn" onclick="resetQuiz('quiz-numerical')">Reset</button>
-          <div class="quiz-result" id="result-quiz-numerical" aria-live="polite"></div>
-        </div>
-      </form>
-    </div>
-  </div>
-
-  <!-- Verbal Reasoning -->
-  <div class="card" id="verbal-card">
-    <h3>Verbal Reasoning <span id="verbal-progress-badge" class="progress-saved-badge" style="display:none;">✓ Saved</span></h3>
-    <p class="section-desc">Questions test vocabulary, comprehension, and sentence logic.</p>
-    <button class="toggle-btn" data-target="verbal-questions">Show Questions</button>
-
-    <div class="questions" id="verbal-questions">
-      <form class="quiz" id="quiz-verbal">
-        <div class="question">
-          <p><strong>Q1.</strong> Choose the synonym of "abundant".</p>
-          <label><input type="radio" name="q1" value="a"> Scarce</label><br>
-          <label><input type="radio" name="q1" value="b"> Plentiful</label><br>
-          <label><input type="radio" name="q1" value="c"> Tiny</label><br>
-          <label><input type="radio" name="q1" value="d"> Rare</label>
-        </div>
-
-        <div class="question">
-          <p><strong>Q2.</strong> Complete the sentence: She _____ to the store before it closed.</p>
-          <label><input type="radio" name="q2" value="a"> goes</label><br>
-          <label><input type="radio" name="q2" value="b"> went</label><br>
-          <label><input type="radio" name="q2" value="c"> will go</label><br>
-          <label><input type="radio" name="q2" value="d"> going</label>
-        </div>
-
-        <div class="question">
-          <p><strong>Q3.</strong> Which word is opposite of "optimistic"?</p>
-          <label><input type="radio" name="q3" value="a"> Hopeful</label><br>
-          <label><input type="radio" name="q3" value="b"> Pessimistic</label><br>
-          <label><input type="radio" name="q3" value="c"> Confident</label><br>
-          <label><input type="radio" name="q3" value="d"> Positive</label>
-        </div>
-
-        <div class="question">
-          <p><strong>Q4.</strong> Identify the correctly punctuated sentence.</p>
-          <label><input type="radio" name="q4" value="a"> Its time to go.</label><br>
-          <label><input type="radio" name="q4" value="b"> It's time to go.</label><br>
-          <label><input type="radio" name="q4" value="c"> Its' time to go.</label><br>
-          <label><input type="radio" name="q4" value="d"> Its time, to go.</label>
-        </div>
-
-        <div class="question">
-          <p><strong>Q5.</strong> Which word best completes: The committee reached a _____ decision.</p>
-          <label><input type="radio" name="q5" value="a"> unanimous</label><br>
-          <label><input type="radio" name="q5" value="b"> divided</label><br>
-          <label><input type="radio" name="q5" value="c"> solitary</label><br>
-          <label><input type="radio" name="q5" value="d"> random</label>
-        </div>
-
-        <div class="question">
-          <p><strong>Q6.</strong> Choose the correct plural: "Crisis"</p>
-          <label><input type="radio" name="q6" value="a"> Crisises</label><br>
-          <label><input type="radio" name="q6" value="b"> Crises</label><br>
-          <label><input type="radio" name="q6" value="c"> Crisis</label><br>
-          <label><input type="radio" name="q6" value="d"> Crisii</label>
-        </div>
-
-        <div class="question">
-          <p><strong>Q7.</strong> Which sentence is passive voice?</p>
-          <label><input type="radio" name="q7" value="a"> The chef cooked the meal.</label><br>
-          <label><input type="radio" name="q7" value="b"> The meal was cooked by the chef.</label><br>
-          <label><input type="radio" name="q7" value="c"> The chef is cooking the meal.</label><br>
-          <label><input type="radio" name="q7" value="d"> The chef will cook the meal.</label>
-        </div>
-
-        <div class="question">
-          <p><strong>Q8.</strong> Choose the best one-word summary: A short story about a child's first day at school.</p>
-          <label><input type="radio" name="q8" value="a"> Adventure</label><br>
-          <label><input type="radio" name="q8" value="b"> Biography</label><br>
-          <label><input type="radio" name="q8" value="c"> Memoir</label><br>
-          <label><input type="radio" name="q8" value="d"> Report</label>
-        </div>
-
-        <div class="question">
-          <p><strong>Q9.</strong> Which word fits: He is known for his _____ honesty.</p>
-          <label><input type="radio" name="q9" value="a"> impeccable</label><br>
-          <label><input type="radio" name="q9" value="b"> questionable</label><br>
-          <label><input type="radio" name="q9" value="c"> occasional</label><br>
-          <label><input type="radio" name="q9" value="d"> rare</label>
-        </div>
-
-        <div class="question">
-          <p><strong>Q10.</strong> Choose the correct comparative form: good → ?</p>
-          <label><input type="radio" name="q10" value="a"> gooder</label><br>
-          <label><input type="radio" name="q10" value="b"> better</label><br>
-          <label><input type="radio" name="q10" value="c"> more good</label><br>
-          <label><input type="radio" name="q10" value="d"> best</label>
-        </div>
-
-        <div class="controls">
-          <button type="button" class="toggle-btn" onclick="checkAnswers('quiz-verbal')">Check Answers</button>
-          <button type="button" class="toggle-btn" onclick="resetQuiz('quiz-verbal')">Reset</button>
-          <div class="quiz-result" id="result-quiz-verbal" aria-live="polite"></div>
-        </div>
-      </form>
-    </div>
-  </div>
-
-  <!-- Abstract Reasoning -->
-  <div class="card" id="abstract-card">
-    <h3>Abstract Reasoning <span id="abstract-progress-badge" class="progress-saved-badge" style="display:none;">✓ Saved</span></h3>
-    <p class="section-desc">Questions assess pattern recognition and visual problem solving.</p>
-    <button class="toggle-btn" data-target="abstract-questions">Show Questions</button>
-
-    <div class="questions" id="abstract-questions">
-      <form class="quiz" id="quiz-abstract">
-        <div class="question">
-          <p><strong>Q1.</strong> Which shape completes the sequence: square, triangle, circle, square, triangle, ?</p>
-          <label><input type="radio" name="q1" value="a"> Circle</label><br>
-          <label><input type="radio" name="q1" value="b"> Square</label><br>
-          <label><input type="radio" name="q1" value="c"> Triangle</label><br>
-          <label><input type="radio" name="q1" value="d"> Hexagon</label>
-        </div>
-
-        <div class="question">
-          <p><strong>Q2.</strong> If a pattern rotates 90 degrees clockwise each step, what is orientation after two steps?</p>
-          <label><input type="radio" name="q2" value="a"> 90 degrees clockwise</label><br>
-          <label><input type="radio" name="q2" value="b"> 180 degrees clockwise</label><br>
-          <label><input type="radio" name="q2" value="c"> 270 degrees clockwise</label><br>
-          <label><input type="radio" name="q2" value="d"> Back to original</label>
-        </div>
-
-        <div class="question">
-          <p><strong>Q3.</strong> Which number completes the pattern: 2, 4, 8, 16, ?</p>
-          <label><input type="radio" name="q3" value="a"> 18</label><br>
-          <label><input type="radio" name="q3" value="b"> 24</label><br>
-          <label><input type="radio" name="q3" value="c"> 32</label><br>
-          <label><input type="radio" name="q3" value="d"> 30</label>
-        </div>
-
-        <div class="question">
-          <p><strong>Q4.</strong> Which of these does not belong: AB, BC, CD, EF</p>
-          <label><input type="radio" name="q4" value="a"> AB</label><br>
-          <label><input type="radio" name="q4" value="b"> BC</label><br>
-          <label><input type="radio" name="q4" value="c"> CD</label><br>
-          <label><input type="radio" name="q4" value="d"> EF</label>
-        </div>
-
-        <div class="question">
-          <p><strong>Q5.</strong> Mirror image question: If a shape is symmetrical across a vertical axis, which statement is true?</p>
-          <label><input type="radio" name="q5" value="a"> Left and right halves are identical</label><br>
-          <label><input type="radio" name="q5" value="b"> Top and bottom halves are identical</label><br>
-          <label><input type="radio" name="q5" value="c"> Shape has rotational symmetry</label><br>
-          <label><input type="radio" name="q5" value="d"> Shape is asymmetrical</label>
-        </div>
-
-        <div class="question">
-          <p><strong>Q6.</strong> Which completes the numeric pattern: 3, 6, 9, 12, ?</p>
-          <label><input type="radio" name="q6" value="a"> 14</label><br>
-          <label><input type="radio" name="q6" value="b"> 15</label><br>
-          <label><input type="radio" name="q6" value="c"> 16</label><br>
-          <label><input type="radio" name="q6" value="d"> 18</label>
-        </div>
-
-        <div class="question">
-          <p><strong>Q7.</strong> If every square is a rectangle and some rectangles are blue, which is true?</p>
-          <label><input type="radio" name="q7" value="a"> All squares are blue</label><br>
-          <label><input type="radio" name="q7" value="b"> Some squares may be blue</label><br>
-          <label><input type="radio" name="q7" value="c"> No square is blue</label><br>
-          <label><input type="radio" name="q7" value="d"> Cannot determine</label>
-        </div>
-
-        <div class="question">
-          <p><strong>Q8.</strong> Which option continues the pattern: ▲ ▼ ▲ ▼ ▲ ?</p>
-          <label><input type="radio" name="q8" value="a"> ▲</label><br>
-          <label><input type="radio" name="q8" value="b"> ▼</label><br>
-          <label><input type="radio" name="q8" value="c"> ◼</label><br>
-          <label><input type="radio" name="q8" value="d"> ◯</label>
-        </div>
-
-        <div class="question">
-          <p><strong>Q9.</strong> Which number is the odd one out: 2, 3, 5, 6, 7</p>
-          <label><input type="radio" name="q9" value="a"> 2</label><br>
-          <label><input type="radio" name="q9" value="b"> 3</label><br>
-          <label><input type="radio" name="q9" value="c"> 5</label><br>
-          <label><input type="radio" name="q9" value="d"> 6</label>
-        </div>
-
-        <div class="question">
-          <p><strong>Q10.</strong> If a pattern doubles then subtracts 1 each step starting at 1, next after 1 is:</p>
-          <label><input type="radio" name="q10" value="a"> 1</label><br>
-          <label><input type="radio" name="q10" value="b"> 2</label><br>
-          <label><input type="radio" name="q10" value="c"> 3</label><br>
-          <label><input type="radio" name="q10" value="d"> 4</label>
-        </div>
-
-        <div class="controls">
-          <button type="button" class="toggle-btn" onclick="checkAnswers('quiz-abstract')">Check Answers</button>
-          <button type="button" class="toggle-btn" onclick="resetQuiz('quiz-abstract')">Reset</button>
-          <div class="quiz-result" id="result-quiz-abstract" aria-live="polite"></div>
-        </div>
-      </form>
-    </div>
-  </div>
-
-</section>
-
-<!-- Bottom CTA repeat -->
-<section class="aptitude-intro">
-  <div class="cta-card">
-    <h3>✅ Done with this assessment?</h3>
-    <p>Take the Career Discovery Assessment next, then view your combined report to see your full profile: reasoning skills, personality, interests, learning style and recommended careers in one place.</p>
-    <div class="cta-buttons">
-      <a href="career-discovery.html" class="cta-btn">Take the Career Discovery Assessment →</a>
-      <a href="combined-report.html" class="cta-btn secondary">View My Combined Report</a>
-    </div>
-  </div>
-</section>
-
-<!-- Offline progress indicator -->
-<div id="offlineProgress" class="offline-progress">
-  <span>📡</span>
-  <span id="progressMessage">Saving progress...</span>
-</div>
-
-<!-- Footer -->
-<footer class="Footer">
-  <h4>About Us</h4>
-  <p>
-    By leveraging technology, we aim to empower students with the tools and support they need to succeed academically
-    regardless of their location, resources, or socioeconomic status.
-  </p>
-  <div class="icons">
-    <i class="fa fa-facebook"></i>
-    <i class="fa fa-twitter"></i>
-    <i class="fa fa-instagram"></i>
-    <i class="fa fa-linkedin"></i>
-  </div>
-  <p>Made with <i class="fa fa-heart-o"></i> by Media On Africa</p>
-  <p class="footer-note">This practice test is for learning and self-assessment only.</p>
-</footer>
-
-<!-- Service Worker Registration - Updated for GitHub Pages -->
-<script>
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('service-worker.js')
-      .then(registration => {
-        console.log('ServiceWorker registered successfully:', registration.scope);
-
-        registration.addEventListener('updatefound', () => {
-          const newWorker = registration.installing;
-          console.log('Service Worker update found!');
-
-          newWorker.addEventListener('statechange', () => {
-            if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-              showUpdateNotification();
-            }
-          });
-        });
-      })
-      .catch(error => {
-        console.log('ServiceWorker registration failed:', error);
+      function showmenu() {
+        navLinks.style.right = "0";
+        if (mainNav) mainNav.classList.add("menu-open");
+        if (menuToggle) menuToggle.setAttribute("aria-expanded", "true");
+      }
+      function hidemenu() {
+        navLinks.style.right = "-260px";
+        if (mainNav) mainNav.classList.remove("menu-open");
+        if (menuToggle) menuToggle.setAttribute("aria-expanded", "false");
+      }
+      window.addEventListener("resize", function () {
+        if (window.innerWidth > 768) hidemenu();
       });
-  });
-}
+    </script>
 
-function showUpdateNotification() {
-  const notification = document.createElement('div');
-  notification.innerHTML = `
-    <div style="position:fixed; top:20px; right:20px; background:#2196F3; color:white; padding:15px 20px; border-radius:8px; z-index:10003; box-shadow:0 4px 12px rgba(0,0,0,0.15); animation:slideIn 0.3s ease;">
-      <strong>🔄 New content available!</strong>
-      <p style="margin:5px 0 0; font-size:14px;">Refresh to get the latest version.</p>
-      <button onclick="location.reload()" style="margin-top:10px; background:white; color:#2196F3; border:none; padding:5px 15px; border-radius:5px; cursor:pointer;">Refresh Now</button>
-    </div>
-  `;
-  document.body.appendChild(notification);
-  setTimeout(() => notification.remove(), 10000);
-}
-</script>
-
-<!-- Load Dexie.js for IndexedDB -->
-<script src="https://cdn.jsdelivr.net/npm/dexie@3.2.2/dist/dexie.js"></script>
-
-<!-- Enhanced Quiz Logic with Offline Save -->
-<script>
-  // Answer keys
-  const answerKeys = {
-    'quiz-logical': { q1:'c', q2:'a', q3:'d', q4:'b', q5:'b', q6:'c', q7:'d', q8:'b', q9:'c', q10:'c' },
-    'quiz-numerical': { q1:'b', q2:'a', q3:'b', q4:'b', q5:'a', q6:'a', q7:'a', q8:'c', q9:'c', q10:'a' },
-    'quiz-verbal': { q1:'b', q2:'b', q3:'b', q4:'b', q5:'a', q6:'b', q7:'b', q8:'a', q9:'a', q10:'b' },
-    'quiz-abstract': { q1:'a', q2:'b', q3:'c', q4:'d', q5:'a', q6:'b', q7:'b', q8:'b', q9:'d', q10:'b' }
-  };
-
-  var navLinks = document.getElementById("navLinks");
-  function showmenu() { navLinks.style.right = "0"; }
-  function hidemenu() { navLinks.style.right = "-200px"; }
-
-  document.querySelectorAll('.toggle-btn[data-target]').forEach(function(btn){
-    btn.addEventListener('click', function(){
-      var id = btn.getAttribute('data-target');
-      var el = document.getElementById(id);
-      if (!el) return;
-      if (el.style.display === 'block') {
-        el.style.display = 'none';
-        btn.textContent = 'Show Questions';
-      } else {
-        el.style.display = 'block';
-        btn.textContent = 'Hide Questions';
-      }
-    });
-  });
-
-  let db = null;
-
-  async function initDB() {
-    if (typeof Dexie === 'undefined') {
-      console.log('Waiting for Dexie...');
-      await new Promise(resolve => setTimeout(resolve, 500));
-    }
-
-    db = new Dexie('MediaOnAfricaDB');
-    db.version(1).stores({
-      quizProgress: '++id, quizId, answers, timestamp, synced'
-    });
-
-    await db.open();
-    console.log('IndexedDB ready');
-    await loadSavedProgress();
-  }
-
-  async function saveQuizProgress(quizId) {
-    const form = document.getElementById(quizId);
-    if (!form) return;
-
-    const answers = {};
-    for (let i = 1; i <= 10; i++) {
-      const radios = form.elements['q' + i];
-      if (radios) {
-        if (radios.length === undefined) {
-          if (radios.checked) answers['q' + i] = radios.value;
-        } else {
-          for (let r = 0; r < radios.length; r++) {
-            if (radios[r].checked) {
-              answers['q' + i] = radios[r].value;
-              break;
-            }
-          }
-        }
-      }
-    }
-
-    try {
-      await db.quizProgress.put({
-        quizId: quizId,
-        answers: answers,
-        timestamp: new Date().toISOString(),
-        synced: false
-      });
-      console.log('Progress saved for:', quizId);
-      showProgressBadge(quizId);
-      showOfflineIndicator('Progress saved offline ✓', 'success');
-    } catch (error) {
-      console.error('Failed to save progress:', error);
-    }
-  }
-
-  async function loadSavedProgress() {
-    if (!db) await initDB();
-
-    for (const quizId of ['quiz-logical', 'quiz-numerical', 'quiz-verbal', 'quiz-abstract']) {
-      const saved = await db.quizProgress.where('quizId').equals(quizId).first();
-      if (saved && saved.answers) {
-        restoreAnswers(quizId, saved.answers);
-        console.log('Restored progress for:', quizId);
-      }
-    }
-  }
-
-  function restoreAnswers(quizId, answers) {
-    const form = document.getElementById(quizId);
-    if (!form) return;
-
-    for (const [question, value] of Object.entries(answers)) {
-      const radios = form.elements[question];
-      if (radios) {
-        if (radios.length === undefined && radios.value === value) {
-          radios.checked = true;
-        } else {
-          for (let r = 0; r < radios.length; r++) {
-            if (radios[r].value === value) {
-              radios[r].checked = true;
-              break;
-            }
-          }
-        }
-      }
-    }
-  }
-
-  function showProgressBadge(quizId) {
-    const badgeMap = {
-      'quiz-logical': 'logical-progress-badge',
-      'quiz-numerical': 'numerical-progress-badge',
-      'quiz-verbal': 'verbal-progress-badge',
-      'quiz-abstract': 'abstract-progress-badge'
-    };
-    const badge = document.getElementById(badgeMap[quizId]);
-    if (badge) {
-      badge.style.display = 'inline-block';
-      setTimeout(() => {
-        badge.style.opacity = '0.5';
-        setTimeout(() => {
-          badge.style.display = 'none';
-          badge.style.opacity = '1';
-        }, 2000);
-      }, 3000);
-    }
-  }
-
-  function showOfflineIndicator(message, type = 'info') {
-    const indicator = document.getElementById('offlineProgress');
-    const msgSpan = document.getElementById('progressMessage');
-    if (indicator && msgSpan) {
-      msgSpan.textContent = message;
-      indicator.classList.add('show');
-      setTimeout(() => {
-        indicator.classList.remove('show');
-      }, 2000);
-    }
-  }
-
-  function attachAutoSave() {
-    const quizzes = ['quiz-logical', 'quiz-numerical', 'quiz-verbal', 'quiz-abstract'];
-    quizzes.forEach(quizId => {
-      const form = document.getElementById(quizId);
-      if (form) {
-        form.addEventListener('change', () => {
-          saveQuizProgress(quizId);
+    <!-- Service Worker Registration -->
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker
+            .register("service-worker.js")
+            .then((registration) => {
+              registration.addEventListener("updatefound", () => {
+                const newWorker = registration.installing;
+                newWorker.addEventListener("statechange", () => {
+                  if (
+                    newWorker.state === "installed" &&
+                    navigator.serviceWorker.controller
+                  ) {
+                    showUpdateNotification();
+                  }
+                });
+              });
+            })
+            .catch((error) =>
+              console.log("ServiceWorker registration failed:", error),
+            );
         });
       }
-    });
-  }
 
-  function checkAnswers(formId) {
-    var form = document.getElementById(formId);
-    if (!form) return;
-    var key = answerKeys[formId];
-    var total = 0;
-    var correct = 0;
-    var missing = [];
-
-    for (var i = 1; i <= 10; i++) {
-      var name = 'q' + i;
-      var radios = form.elements[name];
-      if (!radios) continue;
-      total++;
-      var selected = null;
-      if (radios.length === undefined) {
-        if (radios.checked) selected = radios.value;
-      } else {
-        for (var r=0; r<radios.length; r++) {
-          if (radios[r].checked) { selected = radios[r].value; break; }
-        }
+      function showUpdateNotification() {
+        const notification = document.createElement("div");
+        notification.innerHTML = `
+          <div style="position:fixed; top:20px; right:20px; background:#2196F3; color:white; padding:15px 20px; border-radius:8px; z-index:10003; box-shadow:0 4px 12px rgba(0,0,0,0.15);">
+            <strong>🔄 New content available!</strong>
+            <p style="margin:5px 0 0; font-size:14px;">Refresh to get the latest version.</p>
+            <button onclick="location.reload()" style="margin-top:10px; background:white; color:#2196F3; border:none; padding:5px 15px; border-radius:5px; cursor:pointer;">Refresh Now</button>
+          </div>`;
+        document.body.appendChild(notification);
+        setTimeout(() => notification.remove(), 10000);
       }
-      if (!selected) { missing.push(i); continue; }
-      if (key && key[name] === selected) correct++;
-    }
+    </script>
 
-    var resultEl = document.getElementById('result-' + formId);
-    var scoreText = 'Score: ' + correct + ' / ' + total;
-    if (missing.length) {
-      scoreText += ' — Unanswered: ' + missing.join(', ');
-    }
+    <!-- Dexie.js for IndexedDB -->
+    <script src="https://cdn.jsdelivr.net/npm/dexie@3.2.2/dist/dexie.js"></script>
+    <script src="js/aptitudes/reasoning-data.js"></script>
+    <script src="js/aptitudes/reasoning-render.js"></script>
 
-    var answersList = '';
-    if (key) {
-      answersList = '<div style="margin-top:0.5rem; font-size:0.95rem; color:#333;">Correct answers: ';
-      var pairs = [];
-      for (var i=1;i<=10;i++){ pairs.push(i + ':' + (key['q'+i] ? key['q'+i].toUpperCase() : '-')); }
-      answersList += pairs.join(' | ') + '</div>';
-    }
-    resultEl.innerHTML = scoreText + answersList;
-
-    saveQuizResult(formId, correct, total);
-  }
-
-  async function saveQuizResult(quizId, score, total) {
-    if (!db) await initDB();
-    try {
-      await db.quizProgress.put({
-        quizId: quizId + '_result',
-        answers: { score: score, total: total, lastAttempt: new Date().toISOString() },
-        timestamp: new Date().toISOString(),
-        synced: false
+    <!-- Chatbot Embed with offline handling -->
+    <script>
+      window.addEventListener("offline", () => {
+        const tidioFrame = document.querySelector("#tidio-chat-iframe");
+        if (tidioFrame) tidioFrame.style.display = "none";
       });
-      console.log('Result saved for:', quizId);
-    } catch (error) {
-      console.error('Failed to save result:', error);
-    }
-  }
-
-  function resetQuiz(formId) {
-    var form = document.getElementById(formId);
-    if (!form) return;
-    var inputs = form.querySelectorAll('input[type="radio"]');
-    inputs.forEach(function(i){ i.checked = false; });
-    var resultEl = document.getElementById('result-' + formId);
-    if (resultEl) resultEl.textContent = '';
-
-    if (db) {
-      db.quizProgress.where('quizId').equals(formId).delete();
-      showOfflineIndicator('Progress reset', 'info');
-    }
-  }
-
-  document.getElementById('downloadOfflineBtn')?.addEventListener('click', async () => {
-    const btn = document.getElementById('downloadOfflineBtn');
-    btn.textContent = '⏳ Downloading...';
-    btn.disabled = true;
-
-    if (navigator.serviceWorker && navigator.serviceWorker.controller) {
-      const assetsToCache = [
-        window.location.href,
-        "styles.css",
-        'https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300;400;700&family=Poppins:wght@300;400;500;600;700&display=swap',
-        'https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css',
-        'https://cdn.jsdelivr.net/npm/dexie@3.2.2/dist/dexie.js'
-      ];
-
-      navigator.serviceWorker.controller.postMessage({
-        type: 'CACHE_NEW_ASSETS',
-        urls: assetsToCache
+      window.addEventListener("online", () => {
+        const tidioFrame = document.querySelector("#tidio-chat-iframe");
+        if (tidioFrame) tidioFrame.style.display = "block";
       });
-
-      setTimeout(() => {
-        btn.textContent = '✓ Downloaded for Offline!';
-        showOfflineIndicator('Reasoning Skills Assessment saved for offline use!', 'success');
-        setTimeout(() => {
-          btn.textContent = '📥 Download Reasoning Skills Assessment for Offline';
-          btn.disabled = false;
-        }, 3000);
-      }, 2000);
-    } else {
-      btn.textContent = '📥 Download for Offline';
-      btn.disabled = false;
-      showOfflineIndicator('Please refresh and try again', 'error');
-    }
-  });
-
-  window.addEventListener('online', () => {
-    showOfflineIndicator('Back online! Syncing your progress...', 'success');
-    if (db) {
-      db.quizProgress.where('synced').equals(false).modify({ synced: true });
-    }
-  });
-
-  window.addEventListener('offline', () => {
-    showOfflineIndicator('You are offline - progress will be saved locally', 'info');
-  });
-
-  document.addEventListener('DOMContentLoaded', async () => {
-    await initDB();
-    attachAutoSave();
-
-    if (!navigator.onLine) {
-      showOfflineIndicator('Offline mode - your progress is being saved locally', 'info');
-    } else {
-      console.log('Online mode - progress will sync automatically');
-    }
-  });
-</script>
-
-<!-- Chatbot Embed with offline handling -->
-<script>
-  window.addEventListener('offline', () => {
-    const tidioFrame = document.querySelector('#tidio-chat-iframe');
-    if (tidioFrame) tidioFrame.style.display = 'none';
-  });
-
-  window.addEventListener('online', () => {
-    const tidioFrame = document.querySelector('#tidio-chat-iframe');
-    if (tidioFrame) tidioFrame.style.display = 'block';
-  });
-</script>
-<script src="//code.tidio.co/uqdod81sfajvlkpiujfsjo49za71xsuc.js" async></script>
-<script src="cybersafe-integration.js"></script>
-</body>
+    </script>
+    <script
+      src="//code.tidio.co/uqdod81sfajvlkpiujfsjo49za71xsuc.js"
+      async
+    ></script>
+    <script src="cybersafe-integration.js"></script>
+    <script src="anim-bounce.js" defer></script>
+  </body>
 </html>

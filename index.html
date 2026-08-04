@@ -1,79 +1,390 @@
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Media On Africa Learning Hub</title>
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/home.css" />
+    <link rel="stylesheet" href="css/side-decor.css" />
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
     />
-
-    <!-- PWA Manifest - relative path works both locally and on GitHub Pages -->
     <link rel="manifest" href="manifest.json" />
-    <meta name="theme-color" content="#1a5fa8" />
+    <meta name="theme-color" content="#ff5e62" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <meta name="apple-mobile-web-app-title" content="MOA Hub" />
 
-    <!-- No <base href> needed — every link in this site is already relative,
-         so the page works correctly regardless of what folder it's served from
-         (Live Server's local folder name, or the GitHub Pages repo subpath). -->
-
-    <!-- Service Worker Registration - relative path, works locally AND on GitHub Pages -->
+    <!-- Service Worker Registration -->
     <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', function () {
-        navigator.serviceWorker.register('service-worker.js')
-          .then(function (reg) {
-            console.log('[MOA] Service Worker registered successfully!', reg.scope);
-          })
-          .catch(function (err) {
-            console.warn('[MOA] Service Worker registration failed:', err);
-          });
-      });
-    }
-  </script>
-
-    <!-- Offline / Online status banner -->
-    <style>
-      #moa-offline-banner {
-        display: none;
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        background: #e67e22;
-        color: #fff;
-        text-align: center;
-        padding: 10px 16px;
-        font-size: 0.9rem;
-        font-family: sans-serif;
-        z-index: 9999;
-        box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.2);
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", function () {
+          navigator.serviceWorker
+            .register("service-worker.js")
+            .then(function (reg) {
+              console.log("[MOA] Service Worker registered!", reg.scope);
+            })
+            .catch(function (err) {
+              console.warn("[MOA] Service Worker registration failed:", err);
+            });
+        });
       }
-      #moa-offline-banner.online {
-        background: #2ecc71;
-      }
-    </style>
+    </script>
   </head>
+
   <body>
-    <div id="moa-offline-banner">
-      📡 You're offline — cached content is available
+    <div
+      class="quiz-decor"
+      data-bounce-target=".subject-card, .facility-card, .about-card, .career-banner"
+      aria-hidden="true"
+    >
+      <div class="bubble bubble--1"></div>
+      <div class="bubble bubble--2"></div>
+      <div class="bubble bubble--3"></div>
+      <div class="bubble bubble--4"></div>
+      <div class="bubble bubble--5"></div>
+      <div class="bubble bubble--6"></div>
+      <div class="bubble bubble--7"></div>
+      <div class="bubble bubble--8"></div>
+      <i class="fa fa-superscript float-icon float-icon--1"></i>
+      <i class="fa fa-flask float-icon float-icon--2"></i>
+      <i class="fa fa-laptop float-icon float-icon--3"></i>
+      <i class="fa fa-paint-brush float-icon float-icon--4"></i>
+      <i class="fa fa-percent float-icon float-icon--5"></i>
+      <i class="fa fa-flask float-icon float-icon--6"></i>
     </div>
+
+    <!-- Offline Banner -->
+    <div id="moa-offline-banner">
+      <i class="fa fa-wifi"></i> Offline mode active — Cached CAPS study
+      materials are available.
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar" id="mainNav">
+      <a href="index.html" class="nav-logo">
+        <i class="fa fa-graduation-cap logo-icon"></i> E-Learning Hub
+      </a>
+      <div class="nav-links" id="navLinks">
+        <button
+          type="button"
+          class="close-btn"
+          onclick="hidemenu()"
+          aria-label="Close menu"
+        >
+          <i class="fa fa-times" aria-hidden="true"></i>
+        </button>
+        <ul>
+          <li><a href="index.html" class="active">HOME</a></li>
+          <li><a href="Subjects.html">SUBJECTS</a></li>
+          <li><a href="quizzes.html">QUIZZES</a></li>
+          <li><a href="aptitude.html">REASONING SKILLS</a></li>
+          <li><a href="forum.html">DISCUSSION</a></li>
+          <li><a href="mental_wellness.html">WELLNESS</a></li>
+          <li><a href="blog.html">BLOG</a></li>
+          <li><a href="contact.html">CONTACT &amp; SUPPORT</a></li>
+        </ul>
+      </div>
+      <button
+        type="button"
+        class="open-btn"
+        id="menuToggle"
+        onclick="showmenu()"
+        aria-label="Open menu"
+        aria-expanded="false"
+        aria-controls="navLinks"
+      >
+        <i class="fa fa-bars" aria-hidden="true"></i>
+      </button>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero-header">
+      <div class="hero-bg-overlay" aria-hidden="true"></div>
+      <div class="hero-blobs" aria-hidden="true">
+        <span class="hero-blob hero-blob-1"></span>
+        <span class="hero-blob hero-blob-2"></span>
+        <span class="hero-blob hero-blob-3"></span>
+        <span class="hero-blob hero-blob-4"></span>
+      </div>
+      <div class="hero-dots" aria-hidden="true"></div>
+      <div class="hero-content hero-bg-anim">
+        <span class="hero-badge"
+          ><i class="fa fa-star"></i> Free CAPS E-Learning Hub</span
+        >
+        <h1>Empowering Learners, Anywhere Across Mzansi</h1>
+        <p>
+          Access curriculum-aligned textbooks, self-marking quizzes, and career
+          guidance tools. Built data-light and fully downloadable so your
+          learning never stops.
+        </p>
+        <div class="hero-cta-group">
+          <a href="Subjects.html" class="btn btn-primary pulse-anim">
+            Start Learning <i class="fa fa-arrow-right"></i>
+          </a>
+          <a href="#subjects-section" class="btn btn-secondary">
+            Explore Subjects
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Brief Direct Intro Section -->
+    <section class="about-direct">
+      <div class="about-card">
+        <h2>
+          <i class="fa fa-info-circle section-icon"></i> Built For High School
+          Success
+        </h2>
+        <p>
+          Designed for South African learners in Grades 8–12. Download study
+          modules once on any device, study offline without active data, and
+          test your readiness anytime.
+        </p>
+      </div>
+    </section>
+
+    <!-- Subjects Offered (STEM, Accounting, Creative Arts) -->
+    <section class="subjects-section" id="subjects-section">
+      <div class="section-title">
+        <h2>Subjects We Offer</h2>
+        <p>
+          CAPS-structured learning tracks designed to prepare you for matric and
+          beyond.
+        </p>
+      </div>
+
+      <div class="subject-cards-grid">
+        <!-- Math & Accounting -->
+        <div class="subject-card card-math reveal">
+          <div class="card-icon"><i class="fa fa-calculator"></i></div>
+          <h3>Mathematics & Finance</h3>
+          <span class="subject-tag">Algebra, Geometry, Accounting</span>
+          <p>
+            Master key numerical methods, problem-solving skills, and
+            fundamental financial accounting principles.
+          </p>
+          <a href="Subjects.html" class="card-link"
+            >Open Subject <i class="fa fa-chevron-right"></i
+          ></a>
+        </div>
+
+        <!-- Physical & Natural Science -->
+        <div class="subject-card card-science reveal reveal-delay-1">
+          <div class="card-icon"><i class="fa fa-flask"></i></div>
+          <h3>Natural & Physical Science</h3>
+          <span class="subject-tag">Physics, Chemistry, Biology</span>
+          <p>
+            Understand matter, energy, chemical reactions, physical laws, and
+            biological systems with clear term breakdowns.
+          </p>
+          <a href="Subjects.html" class="card-link"
+            >Open Subject <i class="fa fa-chevron-right"></i
+          ></a>
+        </div>
+
+        <!-- Computer Applications & Tech -->
+        <div class="subject-card card-tech reveal reveal-delay-2">
+          <div class="card-icon"><i class="fa fa-laptop"></i></div>
+          <h3>Technology & CAT</h3>
+          <span class="subject-tag">Digital Literacy, Computing</span>
+          <p>
+            Develop digital fluency, software management skills, basic
+            computational logic, and internet safety practices.
+          </p>
+          <a href="Subjects.html" class="card-link"
+            >Open Subject <i class="fa fa-chevron-right"></i
+          ></a>
+        </div>
+
+        <!-- Creative & Visual Arts -->
+        <div class="subject-card card-arts reveal reveal-delay-3">
+          <div class="card-icon"><i class="fa fa-paint-brush"></i></div>
+          <h3>Creative & Visual Arts</h3>
+          <span class="subject-tag">Design, Visual Theory, Media</span>
+          <p>
+            Explore artistic expressions, design theory, visual communication,
+            and creative industry career paths.
+          </p>
+          <a href="Subjects.html" class="card-link"
+            >Open Subject <i class="fa fa-chevron-right"></i
+          ></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Career Discovery Assessment Callout -->
+    <section class="career-discovery-section">
+      <div class="career-banner reveal">
+        <div class="career-info">
+          <span class="badge-sparkle"
+            ><i class="fa fa-compass"></i> Career Discovery</span
+          >
+          <h2>Find Your Ideal Future Career</h2>
+          <p>
+            Complete our Holland Code assessment to match your strengths and
+            personality with tertiary study paths in South Africa.
+          </p>
+        </div>
+        <div class="career-buttons">
+          <a href="career-discovery.html" class="btn btn-bright"
+            >Discover Careers <i class="fa fa-arrow-right"></i
+          ></a>
+          <a href="aptitude.html" class="btn btn-outline-light"
+            >Reasoning Skills</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- Facilities / Platform Infrastructure -->
+    <section class="facilities-section">
+      <div class="section-title">
+        <h2>Designed For Accessible Learning</h2>
+        <p>
+          Built specifically to support high school learners across township,
+          rural, and urban schools.
+        </p>
+      </div>
+
+      <div class="facilities-grid">
+        <div class="facility-card reveal">
+          <div class="facility-img-wrapper">
+            <img
+              src="assets/gse-virtual-learning-NL.jpg"
+              alt="Learning Resources"
+            />
+            <span class="img-badge"
+              ><i class="fa fa-book"></i> Study Library</span
+            >
+          </div>
+          <h3>Comprehensive Resources</h3>
+          <p>
+            Access downloadable textbooks, term unit notes, practice revision
+            worksheets, and exam-style self-marking quizzes.
+          </p>
+        </div>
+
+        <div class="facility-card reveal reveal-delay-1">
+          <div class="facility-img-wrapper">
+            <img
+              src="assets/online-tutorials-concept_52683-37480.avif"
+              alt="Data Light Features"
+            />
+            <span class="img-badge"
+              ><i class="fa fa-wifi-slash"></i> Low-Data & Offline</span
+            >
+          </div>
+          <h3>Smart Offline Caching</h3>
+          <p>
+            Download study modules on low-cost devices or school networks once,
+            then study anywhere without consuming extra data.
+          </p>
+        </div>
+
+        <div class="facility-card reveal reveal-delay-2">
+          <div class="facility-img-wrapper">
+            <img
+              src="assets/beaefac4021cb46541e498cca37b6afd.jpg"
+              alt="Learner Support"
+            />
+            <span class="img-badge"
+              ><i class="fa fa-shield"></i> Monitored Forum</span
+            >
+          </div>
+          <h3>Safe Peer Discussion</h3>
+          <p>
+            Collaborate and ask academic questions in our community discussion
+            forum, protected by CyberSafe threat detection.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- System Support Contact Callout -->
+    <section class="support-callout">
+      <div class="callout-box">
+        <div class="callout-icon"><i class="fa fa-cogs"></i></div>
+        <div class="callout-text">
+          <h3>Experiencing platform or offline sync issues?</h3>
+          <p>
+            If you encounter technical glitches, broken files, or accessibility
+            issues, reach out to our platform support team.
+          </p>
+        </div>
+        <a href="contact.html" class="btn btn-accent"
+          >Contact Technical Support</a
+        >
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="footer-container">
+        <div class="footer-brand">
+          <h3>
+            <i class="fa fa-graduation-cap"></i> E-Learning Hub
+          </h3>
+          <p>
+            Empowering high school learners across South Africa with zero-data,
+            accessible, and high-quality e-learning tools.
+          </p>
+        </div>
+
+        <div class="footer-socials">
+          <h4>Connect With Us</h4>
+          <div class="social-icons">
+            <a href="#" aria-label="Facebook"><i class="fa fa-facebook"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fa fa-twitter"></i></a>
+            <a href="#" aria-label="Instagram"
+              ><i class="fa fa-instagram"></i
+            ></a>
+            <a href="#" aria-label="LinkedIn"><i class="fa fa-linkedin"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>
+          Made with <i class="fa fa-heart text-danger"></i> for South African
+          learners by DataPulse
+        </p>
+      </div>
+    </footer>
+
+    <!-- Mobile Nav Script -->
     <script>
+      var navLinks = document.getElementById("navLinks");
+      var mainNav = document.getElementById("mainNav");
+      var menuToggle = document.getElementById("menuToggle");
+
+      function showmenu() {
+        navLinks.style.right = "0";
+        if (mainNav) mainNav.classList.add("menu-open");
+        if (menuToggle) menuToggle.setAttribute("aria-expanded", "true");
+      }
+
+      function hidemenu() {
+        navLinks.style.right = "-260px";
+        if (mainNav) mainNav.classList.remove("menu-open");
+        if (menuToggle) menuToggle.setAttribute("aria-expanded", "false");
+      }
+
+      window.addEventListener("resize", function () {
+        if (window.innerWidth > 768) hidemenu();
+      });
+
+      // Offline Banner Toggle
       (function () {
         var banner = document.getElementById("moa-offline-banner");
         function updateBanner() {
           if (!navigator.onLine) {
             banner.style.display = "block";
             banner.classList.remove("online");
-            banner.textContent =
-              "📡 You're offline — cached content is available";
           } else {
             banner.classList.add("online");
-            banner.textContent = "✅ Back online!";
             banner.style.display = "block";
             setTimeout(function () {
               banner.style.display = "none";
@@ -84,232 +395,34 @@
         window.addEventListener("offline", updateBanner);
         if (!navigator.onLine) updateBanner();
       })();
-    </script>
 
-    <!-- Header / Hero -->
-    <section class="header">
-      <nav>
-        <div class="nav-links" id="navLinks">
-          <i class="fa fa-times" onclick="hidemenu()"></i>
-          <ul>
-            <li><a href="index.html">HOME</a></li>
-            <li><a href="About.html">ABOUT</a></li>
-            <li><a href="Subjects.html">SUBJECTS</a></li>
-            <li><a href="quizzes.html">QUIZZES</a></li>
-            <li><a href="aptitude.html">REASONING SKILLS</a></li>
-            <li><a href="forum.html">DISCUSSION</a></li>
-            <li><a href="mental_wellness.html">WELLNESS</a></li>
-            <li><a href="blog.html">BLOG</a></li>
-            <li><a href="contact.html">CONTACT</a></li>
-            <li><a href="library.html">LIBRARY</a></li>
-            <li><a href="khulisa.html">SUPPORT</a></li>
-          </ul>
-        </div>
-        <i class="fa fa-bars" onclick="showmenu()"></i>
-      </nav>
-
-      <div class="text-box">
-        <h1>Africa's Biggest E-learning Platform</h1>
-        <p>
-          We are creating an inclusive and accessible e-learning platform
-          specifically designed for high school learners from disadvantaged
-          backgrounds, including those in rural and township areas. Our mission
-          is to bridge the educational gap by providing high-quality,
-          curriculum-aligned resources that are free, easy to access, and
-          engaging.
-        </p>
-        <a href="Subjects.html" class="hero-btn">Start Learning</a>
-      </div>
-    </section>
-
-    <!-- Subjects -->
-    <section class="subjects">
-      <h1>Subjects We Offer</h1>
-      <p>We focus on STEM subjects.</p>
-
-      <div class="row">
-        <!-- Mathematics -->
-        <div class="subject-col">
-          <h3>Mathematics</h3>
-          <p>
-            Algebra : Equations, expressions, and functions<br />
-            Geometry : Shapes, measurements, and spatial reasoning<br />
-            Trigonometry : Triangles, angles, and real-world applications<br />
-            Statistics & Probability : Data analysis, averages, graphs, and
-            predictions<br />
-            Intro to Calculus : Rates of change and basic integrals (at higher
-            grades)<br />
-            Mathematical Modeling : Solving real-life problems using math<br />
-            Computational Math : Estimation, coding, and numerical methods<br />
-            Logic & Problem Solving : Patterns, reasoning, and critical thinking
-          </p>
-        </div>
-
-        <!-- Science -->
-        <div class="subject-col">
-          <h3>Science</h3>
-          <p>
-            Physics : Motion, forces, energy, electricity, waves, and simple
-            machines<br />
-            Chemistry : Atoms, elements, chemical reactions, acids & bases, and
-            matter<br />
-            Biology : Cells, genetics, human body systems, ecosystems, and
-            evolution<br />
-            Earth & Environmental Science : Climate, natural resources, geology,
-            and sustainability<br />
-            Scientific Method : Observations, hypothesis testing, experiments,
-            and data analysis<br />
-            Technology Integration : Using tools, simulations, and digital labs
-            in investigations<br />
-            STEM Applications : Real-life experiments, innovations, and
-            cross-disciplinary projects
-          </p>
-        </div>
-
-        <!-- Technology -->
-        <div class="subject-col">
-          <h3>Computer Applications Technology</h3>
-          <p>
-            Digital Literacy : Understanding computers, internet safety, and
-            digital tools<br />
-            Information & Communication Technology (ICT) : Software, hardware,
-            and data handling<br />
-            Coding & Programming : Basics of coding languages (like Python,
-            HTML, JavaScript)<br />
-            Robotics & Automation : Building and programming robots, sensors,
-            and control systems<br />
-            Computer Systems : How computers work: hardware, software, storage,
-            and networks<br />
-            Cybersecurity : Online safety, data privacy, and responsible tech
-            use<br />
-            Design & Innovation : Using tech tools to create apps, websites,
-            models, and solutions<br />
-            Emerging Technologies : AI, VR/AR, 3D printing, IoT, and smart
-            systems
-          </p>
-        </div>
-
-        <!-- Arts -->
-        <div class="subject-col">
-          <h3>Arts</h3>
-          <p>
-            Visual Arts : Drawing, painting, sculpture, printmaking,
-            photography, and design Art Elements & Principles : Line, shape,
-            color, texture, space, balance, contrast, and rhythm Art History &
-            Theory : Study of local and global art movements, artists, and
-            cultural influences Media & Digital Arts : Graphic design,
-            animation, video editing, and digital illustration Crafts & Applied
-            Arts : Textile work, ceramics, beadwork, and mixed media Creative
-            Process : Brainstorming, planning, creating, reflecting, and
-            refining artwork Art Critique & Analysis : Describing, interpreting,
-            and evaluating art pieces Careers in the Arts : Introduction to
-            creative industries like design, fashion, animation, and fine arts
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section class="about-hub">
-      <h2>About This Hub</h2>
-      <p>
-        This platform was built to support learners and educators with
-        open-access materials aligned to the South African curriculum. All
-        resources are hosted directly for easy access and printing.
-      </p>
-    </section>
-
-    <!-- Facilities -->
-    <section class="facilities">
-      <h1>Our Facilities</h1>
-      <p>
-        Our digital learning space is designed to provide high-quality education
-        to learners no matter where they are—from rural villages to township
-        schools.
-      </p>
-      <div class="row">
-        <div class="facilities-col">
-          <img src="css/gse-virtual-learning-NL.jpg" alt="Virtual Learning" />
-          <h3>Available Learning Resources</h3>
-          <p>
-            Subject content: Notes, videos, quizzes, animations Interactive
-            tools: Virtual labs, simulations, games Downloadable materials:
-            PDFs, worksheets, past exam papers Language support (if applicable)
-          </p>
-        </div>
-        <div class="facilities-col">
-          <img
-            src="css/online-tutorials-concept_52683-37480.avif"
-            alt="Online Tutorials"
-          />
-          <h3>Features of the Platform</h3>
-          <p>
-            Mobile-friendly and data-light access Offline access/download
-            options User-friendly interface Personalized learner dashboard
-            Progress tracking & goal setting Chat or Q&A support
-          </p>
-        </div>
-        <div class="facilities-col">
-          <img
-            src="css/beaefac4021cb46541e498cca37b6afd.jpg"
-            alt="Access & Connectivity"
-          />
-          <h3>Access & Connectivity</h3>
-          <p>
-            How students can access the platform (web, mobile, app) Info on
-            free/low-data modes or zero-rated access (if available) Partnerships
-            with schools, libraries, or community centers
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Featured: Career Discovery + Reasoning Skills -->
-    <section class="featured-assessments" style="max-width:1000px; margin:2.5rem auto; padding:0 1rem;">
-      <div style="background:linear-gradient(135deg,#0f4c81,#0b6aa3); color:#fff; border-radius:10px; padding:1.75rem;">
-        <h3 style="margin-top:0; color:#fff;">🧭 New: Discover Your Career Path</h3>
-        <p style="color:#eaf4fb; line-height:1.5; margin-bottom:0;">
-          Take our Career Discovery Assessment to find your personality type, strengths, learning style and the
-          careers that suit you — then combine it with your Reasoning Skills score for a full personalised report.
-        </p>
-        <div style="display:flex; gap:0.6rem; flex-wrap:wrap; margin-top:1rem;">
-          <a href="career-discovery.html" style="background:#fff; color:#0b6aa3; padding:0.6rem 1rem; border-radius:6px; text-decoration:none; font-weight:600; font-size:0.95rem;">Start Career Discovery →</a>
-          <a href="aptitude.html" style="background:transparent; color:#fff; padding:0.6rem 1rem; border-radius:6px; text-decoration:none; font-weight:600; font-size:0.95rem; border:1.5px solid rgba(255,255,255,0.7);">Reasoning Skills Assessment</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Call To Action -->
-    <section class="cta">
-      <h1>Enroll for our various online courses</h1>
-      <a href="contact.html" class="hero-btn">CONTACT US</a>
-    </section>
-
-    <!-- Footer -->
-    <section class="Footer">
-      <h4>About Us</h4>
-      <p>
-        By leveraging technology, we aim to empower students with the tools and
-        support they need to succeed academically<br />regardless of their
-        location, resources, or socioeconomic status
-      </p>
-      <div class="icons">
-        <i class="fa fa-facebook"></i>
-        <i class="fa fa-twitter"></i>
-        <i class="fa fa-instagram"></i>
-        <i class="fa fa-linkedin"></i>
-      </div>
-      <p>Made with <i class="fa fa-heart-o"></i> by Media On Africa</p>
-    </section>
-
-    <!-- JavaScript for Toggle Menu -->
-    <script>
-      var navLinks = document.getElementById("navLinks");
-      function showmenu() {
-        navLinks.style.right = "0";
-      }
-      function hidemenu() {
-        navLinks.style.right = "-200px";
-      }
+      // Lightweight scroll-reveal (CSS transitions only; skipped when reduced-motion)
+      (function () {
+        var nodes = document.querySelectorAll(".reveal");
+        if (!nodes.length) return;
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+          for (var i = 0; i < nodes.length; i++)
+            nodes[i].classList.add("is-visible");
+          return;
+        }
+        if (!("IntersectionObserver" in window)) {
+          for (var j = 0; j < nodes.length; j++)
+            nodes[j].classList.add("is-visible");
+          return;
+        }
+        var observer = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (entry) {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("is-visible");
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { rootMargin: "0px 0px -8% 0px", threshold: 0.12 },
+        );
+        for (var k = 0; k < nodes.length; k++) observer.observe(nodes[k]);
+      })();
     </script>
 
     <!-- Chatbot Embed -->
@@ -317,5 +430,6 @@
       src="https://code.tidio.co/uqdod81sfajvlkpiujfsjo49za71xsuc.js"
       async
     ></script>
+    <script src="anim-bounce.js" defer></script>
   </body>
 </html>

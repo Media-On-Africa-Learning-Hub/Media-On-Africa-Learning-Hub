@@ -1,0 +1,15 @@
+{
+  "name": "media-on-africa-learning-hub",
+  "version": "1.0.0",
+  "description": "**Maintainer / Repo admin:** Sizwe Yende\r **Repository:** https://github.com/Media-On-Africa-Learning-Hub/Media-On-Africa-Learning-Hub",
+  "main": "cybersafe-integration.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.61.1"
+  }
+}

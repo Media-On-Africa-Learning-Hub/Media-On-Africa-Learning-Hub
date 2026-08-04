@@ -1,0 +1,270 @@
+/* ===================================================
+   Khulisa Custom Layout & Form Styles
+   =================================================== */
+
+/* Header & Navbar Fallback Layout Alignment */
+.header .nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.nav-menu {
+    display: flex !important;
+    flex-direction: row !important;
+    list-style: none !important;
+    gap: 12px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-menu li a {
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 8px 14px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #475569;
+    transition: all 0.2s ease;
+}
+
+.nav-menu li a:hover,
+.nav-menu li a.active {
+    background-color: #3b82f6;
+    color: #ffffff;
+}
+
+/* Page Layout */
+.main-content {
+    max-width: 1100px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+.khulisa-hero {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.khulisa-hero h1 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 8px;
+}
+
+.khulisa-hero p {
+    color: #64748b;
+    font-size: 1rem;
+}
+
+/* 3-Column Card Grid */
+.khulisa-cards-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 20px !important;
+    margin-bottom: 40px;
+}
+
+@media (max-width: 868px) {
+    .khulisa-cards-grid {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+.support-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 28px 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.support-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.support-card.crisis-card {
+    background: #fef2f2;
+    border-color: #fecaca;
+}
+
+.card-icon {
+    font-size: 2rem;
+    margin-bottom: 12px;
+}
+
+.card-icon.blue { color: #3b82f6; }
+.card-icon.red { color: #ef4444; }
+
+.support-card h3 {
+    font-size: 1.2rem;
+    color: #1e293b;
+    margin-bottom: 8px;
+}
+
+.support-card p {
+    font-size: 0.88rem;
+    color: #64748b;
+    margin-bottom: 16px;
+    line-height: 1.4;
+}
+
+.contact-detail {
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: #0f172a;
+    margin-bottom: 12px;
+}
+
+/* Badges */
+.badge {
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.blue-badge {
+    background-color: #eff6ff;
+    color: #2563eb;
+}
+
+.red-badge {
+    background-color: #fee2e2;
+    color: #dc2626;
+}
+
+/* Counselor Form Container */
+.counselor-form-container {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 32px;
+    margin-bottom: 35px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+}
+
+.form-header h2 {
+    font-size: 1.4rem;
+    color: #0f172a;
+    margin-bottom: 6px;
+}
+
+.form-header p {
+    color: #64748b;
+    font-size: 0.9rem;
+    margin-bottom: 24px;
+}
+
+.khulisa-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-group label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #334155;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    padding: 12px 14px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-family: inherit;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+.submit-btn {
+    background-color: #3b82f6;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    align-self: flex-start;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.2s ease;
+}
+
+.submit-btn:hover {
+    background-color: #2563eb;
+}
+
+/* Helplines Box */
+.emergency-helplines-box {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 24px 32px;
+}
+
+.emergency-helplines-box h3 {
+    font-size: 1.1rem;
+    color: #0f172a;
+    margin-bottom: 12px;
+}
+
+.helpline-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.helpline-list li {
+    font-size: 0.95rem;
+    color: #334155;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.helpline-list li i {
+    color: #8b5cf6;
+}
+
+.footer {
+    text-align: center;
+    padding: 30px;
+    color: #94a3b8;
+    font-size: 0.85rem;
+}

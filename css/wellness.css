@@ -1,0 +1,421 @@
+:root {
+  --wellness-grad: linear-gradient(135deg, #00c2ff 0%, #0072ff 55%, #9b59b6 100%);
+  --wellness-grad-soft: linear-gradient(135deg, rgba(0, 194, 255, 0.12) 0%, rgba(155, 89, 182, 0.12) 100%);
+}
+
+/* ---------- Hero ---------- */
+.wellness-hero {
+  width: 100%;
+  background: linear-gradient(135deg, #00c2ff 0%, #0072ff 50%, #9b59b6 100%);
+  position: relative;
+  padding: 32px clamp(20px, 4vw, 48px) 28px;
+  color: #fff;
+  overflow: hidden;
+  background-image:
+    linear-gradient(
+      135deg,
+      rgba(0, 194, 255, 0.84) 0%,
+      rgba(0, 114, 255, 0.88) 50%,
+      rgba(155, 89, 182, 0.90) 100%
+    ),
+    url("../assets/hero-image.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.wellness-hero .badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.18);
+  padding: 4px 12px;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.wellness-hero__content {
+  max-width: 1350px;
+  margin: 0 auto;
+}
+
+.wellness-hero__content h1 {
+  font-family: var(--font-heading);
+  font-size: 2.6rem;
+  line-height: 1.15;
+  margin-bottom: 0.75rem;
+}
+
+.wellness-hero__content p {
+  font-size: 1.05rem;
+  opacity: 0.94;
+  margin-bottom: 1.6rem;
+}
+
+.download-wellness-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #ffffff;
+  color: #0072ff;
+  border: none;
+  padding: 0.7rem 1.4rem;
+  border-radius: var(--radius-md);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.download-wellness-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+.download-wellness-btn:disabled {
+  opacity: 0.75;
+  cursor: default;
+  transform: none;
+}
+
+/* ---------- Page layout ---------- */
+.wellness-page {
+  max-width: 1350px !important;;
+  margin: 0 auto;
+  padding: 3rem 4% 4rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  align-items: start;
+}
+
+.wellness-page > .wellness-full {
+  grid-column: 1 / -1;
+}
+
+@media (max-width: 900px) {
+  .wellness-page {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Shared card shell for every block on the page */
+.wellness-card {
+  background: #ffffff;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--card-shadow);
+  padding: 1.6rem;
+}
+
+.wellness-card h2 {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  margin-bottom: 0.75rem;
+  color: var(--text-dark);
+}
+
+.wellness-card p {
+  color: var(--text-muted);
+}
+
+/* ---------- Rotating content blocks ---------- */
+.wellness-rotator {
+  border-left: 4px solid #0072ff;
+}
+
+.wellness-rotator p[id] {
+  font-style: italic;
+  color: var(--text-dark);
+  min-height: 1.5em;
+}
+
+/* ---------- Mood tracker ---------- */
+.mood-tracker {
+  background: var(--wellness-grad-soft);
+}
+
+.mood-buttons {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin: 1rem 0;
+}
+
+.mood-btn {
+  flex: 1 1 18%;
+  min-width: 88px;
+  padding: 0.7rem 0.5rem;
+  border: none;
+  border-radius: var(--radius-md);
+  background: #ffffff;
+  box-shadow: var(--card-shadow);
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-family: var(--font-body);
+  font-weight: 600;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.mood-btn:hover {
+  transform: translateY(-2px) scale(1.03);
+  background: #f1f5ff;
+}
+
+.mood-history {
+  margin-top: 1rem;
+}
+
+.mood-history h3 {
+  font-size: 0.9rem;
+  color: var(--text-dark);
+  margin-bottom: 0.5rem;
+}
+
+.mood-history-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.55rem 0.2rem;
+  border-bottom: 1px solid #eef1f6;
+  font-size: 0.9rem;
+}
+
+.mood-history-item:last-child {
+  border-bottom: none;
+}
+
+/* ---------- Gratitude journal ---------- */
+.gratitude-journal textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid #e2e8f0;
+  border-radius: var(--radius-md);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  resize: vertical;
+  margin: 0.75rem 0;
+}
+
+.gratitude-journal textarea:focus {
+  outline: none;
+  border-color: #0072ff;
+}
+
+.gratitude-list {
+  margin-top: 1rem;
+}
+
+.gratitude-item {
+  background: #f8fafc;
+  padding: 0.75rem 0.9rem;
+  margin: 0.6rem 0;
+  border-radius: var(--radius-md);
+  border-left: 4px solid #9b59b6;
+  font-size: 0.92rem;
+  color: var(--text-dark);
+}
+
+.gratitude-date {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  margin-top: 0.25rem;
+}
+
+/* ---------- Control buttons (pause / resume / download) ---------- */
+.control-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin: 0.4rem 0.4rem 0 0;
+  padding: 0.55rem 1rem;
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 600;
+  transition: background 0.2s ease;
+}
+
+.control-btn:hover {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+/* ---------- Breathing exercise ---------- */
+.breathing-timer {
+  text-align: center;
+  background: var(--wellness-grad);
+  color: #ffffff;
+}
+
+.breathing-timer h2,
+.breathing-timer p {
+  color: #ffffff;
+}
+
+.timer-circle {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1.25rem auto;
+  cursor: pointer;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.timer-circle:hover {
+  transform: scale(1.05);
+  background: rgba(255, 255, 255, 0.28);
+}
+
+.timer-number {
+  font-family: var(--font-heading);
+  font-size: 48px;
+  font-weight: 700;
+}
+
+.timer-text {
+  font-size: 1rem;
+  margin-top: 0.5rem;
+  opacity: 0.95;
+}
+
+/* ---------- Safe space / comforting reads / resources ---------- */
+.wellness-card img {
+  width: 100%;
+  border-radius: var(--radius-md);
+  margin-top: 1rem;
+  display: block;
+}
+
+.wellness-card ul,
+.wellness-card ol {
+  padding-left: 1.2rem;
+  color: var(--text-muted);
+}
+
+.wellness-card ul li,
+.wellness-card ol li {
+  margin-bottom: 0.6rem;
+  line-height: 1.55;
+}
+
+.wellness-card a {
+  color: #0072ff;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.wellness-card a:hover {
+  text-decoration: underline;
+}
+
+.video-container video {
+  width: 100%;
+  border-radius: var(--radius-md);
+  margin-top: 0.75rem;
+  display: block;
+}
+
+/* ---------- Offline banner ---------- */
+.offline-banner {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  z-index: 10000;
+  background: var(--wellness-grad);
+  color: #ffffff;
+  padding: 0.9rem 1.25rem;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  animation: wellnessSlideUp 0.3s ease;
+}
+
+.offline-banner.show {
+  display: flex;
+}
+
+@keyframes wellnessSlideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.offline-banner-actions {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.offline-banner-btn {
+  border: none;
+  padding: 0.4rem 1rem;
+  border-radius: 999px;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.82rem;
+  background: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+}
+
+.offline-banner-btn--primary {
+  background: #ffffff;
+  color: #0072ff;
+}
+
+/* ---------- Notification toast ---------- */
+.notification-toast {
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  background: var(--rainbow-4);
+  color: #ffffff;
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--radius-md);
+  z-index: 10002;
+  display: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.9rem;
+  animation: wellnessSlideIn 0.3s ease;
+}
+
+.notification-toast.show {
+  display: block;
+}
+
+@keyframes wellnessSlideIn {
+  from { opacity: 0; transform: translateX(100px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 600px) {
+  .wellness-hero__content h1 {
+    font-size: 2rem;
+  }
+
+  .mood-btn {
+    flex: 1 1 40%;
+  }
+
+  .offline-banner {
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+  }
+}

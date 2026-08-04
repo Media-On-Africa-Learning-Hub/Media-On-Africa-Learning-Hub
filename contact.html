@@ -3,13 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Contact - Media On Africa Learning Hub</title>
+    <title>Contact &amp; Support - Media On Africa Learning Hub</title>
 
-    <!-- Base path for GitHub Pages -->
-
-    <!-- PWA Meta Tags - Updated for GitHub Pages -->
+    <!-- PWA Meta Tags -->
     <link rel="manifest" href="manifest.json" />
-    <meta name="theme-color" content="#1a472a" />
+    <meta name="theme-color" content="#0072ff" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta
       name="apple-mobile-web-app-status-bar-style"
@@ -18,413 +16,359 @@
     <meta name="apple-mobile-web-app-title" content="MoA Contact" />
     <link rel="apple-touch-icon" href="/icons/icon-192x192.png" />
 
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/contact-support.css" />
+    <link rel="stylesheet" href="css/side-decor.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300;400;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
       rel="stylesheet"
     />
     <link
       rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     />
-
-    <style>
-      /* Offline banner */
-      .offline-banner {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        color: white;
-        padding: 12px 20px;
-        text-align: center;
-        position: fixed;
-        bottom: 20px;
-        left: 20px;
-        right: 20px;
-        z-index: 10000;
-        border-radius: 12px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-        display: none;
-        backdrop-filter: blur(10px);
-        animation: slideUp 0.3s ease;
-      }
-
-      @keyframes slideUp {
-        from {
-          opacity: 0;
-          transform: translateY(20px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      .offline-banner.show {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        gap: 10px;
-      }
-
-      /* Queue status */
-      .queue-status {
-        background: #e8f5e9;
-        border-radius: 8px;
-        padding: 15px;
-        margin-bottom: 20px;
-        display: none;
-        align-items: center;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        gap: 10px;
-      }
-
-      .queue-status.show {
-        display: flex;
-      }
-
-      .queue-badge {
-        background: #ff9800;
-        color: white;
-        border-radius: 20px;
-        padding: 4px 12px;
-        font-size: 12px;
-        font-weight: bold;
-      }
-
-      .sync-now-btn {
-        background: #4caf50;
-        color: white;
-        border: none;
-        padding: 8px 16px;
-        border-radius: 20px;
-        cursor: pointer;
-        font-size: 12px;
-        transition: background 0.3s;
-      }
-
-      .sync-now-btn:hover {
-        background: #45a049;
-      }
-
-      /* Notification toast */
-      .notification-toast {
-        position: fixed;
-        top: 80px;
-        right: 20px;
-        background: #4caf50;
-        color: white;
-        padding: 12px 20px;
-        border-radius: 8px;
-        z-index: 10002;
-        animation: slideIn 0.3s ease;
-        display: none;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-        max-width: 350px;
-      }
-
-      @keyframes slideIn {
-        from {
-          opacity: 0;
-          transform: translateX(100px);
-        }
-        to {
-          opacity: 1;
-          transform: translateX(0);
-        }
-      }
-
-      .notification-toast.show {
-        display: block;
-      }
-
-      /* Form enhancements */
-      .contact-col form {
-        position: relative;
-      }
-
-      .form-status {
-        margin-top: 15px;
-        padding: 10px;
-        border-radius: 6px;
-        display: none;
-      }
-
-      .form-status.show {
-        display: block;
-      }
-
-      .form-status.success {
-        background: #d4edda;
-        color: #155724;
-        border: 1px solid #c3e6cb;
-      }
-
-      .form-status.error {
-        background: #f8d7da;
-        color: #721c24;
-        border: 1px solid #f5c6cb;
-      }
-
-      .form-status.info {
-        background: #d1ecf1;
-        color: #0c5460;
-        border: 1px solid #bee5eb;
-      }
-
-      .loading-spinner {
-        display: inline-block;
-        width: 16px;
-        height: 16px;
-        border: 2px solid #f3f3f3;
-        border-top: 2px solid #0b6aa3;
-        border-radius: 50%;
-        animation: spin 1s linear infinite;
-        margin-right: 8px;
-        vertical-align: middle;
-      }
-
-      @keyframes spin {
-        0% {
-          transform: rotate(0deg);
-        }
-        100% {
-          transform: rotate(360deg);
-        }
-      }
-
-      .download-contact-btn {
-        background: #4caf50;
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        border-radius: 6px;
-        cursor: pointer;
-        font-size: 14px;
-        margin-top: 10px;
-        transition: background 0.3s;
-      }
-
-      .download-contact-btn:hover {
-        background: #45a049;
-      }
-
-      .btn-container {
-        text-align: center;
-        margin: 20px 0;
-      }
-
-      @media (max-width: 768px) {
-        .offline-banner.show {
-          flex-direction: column;
-          text-align: center;
-        }
-
-        .queue-status.show {
-          flex-direction: column;
-          text-align: center;
-        }
-      }
-    </style>
   </head>
   <body>
-    <!-- Navigation -->
-    <nav>
+    <!-- Immediately inside <body> -->
+    <div
+      class="quiz-decor"
+      data-bounce-target=".quick-help-card, .support-card"
+      aria-hidden="true"
+    >
+      <div class="bubble bubble--1"></div>
+      <div class="bubble bubble--2"></div>
+      <div class="bubble bubble--3"></div>
+      <div class="bubble bubble--4"></div>
+      <div class="bubble bubble--5"></div>
+      <div class="bubble bubble--6"></div>
+      <div class="bubble bubble--7"></div>
+      <div class="bubble bubble--8"></div>
+      <i class="fas fa-headset float-icon float-icon--1"></i>
+      <i class="fas fa-envelope-open-text float-icon float-icon--2"></i>
+      <i class="fas fa-phone-alt float-icon float-icon--3"></i>
+      <i class="fas fa-hand-holding-heart float-icon float-icon--4"></i>
+      <i class="fas fa-comments float-icon float-icon--5"></i>
+      <i class="fas fa-user-shield float-icon float-icon--6"></i>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar" id="mainNav">
+      <a href="index.html" class="nav-logo">
+        <i class="fas fa-graduation-cap logo-icon"></i> E-Learning Hub
+      </a>
       <div class="nav-links" id="navLinks">
-        <i class="fa fa-times" onclick="hidemenu()"></i>
+        <button
+          type="button"
+          class="close-btn"
+          onclick="hidemenu()"
+          aria-label="Close menu"
+        >
+          <i class="fas fa-times" aria-hidden="true"></i>
+        </button>
         <ul>
           <li><a href="index.html">HOME</a></li>
-          <li><a href="About.html">ABOUT</a></li>
-          <li>
-            <a href="Subjects.html">SUBJECTS</a>
-          </li>
-          <li>
-            <a href="quizzes.html">QUIZZES</a>
-          </li>
-          <li>
-            <a href="aptitude.html"
-              >REASONING SKILLS</a
-            >
-          </li>
-          <li>
-            <a href="forum.html">DISCUSSION</a>
-          </li>
-          <li>
-            <a href="mental_wellness.html"
-              >WELLNESS</a
-            >
-          </li>
+          <li><a href="Subjects.html">SUBJECTS</a></li>
+          <li><a href="quizzes.html">QUIZZES</a></li>
+          <li><a href="aptitude.html">REASONING SKILLS</a></li>
+          <li><a href="forum.html">DISCUSSION</a></li>
+          <li><a href="mental_wellness.html">WELLNESS</a></li>
           <li><a href="blog.html">BLOG</a></li>
           <li>
-            <a href="contact.html">CONTACT</a>
-          </li>
-          <li>
-            <a href="library.html">LIBRARY</a>
-          </li>
-          <li>
-            <a href="khulisa.html">SUPPORT</a>
+            <a href="contact.html" class="active">CONTACT &amp; SUPPORT</a>
           </li>
         </ul>
       </div>
-      <i class="fa fa-bars" onclick="showmenu()"></i>
+      <button
+        type="button"
+        class="open-btn"
+        id="menuToggle"
+        onclick="showmenu()"
+        aria-label="Open menu"
+        aria-expanded="false"
+        aria-controls="navLinks"
+      >
+        <i class="fas fa-bars" aria-hidden="true"></i>
+      </button>
     </nav>
 
-    <!-- Contact Header -->
-    <section class="header small-header">
-      <div class="text-box">
-        <h1>Contact Us</h1>
-        <button id="downloadContactBtn" class="download-contact-btn">
-          📥 Download Contact Page for Offline
-        </button>
+    <!-- Hero Section -->
+    <section class="hero-header">
+      <div class="hero-content hero-bg-anim">
+        <span class="badge"
+          ><i class="fas fa-hands-helping"></i> We're here to help</span
+        >
+        <h1>Contact &amp; Support</h1>
+        <p>
+          Whether it's a question about the platform, a technical issue, or you
+          just need someone to talk to — reach out below and our team, and our
+          partners at Khulisa Social Solutions, will help.
+        </p>
+        <div class="hero-contact-note">
+          <button id="downloadSupportBtn" class="download-support-btn">
+            📥 Download This Page for Offline
+          </button>
+        </div>
       </div>
     </section>
 
-    <!-- Location -->
-    <section class="location">
-      <iframe
-        id="locationMap"
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d114584.73585386139!2d28.04002455!3d-26.1715215!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e950c68f0406a51%3A0x238ac9d9b1d34041!2sJohannesburg!5e0!3m2!1sen!2sza!4v1745944214047!5m2!1sen!2sza"
-        width="100%"
-        height="450"
-        style="border: 0"
-        allowfullscreen=""
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"
-      >
-      </iframe>
+    <!-- Quick Help -->
+    <section class="page-section">
+      <div class="quick-help-grid">
+        <div class="quick-help-card quick-help-card--phone">
+          <div class="quick-help-icon">
+            <i class="fas fa-phone" aria-hidden="true"></i>
+          </div>
+          <h3>Direct Phone Line</h3>
+          <p>Speak directly with our support team during office hours.</p>
+          <a href="tel:0117888237" class="quick-help-value">011 788 8237</a>
+          <div class="quick-help-tag">Mon–Fri, 9am–5pm</div>
+        </div>
+
+        <div class="quick-help-card quick-help-card--email">
+          <div class="quick-help-icon">
+            <i class="fas fa-envelope" aria-hidden="true"></i>
+          </div>
+          <h3>Email Support</h3>
+          <p>Send us a message and we'll reply within 24 hours.</p>
+          <a href="mailto:info@mediaonafricalh.com" class="quick-help-value"
+            >info@mediaonafricalh.com</a
+          >
+          <div class="quick-help-tag">Response within 24h</div>
+        </div>
+
+        <div class="quick-help-card quick-help-card--crisis">
+          <div class="quick-help-icon">
+            <i class="fas fa-heartbeat" aria-hidden="true"></i>
+          </div>
+          <h3>24/7 Crisis Hotline</h3>
+          <p>
+            Immediate, confidential assistance for mental health emergencies.
+          </p>
+          <a
+            href="tel:0800567567"
+            class="quick-help-value"
+            aria-label="Call the South African Suicide Crisis Helpline on 0 8 0 0, 5 6 7, 5 6 7"
+            >0800 567 567</a
+          >
+          <div class="quick-help-tag">
+            <span class="quick-help-tag-dot" aria-hidden="true"></span>24/7 Free
+            Call
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- Contact Form -->
-    <section class="contact-us">
-      <div class="row">
-        <div class="contact-col">
-          <div>
-            <i class="fa fa-home"></i>
-            <span>
-              <h5>XYZ, ABC Building</h5>
-              <p>Johannesburg, Randburg</p>
-            </span>
-          </div>
-          <div>
-            <i class="fa fa-phone"></i>
-            <span>
-              <h5>+27 11 123 4567</h5>
-              <p>Monday to Friday, 15:00 to 19:00</p>
-            </span>
-          </div>
-          <div>
-            <i class="fa fa-envelope-o"></i>
-            <span>
-              <h5>info@mediaonafricalh.com</h5>
-              <p>Email us your query</p>
-            </span>
-          </div>
+    <!-- More ways to get support -->
+    <section class="page-section">
+      <div class="page-section-intro">
+        <h2>More Ways to Get Support</h2>
+        <p>
+          Beyond the platform, our partner Khulisa Social Solutions offers
+          ongoing care and mentorship.
+        </p>
+      </div>
+
+      <div class="support-options-grid">
+        <div class="support-card support-card--khulisa">
+          <h3>
+            <i class="fas fa-hand-holding-heart" aria-hidden="true"></i> About
+            Khulisa
+          </h3>
+          <p>
+            Khulisa Social Solutions is a non-profit organisation dedicated to
+            uplifting communities through social cohesion, youth development,
+            and counselling services. Learners gain access to professional
+            support, mentorship, and resources that extend beyond academics.
+          </p>
+          <a
+            href="https://khulisa.org.za"
+            target="_blank"
+            rel="noopener"
+            class="support-card-btn"
+          >
+            <i class="fas fa-external-link-alt" aria-hidden="true"></i> Visit
+            Khulisa
+          </a>
         </div>
 
-        <div class="contact-col">
-          <!-- Queue Status Indicator -->
-          <div id="queueStatus" class="queue-status">
+        <div class="support-card support-card--book">
+          <h3>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i> Book a
+            Session
+          </h3>
+          <p>
+            Arrange a one-on-one counselling session with Khulisa through their
+            scheduling system.
+          </p>
+          <a
+            href="https://calendly.com/khulisa-sessions"
+            target="_blank"
+            rel="noopener"
+            class="support-card-btn"
+          >
+            <i class="fas fa-calendar-check" aria-hidden="true"></i> Book
+            Session
+          </a>
+        </div>
+
+        <div class="support-card support-card--resources">
+          <h3>
+            <i class="fas fa-download" aria-hidden="true"></i> Offline Resources
+          </h3>
+          <p>
+            Download support materials now so they're available even without an
+            internet connection.
+          </p>
+          <button id="downloadResourcesBtn" class="support-card-btn">
+            <i class="fas fa-download" aria-hidden="true"></i> Download
+            Resources
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Unified message form -->
+    <section class="page-section">
+      <div class="message-form-card">
+        <h3>
+          <i class="fas fa-comment-dots" aria-hidden="true"></i> Speak With a
+          Counselor / Send a Message
+        </h3>
+        <p class="message-form-intro">
+          Need support or guidance, or just have a question about the platform?
+          Fill out the form below. If you're offline, your message is saved
+          safely and sent automatically once you're back online.
+        </p>
+
+        <!-- Queue Status Indicator -->
+        <div id="queueStatus" class="queue-status">
+          <div>
+            <i class="fas fa-clock" aria-hidden="true"></i>
+            <span id="queueMessage">You have pending messages</span>
+            <span id="queueCount" class="queue-badge">0</span>
+          </div>
+          <button id="syncNowBtn" class="sync-now-btn">
+            <i class="fas fa-sync-alt" aria-hidden="true"></i> Send Now
+          </button>
+        </div>
+
+        <form id="messageForm">
+          <div class="form-row form-row--two">
             <div>
-              <i class="fa fa-clock-o"></i>
-              <span id="queueMessage">You have pending messages</span>
-              <span id="queueCount" class="queue-badge">0</span>
+              <label for="name">Full Name</label>
+              <input
+                id="name"
+                type="text"
+                name="name"
+                placeholder="Enter your full name"
+                required
+              />
             </div>
-            <button id="syncNowBtn" class="sync-now-btn">
-              <i class="fa fa-refresh"></i> Send Now
-            </button>
+            <div>
+              <label for="email">Email Address</label>
+              <input
+                id="email"
+                type="email"
+                name="email"
+                placeholder="Enter your email address"
+                required
+              />
+            </div>
           </div>
 
-          <form id="contactForm">
-            <input
-              type="text"
-              id="name"
-              name="name"
-              placeholder="Enter your name"
-              required
-            />
-            <input
-              type="email"
-              id="email"
-              name="email"
-              placeholder="Enter email address"
-              required
-            />
-            <input
-              type="text"
-              id="subject"
-              name="subject"
-              placeholder="Enter your subject"
-              required
-            />
+          <div class="form-row form-row--two">
+            <div>
+              <label for="phone">Phone (optional)</label>
+              <input
+                id="phone"
+                type="tel"
+                name="phone"
+                placeholder="Your phone number"
+              />
+            </div>
+            <div>
+              <label for="category">Type of Support Needed</label>
+              <select id="category" name="category" required>
+                <option value="" disabled selected>Select an option</option>
+                <option value="general">General Inquiry</option>
+                <option value="technical">Technical Support</option>
+                <option value="counseling">
+                  Emotional &amp; Counseling Support
+                </option>
+                <option value="academic">Academic Support</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label for="message">Message</label>
             <textarea
-              rows="8"
               id="message"
               name="message"
-              placeholder="Message"
+              rows="5"
+              placeholder="How can we help you?"
               required
             ></textarea>
-            <button type="submit" id="sendMessageBtn" class="hero-btn blue-btn">
-              <i class="fa fa-paper-plane"></i> Send Message
-            </button>
-          </form>
-          <div id="formStatus" class="form-status"></div>
-        </div>
+          </div>
+
+          <button type="submit" class="message-submit-btn">
+            <i class="fas fa-paper-plane" aria-hidden="true"></i> Send Message
+          </button>
+        </form>
+        <div id="formStatus" class="form-status"></div>
       </div>
     </section>
 
     <!-- Footer -->
-    <section class="Footer">
-      <h4>About Us</h4>
-      <p>
-        By leveraging technology, we aim to empower students with the tools and
-        support they need to succeed academically<br />regardless of their
-        location, resources, or socioeconomic status
-      </p>
-      <div class="icons">
-        <i class="fa fa-facebook"></i>
-        <i class="fa fa-twitter"></i>
-        <i class="fa fa-instagram"></i>
-        <i class="fa fa-linkedin"></i>
+        <footer class="site-footer">
+      <div class="footer-container">
+        <div class="footer-brand">
+          <h3>
+            <i class="fa fa-graduation-cap"></i> E-Learning Hub
+          </h3>
+          <p>
+            Empowering high school learners across South Africa with zero-data,
+            accessible, and high-quality e-learning tools.
+          </p>
+        </div>
+
+        <div class="footer-socials">
+          <h4>Connect With Us</h4>
+          <div class="social-icons">
+            <a href="#" aria-label="Facebook"><i class="fa fa-facebook"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fa fa-twitter"></i></a>
+            <a href="#" aria-label="Instagram"
+              ><i class="fa fa-instagram"></i
+            ></a>
+            <a href="#" aria-label="LinkedIn"><i class="fa fa-linkedin"></i></a>
+          </div>
+        </div>
       </div>
-      <p>Made with <i class="fa fa-heart-o"></i> by Media On Africa</p>
-    </section>
+      <div class="footer-bottom">
+        <p>
+          Made with <i class="fa fa-heart text-danger"></i> for South African
+          learners by DataPulse
+        </p>
+      </div>
+    </footer>
 
     <!-- Offline Banner -->
     <div id="offlineBanner" class="offline-banner">
       <div style="display: flex; align-items: center; gap: 10px">
         <span style="font-size: 20px">📡</span>
         <span
-          >You are offline — your message will be saved and sent when you're
-          back online!</span
+          >You're offline — your message will be saved and sent when you're back
+          online.</span
         >
       </div>
-      <div style="display: flex; gap: 10px">
-        <button
-          id="dismissBanner"
-          style="
-            background: rgba(255, 255, 255, 0.2);
-            border: none;
-            color: white;
-            padding: 5px 15px;
-            border-radius: 20px;
-            cursor: pointer;
-          "
-        >
-          Dismiss
-        </button>
+      <div class="offline-banner-actions">
+        <button id="dismissBanner" class="offline-banner-btn">Dismiss</button>
         <button
           id="retryConnection"
-          style="
-            background: white;
-            border: none;
-            color: #667eea;
-            padding: 5px 15px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-weight: 500;
-          "
+          class="offline-banner-btn offline-banner-btn--primary"
         >
           Retry Connection
         </button>
@@ -434,474 +378,11 @@
     <!-- Notification Toast -->
     <div id="notificationToast" class="notification-toast"></div>
 
-    <!-- Service Worker Registration - Updated for GitHub Pages -->
-    <script>
-      if ("serviceWorker" in navigator) {
-        window.addEventListener("load", () => {
-          navigator.serviceWorker
-            .register("service-worker.js")
-            .then((registration) => {
-              console.log("ServiceWorker registered:", registration.scope);
-            })
-            .catch((error) => {
-              console.log("ServiceWorker registration failed:", error);
-            });
-        });
-      }
-    </script>
-
     <!-- Dexie.js for IndexedDB -->
     <script src="https://cdn.jsdelivr.net/npm/dexie@3.2.2/dist/dexie.js"></script>
 
-    <!-- Contact Offline Logic -->
-    <script>
-      // Initialize IndexedDB
-      let db = null;
-
-      async function initContactDB() {
-        if (typeof Dexie === "undefined") {
-          await new Promise((resolve) => setTimeout(resolve, 500));
-        }
-
-        db = new Dexie("MediaOnAfricaContact");
-        db.version(1).stores({
-          contactMessages:
-            "++id, name, email, subject, message, timestamp, synced, retryCount",
-        });
-
-        await db.open();
-        console.log("Contact IndexedDB ready");
-        await updateQueueStatus();
-
-        // Try to sync any pending messages on load
-        if (navigator.onLine) {
-          await syncPendingMessages();
-        }
-      }
-
-      // Save message offline
-      async function saveMessageOffline(name, email, subject, message) {
-        const messageData = {
-          name: name.trim(),
-          email: email.trim(),
-          subject: subject.trim(),
-          message: message.trim(),
-          timestamp: new Date().toISOString(),
-          synced: false,
-          retryCount: 0,
-        };
-
-        try {
-          const id = await db.contactMessages.add(messageData);
-          console.log("Message saved offline with ID:", id);
-          await updateQueueStatus();
-          return { success: true, id: id };
-        } catch (error) {
-          console.error("Failed to save message:", error);
-          return { success: false, error: error };
-        }
-      }
-
-      // Send message to server
-      async function sendMessageToServer(message) {
-        // Simulate API call - Replace with actual endpoint
-        try {
-          // In production, replace with your actual API endpoint
-          const response = await fetch("/api/contact", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              name: message.name,
-              email: message.email,
-              subject: message.subject,
-              message: message.message,
-              timestamp: message.timestamp,
-            }),
-          });
-
-          if (response.ok) {
-            return { success: true };
-          } else {
-            throw new Error("Server returned " + response.status);
-          }
-        } catch (error) {
-          console.error("Failed to send message:", error);
-          return { success: false, error: error };
-        }
-      }
-
-      // Sync pending messages
-      async function syncPendingMessages() {
-        if (!db) return;
-
-        const pendingMessages = await db.contactMessages
-          .where("synced")
-          .equals(false)
-          .toArray();
-
-        if (pendingMessages.length === 0) {
-          return;
-        }
-
-        showNotification(
-          `Sending ${pendingMessages.length} pending message(s)...`,
-          "info",
-        );
-
-        let syncedCount = 0;
-
-        for (const message of pendingMessages) {
-          const result = await sendMessageToServer(message);
-
-          if (result.success) {
-            await db.contactMessages.update(message.id, { synced: true });
-            syncedCount++;
-            console.log("Message synced:", message.id);
-          } else if (message.retryCount >= 3) {
-            // Max retries reached, mark as failed (but keep for manual retry)
-            await db.contactMessages.update(message.id, {
-              synced: "failed",
-              retryCount: message.retryCount + 1,
-            });
-            console.warn("Max retries reached for message:", message.id);
-          } else {
-            // Increment retry count
-            await db.contactMessages.update(message.id, {
-              retryCount: message.retryCount + 1,
-            });
-          }
-        }
-
-        await updateQueueStatus();
-
-        if (syncedCount > 0) {
-          showNotification(
-            `Successfully sent ${syncedCount} message(s)!`,
-            "success",
-          );
-        } else if (pendingMessages.length > 0) {
-          showNotification(
-            "Some messages failed to send. Will retry later.",
-            "error",
-          );
-        }
-      }
-
-      // Update queue status UI
-      async function updateQueueStatus() {
-        if (!db) return;
-
-        const pendingCount = await db.contactMessages
-          .where("synced")
-          .equals(false)
-          .count();
-        const queueStatus = document.getElementById("queueStatus");
-        const queueCountSpan = document.getElementById("queueCount");
-        const queueMessageSpan = document.getElementById("queueMessage");
-
-        if (pendingCount > 0) {
-          queueStatus.classList.add("show");
-          queueCountSpan.textContent = pendingCount;
-          queueMessageSpan.textContent =
-            pendingCount === 1
-              ? "You have 1 pending message"
-              : `You have ${pendingCount} pending messages`;
-        } else {
-          queueStatus.classList.remove("show");
-        }
-      }
-
-      // Handle form submission
-      async function handleFormSubmit(event) {
-        event.preventDefault();
-
-        const name = document.getElementById("name").value;
-        const email = document.getElementById("email").value;
-        const subject = document.getElementById("subject").value;
-        const message = document.getElementById("message").value;
-        const submitBtn = document.getElementById("sendMessageBtn");
-        const formStatus = document.getElementById("formStatus");
-
-        // Validate
-        if (!name || !email || !subject || !message) {
-          showFormStatus("Please fill in all fields", "error");
-          return;
-        }
-
-        if (!email.includes("@")) {
-          showFormStatus("Please enter a valid email address", "error");
-          return;
-        }
-
-        // Disable button and show loading
-        submitBtn.disabled = true;
-        submitBtn.innerHTML =
-          '<span class="loading-spinner"></span> Sending...';
-
-        if (!navigator.onLine) {
-          // Offline: Save to IndexedDB
-          const result = await saveMessageOffline(
-            name,
-            email,
-            subject,
-            message,
-          );
-
-          if (result.success) {
-            showFormStatus(
-              "📡 You are offline. Your message has been saved and will be sent when you reconnect.",
-              "info",
-            );
-            clearForm();
-            showNotification(
-              "Message saved locally! Will send when online.",
-              "success",
-            );
-          } else {
-            showFormStatus(
-              "Failed to save your message. Please try again.",
-              "error",
-            );
-          }
-        } else {
-          // Online: Try to send immediately
-          const messageData = {
-            name: name,
-            email: email,
-            subject: subject,
-            message: message,
-            timestamp: new Date().toISOString(),
-          };
-
-          const result = await sendMessageToServer(messageData);
-
-          if (result.success) {
-            showFormStatus(
-              "✓ Message sent successfully! We'll get back to you soon.",
-              "success",
-            );
-            clearForm();
-            showNotification("Message sent successfully!", "success");
-          } else {
-            // If sending fails, save offline
-            const saved = await saveMessageOffline(
-              name,
-              email,
-              subject,
-              message,
-            );
-            if (saved.success) {
-              showFormStatus(
-                "⚠️ Message saved locally due to a server issue. Will retry sending automatically.",
-                "info",
-              );
-              showNotification(
-                "Message saved locally. Will retry sending.",
-                "info",
-              );
-            } else {
-              showFormStatus(
-                "Failed to send message. Please try again later.",
-                "error",
-              );
-            }
-          }
-        }
-
-        // Re-enable button
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = '<i class="fa fa-paper-plane"></i> Send Message';
-      }
-
-      function showFormStatus(message, type) {
-        const formStatus = document.getElementById("formStatus");
-        formStatus.textContent = message;
-        formStatus.className = `form-status show ${type}`;
-
-        setTimeout(() => {
-          formStatus.classList.remove("show");
-        }, 5000);
-      }
-
-      function clearForm() {
-        document.getElementById("name").value = "";
-        document.getElementById("email").value = "";
-        document.getElementById("subject").value = "";
-        document.getElementById("message").value = "";
-      }
-
-      function showNotification(message, type = "success") {
-        const toast = document.getElementById("notificationToast");
-        toast.textContent = message;
-        toast.style.background =
-          type === "success"
-            ? "#4CAF50"
-            : type === "error"
-              ? "#f44336"
-              : "#2196F3";
-        toast.classList.add("show");
-
-        setTimeout(() => {
-          toast.classList.remove("show");
-        }, 4000);
-      }
-
-      // Download contact page for offline
-      async function downloadContactOffline() {
-        const btn = document.getElementById("downloadContactBtn");
-        const originalText = btn.innerHTML;
-        btn.innerHTML = "⏳ Downloading...";
-        btn.disabled = true;
-
-        if (navigator.serviceWorker && navigator.serviceWorker.controller) {
-          const assetsToCache = [
-            window.location.href,
-            "styles.css",
-            "https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300;400;700&family=Poppins:wght@300;400;600;700&display=swap",
-            "https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css",
-            "https://cdn.jsdelivr.net/npm/dexie@3.2.2/dist/dexie.js",
-          ];
-
-          navigator.serviceWorker.controller.postMessage({
-            type: "CACHE_NEW_ASSETS",
-            urls: assetsToCache,
-          });
-
-          setTimeout(() => {
-            btn.innerHTML = "✓ Contact Page Saved!";
-            showNotification(
-              "Contact page saved for offline access!",
-              "success",
-            );
-            setTimeout(() => {
-              btn.innerHTML = originalText;
-              btn.disabled = false;
-            }, 3000);
-          }, 2000);
-        } else {
-          btn.innerHTML = originalText;
-          btn.disabled = false;
-          showNotification("Please refresh and try again", "error");
-        }
-      }
-
-      function updateOfflineUI() {
-        const isOffline = !navigator.onLine;
-        const banner = document.getElementById("offlineBanner");
-
-        if (isOffline) {
-          banner.classList.add("show");
-          const map = document.getElementById("locationMap");
-          if (map) {
-            // Add offline map fallback
-            map.style.opacity = "0.5";
-          }
-        } else {
-          banner.classList.remove("show");
-          const map = document.getElementById("locationMap");
-          if (map) {
-            map.style.opacity = "1";
-          }
-          // Sync pending messages when back online
-          syncPendingMessages();
-        }
-      }
-
-      // Navigation menu
-      var navLinks = document.getElementById("navLinks");
-      function showmenu() {
-        if (navLinks) navLinks.style.right = "0";
-      }
-      function hidemenu() {
-        if (navLinks) navLinks.style.right = "-200px";
-      }
-
-      // Initialize
-      document.addEventListener("DOMContentLoaded", async () => {
-        await initContactDB();
-        updateOfflineUI();
-
-        // Form submission
-        const form = document.getElementById("contactForm");
-        if (form) {
-          form.addEventListener("submit", handleFormSubmit);
-        }
-
-        // Sync now button
-        const syncBtn = document.getElementById("syncNowBtn");
-        if (syncBtn) {
-          syncBtn.addEventListener("click", async () => {
-            if (navigator.onLine) {
-              syncBtn.innerHTML =
-                '<span class="loading-spinner"></span> Sending...';
-              await syncPendingMessages();
-              syncBtn.innerHTML = '<i class="fa fa-refresh"></i> Send Now';
-            } else {
-              showNotification(
-                "Cannot sync while offline. Please connect to the internet.",
-                "error",
-              );
-            }
-          });
-        }
-
-        // Download button
-        const downloadBtn = document.getElementById("downloadContactBtn");
-        if (downloadBtn) {
-          downloadBtn.addEventListener("click", downloadContactOffline);
-        }
-
-        // Banner buttons
-        const dismissBtn = document.getElementById("dismissBanner");
-        if (dismissBtn) {
-          dismissBtn.addEventListener("click", () => {
-            document.getElementById("offlineBanner").classList.remove("show");
-          });
-        }
-
-        const retryBtn = document.getElementById("retryConnection");
-        if (retryBtn) {
-          retryBtn.addEventListener("click", () => {
-            if (navigator.onLine) {
-              location.reload();
-            } else {
-              showNotification(
-                "Still offline. Please check your connection.",
-                "error",
-              );
-            }
-          });
-        }
-
-        // Register background sync if supported
-        if ("serviceWorker" in navigator && "SyncManager" in window) {
-          const registration = await navigator.serviceWorker.ready;
-          try {
-            await registration.sync.register("sync-contact-messages");
-            console.log("Background sync registered for contact messages");
-          } catch (error) {
-            console.log("Background sync registration failed:", error);
-          }
-        }
-      });
-
-      // Online/Offline listeners
-      window.addEventListener("online", async () => {
-        updateOfflineUI();
-        showNotification("Back online! Sending pending messages...", "success");
-        await syncPendingMessages();
-      });
-
-      window.addEventListener("offline", () => {
-        updateOfflineUI();
-        showNotification(
-          "Offline mode - messages will be saved locally",
-          "info",
-        );
-      });
-    </script>
+    <!-- Page logic (nav menu, offline queue, form handling) -->
+    <script src="js/contact/contact-support.js"></script>
 
     <!-- Chatbot Embed -->
     <script
@@ -909,17 +390,16 @@
       async
     ></script>
     <script>
-      // Handle Tidio chat offline
       window.addEventListener("offline", () => {
         const tidioFrame = document.querySelector("#tidio-chat-iframe");
         if (tidioFrame) tidioFrame.style.display = "none";
       });
-
       window.addEventListener("online", () => {
         const tidioFrame = document.querySelector("#tidio-chat-iframe");
         if (tidioFrame) tidioFrame.style.display = "block";
       });
     </script>
     <script src="cybersafe-integration.js"></script>
+    <script src="anim-bounce.js" defer></script>
   </body>
 </html>

@@ -1,0 +1,469 @@
+/* ══════════════════════════════════════════
+   Quizzes page — extracted from quizzes.html's old inline <style> block
+   and restyled to match the shared design system (styles.css / home.css).
+   ══════════════════════════════════════════ */
+
+/* ── Decorative side fill: floating bubbles + subject icons ──
+   Fixed to the viewport so it holds steady regardless of scroll or page
+   length. Positions use vh (% of viewport height) rather than raw px —
+   the earlier version used px values like top:1040px, which sat below
+   the visible area on a normal-height screen and were never seen. vh
+   values always land within whatever the current viewport actually is.
+   Hidden below 1550px, where the wider card column (see .quizzes below)
+   leaves no real gutter to float in.
+
+   NOTE: motion is now driven entirely by anim-bounce.js, not CSS keyframes.
+   CSS keyframes have no way to know where the quiz cards actually are on
+   screen, so they could only fake a "bounce" with pre-baked paths — real
+   contact with the cards needs JS reading getBoundingClientRect() each
+   frame. These rules now only set static appearance (size/color/anchor
+   position); anim-bounce.js applies `transform: translate(...)` on top of
+   that anchor every frame. If JS fails to load for any reason, elements
+   simply sit still at their anchor position — a safe, non-broken fallback. */
+
+/* prefers-reduced-motion is now handled inside anim-bounce.js itself —
+   it checks matchMedia and simply never starts the animation loop, so
+   elements stay at their static CSS anchor position. */
+
+.quizzes-page-header {
+  width: 100%;
+  background: linear-gradient(135deg, #00c2ff 0%, #0072ff 50%, #9b59b6 100%);
+  padding: 32px clamp(20px, 4vw, 48px) 28px;
+  color: #ffffff;
+  background-image:
+    linear-gradient(
+      135deg,
+      rgba(0, 194, 255, 0.84) 0%,
+      rgba(0, 114, 255, 0.88) 50%,
+      rgba(155, 89, 182, 0.90) 100%
+    ),
+    url("../assets/hero-image.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.quizzes-page-header .badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.18);
+  padding: 4px 12px;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.quizzes-page-header__inner {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.quizzes-page-header h1 {
+  font-family: var(--font-heading);
+  font-size: clamp(1.75rem, 3.5vw, 2.35rem);
+  font-weight: 700;
+  margin: 0 0 8px;
+  letter-spacing: -0.03em;
+}
+
+.quizzes-page-header p {
+  margin: 0;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.92);
+  max-width: 42em;
+  line-height: 1.5;
+}
+
+/* ── Quiz card grid ── */
+.quizzes {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  max-width: 1300px; /* widened from 1140px per feedback */
+  margin: 0 auto;
+  padding: 32px clamp(16px, 4vw, 40px) 64px;
+}
+
+.quiz-card {
+  background: #ffffff;
+  border-radius: var(--radius-lg);
+  padding: 24px 26px;
+  box-shadow: var(--card-shadow);
+  border-top: 4px solid transparent;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.quiz-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0, 114, 255, 0.14);
+}
+
+/* ── Scroll-reveal entrance ──
+   quiz-animations.js adds .in-view via IntersectionObserver as each card
+   enters the viewport. Falls back to fully visible if JS hasn't run yet
+   (see the no-js/js-not-loaded guard at the bottom of this block) so the
+   page never shows blank cards if the script fails to load. */
+.quiz-card.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.5s ease,
+    transform 0.5s ease;
+}
+
+.quiz-card.reveal.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.quiz-card.reveal:nth-child(1) {
+  transition-delay: 0s;
+}
+.quiz-card.reveal:nth-child(2) {
+  transition-delay: 0.08s;
+}
+.quiz-card.reveal:nth-child(3) {
+  transition-delay: 0.16s;
+}
+.quiz-card.reveal:nth-child(4) {
+  transition-delay: 0.24s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .quiz-card.reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+.quiz-card--math {
+  border-top-color: var(--rainbow-1);
+}
+.quiz-card--science {
+  border-top-color: var(--rainbow-4);
+}
+.quiz-card--tech {
+  border-top-color: var(--rainbow-5);
+}
+.quiz-card--art {
+  border-top-color: var(--rainbow-6);
+}
+
+.quiz-card h3 {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 8px;
+}
+
+.quiz-card p {
+  font-family: var(--font-body);
+  color: var(--text-muted);
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+
+.quiz-tabs {
+  margin-bottom: 15px;
+}
+
+.grade-btn {
+  border: none;
+  padding: 10px 18px;
+  margin: 5px 5px 5px 0;
+  border-radius: 8px;
+  font-weight: 600;
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition:
+    filter 0.15s ease,
+    transform 0.15s ease;
+  color: var(--text-dark);
+}
+
+.grade-btn:hover {
+  filter: brightness(0.96);
+  transform: translateY(-1px);
+}
+
+.grade-btn:focus-visible {
+  outline: 2px solid var(--rainbow-5);
+  outline-offset: 2px;
+}
+
+.grade10 {
+  background: #ffd9da;
+} /* tint of --rainbow-1 */
+.grade11 {
+  background: #cfeeff;
+} /* tint of --rainbow-5 */
+.grade12 {
+  background: #d3f7e0;
+} /* tint of --rainbow-4 */
+
+/* ── Quiz + memo layout ── */
+.quiz-container {
+  display: flex;
+  gap: 20px;
+  margin-top: 15px;
+  flex-wrap: wrap;
+}
+
+.quiz-area {
+  flex: 2;
+  min-width: 250px;
+}
+
+.memo-area {
+  flex: 1;
+  background: var(--bg-light);
+  border-left: 3px solid #e2e8f0;
+  padding: 15px;
+  border-radius: var(--radius-md);
+  min-width: 200px;
+}
+
+/* ── Empty states ──
+   Before a grade is picked, #quiz-* and #memo-* are empty divs. memo-area
+   still had its background/padding showing with nothing in it — that's
+   the gray bar reported as looking like ad space. Hiding it when :empty,
+   and turning the empty quiz-area into an actual call-to-action, fixes
+   the visual bug and gives the page a little life instead. Both rules
+   stop applying automatically once loadQuiz() fills the div — no JS
+   changes needed here. */
+.memo-area:empty {
+  display: none;
+}
+
+.quiz-area:empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 110px;
+  border: 2px dashed #dbe4ff;
+  border-radius: var(--radius-md);
+  background: #f8fafd;
+}
+
+.quiz-area:empty::before {
+  content: "👆 Pick a grade above to start this quiz";
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  animation: quiz-empty-hint 2s ease-in-out infinite;
+}
+
+@keyframes quiz-empty-hint {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.85;
+  }
+  50% {
+    transform: translateY(-3px);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .quiz-area:empty::before {
+    animation: none;
+  }
+}
+
+.memo-area h4 {
+  margin-bottom: 10px;
+  font-family: var(--font-heading);
+  color: var(--text-dark);
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .quizzes-page-header {
+    padding: 24px 16px 20px;
+  }
+
+  .quizzes {
+    padding: 24px 16px 48px;
+    gap: 18px;
+  }
+
+  .quiz-card {
+    padding: 20px 18px;
+  }
+}
+
+.quiz-question {
+  margin-bottom: 18px;
+  padding-bottom: 16px;
+  border-bottom: 1px dashed #e3e9ed;
+  animation: quiz-question-in 0.35s ease both;
+}
+
+.quiz-question:last-of-type {
+  border-bottom: none;
+}
+
+/* quiz-script.js appends questions in order via forEach, so nth-of-type
+   staggering lines up with question number. Capped at 10 — beyond that
+   they all just share the last delay, which is fine, it's barely visible
+   by then anyway. */
+.quiz-question:nth-of-type(1) {
+  animation-delay: 0s;
+}
+.quiz-question:nth-of-type(2) {
+  animation-delay: 0.05s;
+}
+.quiz-question:nth-of-type(3) {
+  animation-delay: 0.1s;
+}
+.quiz-question:nth-of-type(4) {
+  animation-delay: 0.15s;
+}
+.quiz-question:nth-of-type(5) {
+  animation-delay: 0.2s;
+}
+.quiz-question:nth-of-type(n + 6) {
+  animation-delay: 0.25s;
+}
+
+@keyframes quiz-question-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .quiz-question {
+    animation: none;
+  }
+}
+
+.quiz-question p {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 10px;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.option-btn {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 10px 14px;
+  margin-bottom: 8px;
+  background: #f8fafd;
+  border: 1px solid #e3e9ed;
+  border-radius: var(--radius-md);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--text-dark);
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease,
+    transform 0.1s ease;
+}
+
+.option-btn:hover:not(:disabled) {
+  background: #eef2ff;
+  border-color: var(--rainbow-5);
+}
+
+.option-btn:focus-visible {
+  outline: 2px solid var(--rainbow-5);
+  outline-offset: 2px;
+}
+
+/* quiz-script.js disables every option button in a question once one is
+   clicked, and sets a green/red inline background on the clicked one
+   directly via JS — this just stops the hover affordance on the now-inert
+   buttons without fighting that inline color. */
+.option-btn:disabled {
+  cursor: not-allowed;
+}
+
+.submit-btn,
+.retry-btn {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  padding: 10px 22px;
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  font-size: 0.9rem;
+  margin-top: 8px;
+  transition:
+    filter 0.15s ease,
+    transform 0.15s ease;
+}
+
+.submit-btn {
+  background: var(--rainbow-4);
+  color: #ffffff;
+}
+
+.submit-btn:hover {
+  filter: brightness(0.92);
+  transform: translateY(-1px);
+}
+
+.retry-btn {
+  background: #e5e7eb;
+  color: var(--text-dark);
+}
+
+.retry-btn:hover {
+  filter: brightness(0.95);
+}
+
+/* Score + memo, rendered into .memo-area by showScore() in quiz-script.js */
+.quiz-result h3 {
+  font-family: var(--font-heading);
+  color: var(--text-dark);
+  font-size: 1.05rem;
+  margin-bottom: 6px;
+}
+
+.quiz-result h4 {
+  font-family: var(--font-heading);
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 10px;
+}
+
+.quiz-result p {
+  font-size: 0.85rem;
+  padding: 8px 10px;
+  border-radius: var(--radius-md);
+  margin-bottom: 6px;
+  line-height: 1.4;
+}
+
+.memo-correct {
+  background: #ecfdf5;
+  color: #15803d;
+  border: 1px solid #bbf7d0;
+}
+
+.memo-wrong {
+  background: #fef2f2;
+  color: #b91c1c;
+  border: 1px solid #fecaca;
+}

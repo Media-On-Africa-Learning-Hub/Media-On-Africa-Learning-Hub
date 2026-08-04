@@ -1,0 +1,605 @@
+/* ══════════════════════════════════════════
+   Reasoning Skills Assessment page
+   Same blue→purple gradient family as
+   .subjects-page-header (#00c2ff → #0072ff → #9b59b6),
+   so this page reads as the same app as Subjects/Quizzes.
+   ══════════════════════════════════════════ */
+
+/* ── App shell ── */
+body.reasoning-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background:
+    radial-gradient(ellipse 70% 40% at 10% 0%, rgba(59, 130, 246, 0.08), transparent),
+    radial-gradient(ellipse 50% 30% at 90% 20%, rgba(155, 89, 182, 0.06), transparent),
+    var(--bg-light);
+  overflow-x: hidden;
+}
+
+/* ── Compact page header (same family as .subjects-page-header) ── */
+.reasoning-page-header {
+  width: 100%;
+  /* Solid fallback if the overlay image fails to load */
+  background: linear-gradient(135deg, #00c2ff 0%, #0072ff 50%, #9b59b6 100%);
+  position: relative;
+  padding: 32px clamp(20px, 4vw, 48px) 28px;
+  color: #fff;
+  overflow: hidden;
+}
+
+/* Same tinted illustration used behind the home hero */
+.reasoning-page-header__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(
+      135deg,
+      rgba(0, 194, 255, 0.84) 0%,
+      rgba(0, 114, 255, 0.88) 50%,
+      rgba(155, 89, 182, 0.9) 100%
+    ),
+    url("../assets/hero-image.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.reasoning-page-header::after {
+  content: "";
+  position: absolute;
+  right: -40px;
+  top: -30px;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  pointer-events: none;
+}
+
+.reasoning-page-header__inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* Gentle float — same animation as the home hero text */
+@keyframes floatAnim {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+  100% { transform: translateY(0px); }
+}
+
+.hero-bg-anim {
+  animation: floatAnim 6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-bg-anim {
+    animation: none;
+  }
+}
+
+.reasoning-page-header .badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.18);
+  padding: 4px 12px;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.reasoning-page-header h1 {
+  font-family: "Poppins", sans-serif;
+  font-size: clamp(1.75rem, 3.5vw, 2.35rem);
+  font-weight: 700;
+  margin: 0 0 8px;
+  color: #fff;
+  letter-spacing: -0.03em;
+}
+
+.reasoning-page-header p {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 400;
+  color: rgba(226, 232, 240, 0.92);
+  max-width: 42em;
+  line-height: 1.5;
+}
+
+/* ── Main content area ── */
+#reasoningApp {
+  flex: 1 0 auto;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 28px clamp(20px, 4vw, 48px) 80px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.reasoning-intro {
+  max-width: 1350px !important;
+  margin: 0 auto 3rem auto;
+}
+
+.reasoning-intro .cta-card {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.reasoning-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: 2.25rem;
+  column-gap: 2rem;
+  max-width: 1350px !important;
+  margin: 3rem auto 3rem auto;
+}
+
+@media (min-width: 900px) {
+  .reasoning-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.reasoning-grid .card {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* ── About card ── */
+.about-direct {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.about-card.enhanced-about {
+  background: #ffffff;
+  border-radius: var(--radius-lg, 16px);
+  padding: 2.25rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  border-top: 5px solid var(--rainbow-5, #0072ff);
+}
+
+.about-hero-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
+  flex-wrap: wrap;
+  padding-bottom: 1.75rem;
+  border-bottom: 1px solid #f1f5f9;
+  margin-bottom: 2rem;
+}
+
+.about-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(0, 114, 255, 0.08);
+  color: var(--rainbow-5, #0072ff);
+  font-weight: 700;
+  font-size: 0.8rem;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.about-title-group h2 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--text-dark, #1e293b);
+  margin: 0 0 0.5rem 0;
+}
+
+.about-lead {
+  font-size: 1.05rem;
+  color: var(--text-muted, #64748b);
+  line-height: 1.6;
+  max-width: 48rem;
+  margin: 0;
+}
+
+.about-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  min-width: 220px;
+}
+
+.btn-subjects-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: var(--rainbow-5, #0072ff);
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 0.95rem;
+  padding: 0.5rem 1rem;
+  transition: transform 0.2s ease;
+}
+
+.btn-subjects-link:hover {
+  transform: translateX(4px);
+}
+
+/* --- 3. Feature Tiles Grid --- */
+.about-feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 1.75rem;
+}
+
+.feature-tile {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.feature-tile:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.04);
+}
+
+.tile-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: rgba(0, 114, 255, 0.1);
+  color: var(--rainbow-5, #0072ff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  margin-bottom: 0.85rem;
+}
+
+.feature-tile h4 {
+  margin: 0 0 0.4rem 0;
+  font-size: 1.05rem;
+  color: var(--text-dark, #1e293b);
+}
+
+.feature-tile p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--text-muted, #64748b);
+  line-height: 1.5;
+}
+
+.tips-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.tips-list li {
+  font-size: 0.9rem;
+  color: var(--text-muted, #64748b);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tips-list li i {
+  color: #10b981; /* Green check icon */
+  font-size: 0.85rem;
+}
+
+/* --- 4. Footer Note Bar --- */
+.about-footer-note {
+  background: #f1f5f9;
+  padding: 0.75rem 1.25rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.about-card h2,
+.about-card h4 {
+  color: var(--text-dark);
+}
+
+.section-icon {
+  color: var(--rainbow-5);
+  margin-right: 6px;
+}
+
+/* ── Quiz cards ── */
+.card {
+  background: #ffffff;
+  border-radius: var(--radius-lg);
+  padding: 1.8rem;
+  box-shadow: var(--card-shadow);
+  border-top: 4px solid var(--rainbow-5);
+}
+
+.card h3 {
+  margin-top: 0;
+  font-size: 1.15rem;
+  color: var(--text-dark);
+}
+
+.section-desc {
+  color: var(--text-muted);
+  line-height: 1.55;
+}
+
+.toggle-btn {
+  display: inline-block;
+  margin-top: 0.6rem;
+  background: var(--rainbow-5);
+  color: #fff;
+  border: none;
+  padding: 0.6rem 1.1rem;
+  border-radius: 50px;
+  cursor: pointer;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.88rem;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.toggle-btn:hover {
+  background: #0072ff;
+  transform: translateY(-2px);
+}
+
+.questions {
+  margin-top: 0.9rem;
+  display: none;
+}
+
+.question {
+  margin-bottom: 0.85rem;
+  padding: 12px 14px;
+  background: var(--bg-light);
+  border-radius: var(--radius-md);
+}
+
+.quiz-result {
+  margin-top: 0.6rem;
+  font-weight: 700;
+  color: var(--rainbow-5);
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-top: 0.9rem;
+}
+
+.explain {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+.footer-note {
+  text-align: center;
+  margin-top: 1rem;
+  color: #9ca3af;
+  font-size: 0.85rem;
+}
+
+label {
+  cursor: pointer;
+}
+
+.rename-note {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 0.4rem;
+}
+
+/* ── Cross-link CTA card ── */
+.cta-card {
+  background: linear-gradient(135deg, var(--rainbow-5) 0%, var(--rainbow-6) 55%, var(--rainbow-1) 140%);
+  color: #fff;
+  border-radius: var(--radius-lg);
+  padding: 1.9rem 2.1rem;
+  box-shadow: var(--card-shadow);
+}
+
+.cta-card h3 {
+  color: #fff;
+  margin-top: 0;
+}
+
+.cta-card p {
+  color: #eaf4fb;
+  line-height: 1.55;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-top: 0.9rem;
+}
+
+.cta-btn {
+  background: #fff;
+  color: var(--rainbow-5);
+  padding: 0.6rem 1.1rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.9rem;
+  transition: transform 0.2s ease;
+}
+
+.cta-btn:hover {
+  transform: translateY(-2px);
+}
+
+.cta-btn.secondary {
+  background: transparent;
+  color: #fff;
+  border: 1.5px solid rgba(255, 255, 255, 0.7);
+}
+
+/* ── Offline progress indicator ── */
+.offline-progress {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: var(--rainbow-4);
+  color: white;
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  z-index: 999;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+  display: none;
+  align-items: center;
+  gap: 8px;
+}
+
+.offline-progress.show {
+  display: flex;
+}
+
+.download-lesson-btn {
+  background: var(--rainbow-5);
+  color: white;
+  border: none;
+  padding: 0.65rem 1.2rem;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: var(--font-heading);
+  margin-top: 15px;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.download-lesson-btn:hover {
+  background: #0072ff;
+  transform: translateY(-2px);
+}
+
+.progress-saved-badge {
+  display: inline-block;
+  background: var(--rainbow-4);
+  color: white;
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 700;
+  margin-left: 10px;
+}
+
+/* ── Reasoning footer — same layout family as .subjects-footer,
+   scoped under body.reasoning-page so it doesn't depend on
+   subjects.css being loaded ── */
+body.reasoning-page .reasoning-footer {
+  flex-shrink: 0;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  margin-top: auto;
+  padding: 0;
+  text-align: left;
+  background: #111827;
+  color: #cbd5e1;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+body.reasoning-page .reasoning-footer__inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 40px clamp(20px, 4vw, 48px) 28px;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr auto;
+  gap: 28px 40px;
+  align-items: start;
+}
+
+body.reasoning-page .reasoning-footer__logo {
+  display: block;
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: #fff;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+}
+
+body.reasoning-page .reasoning-footer__brand p {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: #94a3b8;
+  max-width: 28em;
+}
+
+body.reasoning-page .reasoning-footer__social {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+body.reasoning-page .reasoning-footer__social a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #e2e8f0;
+  text-decoration: none;
+  transition: background 0.15s ease, color 0.15s ease, transform 0.15s ease;
+}
+
+body.reasoning-page .reasoning-footer__social a:hover {
+  background: #3b82f6;
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+body.reasoning-page .reasoning-footer__credit {
+  margin: 0;
+  padding: 16px clamp(20px, 4vw, 48px) 22px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  text-align: center;
+  font-size: 0.8rem;
+  color: #64748b;
+}
+
+body.reasoning-page .reasoning-footer__credit .fa-heart-o {
+  color: #ef4444;
+  margin: 0 3px;
+}
+
+@media (max-width: 768px) {
+  body.reasoning-page .reasoning-footer__inner {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 32px 16px 24px;
+  }
+
+  body.reasoning-page .reasoning-footer__credit {
+    padding: 14px 16px 20px;
+  }
+}

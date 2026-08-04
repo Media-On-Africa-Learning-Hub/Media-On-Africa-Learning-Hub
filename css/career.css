@@ -1,0 +1,643 @@
+/* ══════════════════════════════════════════
+   Career Discovery Assessment Page
+   Matches the hub design system & shared header 
+   gradient (#00c2ff → #0072ff → #9b59b6).
+   ══════════════════════════════════════════ */
+
+/* ── App Shell ── */
+body.career-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background:
+    radial-gradient(ellipse 70% 40% at 10% 0%, rgba(59, 130, 246, 0.08), transparent),
+    radial-gradient(ellipse 50% 30% at 90% 20%, rgba(155, 89, 182, 0.06), transparent),
+    var(--bg-light);
+  overflow-x: hidden;
+}
+
+/* ── Page Header ── */
+.career-page-header {
+  width: 100%;
+  background: linear-gradient(135deg, #00c2ff 0%, #0072ff 50%, #9b59b6 100%);
+  position: relative;
+  padding: 36px clamp(20px, 4vw, 48px) 32px;
+  color: #fff;
+  overflow: hidden;
+  text-align: left;
+}
+
+.career-page-header::after {
+  content: "";
+  position: absolute;
+  right: -40px;
+  top: -30px;
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  pointer-events: none;
+}
+
+.career-page-header__inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.career-page-header h1 {
+  margin: 0;
+  font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+  font-weight: 700;
+  font-family: var(--font-heading);
+  color: #fff;
+  letter-spacing: -0.03em;
+}
+
+.career-page-header .subtitle {
+  margin-top: 8px;
+  font-size: 1rem;
+  font-weight: 400;
+  color: rgba(241, 245, 249, 0.95);
+  max-width: 44em;
+  line-height: 1.5;
+}
+
+/* ── Main Content Container (Wider overall grid) ── */
+#careerApp {
+  flex: 1 0 auto;
+  max-width: 1250px;
+  margin: 0 auto;
+  padding: 36px clamp(20px, 4vw, 48px) 80px;
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 2;
+}
+
+.career-intro {
+  max-width: 1200px;
+  margin: 0 auto 1.5rem auto;
+}
+
+.career-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto 1.5rem auto;
+}
+
+/* ── Card Styles ── */
+.card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 1.8rem 2rem;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  border-top: 5px solid #0072ff; /* Default fallback */
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 36px rgba(15, 23, 42, 0.09);
+}
+
+/* ── Distinct Top Accent Colors for Each Card ── */
+.card.intro-card {
+  border-top-color: #0072ff;
+}
+
+.card.card--interests {
+  border-top-color: #00c2ff; /* Bright Teal/Cyan */
+}
+
+.card.card--strengths {
+  border-top-color: #10b981; /* Emerald Green */
+}
+
+.card.card--learning {
+  border-top-color: #f59e0b; /* Amber/Orange */
+}
+
+.card.card--workprefs {
+  border-top-color: #8b5cf6; /* Vibrant Purple */
+}
+
+.card.card--values {
+  border-top-color: #ec4899; /* Pink/Rose */
+}
+
+.card h3 {
+  margin-top: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.section-desc {
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.explain {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+.footer-note {
+  text-align: center;
+  margin-top: 1rem;
+  color: #9ca3af;
+  font-size: 0.85rem;
+}
+
+label {
+  cursor: pointer;
+}
+
+/* ── Toggle Questions Buttons ── */
+.toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.75rem;
+  background: linear-gradient(135deg, #00c2ff 0%, #0072ff 100%);
+  color: #fff;
+  border: none;
+  padding: 0.7rem 1.4rem;
+  border-radius: 50px;
+  cursor: pointer;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.92rem;
+  box-shadow: 0 4px 14px rgba(0, 114, 255, 0.25);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.toggle-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 114, 255, 0.35);
+}
+
+.toggle-btn:disabled {
+  background: #cbd5e1;
+  box-shadow: none;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ── Cleaned Up Generate Report Action Section ── */
+.generate-action-wrap {
+  max-width: 1200px;
+  margin: 2rem auto 2.5rem auto;
+  text-align: center;
+}
+
+.generate-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #00c2ff 0%, #0072ff 60%, #9b59b6 100%);
+  color: #ffffff;
+  border: none;
+  padding: 0.95rem 2.2rem;
+  border-radius: 50px;
+  cursor: pointer;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.05rem;
+  box-shadow: 0 6px 20px rgba(0, 114, 255, 0.3);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.generate-btn:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 10px 28px rgba(0, 114, 255, 0.42);
+}
+
+.generate-btn:active {
+  transform: translateY(-1px);
+}
+
+.questions {
+  margin-top: 1.2rem;
+  display: none;
+}
+
+.controls {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-top: 0.9rem;
+  align-items: center;
+}
+
+.progress-saved-badge {
+  display: inline-block;
+  background: #10b981;
+  color: white;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 700;
+  margin-left: 10px;
+  vertical-align: middle;
+}
+
+/* ── Cross-link CTA card ── */
+.cta-card {
+  background: linear-gradient(135deg, #00c2ff 0%, #0072ff 60%, #9b59b6 100%);
+  color: #fff;
+  border-radius: 20px;
+  padding: 2rem 2.2rem;
+  box-shadow: 0 12px 32px rgba(0, 114, 255, 0.2);
+}
+
+.cta-card h3 {
+  color: #fff;
+  margin-top: 0;
+  font-size: 1.3rem;
+}
+
+.cta-card p {
+  color: #f1f5f9;
+  line-height: 1.6;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.cta-btn {
+  background: #ffffff;
+  color: #0072ff;
+  padding: 0.7rem 1.3rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.92rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+}
+
+.cta-btn.secondary {
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  border: 1.5px solid rgba(255, 255, 255, 0.6);
+  box-shadow: none;
+}
+
+.cta-btn.secondary:hover {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: #ffffff;
+}
+
+/* ── Likert Scale ── */
+.likert-legend {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  display: flex;
+  justify-content: space-between;
+  max-width: 360px;
+  margin-bottom: 0.75rem;
+  font-weight: 500;
+}
+
+.likert-item {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: var(--radius-md);
+}
+
+.likert-text {
+  margin: 0 0 0.6rem;
+  color: var(--text-dark);
+  font-size: 0.98rem;
+  font-weight: 500;
+}
+
+.likert-scale {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.likert-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  gap: 4px;
+}
+
+/* ── Chips (Strengths & Values) ── */
+.chip-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 0.75rem;
+}
+
+.chip {
+  position: relative;
+}
+
+.chip input {
+  position: absolute;
+  opacity: 0;
+}
+
+.chip label {
+  display: block;
+  padding: 0.65rem 0.9rem;
+  border: 1.5px solid #e2e8f0;
+  background: #f8fafc;
+  border-radius: 24px;
+  text-align: center;
+  font-size: 0.88rem;
+  color: var(--text-dark);
+  transition: all 0.2s ease;
+  font-weight: 500;
+}
+
+.chip input:checked + label {
+  background: #0072ff;
+  color: #ffffff;
+  border-color: #0072ff;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(0, 114, 255, 0.25);
+}
+
+.chip-counter {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  margin-top: 0.75rem;
+  font-weight: 500;
+}
+
+/* ── Work Preference Pairs ── */
+.pref-item {
+  margin-bottom: 1rem;
+}
+
+.pref-label {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-bottom: 0.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-weight: 600;
+}
+
+.pref-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.6rem;
+}
+
+.pref-box {
+  position: relative;
+}
+
+.pref-box input {
+  position: absolute;
+  opacity: 0;
+}
+
+.pref-box label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 64px;
+  padding: 0.75rem;
+  border: 1.5px solid #e2e8f0;
+  background: #f8fafc;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  color: var(--text-dark);
+  transition: all 0.2s ease;
+  font-weight: 500;
+}
+
+.pref-box input:checked + label {
+  background: #f0f7ff;
+  border-color: #0072ff;
+  color: #0072ff;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(0, 114, 255, 0.12);
+}
+
+/* ── Report Section ── */
+#reportSection {
+  display: none;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.report-hero {
+  background: linear-gradient(135deg, #00c2ff, #0072ff);
+  color: #fff;
+  border-radius: 20px;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: 0 10px 28px rgba(0, 114, 255, 0.2);
+}
+
+.report-hero h2 {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: 1.75rem;
+}
+
+.report-hero p {
+  color: #f1f5f9;
+  margin-top: 0.5rem;
+}
+
+.report-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+  margin-top: 1.25rem;
+}
+
+@media (min-width: 900px) {
+  .report-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.report-card h4 {
+  margin-top: 0;
+  color: #0072ff;
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+}
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.6rem;
+}
+
+.tag {
+  background: #f0f7ff;
+  color: #0072ff;
+  padding: 0.4rem 0.85rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  border: 1px solid rgba(0, 114, 255, 0.15);
+}
+
+.tag.career {
+  background: #0072ff;
+  color: #ffffff;
+  border: none;
+}
+
+.radar-wrap {
+  display: flex;
+  justify-content: center;
+}
+
+.missing-note {
+  background: #fff7ed;
+  border: 1px solid #ffedd5;
+  color: #c2410c;
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  margin-top: 0.75rem;
+}
+
+/* ── Offline Progress Indicator ── */
+.offline-progress {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: #0072ff;
+  color: white;
+  padding: 10px 18px;
+  border-radius: 30px;
+  font-size: 13px;
+  font-weight: 600;
+  z-index: 999;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  display: none;
+  align-items: center;
+  gap: 8px;
+}
+
+.offline-progress.show {
+  display: flex;
+}
+
+/* ── Career Footer ── */
+body.career-page .career-footer {
+  flex-shrink: 0;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  margin-top: auto;
+  padding: 0;
+  text-align: left;
+  background: #0f172a;
+  color: #cbd5e1;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  position: relative;
+  z-index: 5;
+}
+
+body.career-page .career-footer__inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 44px clamp(20px, 4vw, 48px) 32px;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr auto;
+  gap: 28px 40px;
+  align-items: start;
+}
+
+body.career-page .career-footer__logo {
+  display: block;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #fff;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+}
+
+body.career-page .career-footer__brand p {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #94a3b8;
+  max-width: 28em;
+}
+
+body.career-page .career-footer__social {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+body.career-page .career-footer__social a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #e2e8f0;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+body.career-page .career-footer__social a:hover {
+  background: #0072ff;
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+body.career-page .career-footer__credit {
+  margin: 0;
+  padding: 18px clamp(20px, 4vw, 48px) 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  text-align: center;
+  font-size: 0.82rem;
+  color: #64748b;
+}
+
+body.career-page .career-footer__credit .fa-heart-o {
+  color: #ef4444;
+  margin: 0 3px;
+}
+
+@media (max-width: 768px) {
+  body.career-page .career-footer__inner {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 32px 20px 24px;
+  }
+
+  body.career-page .career-footer__credit {
+    padding: 16px 20px 20px;
+  }
+}

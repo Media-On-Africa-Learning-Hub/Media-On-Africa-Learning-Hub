@@ -1,17 +1,19 @@
 // Toggle expand/collapse for questions
-document.querySelectorAll('.toggle-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    // Find the parent <td> and then the .questions div inside it
-    const container = btn.closest('td');
-    const questions = container.querySelector('.questions');
+// DELEGATED: listens on document once, works for rubric cards that exist
+// now AND ones rendered later (e.g. via subjects-render.js renderContent()).
+document.addEventListener('click', (e) => {
+  const btn = e.target.closest('.toggle-btn');
+  if (!btn) return;
 
-    if (questions) {
-      questions.classList.toggle('hidden');
-      btn.textContent = questions.classList.contains('hidden') 
-        ? 'Show Questions' 
-        : 'Hide Questions';
-    }
-  });
+  const container = btn.closest('td');
+  const questions = container ? container.querySelector('.questions') : null;
+
+  if (questions) {
+    questions.classList.toggle('hidden');
+    btn.textContent = questions.classList.contains('hidden')
+      ? 'Show Questions'
+      : 'Hide Questions';
+  }
 });
 
 // Centralized answer keys for Grade 10, Grade 11, and Grade 12
@@ -54,68 +56,66 @@ const answerKeys = {
 };
 
 // Quiz scoring logic with feedback + highlights + reattempt
-document.querySelectorAll('.submit-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const form = btn.closest('form');
-    const quizId = form.id;
-    const answers = answerKeys[quizId];
-    let score = 0;
+// DELEGATED: same reasoning as the toggle listener above.
+document.addEventListener('click', (e) => {
+  const btn = e.target.closest('.submit-btn');
+  if (!btn) return;
 
-    // Clear any previous feedback and highlights
-    form.querySelectorAll('.feedback').forEach(fb => fb.remove());
-    form.querySelectorAll('label').forEach(label => {
-      label.classList.remove('correct-answer', 'incorrect-answer');
-    });
+  const form = btn.closest('form');
+  const quizId = form.id;
+  const answers = answerKeys[quizId];
+  if (!answers) return; // no answer key for this quiz id — nothing to score
 
-    Object.keys(answers).forEach(q => {
-      const selected = form.querySelector(`input[name="${q}"]:checked`);
-      const correctAnswer = answers[q];
+  let score = 0;
 
-      if (selected) {
-        const feedback = document.createElement('span');
-        feedback.classList.add('feedback');
+  // Clear any previous feedback and highlights
+  form.querySelectorAll('.feedback').forEach(fb => fb.remove());
+  form.querySelectorAll('label').forEach(label => {
+    label.classList.remove('correct-answer', 'incorrect-answer');
+  });
 
-        if (selected.value === correctAnswer) {
-          score++;
-          feedback.textContent = " ✓ Correct";
-          feedback.style.color = "green";
-          selected.parentElement.classList.add('correct-answer');
-        } else {
-          feedback.textContent = " ✗ Incorrect (Correct: " + correctAnswer.toUpperCase() + ")";
-          feedback.style.color = "red";
-          selected.parentElement.classList.add('incorrect-answer');
-        }
+  Object.keys(answers).forEach(q => {
+    const selected = form.querySelector(`input[name="${q}"]:checked`);
+    const correctAnswer = answers[q];
 
-        selected.parentElement.appendChild(feedback);
+    if (selected) {
+      const feedback = document.createElement('span');
+      feedback.classList.add('feedback');
+
+      if (selected.value === correctAnswer) {
+        score++;
+        feedback.textContent = " ✓ Correct";
+        feedback.style.color = "green";
+        selected.parentElement.classList.add('correct-answer');
+      } else {
+        feedback.textContent = " ✗ Incorrect (Correct: " + correctAnswer.toUpperCase() + ")";
+        feedback.style.color = "red";
+        selected.parentElement.classList.add('incorrect-answer');
       }
-    });
 
-    alert(`You scored ${score} out of ${Object.keys(answers).length}`);
-
-    // Show Reattempt button if not already present
-    if (!form.querySelector('.clear-btn')) {
-      const clearBtn = document.createElement('button');
-      clearBtn.type = 'button';
-      clearBtn.textContent = 'Reattempt';
-      clearBtn.classList.add('clear-btn');
-      btn.insertAdjacentElement('afterend', clearBtn);
-
-      clearBtn.addEventListener('click', () => {
-        // Reset quiz selections
-        form.querySelectorAll('input[type="radio"]').forEach(input => {
-          input.checked = false;
-        });
-
-        // Remove feedback and highlights
-        form.querySelectorAll('.feedback').forEach(fb => fb.remove());
-        form.querySelectorAll('label').forEach(label => {
-          label.classList.remove('correct-answer', 'incorrect-answer');
-        });
-
-        // Remove the Reattempt button itself
-        clearBtn.remove();
-      });
+      selected.parentElement.appendChild(feedback);
     }
   });
-});
 
+  alert(`You scored ${score} out of ${Object.keys(answers).length}`);
+
+  // Show Reattempt button if not already present
+  if (!form.querySelector('.clear-btn')) {
+    const clearBtn = document.createElement('button');
+    clearBtn.type = 'button';
+    clearBtn.textContent = 'Reattempt';
+    clearBtn.classList.add('clear-btn');
+    btn.insertAdjacentElement('afterend', clearBtn);
+
+    clearBtn.addEventListener('click', () => {
+      form.querySelectorAll('input[type="radio"]').forEach(input => {
+        input.checked = false;
+      });
+      form.querySelectorAll('.feedback').forEach(fb => fb.remove());
+      form.querySelectorAll('label').forEach(label => {
+        label.classList.remove('correct-answer', 'incorrect-answer');
+      });
+      clearBtn.remove();
+    });
+  }
+});

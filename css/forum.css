@@ -1,0 +1,729 @@
+:root {
+  --forum-grad: linear-gradient(135deg, #00c2ff 0%, #0072ff 55%, #9b59b6 100%);
+}
+
+/* ---------- Hero ---------- */
+.forum-hero {
+  background: var(--forum-grad);
+  color: #ffffff;
+  padding: 3.5rem 1.5rem 4rem;
+  background-image:
+    linear-gradient(
+      135deg,
+      rgba(0, 194, 255, 0.84) 0%,
+      rgba(0, 114, 255, 0.88) 50%,
+      rgba(155, 89, 182, 0.9) 100%
+    ),
+    url("../assets/hero-image.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.forum-hero__inner {
+  max-width: 1350px;
+  margin: 0 auto;
+}
+
+.forum-hero .badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.18);
+  padding: 6px 14px;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+  backdrop-filter: blur(4px);
+}
+
+.forum-hero__inner h1 {
+  font-family: var(--font-heading);
+  font-size: 2.5rem;
+  margin-bottom: 0.6rem;
+  font-weight: 700;
+}
+
+.forum-hero__inner p {
+  font-size: 1.05rem;
+  opacity: 0.95;
+}
+
+/* ---------- Announcement bar ---------- */
+.announcement-bar {
+  background: #0f172a;
+  color: #ffffff;
+  text-align: center;
+  padding: 0.75rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+/* ---------- Page layout ---------- */
+.forum-page {
+  max-width: 1350px !important;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 5rem;
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  gap: 2.2rem;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .forum-page {
+    grid-template-columns: 1fr;
+  }
+}
+
+.forum-main {
+  background: #ffffff;
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+  padding: 2.5rem;
+  min-height: 520px; /* Made longer to fill the view naturally */
+}
+
+.forum-main h2 {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  margin-bottom: 0.8rem;
+  color: #1e293b;
+  font-weight: 700;
+}
+
+/* ---------- Sidebar ---------- */
+.forum-sidebar {
+  background: #ffffff;
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+  padding: 1.8rem;
+  position: sticky;
+  top: 90px;
+}
+
+.forum-sidebar h3 {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 1.2rem;
+  color: #1e293b;
+}
+
+.forum-sidebar ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.forum-sidebar ul li a {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #475569;
+  text-decoration: none;
+  font-size: 0.92rem;
+  font-weight: 600;
+  padding: 0.7rem 0.9rem;
+  border-radius: 10px;
+  transition: all 0.2s ease;
+}
+
+.forum-sidebar ul li a:hover {
+  background: #f1f5ff;
+  color: #0072ff;
+  transform: translateX(4px);
+}
+
+.forum-sidebar ul li a i {
+  color: #ff6f61;
+  width: 16px;
+  text-align: center;
+}
+
+/* ---------- Breadcrumb / back nav ---------- */
+.forum-breadcrumb {
+  display: none;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 1.25rem;
+}
+
+.forum-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #f1f5ff;
+  color: #0072ff;
+  border: none;
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+.forum-back-btn:hover {
+  background: #e3ecff;
+}
+
+.forum-breadcrumb-trail {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted, #777);
+}
+
+/* ---------- Grade / subject picker views ---------- */
+.forum-view-sub {
+  font-size: 0.95rem;
+  color: #64748b;
+  margin-bottom: 1.5rem;
+}
+
+.forum-pick-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1.25rem;
+}
+
+.forum-pick-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: #f8fafc;
+  border: 2px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 1.8rem 1rem;
+  cursor: pointer;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #1e293b;
+  text-align: center;
+  transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.forum-pick-card i {
+  font-size: 2rem;
+  background: var(--forum-grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  transition: transform 0.25s ease;
+}
+
+.forum-pick-card:hover {
+  transform: translateY(-6px);
+  background: #ffffff;
+  border-color: #0072ff;
+  box-shadow: 0 12px 24px rgba(0, 114, 255, 0.15);
+}
+
+.forum-pick-card:hover i {
+  transform: scale(1.15);
+}
+
+#cs-name {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 12px;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.95rem;
+  color: #1e293b;
+  margin-bottom: 12px;
+  background: #f8fafc;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+#cs-name::placeholder {
+  color: #aaa;
+}
+#cs-name:focus {
+  background: #ffffff;
+  border-color: #0072ff;
+  box-shadow: 0 0 0 4px rgba(0, 114, 255, 0.12);
+}
+
+#cs-text {
+  width: 100%;
+  min-height: 140px;
+  padding: 14px 16px;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 12px;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.95rem;
+  color: #1e293b;
+  line-height: 1.6;
+  background: #f8fafc;
+  resize: vertical;
+  outline: none;
+  transition: all 0.2s ease;
+}
+#cs-text::placeholder {
+  color: #aaa;
+}
+#cs-text:focus {
+  background: #ffffff;
+  border-color: #0072ff;
+  box-shadow: 0 0 0 4px rgba(0, 114, 255, 0.12);
+}
+
+#cs-text.scan {
+  border-color: #f39c12;
+}
+#cs-text.blocked {
+  border-color: #e74c3c;
+}
+
+.cs-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.cs-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.78rem;
+  color: #999;
+}
+.cs-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #ccc;
+  flex-shrink: 0;
+  transition: background 0.3s;
+}
+.cs-status.scan .cs-dot {
+  background: #f39c12;
+  animation: dpulse 1s infinite;
+}
+.cs-status.safe .cs-dot {
+  background: #27ae60;
+}
+.cs-status.blocked .cs-dot {
+  background: #e74c3c;
+}
+.cs-status.offline .cs-dot {
+  background: #f6e05e;
+  animation: dpulse 1.5s infinite;
+}
+.cs-status.scan .cs-msg {
+  color: #d68910;
+}
+.cs-status.safe .cs-msg {
+  color: #27ae60;
+  font-weight: 600;
+}
+.cs-status.blocked .cs-msg {
+  color: #c0392b;
+  font-weight: 600;
+}
+.cs-status.offline .cs-msg {
+  color: #b7791f;
+  font-weight: 600;
+}
+@keyframes dpulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.2;
+  }
+}
+
+#cs-btn {
+  background: linear-gradient(135deg, #ff6f61 0%, #ff4b3e 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: 50px;
+  padding: 12px 28px;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.92rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(255, 111, 97, 0.3);
+  transition: all 0.2s ease;
+}
+
+#cs-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 111, 97, 0.4);
+}
+
+#cs-btn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.cs-banner {
+  display: none;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 11px 14px;
+  border-radius: 7px;
+  margin-top: 10px;
+  font-size: 0.84rem;
+  line-height: 1.5;
+}
+.cs-banner.safe {
+  display: flex;
+  background: #eafaf1;
+  border: 1px solid #a9dfbf;
+  color: #1e8449;
+}
+.cs-banner.threat {
+  display: flex;
+  background: #fdf2f2;
+  border: 1px solid #f5b7b1;
+  color: #c0392b;
+}
+.cs-banner.offline {
+  display: flex;
+  background: #fffff0;
+  border: 1px solid #f6e05e;
+  color: #744210;
+}
+.cs-banner-icon {
+  font-size: 1.05rem;
+  flex-shrink: 0;
+}
+.cs-banner strong {
+  display: block;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+/* Offline queued post style */
+.cs-card.cs-offline-pending {
+  border-left-color: #f6e05e;
+  opacity: 0.9;
+}
+.cs-pending-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #f6e05e22;
+  border: 1px solid #f6e05e66;
+  color: #b7791f;
+  border-radius: 4px;
+  font-size: 0.68rem;
+  padding: 2px 7px;
+  margin-left: 8px;
+  vertical-align: middle;
+  font-weight: 600;
+}
+
+.cs-divider {
+  border: none;
+  border-top: 2px solid #ff6f61;
+  margin: 22px 0 16px;
+}
+.cs-count-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+.cs-count-row span {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #2c3e50;
+}
+#cs-count {
+  font-size: 0.75rem;
+  color: #888;
+  background: #f0f0f0;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-weight: 400;
+}
+
+#cs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.cs-loading {
+  text-align: center;
+  padding: 30px;
+  color: #aaa;
+  font-size: 0.88rem;
+}
+.cs-empty {
+  text-align: center;
+  padding: 40px 20px;
+  color: #bbb;
+  font-size: 0.9rem;
+  border: 1px dashed #e0e0e0;
+  border-radius: 8px;
+}
+.cs-empty i {
+  display: block;
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: #ddd;
+}
+
+/* Comment Cards */
+.cs-card {
+  background: #ffffff;
+  border: 1.5px solid #f1f5f9;
+  border-left: 4px solid #ff6f61;
+  border-radius: 14px;
+  padding: 1.25rem 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  margin-bottom: 1rem;
+}
+
+.cs-card:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.07);
+}
+@keyframes cin {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.cs-card-top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+.cs-av {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ff6f61, #ff9966);
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  text-transform: uppercase;
+}
+.cs-card-meta {
+  flex: 1;
+}
+.cs-card-name {
+  font-size: 0.87rem;
+  font-weight: 600;
+  color: #2c3e50;
+  display: block;
+}
+.cs-card-time {
+  font-size: 0.7rem;
+  color: #bbb;
+}
+.cs-verified {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 0.62rem;
+  font-weight: 700;
+  color: #27ae60;
+  background: #eafaf1;
+  border: 1px solid #a9dfbf;
+  border-radius: 4px;
+  padding: 2px 6px;
+}
+.cs-card-body {
+  font-size: 0.9rem;
+  color: #444;
+  line-height: 1.65;
+  word-break: break-word;
+  margin-bottom: 10px;
+}
+.cs-card-body a {
+  color: #ff6f61;
+  font-weight: 600;
+  text-decoration: none;
+}
+.cs-card-body a:hover {
+  text-decoration: underline;
+}
+
+.cs-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 8px;
+}
+.cs-action-btn {
+  background: none;
+  border: 1px solid #e0e0e0;
+  border-radius: 20px;
+  padding: 4px 10px;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.78rem;
+  color: #777;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.2s;
+}
+.cs-action-btn:hover {
+  border-color: #ff6f61;
+  color: #ff6f61;
+}
+.cs-action-btn.liked {
+  background: #fff0ef;
+  border-color: #ff6f61;
+  color: #ff6f61;
+}
+.cs-action-btn.disliked {
+  background: #f0f0f0;
+  border-color: #aaa;
+  color: #666;
+}
+.cs-reply-toggle {
+  background: none;
+  border: none;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.78rem;
+  color: #0077cc;
+  cursor: pointer;
+  padding: 4px 0;
+  transition: color 0.2s;
+}
+.cs-reply-toggle:hover {
+  color: #005fa3;
+}
+
+.cs-replies {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid #f0f0f0;
+  display: none;
+}
+.cs-replies.open {
+  display: block;
+}
+
+.cs-reply-card {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+.cs-reply-av {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0077cc, #00bcd4);
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  text-transform: uppercase;
+}
+.cs-reply-body {
+  flex: 1;
+}
+.cs-reply-name {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #2c3e50;
+}
+.cs-reply-time {
+  font-size: 0.68rem;
+  color: #bbb;
+  margin-left: 6px;
+}
+.cs-reply-text {
+  font-size: 0.85rem;
+  color: #555;
+  line-height: 1.5;
+  margin-top: 2px;
+}
+.cs-reply-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 5px;
+}
+.cs-reply-action {
+  background: none;
+  border: none;
+  font-size: 0.72rem;
+  color: #aaa;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  font-family: "Poppins", sans-serif;
+  transition: color 0.2s;
+}
+.cs-reply-action:hover {
+  color: #ff6f61;
+}
+
+.cs-reply-form {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+  align-items: flex-start;
+}
+.cs-reply-input {
+  flex: 1;
+  padding: 8px 11px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.85rem;
+  color: #2c3e50;
+  outline: none;
+  resize: none;
+  transition: border-color 0.2s;
+  min-height: 38px;
+  max-height: 100px;
+}
+.cs-reply-input:focus {
+  border-color: #0077cc;
+}
+.cs-reply-submit {
+  background: #0077cc;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 14px;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s;
+}
+.cs-reply-submit:hover {
+  background: #005fa3;
+}
+.cs-reply-submit:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}

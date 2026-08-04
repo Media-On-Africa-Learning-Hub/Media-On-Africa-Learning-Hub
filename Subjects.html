@@ -1,763 +1,160 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Subjects - Media On Africa Learning Hub</title>
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
-  <script src="cybersafe-offline.js"></script>
-  <script src="cybersafe-queue.js"></script>
-  <style>
-    /* ── Term PDF grid inside each subject section ── */
-    .term-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 10px;
-      margin-top: 12px;
-    }
-    .term-card {
-      background: #fff;
-      border: 1px solid #e0e0e0;
-      border-radius: 8px;
-      padding: 12px 14px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-    }
-    .term-card-label {
-      font-size: .8rem;
-      font-weight: 600;
-      color: #2c3e50;
-    }
-    .term-pdf-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      font-size: .7rem;
-      font-weight: 600;
-      padding: 4px 10px;
-      border-radius: 6px;
-      border: 1px solid #ddd;
-      background: #f5f5f5;
-      color: #777;
-      text-decoration: none;
-      cursor: pointer;
-      transition: .15s;
-      white-space: nowrap;
-      font-family: 'Poppins', sans-serif;
-    }
-    .term-pdf-btn.available {
-      border-color: #27ae60;
-      background: #eafaf1;
-      color: #1a8c4e;
-    }
-    .term-pdf-btn.available:hover {
-      background: #27ae60;
-      color: #fff;
-    }
-    .term-pdf-btn.coming {
-      opacity: .5;
-      cursor: default;
-      pointer-events: none;
-    }
-  </style>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Subjects - Media On Africa Learning Hub</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/subjects.css" />
+    <link rel="stylesheet" href="css/side-decor.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <script src="cybersafe-offline.js"></script>
+    <script src="cybersafe-queue.js"></script>
+  </head>
 
-<!-- Navigation -->
-<nav>
-  <div class="nav-links" id="navLinks">
-    <i class="fa fa-times" onclick="hidemenu()"></i>
-    <ul>
-      <li><a href="index.html">HOME</a></li>
-      <li><a href="About.html">ABOUT</a></li>
-      <li><a href="Subjects.html">SUBJECTS</a></li>
-      <li><a href="quizzes.html">QUIZZES</a></li>
-      <li><a href="aptitude.html">REASONING SKILLS</a></li>
-      <li><a href="forum.html">DISCUSSION</a></li>
-      <li><a href="mental_wellness.html">WELLNESS</a></li>
-      <li><a href="blog.html">BLOG</a></li>
-      <li><a href="contact.html">CONTACT</a></li>
-      <li><a href="library.html">LIBRARY</a></li>
-      <li><a href="khulisa.html">SUPPORT</a></li>
-    </ul>
-  </div>
-  <i class="fa fa-bars" onclick="showmenu()"></i>
-</nav>
-
-<!-- Header -->
-<section class="header small-header">
-  <div class="text-box">
-    <h1>Subjects</h1>
-    <p>Explore textbooks by grade level</p>
-  </div>
-</section>
-
-<!-- ── GRADE 8 ── -->
-<section class="subjects">
-  <h1>Grade 8</h1>
-  <div class="row">
-
-    <div class="subject-col math">
-      <i class="fa fa-calculator"></i>
-      <h3>Mathematics</h3>
-      <div class="term-grid">
-        <div class="term-card"><span class="term-card-label">Term 1</span><a href="resources/GR8/Mathematics/grade8-term1.pdf" class="term-pdf-btn available" target="_blank"><i class="fa fa-file-pdf-o"></i> Open PDF</a></div>
-        <div class="term-card"><span class="term-card-label">Term 2</span><a href="resources/GR8/Mathematics/grade8-term2.pdf" class="term-pdf-btn available" target="_blank"><i class="fa fa-file-pdf-o"></i> Open PDF</a></div>
-        <div class="term-card"><span class="term-card-label">Term 3</span><a href="#" class="term-pdf-btn coming"><i class="fa fa-clock-o"></i> Coming soon</a></div>
-        <div class="term-card"><span class="term-card-label">Term 4</span><a href="#" class="term-pdf-btn coming"><i class="fa fa-clock-o"></i> Coming soon</a></div>
-      </div>
+  <body class="subjects-page">
+    <!-- Floating side icons & bubbles container -->
+    <div
+      class="quiz-decor"
+      data-bounce-target="#subjectsApp"
+      aria-hidden="true"
+    >
+      <div class="bubble bubble--1"></div>
+      <div class="bubble bubble--2"></div>
+      <div class="bubble bubble--3"></div>
+      <div class="bubble bubble--4"></div>
+      <div class="bubble bubble--5"></div>
+      <div class="bubble bubble--6"></div>
+      <div class="bubble bubble--7"></div>
+      <div class="bubble bubble--8"></div>
+      <i class="fa fa-superscript float-icon float-icon--1"></i>
+      <i class="fa fa-flask float-icon float-icon--2"></i>
+      <i class="fa fa-laptop float-icon float-icon--3"></i>
+      <i class="fa fa-paint-brush float-icon float-icon--4"></i>
+      <i class="fa fa-percent float-icon float-icon--5"></i>
+      <i class="fa fa-flask float-icon float-icon--6"></i>
     </div>
 
-    <div class="subject-col science">
-      <i class="fa fa-flask"></i>
-      <h3>Natural Science</h3>
-      <div class="term-grid">
-        <div class="term-card"><span class="term-card-label">Term 1</span><a href="#" class="term-pdf-btn coming"><i class="fa fa-clock-o"></i> Coming soon</a></div>
-        <div class="term-card"><span class="term-card-label">Term 2</span><a href="#" class="term-pdf-btn coming"><i class="fa fa-clock-o"></i> Coming soon</a></div>
-        <div class="term-card"><span class="term-card-label">Term 3</span><a href="#" class="term-pdf-btn coming"><i class="fa fa-clock-o"></i> Coming soon</a></div>
-        <div class="term-card"><span class="term-card-label">Term 4</span><a href="#" class="term-pdf-btn coming"><i class="fa fa-clock-o"></i> Coming soon</a></div>
+    <nav class="navbar" id="mainNav">
+      <a href="index.html" class="nav-logo">
+        <i class="fa fa-graduation-cap logo-icon"></i> E-Learning Hub
+      </a>
+      <div class="nav-links" id="navLinks">
+        <button
+          type="button"
+          class="close-btn"
+          onclick="hidemenu()"
+          aria-label="Close menu"
+        >
+          <i class="fa fa-times" aria-hidden="true"></i>
+        </button>
+        <ul>
+          <li><a href="index.html">HOME</a></li>
+          <li><a href="Subjects.html" class="active">SUBJECTS</a></li>
+          <li><a href="quizzes.html">QUIZZES</a></li>
+          <li><a href="aptitude.html">REASONING SKILLS</a></li>
+          <li><a href="forum.html">DISCUSSION</a></li>
+          <li><a href="mental_wellness.html">WELLNESS</a></li>
+          <li><a href="blog.html">BLOG</a></li>
+          <li><a href="contact.html">CONTACT &amp; SUPPORT</a></li>
+        </ul>
       </div>
-    </div>
+      <button
+        type="button"
+        class="open-btn"
+        id="menuToggle"
+        onclick="showmenu()"
+        aria-label="Open menu"
+        aria-expanded="false"
+        aria-controls="navLinks"
+      >
+        <i class="fa fa-bars" aria-hidden="true"></i>
+      </button>
+    </nav>
 
-    <div class="subject-col tech">
-      <i class="fa fa-cogs"></i>
-      <h3>Technology</h3>
-      <div class="term-grid">
-        <div class="term-card"><span class="term-card-label">Term 1</span><a href="resources/GR8/Technology/grade8-term1.pdf" class="term-pdf-btn available" target="_blank"><i class="fa fa-file-pdf-o"></i> Open PDF</a></div>
-        <div class="term-card"><span class="term-card-label">Term 2</span><a href="resources/GR8/Technology/grade8-term2.pdf" class="term-pdf-btn available" target="_blank"><i class="fa fa-file-pdf-o"></i> Open PDF</a></div>
-        <div class="term-card"><span class="term-card-label">Term 3</span><a href="#" class="term-pdf-btn coming"><i class="fa fa-clock-o"></i> Coming soon</a></div>
-        <div class="term-card"><span class="term-card-label">Term 4</span><a href="#" class="term-pdf-btn coming"><i class="fa fa-clock-o"></i> Coming soon</a></div>
+    <section class="subjects-page-header" aria-label="Subjects">
+      <div class="subjects-page-header__inner">
+        <span class="badge"
+          ><i class="fa fa-book"></i> Explore &amp; Learn</span
+        >
+        <h1>Subjects</h1>
+        <p>
+          Pick your grade, then dive into textbooks, guides, videos &amp;
+          practice.
+        </p>
       </div>
-    </div>
+    </section>
 
-    <div class="subject-col art">
-      <i class="fa fa-paint-brush"></i>
-      <h3>Creative Arts</h3>
-      <div class="term-grid">
-        <div class="term-card"><span class="term-card-label">Term 1</span><a href="#" class="term-pdf-btn coming"><i class="fa fa-clock-o"></i> Coming soon</a></div>
-        <div class="term-card"><span class="term-card-label">Term 2</span><a href="#" class="term-pdf-btn coming"><i class="fa fa-clock-o"></i> Coming soon</a></div>
-        <div class="term-card"><span class="term-card-label">Term 3</span><a href="#" class="term-pdf-btn coming"><i class="fa fa-clock-o"></i> Coming soon</a></div>
-        <div class="term-card"><span class="term-card-label">Term 4</span><a href="#" class="term-pdf-btn coming"><i class="fa fa-clock-o"></i> Coming soon</a></div>
+    <main id="subjectsApp" aria-live="polite">
+      <div class="subjects-loading" role="status">
+        <div class="subjects-skeleton-grid" aria-hidden="true">
+          <div class="subjects-skeleton-card"></div>
+          <div class="subjects-skeleton-card"></div>
+          <div class="subjects-skeleton-card"></div>
+          <div class="subjects-skeleton-card"></div>
+          <div class="subjects-skeleton-card"></div>
+        </div>
+        <p class="subjects-loading__text">Loading subjects…</p>
       </div>
-    </div>
+    </main>
 
-  </div>
-</section>
+    <footer class="site-footer">
+      <div class="footer-container">
+        <div class="footer-brand">
+          <h3><i class="fa fa-graduation-cap"></i> E-Learning Hub</h3>
+          <p>
+            Empowering high school learners across South Africa with zero-data,
+            accessible, and high-quality e-learning tools.
+          </p>
+        </div>
 
-<!-- ── GRADE 9 ── -->
-<section class="subjects">
-  <h1>Grade 9</h1>
-  <div class="row">
-
-    <div class="subject-col math">
-      <i class="fa fa-calculator"></i>
-      <h3>Mathematics</h3>
-      <div class="term-grid">
-        <div class="term-card"><span class="term-card-label">Term 1</span><a href="resources/Gr9/Mathematics/grade9-term1.pdf" class="term-pdf-btn available" target="_blank"><i class="fa fa-file-pdf-o"></i> Open PDF</a></div>
-        <div class="term-card"><span class="term-card-label">Term 2</span><a href="resources/Gr9/Mathematics/grade9-term2.pdf" class="term-pdf-btn available" target="_blank"><i class="fa fa-file-pdf-o"></i> Open PDF</a></div>
-        <div class="term-card"><span class="term-card-label">Term 3</span><a href="#" class="term-pdf-btn coming"><i class="fa fa-clock-o"></i> Coming soon</a></div>
-        <div class="term-card"><span class="term-card-label">Term 4</span><a href="#" class="term-pdf-btn coming"><i class="fa fa-clock-o"></i> Coming soon</a></div>
-      </div>
-    </div>
-
-    <div class="subject-col science">
-      <i class="fa fa-flask"></i>
-      <h3>Natural Science</h3>
-      <div class="term-grid">
-        <div class="term-card"><span class="term-card-label">Term 1</span><a href="resources/Gr9/Natural Sciences/grade9-term1.pdf" class="term-pdf-btn available" target="_blank"><i class="fa fa-file-pdf-o"></i> Open PDF</a></div>
-        <div class="term-card"><span class="term-card-label">Term 2</span><a href="resources/Gr9/Natural Sciences/grade9-term2.pdf" class="term-pdf-btn available" target="_blank"><i class="fa fa-file-pdf-o"></i> Open PDF</a></div>
-        <div class="term-card"><span class="term-card-label">Term 3</span><a href="resources/Gr9/Natural Sciences/grade9-term3.pdf" class="term-pdf-btn available" target="_blank"><i class="fa fa-file-pdf-o"></i> Open PDF</a></div>
-        <div class="term-card"><span class="term-card-label">Term 4</span><a href="resources/Gr9/Natural Sciences/grade9-term4.pdf" class="term-pdf-btn available" target="_blank"><i class="fa fa-file-pdf-o"></i> Open PDF</a></div>
-      </div>
-    </div>
-
-    <div class="subject-col tech">
-      <i class="fa fa-cogs"></i>
-      <h3>Technology</h3>
-      <div class="term-grid">
-        <div class="term-card"><span class="term-card-label">Term 1</span><a href="resources/Gr9/Technology/grade9-term1.pdf" class="term-pdf-btn available" target="_blank"><i class="fa fa-file-pdf-o"></i> Open PDF</a></div>
-        <div class="term-card"><span class="term-card-label">Term 2</span><a href="resources/Gr9/Technology/grade9-term2.pdf" class="term-pdf-btn available" target="_blank"><i class="fa fa-file-pdf-o"></i> Open PDF</a></div>
-        <div class="term-card"><span class="term-card-label">Term 3</span><a href="resources/Gr9/Technology/grade9-term3.pdf" class="term-pdf-btn available" target="_blank"><i class="fa fa-file-pdf-o"></i> Open PDF</a></div>
-        <div class="term-card"><span class="term-card-label">Term 4</span><a href="resources/Gr9/Technology/grade9-term4.pdf" class="term-pdf-btn available" target="_blank"><i class="fa fa-file-pdf-o"></i> Open PDF</a></div>
-      </div>
-    </div>
-
-    <div class="subject-col art">
-      <i class="fa fa-paint-brush"></i>
-      <h3>Creative Arts</h3>
-      <div class="term-grid">
-        <div class="term-card"><span class="term-card-label">Term 1</span><a href="#" class="term-pdf-btn coming"><i class="fa fa-clock-o"></i> Coming soon</a></div>
-        <div class="term-card"><span class="term-card-label">Term 2</span><a href="#" class="term-pdf-btn coming"><i class="fa fa-clock-o"></i> Coming soon</a></div>
-        <div class="term-card"><span class="term-card-label">Term 3</span><a href="#" class="term-pdf-btn coming"><i class="fa fa-clock-o"></i> Coming soon</a></div>
-        <div class="term-card"><span class="term-card-label">Term 4</span><a href="#" class="term-pdf-btn coming"><i class="fa fa-clock-o"></i> Coming soon</a></div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ── GRADE 10 ── -->
-<section class="subjects">
-  <h1>Grade 10</h1>
-  <div class="row">
-
-    <div class="subject-col math">
-      <i class="fa fa-calculator"></i>
-      <h3>Mathematics</h3>
-      <div class="term-grid">
-        <div class="term-card"><span class="term-card-label">Term 1</span><a href="resources/GR10/Mathematics/grade10-term1.pdf" class="term-pdf-btn available" target="_blank"><i class="fa fa-file-pdf-o"></i> Open PDF</a></div>
-        <div class="term-card"><span class="term-card-label">Term 2</span><a href="resources/GR10/Mathematics/grade10-term2.pdf" class="term-pdf-btn available" target="_blank"><i class="fa fa-file-pdf-o"></i> Open PDF</a></div>
-        <div class="term-card"><span class="term-card-label">Term 3</span><a href="resources/GR10/Mathematics/grade10-term3.pdf" class="term-pdf-btn available" target="_blank"><i class="fa fa-file-pdf-o"></i> Open PDF</a></div>
-        <div class="term-card"><span class="term-card-label">Term 4</span><a href="resources/GR10/Mathematics/grade10-term4.pdf" class="term-pdf-btn available" target="_blank"><i class="fa fa-file-pdf-o"></i> Open PDF</a></div>
-      </div>
-    </div>
-
-    <div class="subject-col science">
-      <i class="fa fa-flask"></i>
-      <h3>Physical Science</h3>
-      <div class="term-grid">
-        <div class="term-card"><span class="term-card-label">Term 1</span><a href="resources/GR10/Physical Sciences/grade10-term1.pdf" class="term-pdf-btn available" target="_blank"><i class="fa fa-file-pdf-o"></i> Open PDF</a></div>
-        <div class="term-card"><span class="term-card-label">Term 2</span><a href="resources/GR10/Physical Sciences/grade10-term2.pdf" class="term-pdf-btn available" target="_blank"><i class="fa fa-file-pdf-o"></i> Open PDF</a></div>
-        <div class="term-card"><span class="term-card-label">Term 3</span><a href="resources/GR10/Physical Sciences/grade10-term3.pdf" class="term-pdf-btn available" target="_blank"><i class="fa fa-file-pdf-o"></i> Open PDF</a></div>
-        <div class="term-card"><span class="term-card-label">Term 4</span><a href="resources/GR10/Physical Sciences/grade10-term4.pdf" class="term-pdf-btn available" target="_blank"><i class="fa fa-file-pdf-o"></i> Open PDF</a></div>
-      </div>
-    </div>
-
-    <div class="subject-col tech">
-      <i class="fa fa-desktop"></i>
-      <h3>CAT</h3>
-      <div class="term-grid">
-        <div class="term-card"><span class="term-card-label">Term 1</span><a href="resources/GR10/CAT/grade10-term1.pdf" class="term-pdf-btn available" target="_blank"><i class="fa fa-file-pdf-o"></i> Open PDF</a></div>
-        <div class="term-card"><span class="term-card-label">Term 2</span><a href="resources/GR10/CAT/grade10-term2.pdf" class="term-pdf-btn available" target="_blank"><i class="fa fa-file-pdf-o"></i> Open PDF</a></div>
-        <div class="term-card"><span class="term-card-label">Term 3</span><a href="resources/GR10/CAT/grade10-term3.pdf" class="term-pdf-btn available" target="_blank"><i class="fa fa-file-pdf-o"></i> Open PDF</a></div>
-        <div class="term-card"><span class="term-card-label">Term 4</span><a href="resources/GR10/CAT/grade10-term4.pdf" class="term-pdf-btn available" target="_blank"><i class="fa fa-file-pdf-o"></i> Open PDF</a></div>
-      </div>
-    </div>
-
-    <div class="subject-col art">
-      <i class="fa fa-paint-brush"></i>
-      <h3>Art</h3>
-      <div class="term-grid">
-        <div class="term-card"><span class="term-card-label">Term 1</span><a href="https://www.scribd.com/doc/65902963/VisArt10E-SampleEbook#from_embed" class="term-pdf-btn available" target="_blank"><i class="fa fa-external-link"></i> Open</a></div>
-        <div class="term-card"><span class="term-card-label">Term 2</span><a href="https://www.scribd.com/doc/65902963/VisArt10E-SampleEbook#from_embed" class="term-pdf-btn available" target="_blank"><i class="fa fa-external-link"></i> Open</a></div>
-        <div class="term-card"><span class="term-card-label">Term 3</span><a href="https://www.scribd.com/doc/65902963/VisArt10E-SampleEbook#from_embed" class="term-pdf-btn available" target="_blank"><i class="fa fa-external-link"></i> Open</a></div>
-        <div class="term-card"><span class="term-card-label">Term 4</span><a href="https://www.scribd.com/doc/65902963/VisArt10E-SampleEbook#from_embed" class="term-pdf-btn available" target="_blank"><i class="fa fa-external-link"></i> Open</a></div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ── GRADE 11 ── -->
-<section class="subjects">
-  <h1>Grade 11</h1>
-  <div class="row">
-
-    <div class="subject-col math">
-      <i class="fa fa-calculator"></i>
-      <h3>Mathematics</h3>
-      <div class="term-grid">
-        <div class="term-card"><span class="term-card-label">Term 1</span><a href="resources/GR11/Mathematics/grade11-term1.pdf" class="term-pdf-btn available" target="_blank"><i class="fa fa-file-pdf-o"></i> Open PDF</a></div>
-        <div class="term-card"><span class="term-card-label">Term 2</span><a href="resources/GR11/Mathematics/grade11-term2.pdf" class="term-pdf-btn available" target="_blank"><i class="fa fa-file-pdf-o"></i> Open PDF</a></div>
-        <div class="term-card"><span class="term-card-label">Term 3</span><a href="resources/GR11/Mathematics/grade11-term3.pdf" class="term-pdf-btn available" target="_blank"><i class="fa fa-file-pdf-o"></i> Open PDF</a></div>
-        <div class="term-card"><span class="term-card-label">Term 4</span><a href="resources/GR11/Mathematics/grade11-term4.pdf" class="term-pdf-btn available" target="_blank"><i class="fa fa-file-pdf-o"></i> Open PDF</a></div>
-      </div>
-    </div>
-
-    <div class="subject-col science">
-      <i class="fa fa-flask"></i>
-      <h3>Physical Science</h3>
-      <div class="term-grid">
-        <div class="term-card"><span class="term-card-label">Term 1</span><a href="resources/GR11/Physical Science/grade11-term1.pdf" class="term-pdf-btn available" target="_blank"><i class="fa fa-file-pdf-o"></i> Open PDF</a></div>
-        <div class="term-card"><span class="term-card-label">Term 2</span><a href="resources/GR11/Physical Science/grade11-term2.pdf" class="term-pdf-btn available" target="_blank"><i class="fa fa-file-pdf-o"></i> Open PDF</a></div>
-        <div class="term-card"><span class="term-card-label">Term 3</span><a href="resources/GR11/Physical Science/grade11-term3.pdf" class="term-pdf-btn available" target="_blank"><i class="fa fa-file-pdf-o"></i> Open PDF</a></div>
-        <div class="term-card"><span class="term-card-label">Term 4</span><a href="resources/GR11/Physical Science/grade11-term4.pdf" class="term-pdf-btn available" target="_blank"><i class="fa fa-file-pdf-o"></i> Open PDF</a></div>
-      </div>
-    </div>
-
-    <div class="subject-col tech">
-      <i class="fa fa-desktop"></i>
-      <h3>CAT</h3>
-      <div class="term-grid">
-        <div class="term-card"><span class="term-card-label">Term 1</span><a href="resources/GR11/CAT/grade11-term1.pdf" class="term-pdf-btn available" target="_blank"><i class="fa fa-file-pdf-o"></i> Open PDF</a></div>
-        <div class="term-card"><span class="term-card-label">Term 2</span><a href="resources/GR11/CAT/grade11-term2.pdf" class="term-pdf-btn available" target="_blank"><i class="fa fa-file-pdf-o"></i> Open PDF</a></div>
-        <div class="term-card"><span class="term-card-label">Term 3</span><a href="resources/GR11/CAT/grade11-term3.pdf" class="term-pdf-btn available" target="_blank"><i class="fa fa-file-pdf-o"></i> Open PDF</a></div>
-        <div class="term-card"><span class="term-card-label">Term 4</span><a href="resources/GR11/CAT/grade11-term4.pdf" class="term-pdf-btn available" target="_blank"><i class="fa fa-file-pdf-o"></i> Open PDF</a></div>
-      </div>
-    </div>
-
-    <div class="subject-col art">
-      <i class="fa fa-paint-brush"></i>
-      <h3>Art</h3>
-      <div class="term-grid">
-        <div class="term-card"><span class="term-card-label">Term 1</span><a href="https://www.scribd.com/doc/101022170/Visual-Arts-Gr11-Learner-s-Guide#from_embed" class="term-pdf-btn available" target="_blank"><i class="fa fa-external-link"></i> Open</a></div>
-        <div class="term-card"><span class="term-card-label">Term 2</span><a href="https://www.scribd.com/doc/101022170/Visual-Arts-Gr11-Learner-s-Guide#from_embed" class="term-pdf-btn available" target="_blank"><i class="fa fa-external-link"></i> Open</a></div>
-        <div class="term-card"><span class="term-card-label">Term 3</span><a href="https://www.scribd.com/doc/101022170/Visual-Arts-Gr11-Learner-s-Guide#from_embed" class="term-pdf-btn available" target="_blank"><i class="fa fa-external-link"></i> Open</a></div>
-        <div class="term-card"><span class="term-card-label">Term 4</span><a href="https://www.scribd.com/doc/101022170/Visual-Arts-Gr11-Learner-s-Guide#from_embed" class="term-pdf-btn available" target="_blank"><i class="fa fa-external-link"></i> Open</a></div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ── GRADE 12 ── -->
-<section class="subjects">
-  <h1>Grade 12</h1>
-  <div class="row">
-
-    <div class="subject-col math">
-      <i class="fa fa-calculator"></i>
-      <h3>Mathematics</h3>
-      <div class="term-grid">
-        <div class="term-card"><span class="term-card-label">Term 1</span><a href="resources/GR12/Mathematics/grade12-term1.pdf" class="term-pdf-btn available" target="_blank"><i class="fa fa-file-pdf-o"></i> Open PDF</a></div>
-        <div class="term-card"><span class="term-card-label">Term 2</span><a href="resources/GR12/Mathematics/grade12-term2.pdf" class="term-pdf-btn available" target="_blank"><i class="fa fa-file-pdf-o"></i> Open PDF</a></div>
-        <div class="term-card"><span class="term-card-label">Term 3</span><a href="resources/GR12/Mathematics/grade12-term3.pdf" class="term-pdf-btn available" target="_blank"><i class="fa fa-file-pdf-o"></i> Open PDF</a></div>
-        <div class="term-card"><span class="term-card-label">Term 4</span><a href="resources/GR12/Mathematics/grade12-term4.pdf" class="term-pdf-btn available" target="_blank"><i class="fa fa-file-pdf-o"></i> Open PDF</a></div>
-      </div>
-    </div>
-
-    <div class="subject-col science">
-      <i class="fa fa-flask"></i>
-      <h3>Physical Science</h3>
-      <div class="term-grid">
-        <div class="term-card"><span class="term-card-label">Term 1</span><a href="resources/GR12/Physical Sciences/grade12-term1.pdf" class="term-pdf-btn available" target="_blank"><i class="fa fa-file-pdf-o"></i> Open PDF</a></div>
-        <div class="term-card"><span class="term-card-label">Term 2</span><a href="resources/GR12/Physical Sciences/grade12-term2.pdf" class="term-pdf-btn available" target="_blank"><i class="fa fa-file-pdf-o"></i> Open PDF</a></div>
-        <div class="term-card"><span class="term-card-label">Term 3</span><a href="resources/GR12/Physical Sciences/grade12-term3.pdf" class="term-pdf-btn available" target="_blank"><i class="fa fa-file-pdf-o"></i> Open PDF</a></div>
-        <div class="term-card"><span class="term-card-label">Term 4</span><a href="resources/GR12/Physical Sciences/grade12-term4.pdf" class="term-pdf-btn available" target="_blank"><i class="fa fa-file-pdf-o"></i> Open PDF</a></div>
-      </div>
-    </div>
-
-    <div class="subject-col tech">
-      <i class="fa fa-desktop"></i>
-      <h3>CAT</h3>
-      <div class="term-grid">
-        <div class="term-card"><span class="term-card-label">Term 1</span><a href="resources/GR12/CAT/grade12-term1.pdf" class="term-pdf-btn available" target="_blank"><i class="fa fa-file-pdf-o"></i> Open PDF</a></div>
-        <div class="term-card"><span class="term-card-label">Term 2</span><a href="resources/GR12/CAT/grade12-term2.pdf" class="term-pdf-btn available" target="_blank"><i class="fa fa-file-pdf-o"></i> Open PDF</a></div>
-        <div class="term-card"><span class="term-card-label">Term 3</span><a href="resources/GR12/CAT/grade12-term3.pdf" class="term-pdf-btn available" target="_blank"><i class="fa fa-file-pdf-o"></i> Open PDF</a></div>
-        <div class="term-card"><span class="term-card-label">Term 4</span><a href="#" class="term-pdf-btn coming"><i class="fa fa-clock-o"></i> Coming soon</a></div>
-      </div>
-    </div>
-
-    <div class="subject-col art">
-      <i class="fa fa-paint-brush"></i>
-      <h3>Art</h3>
-      <div class="term-grid">
-        <div class="term-card"><span class="term-card-label">Term 1</span><a href="https://www.scribd.com/doc/143176140/Visual-Arts-Grade-12-Learner-s-Guide#from_embed" class="term-pdf-btn available" target="_blank"><i class="fa fa-external-link"></i> Open</a></div>
-        <div class="term-card"><span class="term-card-label">Term 2</span><a href="https://www.scribd.com/doc/143176140/Visual-Arts-Grade-12-Learner-s-Guide#from_embed" class="term-pdf-btn available" target="_blank"><i class="fa fa-external-link"></i> Open</a></div>
-        <div class="term-card"><span class="term-card-label">Term 3</span><a href="https://www.scribd.com/doc/143176140/Visual-Arts-Grade-12-Learner-s-Guide#from_embed" class="term-pdf-btn available" target="_blank"><i class="fa fa-external-link"></i> Open</a></div>
-        <div class="term-card"><span class="term-card-label">Term 4</span><a href="https://www.scribd.com/doc/143176140/Visual-Arts-Grade-12-Learner-s-Guide#from_embed" class="term-pdf-btn available" target="_blank"><i class="fa fa-external-link"></i> Open</a></div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════════
-     ASSESSMENT RUBRIC — kept exactly as original
-     ══════════════════════════════════════════ -->
-<section class="subjects rubric">
-  <h1>Assessment Rubric</h1>
-
-<!-- Mathematics Rubric -->
-<div class="rubric-block math">
-  <h2><i class="fa fa-calculator"></i> Mathematics</h2>
-
-  <article>
-  <h3>Grade 10 – Term 1</h3>
-  <table>
-    <thead>
-      <tr><th>Topic</th><th>Excellent</th><th>Good</th><th>Fair</th><th>Needs Improvement</th></tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>
-          <a href="resources/GR10/Mathematics/grade10-term1.pdf" target="_blank">Algebra & Number Patterns</a>
-          <br>
-          <button class="toggle-btn">Show Questions</button>
-          <div class="questions hidden">
-            <form class="quiz" id="mathsGrade10Term1">
-              <p>1. Solve for x: 2x + 5 = 15</p>
-              <label><input type="radio" name="q1" value="a"> x = 5</label><br>
-              <label><input type="radio" name="q1" value="b"> x = 10</label><br>
-              <label><input type="radio" name="q1" value="c"> x = –5</label><br>
-              <p>2. Factorize: x² + 5x + 6</p>
-              <label><input type="radio" name="q2" value="a"> (x + 2)(x + 3)</label><br>
-              <label><input type="radio" name="q2" value="b"> (x – 2)(x – 3)</label><br>
-              <label><input type="radio" name="q2" value="c"> (x + 1)(x + 6)</label><br>
-              <p>3. Expand: (x + 3)(x – 2)</p>
-              <label><input type="radio" name="q3" value="a"> x² + x – 6</label><br>
-              <label><input type="radio" name="q3" value="b"> x² – 5x + 6</label><br>
-              <label><input type="radio" name="q3" value="c"> x² + 6x – 6</label><br>
-              <p>4. Simplify: (2x² – 3x + 4) – (x² – 5x – 2)</p>
-              <label><input type="radio" name="q4" value="a"> x² + 2x + 6</label><br>
-              <label><input type="radio" name="q4" value="b"> x² – 8x + 2</label><br>
-              <label><input type="radio" name="q4" value="c"> 3x² – 8x + 2</label><br>
-              <p>5. Find the next 3 terms: 2, 4, 8, …</p>
-              <label><input type="radio" name="q5" value="a"> 16, 32, 64</label><br>
-              <label><input type="radio" name="q5" value="b"> 10, 12, 14</label><br>
-              <label><input type="radio" name="q5" value="c"> 20, 40, 80</label><br>
-              <p>6. nth term of: 3, 6, 9, …</p>
-              <label><input type="radio" name="q6" value="a"> Tn = 3n</label><br>
-              <label><input type="radio" name="q6" value="b"> Tn = 2n</label><br>
-              <label><input type="radio" name="q6" value="c"> Tn = n + 3</label><br>
-              <p>7. Solve: x + y = 10, 2x – y = 4</p>
-              <label><input type="radio" name="q7" value="a"> x = 4, y = 6</label><br>
-              <label><input type="radio" name="q7" value="b"> x = 6, y = 4</label><br>
-              <label><input type="radio" name="q7" value="c"> x = 5, y = 5</label><br>
-              <p>8. Evaluate: (x² – y²) ÷ (x – y)</p>
-              <label><input type="radio" name="q8" value="a"> x + y</label><br>
-              <label><input type="radio" name="q8" value="b"> x – y</label><br>
-              <label><input type="radio" name="q8" value="c"> x² – y²</label><br>
-              <p>9. First 5 terms of Tn = 2n + 1</p>
-              <label><input type="radio" name="q9" value="a"> 3, 5, 7, 9, 11</label><br>
-              <label><input type="radio" name="q9" value="b"> 1, 3, 5, 7, 9</label><br>
-              <label><input type="radio" name="q9" value="c"> 2, 4, 6, 8, 10</label><br>
-              <p>10. Classify: 1, 4, 9, 16, …</p>
-              <label><input type="radio" name="q10" value="a"> Arithmetic</label><br>
-              <label><input type="radio" name="q10" value="b"> Geometric</label><br>
-              <label><input type="radio" name="q10" value="c"> Neither</label><br>
-              <button type="button" class="submit-btn">Check Answers</button>
-            </form>
+        <div class="footer-socials">
+          <h4>Connect With Us</h4>
+          <div class="social-icons">
+            <a href="#" aria-label="Facebook"><i class="fa fa-facebook"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fa fa-twitter"></i></a>
+            <a href="#" aria-label="Instagram"
+              ><i class="fa fa-instagram"></i
+            ></a>
+            <a href="#" aria-label="LinkedIn"><i class="fa fa-linkedin"></i></a>
           </div>
-        </td>
-        <td>Accurate solutions</td><td>Minor errors</td><td>Partial understanding</td><td>Frequent errors</td>
-      </tr>
-    </tbody>
-  </table>
-</article>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>
+          Made with <i class="fa fa-heart text-danger"></i> for South African
+          learners by DataPulse
+        </p>
+      </div>
+    </footer>
 
-<article>
-  <h3>Grade 10 – Term 2</h3>
-  <table>
-    <thead><tr><th>Topic</th><th>Excellent</th><th>Good</th><th>Fair</th><th>Needs Improvement</th></tr></thead>
-    <tbody><tr>
-      <td><a href="resources/GR10/Mathematics/grade10-term2.pdf" target="_blank">Functions, Graphs & Geometry</a><br>
-        <button class="toggle-btn">Show Questions</button>
-        <div class="questions hidden"><form class="quiz" id="mathsGrade10Term2">
-          <p>1. Plot y = 2x + 3 — what shape?</p>
-          <label><input type="radio" name="q1" value="a"> Straight line</label><br><label><input type="radio" name="q1" value="b"> Parabola</label><br><label><input type="radio" name="q1" value="c"> Hyperbola</label><br>
-          <p>2. x-intercept of y = –3x + 6</p>
-          <label><input type="radio" name="q2" value="a"> x = 2</label><br><label><input type="radio" name="q2" value="b"> x = –2</label><br><label><input type="radio" name="q2" value="c"> x = 6</label><br>
-          <p>3. Gradient through (2,3) and (4,7)</p>
-          <label><input type="radio" name="q3" value="a"> 2</label><br><label><input type="radio" name="q3" value="b"> 1</label><br><label><input type="radio" name="q3" value="c"> 4</label><br>
-          <p>4. Sketch y = x² – 4x + 3</p>
-          <label><input type="radio" name="q4" value="a"> Parabola opening upwards</label><br><label><input type="radio" name="q4" value="b"> Straight line</label><br><label><input type="radio" name="q4" value="c"> Circle</label><br>
-          <p>5. Line parallel to y = 2x + 1 through (0,5)</p>
-          <label><input type="radio" name="q5" value="a"> y = 2x + 5</label><br><label><input type="radio" name="q5" value="b"> y = –2x + 5</label><br><label><input type="radio" name="q5" value="c"> y = x + 5</label><br>
-          <p>6. Area of triangle: base 6, height 4</p>
-          <label><input type="radio" name="q6" value="a"> 12 cm²</label><br><label><input type="radio" name="q6" value="b"> 24 cm²</label><br><label><input type="radio" name="q6" value="c"> 18 cm²</label><br>
-          <p>7. Hypotenuse: sides 5 and 12</p>
-          <label><input type="radio" name="q7" value="a"> 13 cm</label><br><label><input type="radio" name="q7" value="b"> 12 cm</label><br><label><input type="radio" name="q7" value="c"> 10 cm</label><br>
-          <p>8. Midpoint of (–2,4) and (6,8)</p>
-          <label><input type="radio" name="q8" value="a"> (2,6)</label><br><label><input type="radio" name="q8" value="b"> (4,6)</label><br><label><input type="radio" name="q8" value="c"> (2,8)</label><br>
-          <p>9. Opposite sides of a parallelogram are...</p>
-          <label><input type="radio" name="q9" value="a"> Equal</label><br><label><input type="radio" name="q9" value="b"> Unequal</label><br><label><input type="radio" name="q9" value="c"> Perpendicular</label><br>
-          <p>10. Volume of cylinder r=3, h=10</p>
-          <label><input type="radio" name="q10" value="a"> 282.6 cm³</label><br><label><input type="radio" name="q10" value="b"> 94.2 cm³</label><br><label><input type="radio" name="q10" value="c"> 188.4 cm³</label><br>
-          <button type="button" class="submit-btn">Check Answers</button>
-        </form></div>
-      </td>
-      <td>Clear, precise application</td><td>Mostly correct</td><td>Basic graphs</td><td>Incomplete or incorrect</td>
-    </tr></tbody>
-  </table>
-</article>
+    <script>
+      var navLinks = document.getElementById("navLinks");
+      function showmenu() {
+        navLinks.style.right = "0";
+      }
+      function hidemenu() {
+        navLinks.style.right = "-280px";
+      }
+    </script>
 
-<article>
-  <h3>Grade 10 – Term 3</h3>
-  <table>
-    <thead><tr><th>Topic</th><th>Excellent</th><th>Good</th><th>Fair</th><th>Needs Improvement</th></tr></thead>
-    <tbody><tr>
-      <td><a href="resources/GR10/Mathematics/grade10-term3.pdf" target="_blank">Trigonometry & Measurement</a><br>
-        <button class="toggle-btn">Show Questions</button>
-        <div class="questions hidden"><form class="quiz" id="mathsGrade10Term3">
-          <p>1. sin θ if cos θ = 0.6 (acute)</p>
-          <label><input type="radio" name="q1" value="a"> 0.8</label><br><label><input type="radio" name="q1" value="b"> 0.4</label><br><label><input type="radio" name="q1" value="c"> 0.2</label><br>
-          <p>2. Solve: tan θ = 1</p>
-          <label><input type="radio" name="q2" value="a"> 45°</label><br><label><input type="radio" name="q2" value="b"> 30°</label><br><label><input type="radio" name="q2" value="c"> 60°</label><br>
-          <p>3. Height if shadow=20m, elevation=30°</p>
-          <label><input type="radio" name="q3" value="a"> 11.55 m</label><br><label><input type="radio" name="q3" value="b"> 20 m</label><br><label><input type="radio" name="q3" value="c"> 10 m</label><br>
-          <p>4. sin²θ + cos²θ = ?</p>
-          <label><input type="radio" name="q4" value="a"> 1</label><br><label><input type="radio" name="q4" value="b"> 0</label><br><label><input type="radio" name="q4" value="c"> sin θ</label><br>
-          <p>5. Area of circle r=7</p>
-          <label><input type="radio" name="q5" value="a"> 153.9 cm²</label><br><label><input type="radio" name="q5" value="b"> 49 cm²</label><br><label><input type="radio" name="q5" value="c"> 100 cm²</label><br>
-          <p>6. Convert 2.5 m to cm</p>
-          <label><input type="radio" name="q6" value="a"> 250 cm</label><br><label><input type="radio" name="q6" value="b"> 25 cm</label><br><label><input type="radio" name="q6" value="c"> 2.5 cm</label><br>
-          <p>7. Perimeter of rectangle 12×8</p>
-          <label><input type="radio" name="q7" value="a"> 40 cm</label><br><label><input type="radio" name="q7" value="b"> 20 cm</label><br><label><input type="radio" name="q7" value="c"> 96 cm</label><br>
-          <p>8. Volume of cone r=3, h=9</p>
-          <label><input type="radio" name="q8" value="a"> 84.8 cm³</label><br><label><input type="radio" name="q8" value="b"> 254.5 cm³</label><br><label><input type="radio" name="q8" value="c"> 100 cm³</label><br>
-          <p>9. Angle if opp=5, hyp=13</p>
-          <label><input type="radio" name="q9" value="a"> 22.6°</label><br><label><input type="radio" name="q9" value="b"> 45°</label><br><label><input type="radio" name="q9" value="c"> 30°</label><br>
-          <p>10. Surface area sphere r=6</p>
-          <label><input type="radio" name="q10" value="a"> 452.4 cm²</label><br><label><input type="radio" name="q10" value="b"> 113.1 cm²</label><br><label><input type="radio" name="q10" value="c"> 300 cm²</label><br>
-          <button type="button" class="submit-btn">Check Answers</button>
-        </form></div>
-      </td>
-      <td>Accurate ratios</td><td>Minor errors</td><td>Basic understanding</td><td>Incorrect or incomplete</td>
-    </tr></tbody>
-  </table>
-</article>
-
-<article>
-  <h3>Grade 10 – Term 4</h3>
-  <table>
-    <thead><tr><th>Topic</th><th>Excellent</th><th>Good</th><th>Fair</th><th>Needs Improvement</th></tr></thead>
-    <tbody><tr>
-      <td><a href="resources/GR10/Mathematics/grade10-term4.pdf" target="_blank">Probability & Statistics</a><br>
-        <button class="toggle-btn">Show Questions</button>
-        <div class="questions hidden"><form class="quiz" id="mathsGrade10Term4">
-          <p>1. Probability of rolling a 4</p>
-          <label><input type="radio" name="q1" value="a"> 1/6</label><br><label><input type="radio" name="q1" value="b"> 1/4</label><br><label><input type="radio" name="q1" value="c"> 1/2</label><br>
-          <p>2. Mean of 2,4,6,8,10</p>
-          <label><input type="radio" name="q2" value="a"> 6</label><br><label><input type="radio" name="q2" value="b"> 5</label><br><label><input type="radio" name="q2" value="c"> 4</label><br>
-          <p>3. Median of 5,7,9,11,13</p>
-          <label><input type="radio" name="q3" value="a"> 9</label><br><label><input type="radio" name="q3" value="b"> 7</label><br><label><input type="radio" name="q3" value="c"> 11</label><br>
-          <p>4. Mode of 2,3,3,4,5</p>
-          <label><input type="radio" name="q4" value="a"> 3</label><br><label><input type="radio" name="q4" value="b"> 2</label><br><label><input type="radio" name="q4" value="c"> 5</label><br>
-          <p>5. Range of 12,15,18,20</p>
-          <label><input type="radio" name="q5" value="a"> 8</label><br><label><input type="radio" name="q5" value="b"> 20</label><br><label><input type="radio" name="q5" value="c"> 12</label><br>
-          <p>6. P(two heads with two coins)</p>
-          <label><input type="radio" name="q6" value="a"> 1/4</label><br><label><input type="radio" name="q6" value="b"> 1/2</label><br><label><input type="radio" name="q6" value="c"> 1/3</label><br>
-          <p>7. P(even number from 1–10)</p>
-          <label><input type="radio" name="q7" value="a"> 1/2</label><br><label><input type="radio" name="q7" value="b"> 1/5</label><br><label><input type="radio" name="q7" value="c"> 2/5</label><br>
-          <p>8. Pie chart: 40% Maths, 30% Science, 30% English</p>
-          <label><input type="radio" name="q8" value="a"> Maths is largest</label><br><label><input type="radio" name="q8" value="b"> Science is largest</label><br><label><input type="radio" name="q8" value="c"> English is largest</label><br>
-          <p>9. P(red card from deck)</p>
-          <label><input type="radio" name="q9" value="a"> 1/2</label><br><label><input type="radio" name="q9" value="b"> 1/4</label><br><label><input type="radio" name="q9" value="c"> 1/13</label><br>
-          <p>10. P(rolling a 6)</p>
-          <label><input type="radio" name="q10" value="a"> 1/6</label><br><label><input type="radio" name="q10" value="b"> 1/12</label><br><label><input type="radio" name="q10" value="c"> 1/3</label><br>
-          <button type="button" class="submit-btn">Check Answers</button>
-        </form></div>
-      </td>
-      <td>Strong application</td><td>Mostly correct</td><td>Basic skills</td><td>Incomplete</td>
-    </tr></tbody>
-  </table>
-</article>
-</div><!-- end math rubric -->
-
-<!-- Science Rubric -->
-<div class="rubric-block science">
-  <h2><i class="fa fa-flask"></i> Physical Science</h2>
-  <article><h3>Grade 10 – Term 1</h3>
-    <table><thead><tr><th>Topic</th><th>Excellent</th><th>Good</th><th>Fair</th><th>Needs Improvement</th></tr></thead>
-    <tbody><tr><td><a href="resources/GR10/Physical Sciences/grade10-term1.pdf" target="_blank">Matter & Materials</a></td>
-    <td>Accurate explanations</td><td>Minor errors</td><td>Basic understanding</td><td>Incomplete</td></tr></tbody></table>
-  </article>
-  <article><h3>Grade 10 – Term 2</h3>
-    <table><thead><tr><th>Topic</th><th>Excellent</th><th>Good</th><th>Fair</th><th>Needs Improvement</th></tr></thead>
-    <tbody><tr><td><a href="resources/GR10/Physical Sciences/grade10-term2.pdf" target="_blank">Chemical Reactions & Energy</a></td>
-    <td>Strong application</td><td>Mostly correct</td><td>Basic skills</td><td>Incomplete</td></tr></tbody></table>
-  </article>
-  <article><h3>Grade 10 – Term 3</h3>
-    <table><thead><tr><th>Topic</th><th>Excellent</th><th>Good</th><th>Fair</th><th>Needs Improvement</th></tr></thead>
-    <tbody><tr><td><a href="resources/GR10/Physical Sciences/grade10-term3.pdf" target="_blank">Mechanics & Waves</a></td>
-    <td>Accurate calculations</td><td>Minor errors</td><td>Basic understanding</td><td>Incomplete</td></tr></tbody></table>
-  </article>
-  <article><h3>Grade 10 – Term 4</h3>
-    <table><thead><tr><th>Topic</th><th>Excellent</th><th>Good</th><th>Fair</th><th>Needs Improvement</th></tr></thead>
-    <tbody><tr><td><a href="resources/GR10/Physical Sciences/grade10-term4.pdf" target="_blank">Electricity & Magnetism</a></td>
-    <td>Strong conceptual grasp</td><td>Mostly correct</td><td>Basic skills</td><td>Incomplete</td></tr></tbody></table>
-  </article>
-  <article><h3>Grade 11 – Term 1</h3>
-    <table><thead><tr><th>Topic</th><th>Excellent</th><th>Good</th><th>Fair</th><th>Needs Improvement</th></tr></thead>
-    <tbody><tr><td><a href="resources/GR11/Physical Science/grade11-term1.pdf" target="_blank">Matter & Materials</a></td>
-    <td>Accurate explanations</td><td>Minor errors</td><td>Basic understanding</td><td>Incomplete</td></tr></tbody></table>
-  </article>
-  <article><h3>Grade 11 – Term 2</h3>
-    <table><thead><tr><th>Topic</th><th>Excellent</th><th>Good</th><th>Fair</th><th>Needs Improvement</th></tr></thead>
-    <tbody><tr><td><a href="resources/GR11/Physical Science/grade11-term2.pdf" target="_blank">Chemical Reactions & Energy</a></td>
-    <td>Strong application</td><td>Mostly correct</td><td>Basic skills</td><td>Incomplete</td></tr></tbody></table>
-  </article>
-  <article><h3>Grade 11 – Term 3</h3>
-    <table><thead><tr><th>Topic</th><th>Excellent</th><th>Good</th><th>Fair</th><th>Needs Improvement</th></tr></thead>
-    <tbody><tr><td><a href="resources/GR11/Physical Science/grade11-term3.pdf" target="_blank">Mechanics & Waves</a></td>
-    <td>Accurate calculations</td><td>Minor errors</td><td>Basic understanding</td><td>Incomplete</td></tr></tbody></table>
-  </article>
-  <article><h3>Grade 11 – Term 4</h3>
-    <table><thead><tr><th>Topic</th><th>Excellent</th><th>Good</th><th>Fair</th><th>Needs Improvement</th></tr></thead>
-    <tbody><tr><td><a href="resources/GR11/Physical Science/grade11-term4.pdf" target="_blank">Electricity & Magnetism</a></td>
-    <td>Strong conceptual grasp</td><td>Mostly correct</td><td>Basic skills</td><td>Incomplete</td></tr></tbody></table>
-  </article>
-  <article><h3>Grade 12 – Term 1</h3>
-    <table><thead><tr><th>Topic</th><th>Excellent</th><th>Good</th><th>Fair</th><th>Needs Improvement</th></tr></thead>
-    <tbody><tr><td><a href="resources/GR12/Physical Sciences/grade12-term1.pdf" target="_blank">Matter & Materials</a></td>
-    <td>Accurate explanations</td><td>Minor errors</td><td>Basic understanding</td><td>Incomplete</td></tr></tbody></table>
-  </article>
-  <article><h3>Grade 12 – Term 2</h3>
-    <table><thead><tr><th>Topic</th><th>Excellent</th><th>Good</th><th>Fair</th><th>Needs Improvement</th></tr></thead>
-    <tbody><tr><td><a href="resources/GR12/Physical Sciences/grade12-term2.pdf" target="_blank">Chemical Reactions & Energy</a></td>
-    <td>Strong application</td><td>Mostly correct</td><td>Basic skills</td><td>Incomplete</td></tr></tbody></table>
-  </article>
-  <article><h3>Grade 12 – Term 3</h3>
-    <table><thead><tr><th>Topic</th><th>Excellent</th><th>Good</th><th>Fair</th><th>Needs Improvement</th></tr></thead>
-    <tbody><tr><td><a href="resources/GR12/Physical Sciences/grade12-term3.pdf" target="_blank">Mechanics & Waves</a></td>
-    <td>Accurate calculations</td><td>Minor errors</td><td>Basic understanding</td><td>Incomplete</td></tr></tbody></table>
-  </article>
-  <article><h3>Grade 12 – Term 4</h3>
-    <table><thead><tr><th>Topic</th><th>Excellent</th><th>Good</th><th>Fair</th><th>Needs Improvement</th></tr></thead>
-    <tbody><tr><td><a href="resources/GR12/Physical Sciences/grade12-term4.pdf" target="_blank">Electricity & Magnetism</a></td>
-    <td>Strong conceptual grasp</td><td>Mostly correct</td><td>Basic skills</td><td>Incomplete</td></tr></tbody></table>
-  </article>
-</div><!-- end science rubric -->
-
-<!-- Technology Rubric -->
-<div class="rubric-block tech">
-  <h2><i class="fa fa-cogs"></i> Technology / CAT</h2>
-  <article><h3>Grade 10 – Term 1</h3>
-    <table><thead><tr><th>Topic</th><th>Excellent</th><th>Good</th><th>Fair</th><th>Needs Improvement</th></tr></thead>
-    <tbody><tr><td><a href="resources/GR10/CAT/grade10-term1.pdf" target="_blank">Digital Literacy & Intro to CAT</a></td>
-    <td>Innovative use of tools</td><td>Solid skills</td><td>Basic understanding</td><td>Incomplete</td></tr></tbody></table>
-  </article>
-  <article><h3>Grade 10 – Term 2</h3>
-    <table><thead><tr><th>Topic</th><th>Excellent</th><th>Good</th><th>Fair</th><th>Needs Improvement</th></tr></thead>
-    <tbody><tr><td><a href="resources/GR10/CAT/grade10-term2.pdf" target="_blank">Spreadsheets & Data Management</a></td>
-    <td>Accurate data handling</td><td>Mostly correct</td><td>Basic application</td><td>Frequent mistakes</td></tr></tbody></table>
-  </article>
-  <article><h3>Grade 10 – Term 3</h3>
-    <table><thead><tr><th>Topic</th><th>Excellent</th><th>Good</th><th>Fair</th><th>Needs Improvement</th></tr></thead>
-    <tbody><tr><td><a href="resources/GR10/CAT/grade10-term3.pdf" target="_blank">Database Concepts & Queries</a></td>
-    <td>Strong query design</td><td>Good queries</td><td>Basic queries</td><td>Incorrect or incomplete</td></tr></tbody></table>
-  </article>
-  <article><h3>Grade 10 – Term 4</h3>
-    <table><thead><tr><th>Topic</th><th>Excellent</th><th>Good</th><th>Fair</th><th>Needs Improvement</th></tr></thead>
-    <tbody><tr><td><a href="resources/GR10/CAT/grade10-term4.pdf" target="_blank">Presentations & Integration</a></td>
-    <td>Creative, polished</td><td>Good design</td><td>Basic slides</td><td>Poor design</td></tr></tbody></table>
-  </article>
-  <article><h3>Grade 11 – Term 1</h3>
-    <table><thead><tr><th>Topic</th><th>Excellent</th><th>Good</th><th>Fair</th><th>Needs Improvement</th></tr></thead>
-    <tbody><tr><td><a href="resources/GR11/CAT/grade11-term1.pdf" target="_blank">Foundations of Technology</a></td>
-    <td>Innovative application</td><td>Solid skills</td><td>Basic understanding</td><td>Incomplete</td></tr></tbody></table>
-  </article>
-  <article><h3>Grade 11 – Term 2</h3>
-    <table><thead><tr><th>Topic</th><th>Excellent</th><th>Good</th><th>Fair</th><th>Needs Improvement</th></tr></thead>
-    <tbody><tr><td><a href="resources/GR11/CAT/grade11-term2.pdf" target="_blank">Structures & Materials</a></td>
-    <td>Accurate design</td><td>Mostly correct</td><td>Basic application</td><td>Frequent mistakes</td></tr></tbody></table>
-  </article>
-  <article><h3>Grade 11 – Term 3</h3>
-    <table><thead><tr><th>Topic</th><th>Excellent</th><th>Good</th><th>Fair</th><th>Needs Improvement</th></tr></thead>
-    <tbody><tr><td><a href="resources/GR11/CAT/grade11-term3.pdf" target="_blank">Systems & Control</a></td>
-    <td>Strong design & analysis</td><td>Good application</td><td>Basic understanding</td><td>Incomplete</td></tr></tbody></table>
-  </article>
-  <article><h3>Grade 11 – Term 4</h3>
-    <table><thead><tr><th>Topic</th><th>Excellent</th><th>Good</th><th>Fair</th><th>Needs Improvement</th></tr></thead>
-    <tbody><tr><td><a href="resources/GR11/CAT/grade11-term4.pdf" target="_blank">Technology in Society</a></td>
-    <td>Comprehensive solutions</td><td>Good presentation</td><td>Basic ideas</td><td>Incomplete</td></tr></tbody></table>
-  </article>
-  <article><h3>Grade 12 – Term 1</h3>
-    <table><thead><tr><th>Topic</th><th>Excellent</th><th>Good</th><th>Fair</th><th>Needs Improvement</th></tr></thead>
-    <tbody><tr><td><a href="resources/GR12/CAT/grade12-term1.pdf" target="_blank">Foundations of Technology</a></td>
-    <td>Innovative application</td><td>Solid skills</td><td>Basic understanding</td><td>Incomplete</td></tr></tbody></table>
-  </article>
-  <article><h3>Grade 12 – Term 2</h3>
-    <table><thead><tr><th>Topic</th><th>Excellent</th><th>Good</th><th>Fair</th><th>Needs Improvement</th></tr></thead>
-    <tbody><tr><td><a href="resources/GR12/CAT/grade12-term2.pdf" target="_blank">Structures & Materials</a></td>
-    <td>Accurate design</td><td>Mostly correct</td><td>Basic application</td><td>Frequent mistakes</td></tr></tbody></table>
-  </article>
-  <article><h3>Grade 12 – Term 3</h3>
-    <table><thead><tr><th>Topic</th><th>Excellent</th><th>Good</th><th>Fair</th><th>Needs Improvement</th></tr></thead>
-    <tbody><tr><td><a href="resources/GR12/CAT/grade12-term3.pdf" target="_blank">Systems & Control</a></td>
-    <td>Strong design & analysis</td><td>Good application</td><td>Basic understanding</td><td>Incomplete</td></tr></tbody></table>
-  </article>
-  <article><h3>Grade 12 – Term 4</h3>
-    <table><thead><tr><th>Topic</th><th>Excellent</th><th>Good</th><th>Fair</th><th>Needs Improvement</th></tr></thead>
-    <tbody><tr><td>Technology in Society — <em>PDF coming soon</em></td>
-    <td>Comprehensive solutions</td><td>Good presentation</td><td>Basic ideas</td><td>Incomplete</td></tr></tbody></table>
-  </article>
-</div><!-- end tech rubric -->
-
-<!-- Art Rubric -->
-<div class="rubric-block art">
-  <h2><i class="fa fa-paint-brush"></i> Art</h2>
-  <article><h3>Grade 10 – Term 1</h3>
-    <table><thead><tr><th>Topic</th><th>Excellent</th><th>Good</th><th>Fair</th><th>Needs Improvement</th></tr></thead>
-    <tbody><tr><td><a href="https://www.scribd.com/doc/65902963/VisArt10E-SampleEbook#from_embed" target="_blank">Drawing & Sketching</a></td>
-    <td>Highly detailed, creative</td><td>Good technique</td><td>Basic sketches</td><td>Poor execution</td></tr></tbody></table>
-  </article>
-  <article><h3>Grade 10 – Term 2</h3>
-    <table><thead><tr><th>Topic</th><th>Excellent</th><th>Good</th><th>Fair</th><th>Needs Improvement</th></tr></thead>
-    <tbody><tr><td><a href="https://www.scribd.com/doc/65902963/VisArt10E-SampleEbook#from_embed" target="_blank">Painting Techniques</a></td>
-    <td>Creative, polished colour</td><td>Good blending</td><td>Basic colour use</td><td>Poor technique</td></tr></tbody></table>
-  </article>
-  <article><h3>Grade 10 – Term 3</h3>
-    <table><thead><tr><th>Topic</th><th>Excellent</th><th>Good</th><th>Fair</th><th>Needs Improvement</th></tr></thead>
-    <tbody><tr><td><a href="https://www.scribd.com/doc/65902963/VisArt10E-SampleEbook#from_embed" target="_blank">Sculpture & 3D Art</a></td>
-    <td>Innovative, well-crafted</td><td>Good craftsmanship</td><td>Basic forms</td><td>Poor execution</td></tr></tbody></table>
-  </article>
-  <article><h3>Grade 10 – Term 4</h3>
-    <table><thead><tr><th>Topic</th><th>Excellent</th><th>Good</th><th>Fair</th><th>Needs Improvement</th></tr></thead>
-    <tbody><tr><td><a href="https://www.scribd.com/doc/65902963/VisArt10E-SampleEbook#from_embed" target="_blank">Art History & Critique</a></td>
-    <td>Insightful analysis</td><td>Good understanding</td><td>Basic ideas</td><td>Incomplete</td></tr></tbody></table>
-  </article>
-  <article><h3>Grade 11 – Term 1</h3>
-    <table><thead><tr><th>Topic</th><th>Excellent</th><th>Good</th><th>Fair</th><th>Needs Improvement</th></tr></thead>
-    <tbody><tr><td><a href="https://www.scribd.com/doc/101022170/Visual-Arts-Gr11-Learner-s-Guide#from_embed" target="_blank">Advanced Drawing</a></td>
-    <td>Highly detailed, creative</td><td>Good technique</td><td>Basic sketches</td><td>Poor execution</td></tr></tbody></table>
-  </article>
-  <article><h3>Grade 11 – Term 2</h3>
-    <table><thead><tr><th>Topic</th><th>Excellent</th><th>Good</th><th>Fair</th><th>Needs Improvement</th></tr></thead>
-    <tbody><tr><td><a href="https://www.scribd.com/doc/101022170/Visual-Arts-Gr11-Learner-s-Guide#from_embed" target="_blank">Mixed Media & Collage</a></td>
-    <td>Creative, polished</td><td>Good design</td><td>Basic layouts</td><td>Poor execution</td></tr></tbody></table>
-  </article>
-  <article><h3>Grade 11 – Term 3</h3>
-    <table><thead><tr><th>Topic</th><th>Excellent</th><th>Good</th><th>Fair</th><th>Needs Improvement</th></tr></thead>
-    <tbody><tr><td><a href="https://www.scribd.com/doc/101022170/Visual-Arts-Gr11-Learner-s-Guide#from_embed" target="_blank">Photography & Digital Art</a></td>
-    <td>Innovative, well-crafted</td><td>Good technique</td><td>Basic attempts</td><td>Poor execution</td></tr></tbody></table>
-  </article>
-  <article><h3>Grade 11 – Term 4</h3>
-    <table><thead><tr><th>Topic</th><th>Excellent</th><th>Good</th><th>Fair</th><th>Needs Improvement</th></tr></thead>
-    <tbody><tr><td><a href="https://www.scribd.com/doc/101022170/Visual-Arts-Gr11-Learner-s-Guide#from_embed" target="_blank">Art History & Critique</a></td>
-    <td>Insightful analysis</td><td>Good understanding</td><td>Basic ideas</td><td>Incomplete</td></tr></tbody></table>
-  </article>
-  <article><h3>Grade 12 – Term 1</h3>
-    <table><thead><tr><th>Topic</th><th>Excellent</th><th>Good</th><th>Fair</th><th>Needs Improvement</th></tr></thead>
-    <tbody><tr><td><a href="https://www.scribd.com/doc/143176140/Visual-Arts-Grade-12-Learner-s-Guide#from_embed" target="_blank">Portfolio Development</a></td>
-    <td>Comprehensive, creative</td><td>Good presentation</td><td>Basic work</td><td>Incomplete</td></tr></tbody></table>
-  </article>
-  <article><h3>Grade 12 – Term 2</h3>
-    <table><thead><tr><th>Topic</th><th>Excellent</th><th>Good</th><th>Fair</th><th>Needs Improvement</th></tr></thead>
-    <tbody><tr><td><a href="https://www.scribd.com/doc/143176140/Visual-Arts-Grade-12-Learner-s-Guide#from_embed" target="_blank">Painting & Advanced Media</a></td>
-    <td>Creative, polished</td><td>Good blending</td><td>Basic attempts</td><td>Poor execution</td></tr></tbody></table>
-  </article>
-  <article><h3>Grade 12 – Term 3</h3>
-    <table><thead><tr><th>Topic</th><th>Excellent</th><th>Good</th><th>Fair</th><th>Needs Improvement</th></tr></thead>
-    <tbody><tr><td><a href="https://www.scribd.com/doc/143176140/Visual-Arts-Grade-12-Learner-s-Guide#from_embed" target="_blank">Sculpture & Installation</a></td>
-    <td>Innovative, well-crafted</td><td>Good craftsmanship</td><td>Basic forms</td><td>Poor execution</td></tr></tbody></table>
-  </article>
-  <article><h3>Grade 12 – Term 4</h3>
-    <table><thead><tr><th>Topic</th><th>Excellent</th><th>Good</th><th>Fair</th><th>Needs Improvement</th></tr></thead>
-    <tbody><tr><td><a href="https://www.scribd.com/doc/143176140/Visual-Arts-Grade-12-Learner-s-Guide#from_embed" target="_blank">Art History & Critique</a></td>
-    <td>Insightful analysis</td><td>Good understanding</td><td>Basic ideas</td><td>Incomplete</td></tr></tbody></table>
-  </article>
-</div><!-- end art rubric -->
-
-</section><!-- end rubric section -->
-
-<!-- Footer -->
-<footer class="Footer">
-  <div class="icons">
-    <i class="fa fa-facebook"></i>
-    <i class="fa fa-twitter"></i>
-    <i class="fa fa-instagram"></i>
-    <i class="fa fa-linkedin"></i>
-  </div>
-  <p>Made with <i class="fa fa-heart-o"></i> by Media On Africa</p>
-</footer>
-
-<script>
-  var navLinks = document.getElementById("navLinks");
-  function showmenu() { navLinks.style.right = "0"; }
-  function hidemenu() { navLinks.style.right = "-200px"; }
-</script>
-
-<script src="cybersafe-integration.js"></script>
-<script src="//code.tidio.co/uqdod81sfajvlkpiujfsjo49za71xsuc.js" async></script>
-<script src="rubric.js"></script>
-
-</body>
+    <script src="js/subjects/subjects-data.js"></script>
+    <script src="rubric.js"></script>
+    <script src="js/subjects/subjects-render.js"></script>
+    <script src="cybersafe-integration.js"></script>
+    <script src="anim-bounce.js" defer></script>
+    <script
+      src="//code.tidio.co/uqdod81sfajvlkpiujfsjo49za71xsuc.js"
+      async
+    ></script>
+  </body>
 </html>
