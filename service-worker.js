@@ -6,7 +6,7 @@
  * This is what forces browsers to drop the old cache and fetch fresh files.
  */
 
-const CACHE_VERSION = "media-on-africa-v8";
+const CACHE_VERSION = "media-on-africa-v9";
 const STATIC_CACHE = `${CACHE_VERSION}-static`;
 const PDF_CACHE = `${CACHE_VERSION}-pdfs`;
 
@@ -42,6 +42,9 @@ const STATIC_ASSETS = [
   "css/khulisa.css",
   "css/forum.css",
   "css/wellness.css",
+
+  // Shared Firebase configuration
+  "js/config/firebase.js",
 
   // Subjects page — data/render scripts
   "js/subjects/subjects-data.js",
@@ -95,6 +98,8 @@ const STATIC_ASSETS = [
   "https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css",
   "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css",
   "https://cdn.jsdelivr.net/npm/dexie@3.2.2/dist/dexie.js",
+  "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js",
+  "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js",
 ];
 
 // ─────────────────────────────────────────────────────────────
