@@ -43,6 +43,9 @@ const STATIC_ASSETS = [
   "css/forum.css",
   "css/wellness.css",
 
+  // External EmailJS SDK CDN
+  'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js',
+
   // Shared Firebase configuration
   "js/config/firebase.js",
 

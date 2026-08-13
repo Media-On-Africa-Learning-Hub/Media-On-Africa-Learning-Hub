@@ -19,6 +19,22 @@ export async function sendContactMessage(data) {
   }
 }
 
+/* ---------- EmailJS Helper ---------- */
+
+async function sendConfirmationEmail(data) {
+  try {
+    await emailjs.send('service_xoa649o', 'template_8qtvj6i', {
+      user_name: data.name,
+      user_email: data.email,
+      category: data.category,
+      message: data.message
+    });
+    console.log("Confirmation email sent successfully!");
+  } catch (err) {
+    console.error("Failed to send email via EmailJS:", err);
+  }
+}
+
 /* ---------- Form handling ---------- */
 
 async function handleFormSubmit(event) {
@@ -53,6 +69,9 @@ async function handleFormSubmit(event) {
 
   // Immediately respond based on network status
   if (navigator.onLine) {
+    // Send auto-reply confirmation email via EmailJS
+    await sendConfirmationEmail(data);
+
     showFormStatus("✓ Message sent successfully! We'll get back to you soon.", "success");
     showNotification("Message sent successfully!", "success");
   } else {
@@ -61,6 +80,12 @@ async function handleFormSubmit(event) {
       "info"
     );
     showNotification("Saved offline! Will sync when reconnected.", "success");
+
+    // Queue email trigger for when connection returns
+    window.addEventListener('online', async () => {
+      await sendConfirmationEmail(data);
+      showNotification("Reconnected! Email confirmation sent.", "success");
+    }, { once: true });
   }
 
   // Reset form & restore button immediately
@@ -101,6 +126,7 @@ async function downloadPageOffline() {
       "js/contact/contact-support.js",
       "js/config/firebase.js",
       "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css",
+      "https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
     ];
 
     navigator.serviceWorker.controller.postMessage({
