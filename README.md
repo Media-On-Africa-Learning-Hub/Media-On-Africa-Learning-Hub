@@ -2,9 +2,8 @@
 
 **Maintainer / Repo Admin:** Sizwe Yende
 
-**Repository:** [https://github.com/Media-On-Africa-Learning-Hub/Media-On-Africa-Learning-Hub](https://github.com/Media-On-Africa-Learning-Hub/Media-On-Africa-Learning-Hub)
 
-**Production Site:** [https://media-on-africa-learning-hub.github.io](https://media-on-africa-learning-hub.github.io)
+**Production Site:** [https://media-on-africa-learning-hub.github.io](https://media-on-africa-learning-hub.github.io/Media-On-Africa-Learning-Hub/)
 
 ## Overview
 
