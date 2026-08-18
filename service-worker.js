@@ -6,7 +6,7 @@
  * This is what forces browsers to drop the old cache and fetch fresh files.
  */
 
-const CACHE_VERSION = "media-on-africa-v9";
+const CACHE_VERSION = "media-on-africa-v10";
 const STATIC_CACHE = `${CACHE_VERSION}-static`;
 const PDF_CACHE = `${CACHE_VERSION}-pdfs`;
 
@@ -22,6 +22,7 @@ const STATIC_ASSETS = [
   "library.html",
   "forum.html",
   "quizzes.html",
+  "admin-generator.html",
   "aptitude.html",
   "career-discovery.html",
   "combined-report.html",
@@ -56,6 +57,8 @@ const STATIC_ASSETS = [
   // Quizzes page — data/render scripts
   "js/quizzes/quiz-data.js",
   "js/quizzes/quiz-script.js",
+  "js/quizzes/caps-topic.js",
+  "js/quizzes/quiz-sync.js",
 
   // Reasoning Skills Assessment (aptitude.html) — data/render scripts
   "js/aptitudes/reasoning-data.js",
@@ -301,15 +304,28 @@ self.addEventListener("fetch", (event) => {
   // cache from growing unbounded with stale entries.
   event.respondWith(
     fetch(request)
-      .then((response) => {
+      .then(async (response) => {
         if (response.ok) {
-          // Clone BEFORE any other use, and give the background write its
-          // own .catch() so a failed cache write never becomes an unhandled
-          // promise rejection (this was the source of the noisy console errors).
-          const copy = response.clone();
+          // Redirected responses (301/302 en route to the final URL) can't
+          // be replayed for a later navigation request — Chrome throws
+          // "a redirected response was used for a request whose redirect
+          // mode is not follow" and the offline page fails to load.
+          // Fix: rebuild a clean, non-redirected Response before caching it.
+          let toCache = response;
+          if (response.redirected) {
+            const body = await response.clone().blob();
+            toCache = new Response(body, {
+              status: response.status,
+              statusText: response.statusText,
+              headers: response.headers,
+            });
+          } else {
+            toCache = response.clone();
+          }
+
           caches
             .open(STATIC_CACHE)
-            .then((cache) => cache.put(request, copy))
+            .then((cache) => cache.put(request, toCache))
             .catch((err) =>
               console.warn(
                 "[SW] Cache write failed:",

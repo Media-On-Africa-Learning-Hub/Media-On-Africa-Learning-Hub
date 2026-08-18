@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CAPS Quiz Generator - Admin</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f4f7f6;
+        max-width: 500px;
+        margin: 3rem auto;
+        padding: 2rem;
+        background: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+      h2 {
+        color: #0072ff;
+        margin-top: 0;
+      }
+      .field {
+        margin-bottom: 1.2rem;
+      }
+      label {
+        display: block;
+        font-weight: 600;
+        margin-bottom: 0.4rem;
+        color: #333;
+      }
+      select,
+      input,
+      button {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        box-sizing: border-box;
+        font-size: 1rem;
+      }
+      button {
+        background: #0072ff;
+        color: #fff;
+        border: none;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+      button:hover {
+        background: #005bb5;
+      }
+      button:disabled {
+        background: #aaa;
+        cursor: not-allowed;
+      }
+      #status {
+        margin-top: 1.5rem;
+        padding: 1rem;
+        display: none;
+        border-radius: 6px;
+        font-weight: 500;
+      }
+      .success {
+        background: #e8f5e9;
+        color: #2e7d32;
+        border: 1px solid #c8e6c9;
+      }
+      .error {
+        background: #ffebee;
+        color: #c62828;
+        border: 1px solid #ffcdd2;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>CAPS Quiz Generator</h2>
+
+    <div class="field">
+      <label for="apiKey">Gemini API Key</label>
+      <input
+        type="password"
+        id="apiKey"
+        placeholder="Paste your Gemini API key here..."
+      />
+    </div>
+
+    <hr style="margin: 1.5rem 0; border: none; border-top: 1px solid #eee" />
+
+    <form id="gen-form">
+      <div class="field">
+        <label for="subject">Subject</label>
+        <select id="subject">
+          <option value="maths">Mathematics</option>
+          <option value="science">Science</option>
+          <option value="technology">Technology</option>
+          <option value="art">Art</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="grade">Grade</label>
+        <select id="grade">
+          <option value="grade10">Grade 10</option>
+          <option value="grade11">Grade 11</option>
+          <option value="grade12">Grade 12</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="term">Term</label>
+        <select id="term">
+          <option value="term1">Term 1</option>
+          <option value="term2">Term 2</option>
+          <option value="term3">Term 3</option>
+          <option value="term4">Term 4</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="count">Question Count (1–20)</label>
+        <input type="number" id="count" value="5" min="1" max="20" />
+      </div>
+
+      <button type="submit" id="submit-btn">Generate & Save Questions</button>
+    </form>
+
+    <div id="status"></div>
+
+    <script type="module">
+      import { db } from "./js/config/firebase.js";
+      import { capsTopics } from "./js/quizzes/caps-topic.js";
+      import {
+        collection,
+        writeBatch,
+        doc,
+        serverTimestamp,
+      } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+      import { GoogleGenerativeAI } from "https://esm.run/@google/generative-ai";
+
+      document
+        .getElementById("gen-form")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const status = document.getElementById("status");
+          const btn = document.getElementById("submit-btn");
+          const apiKey = document.getElementById("apiKey").value.trim();
+
+          if (!apiKey) {
+            alert("Please enter your Gemini API Key.");
+            return;
+          }
+
+          const subject = document.getElementById("subject").value;
+          const grade = document.getElementById("grade").value;
+          const term = document.getElementById("term").value;
+          const count = parseInt(document.getElementById("count").value);
+
+          const topics = capsTopics[subject]?.[grade]?.[term];
+          if (!topics || !topics.length) {
+            alert(
+              `No topics found in caps-topic.js for ${subject} / ${grade} / ${term}`,
+            );
+            return;
+          }
+
+          status.style.display = "block";
+          status.className = "";
+          status.textContent = "Requesting questions from Gemini AI...";
+          btn.disabled = true;
+
+          try {
+            const prompt = `
+You are a South African CAPS curriculum content writer. Generate ${count} multiple-choice quiz questions for subject "${subject}", grade "${grade}", term "${term}".
+
+Topics strictly to cover:
+${topics.map((t) => `- ${t}`).join("\n")}
+
+Rules:
+- Exactly 3 options per question.
+- Only 1 correct answer (index 0, 1, or 2).
+- Return ONLY valid JSON matching this schema:
+[
+  {
+    "q": "question text",
+    "options": ["a", "b", "c"],
+    "answer": 0,
+    "capsTopic": "topic covered"
+  }
+]
+        `.trim();
+
+            const genAI = new GoogleGenerativeAI(apiKey);
+            let result;
+            let modelUsed = "gemini-3.7-flash";
+
+            try {
+              const primaryModel = genAI.getGenerativeModel({
+                model: modelUsed,
+                generationConfig: { responseMimeType: "application/json" },
+              });
+              result = await primaryModel.generateContent(prompt);
+            } catch (apiErr) {
+              if (
+                apiErr.message &&
+                (apiErr.message.includes("503") ||
+                  apiErr.message.includes("404"))
+              ) {
+                status.textContent =
+                  "Primary model busy or unavailable. Switching to fallback model (gemini-3.6-flash)...";
+                modelUsed = "gemini-3.6-flash";
+                const fallbackModel = genAI.getGenerativeModel({
+                  model: modelUsed,
+                  generationConfig: { responseMimeType: "application/json" },
+                });
+                result = await fallbackModel.generateContent(prompt);
+              } else {
+                throw apiErr;
+              }
+            }
+
+            const parsed = JSON.parse(result.response.text());
+
+            // Batch write with custom descriptive Document IDs
+            const batch = writeBatch(db);
+            const timestamp = Date.now();
+
+            parsed.forEach((item, index) => {
+              // Custom ID format: grade10_maths_term1_1723984021000_0
+              const customDocId = `${grade}_${subject}_${term}_${timestamp}_${index}`;
+              const customDocRef = doc(db, "quizQuestions", customDocId);
+
+              batch.set(customDocRef, {
+                subject,
+                grade,
+                term,
+                capsTopic: item.capsTopic || null,
+                q: item.q,
+                options: item.options,
+                answer: item.answer,
+                approved: false,
+                generatedBy: modelUsed,
+                createdAt: serverTimestamp(),
+              });
+            });
+
+            await batch.commit();
+
+            status.className = "success";
+            status.textContent = `Success! Saved ${parsed.length} questions to Firestore using ${modelUsed}. Remember to mark 'approved: true' in your Firestore Console to display them to learners.`;
+          } catch (err) {
+            status.className = "error";
+            status.textContent = "Failed: " + err.message;
+          } finally {
+            btn.disabled = false;
+          }
+        });
+    </script>
+  </body>
+</html>

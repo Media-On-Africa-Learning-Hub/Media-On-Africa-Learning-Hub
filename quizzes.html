@@ -125,23 +125,24 @@
         <div class="quiz-tabs">
           <button
             class="grade-btn grade10"
-            onclick="loadQuiz('maths', 'grade10', 'quiz-maths', 'memo-maths')"
+            onclick="selectGrade('maths', 'grade10', 'quiz-maths', 'memo-maths', 'terms-maths')"
           >
             Grade 10
           </button>
           <button
             class="grade-btn grade11"
-            onclick="loadQuiz('maths', 'grade11', 'quiz-maths', 'memo-maths')"
+            onclick="selectGrade('maths', 'grade11', 'quiz-maths', 'memo-maths', 'terms-maths')"
           >
             Grade 11
           </button>
           <button
             class="grade-btn grade12"
-            onclick="loadQuiz('maths', 'grade12', 'quiz-maths', 'memo-maths')"
+            onclick="selectGrade('maths', 'grade12', 'quiz-maths', 'memo-maths', 'terms-maths')"
           >
             Grade 12
           </button>
         </div>
+        <div class="term-tabs" id="terms-maths"></div>
         <div class="quiz-container">
           <div id="quiz-maths" class="quiz-area"></div>
           <div id="memo-maths" class="memo-area"></div>
@@ -156,7 +157,7 @@
           <button
             class="grade-btn grade10"
             onclick="
-              loadQuiz('science', 'grade10', 'quiz-science', 'memo-science')
+              selectGrade('science', 'grade10', 'quiz-science', 'memo-science', 'terms-science')
             "
           >
             Grade 10
@@ -164,7 +165,7 @@
           <button
             class="grade-btn grade11"
             onclick="
-              loadQuiz('science', 'grade11', 'quiz-science', 'memo-science')
+              selectGrade('science', 'grade11', 'quiz-science', 'memo-science', 'terms-science')
             "
           >
             Grade 11
@@ -172,12 +173,13 @@
           <button
             class="grade-btn grade12"
             onclick="
-              loadQuiz('science', 'grade12', 'quiz-science', 'memo-science')
+              selectGrade('science', 'grade12', 'quiz-science', 'memo-science', 'terms-science')
             "
           >
             Grade 12
           </button>
         </div>
+        <div class="term-tabs" id="terms-science"></div>
         <div class="quiz-container">
           <div id="quiz-science" class="quiz-area"></div>
           <div id="memo-science" class="memo-area"></div>
@@ -192,11 +194,12 @@
           <button
             class="grade-btn grade10"
             onclick="
-              loadQuiz(
+              selectGrade(
                 'technology',
                 'grade10',
                 'quiz-technology',
                 'memo-technology',
+                'terms-technology',
               )
             "
           >
@@ -205,11 +208,12 @@
           <button
             class="grade-btn grade11"
             onclick="
-              loadQuiz(
+              selectGrade(
                 'technology',
                 'grade11',
                 'quiz-technology',
                 'memo-technology',
+                'terms-technology',
               )
             "
           >
@@ -218,17 +222,19 @@
           <button
             class="grade-btn grade12"
             onclick="
-              loadQuiz(
+              selectGrade(
                 'technology',
                 'grade12',
                 'quiz-technology',
                 'memo-technology',
+                'terms-technology',
               )
             "
           >
             Grade 12
           </button>
         </div>
+        <div class="term-tabs" id="terms-technology"></div>
         <div class="quiz-container">
           <div id="quiz-technology" class="quiz-area"></div>
           <div id="memo-technology" class="memo-area"></div>
@@ -242,29 +248,54 @@
         <div class="quiz-tabs">
           <button
             class="grade-btn grade10"
-            onclick="loadQuiz('art', 'grade10', 'quiz-art', 'memo-art')"
+            onclick="selectGrade('art', 'grade10', 'quiz-art', 'memo-art', 'terms-art')"
           >
             Grade 10
           </button>
           <button
             class="grade-btn grade11"
-            onclick="loadQuiz('art', 'grade11', 'quiz-art', 'memo-art')"
+            onclick="selectGrade('art', 'grade11', 'quiz-art', 'memo-art', 'terms-art')"
           >
             Grade 11
           </button>
           <button
             class="grade-btn grade12"
-            onclick="loadQuiz('art', 'grade12', 'quiz-art', 'memo-art')"
+            onclick="selectGrade('art', 'grade12', 'quiz-art', 'memo-art', 'terms-art')"
           >
             Grade 12
           </button>
         </div>
+        <div class="term-tabs" id="terms-art"></div>
         <div class="quiz-container">
           <div id="quiz-art" class="quiz-area"></div>
           <div id="memo-art" class="memo-area"></div>
         </div>
       </div>
     </section>
+
+    <!-- Full-screen quiz overlay: opened by openQuizOverlay() in quiz-script.js
+         when a user clicks a Term button. One shared overlay for every
+         subject card, so it doesn't need to be duplicated per subject. -->
+    <div id="quiz-overlay" class="quiz-overlay" aria-hidden="true">
+      <div class="quiz-overlay-inner">
+        <div class="quiz-overlay-topbar">
+          <button
+            type="button"
+            class="quiz-back-btn"
+            onclick="closeQuizOverlay()"
+          >
+            <i class="fa fa-arrow-left" aria-hidden="true"></i> Back to Quizzes
+          </button>
+          <h2 id="quiz-overlay-title" class="quiz-overlay-title"></h2>
+        </div>
+        <div class="quiz-overlay-card">
+          <div class="quiz-container">
+            <div id="overlay-quiz-area" class="quiz-area"></div>
+            <div id="overlay-memo-area" class="memo-area"></div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <footer class="site-footer">
       <div class="footer-container">
@@ -323,6 +354,7 @@
 
     <!-- Quiz Scripts -->
     <script src="js/quizzes/quiz-data.js"></script>
+    <script type="module" src="js/quizzes/quiz-sync.js"></script>
     <script src="js/quizzes/quiz-script.js"></script>
     <script src="cybersafe-integration.js"></script>
     <script src="anim-bounce.js" defer></script>

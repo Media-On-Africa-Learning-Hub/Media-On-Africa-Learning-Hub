@@ -173,6 +173,93 @@
   margin-bottom: 15px;
 }
 
+/* ── Term tabs + download button ──
+   Previously unstyled — term-btn, download-quiz-btn and download-status
+   are all created in quiz-script.js but had no matching CSS, so they
+   rendered as bare inline buttons crammed onto one line. */
+.term-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.term-btn {
+  border: 1px solid #e3e9ed;
+  background: #f8fafd;
+  color: var(--text-dark);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.82rem;
+  padding: 8px 16px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease,
+    transform 0.15s ease;
+}
+
+.term-btn:hover {
+  background: #eef2ff;
+  border-color: var(--rainbow-5);
+  transform: translateY(-1px);
+}
+
+.term-btn.active {
+  background: var(--rainbow-5);
+  border-color: var(--rainbow-5);
+  color: #ffffff;
+}
+
+.term-btn:focus-visible {
+  outline: 2px solid var(--rainbow-5);
+  outline-offset: 2px;
+}
+
+/* Pushed onto its own visual row, separate from the term pills, so it
+   doesn't read as a fifth term option. */
+.download-quiz-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  border: 1px dashed #cbd5e1;
+  background: #ffffff;
+  color: var(--text-muted);
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 500;
+  padding: 8px 14px;
+  margin-top: 4px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.download-quiz-btn:hover {
+  background: #f8fafd;
+  border-color: var(--rainbow-5);
+  color: var(--text-dark);
+}
+
+.download-status {
+  width: 100%;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+.download-status:empty {
+  display: none;
+}
+
 .grade-btn {
   border: none;
   padding: 10px 18px;
@@ -231,51 +318,16 @@
 }
 
 /* ── Empty states ──
-   Before a grade is picked, #quiz-* and #memo-* are empty divs. memo-area
-   still had its background/padding showing with nothing in it — that's
-   the gray bar reported as looking like ad space. Hiding it when :empty,
-   and turning the empty quiz-area into an actual call-to-action, fixes
-   the visual bug and gives the page a little life instead. Both rules
-   stop applying automatically once loadQuiz() fills the div — no JS
-   changes needed here. */
+   Before a grade is picked, #quiz-* and #memo-* are empty divs. Both just
+   collapse to nothing now — the grade buttons above already make it clear
+   what to do, so a placeholder box/hint text here was just extra visual
+   noise with nothing in it. */
 .memo-area:empty {
   display: none;
 }
 
 .quiz-area:empty {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 110px;
-  border: 2px dashed #dbe4ff;
-  border-radius: var(--radius-md);
-  background: #f8fafd;
-}
-
-.quiz-area:empty::before {
-  content: "👆 Pick a grade above to start this quiz";
-  font-family: var(--font-body);
-  font-size: 0.9rem;
-  color: var(--text-muted);
-  animation: quiz-empty-hint 2s ease-in-out infinite;
-}
-
-@keyframes quiz-empty-hint {
-  0%,
-  100% {
-    transform: translateY(0);
-    opacity: 0.85;
-  }
-  50% {
-    transform: translateY(-3px);
-    opacity: 1;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .quiz-area:empty::before {
-    animation: none;
-  }
+  display: none;
 }
 
 .memo-area h4 {
@@ -466,4 +518,102 @@
   background: #fef2f2;
   color: #b91c1c;
   border: 1px solid #fecaca;
+}
+
+/* ══════════════════════════════════════════
+   Full-screen quiz overlay
+   Opened by openQuizOverlay() in quiz-script.js when a Term button is
+   clicked. Keeps the quiz off the main card layout entirely — no page
+   reflow on the subject grid, and closeQuizOverlay() clears it out on
+   Back, so no refresh is ever needed to get rid of a finished quiz.
+   ══════════════════════════════════════════ */
+.quiz-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: #f8fafd;
+  overflow-y: auto;
+}
+
+.quiz-overlay.open {
+  display: block;
+}
+
+/* Stops the page underneath from scrolling while the overlay is open */
+body.quiz-overlay-active {
+  overflow: hidden;
+}
+
+.quiz-overlay-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px clamp(16px, 4vw, 40px) 60px;
+}
+
+.quiz-overlay-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  background: #f8fafd;
+  padding: 12px 0 16px;
+  margin-bottom: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border-bottom: 1px solid #e3e9ed;
+}
+
+.quiz-back-btn {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  background: #ffffff;
+  box-shadow: var(--card-shadow);
+  color: var(--text-dark);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.85rem;
+  padding: 9px 18px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition:
+    filter 0.15s ease,
+    transform 0.15s ease;
+}
+
+.quiz-back-btn:hover {
+  filter: brightness(0.96);
+  transform: translateX(-2px);
+}
+
+.quiz-overlay-title {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: var(--text-dark);
+  margin: 0;
+}
+
+.quiz-overlay .quiz-container {
+  margin-top: 0;
+}
+
+/* Wraps the question list + memo panel in an actual card, matching the
+   rest of the site's design language, instead of leaving them floating
+   directly on the flat overlay background (which read as a blank page). */
+.quiz-overlay-card {
+  background: #ffffff;
+  border-radius: var(--radius-lg);
+  padding: 24px clamp(18px, 3vw, 28px);
+  box-shadow: var(--card-shadow);
+  border-top: 4px solid var(--rainbow-5);
+}
+
+@media (max-width: 768px) {
+  .quiz-overlay-inner {
+    padding: 16px 16px 48px;
+  }
 }

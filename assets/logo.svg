@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 60" width="320" height="60">
+  <g fill="#0072ff">
+    <polygon points="25,12 45,22 25,32 5,22" />
+    <path d="M 12,26.5 V 34 C 12,38 18,41 25,41 C 32,41 38,38 38,34 V 26.5 L 25,33 Z" />
+    <path d="M 40,22 V 33" stroke="#0072ff" stroke-width="2.5" stroke-linecap="round" />
+    <circle cx="40" cy="35" r="2.5" />
+  </g>
+  <text x="58" y="38" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="#0072ff">
+    E-Learning Hub
+  </text>
+</svg>
