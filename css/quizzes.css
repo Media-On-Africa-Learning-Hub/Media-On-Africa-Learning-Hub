@@ -1,30 +1,3 @@
-/* ══════════════════════════════════════════
-   Quizzes page — extracted from quizzes.html's old inline <style> block
-   and restyled to match the shared design system (styles.css / home.css).
-   ══════════════════════════════════════════ */
-
-/* ── Decorative side fill: floating bubbles + subject icons ──
-   Fixed to the viewport so it holds steady regardless of scroll or page
-   length. Positions use vh (% of viewport height) rather than raw px —
-   the earlier version used px values like top:1040px, which sat below
-   the visible area on a normal-height screen and were never seen. vh
-   values always land within whatever the current viewport actually is.
-   Hidden below 1550px, where the wider card column (see .quizzes below)
-   leaves no real gutter to float in.
-
-   NOTE: motion is now driven entirely by anim-bounce.js, not CSS keyframes.
-   CSS keyframes have no way to know where the quiz cards actually are on
-   screen, so they could only fake a "bounce" with pre-baked paths — real
-   contact with the cards needs JS reading getBoundingClientRect() each
-   frame. These rules now only set static appearance (size/color/anchor
-   position); anim-bounce.js applies `transform: translate(...)` on top of
-   that anchor every frame. If JS fails to load for any reason, elements
-   simply sit still at their anchor position — a safe, non-broken fallback. */
-
-/* prefers-reduced-motion is now handled inside anim-bounce.js itself —
-   it checks matchMedia and simply never starts the animation loop, so
-   elements stay at their static CSS anchor position. */
-
 .quizzes-page-header {
   width: 100%;
   background: linear-gradient(135deg, #00c2ff 0%, #0072ff 50%, #9b59b6 100%);
@@ -86,6 +59,12 @@
   padding: 32px clamp(16px, 4vw, 40px) 64px;
 }
 
+@media (min-width: 900px) {
+  .quizzes {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
 .quiz-card {
   background: #ffffff;
   border-radius: var(--radius-lg);
@@ -102,11 +81,6 @@
   box-shadow: 0 12px 28px rgba(0, 114, 255, 0.14);
 }
 
-/* ── Scroll-reveal entrance ──
-   quiz-animations.js adds .in-view via IntersectionObserver as each card
-   enters the viewport. Falls back to fully visible if JS hasn't run yet
-   (see the no-js/js-not-loaded guard at the bottom of this block) so the
-   page never shows blank cards if the script fails to load. */
 .quiz-card.reveal {
   opacity: 0;
   transform: translateY(24px);
@@ -173,10 +147,6 @@
   margin-bottom: 15px;
 }
 
-/* ── Term tabs + download button ──
-   Previously unstyled — term-btn, download-quiz-btn and download-status
-   are all created in quiz-script.js but had no matching CSS, so they
-   rendered as bare inline buttons crammed onto one line. */
 .term-tabs {
   display: flex;
   flex-wrap: wrap;
@@ -219,8 +189,6 @@
   outline-offset: 2px;
 }
 
-/* Pushed onto its own visual row, separate from the term pills, so it
-   doesn't read as a fifth term option. */
 .download-quiz-btn {
   display: flex;
   align-items: center;
@@ -285,6 +253,12 @@
   outline-offset: 2px;
 }
 
+.grade8 {
+  background: #ffe8c2;
+} /* tint of --rainbow-2 */
+.grade9 {
+  background: #ffd0e8;
+} /* tint of --rainbow-3 */
 .grade10 {
   background: #ffd9da;
 } /* tint of --rainbow-1 */
@@ -317,11 +291,6 @@
   min-width: 200px;
 }
 
-/* ── Empty states ──
-   Before a grade is picked, #quiz-* and #memo-* are empty divs. Both just
-   collapse to nothing now — the grade buttons above already make it clear
-   what to do, so a placeholder box/hint text here was just extra visual
-   noise with nothing in it. */
 .memo-area:empty {
   display: none;
 }
@@ -363,10 +332,6 @@
   border-bottom: none;
 }
 
-/* quiz-script.js appends questions in order via forEach, so nth-of-type
-   staggering lines up with question number. Capped at 10 — beyond that
-   they all just share the last delay, which is fine, it's barely visible
-   by then anyway. */
 .quiz-question:nth-of-type(1) {
   animation-delay: 0s;
 }
@@ -441,10 +406,6 @@
   outline-offset: 2px;
 }
 
-/* quiz-script.js disables every option button in a question once one is
-   clicked, and sets a green/red inline background on the clicked one
-   directly via JS — this just stops the hover affordance on the now-inert
-   buttons without fighting that inline color. */
 .option-btn:disabled {
   cursor: not-allowed;
 }
@@ -520,13 +481,6 @@
   border: 1px solid #fecaca;
 }
 
-/* ══════════════════════════════════════════
-   Full-screen quiz overlay
-   Opened by openQuizOverlay() in quiz-script.js when a Term button is
-   clicked. Keeps the quiz off the main card layout entirely — no page
-   reflow on the subject grid, and closeQuizOverlay() clears it out on
-   Back, so no refresh is ever needed to get rid of a finished quiz.
-   ══════════════════════════════════════════ */
 .quiz-overlay {
   display: none;
   position: fixed;
@@ -601,9 +555,6 @@ body.quiz-overlay-active {
   margin-top: 0;
 }
 
-/* Wraps the question list + memo panel in an actual card, matching the
-   rest of the site's design language, instead of leaving them floating
-   directly on the flat overlay background (which read as a blank page). */
 .quiz-overlay-card {
   background: #ffffff;
   border-radius: var(--radius-lg);

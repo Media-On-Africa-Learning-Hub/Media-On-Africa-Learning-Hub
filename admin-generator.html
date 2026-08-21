@@ -89,21 +89,12 @@
     <form id="gen-form">
       <div class="field">
         <label for="subject">Subject</label>
-        <select id="subject">
-          <option value="maths">Mathematics</option>
-          <option value="science">Science</option>
-          <option value="technology">Technology</option>
-          <option value="art">Art</option>
-        </select>
+        <select id="subject"></select>
       </div>
 
       <div class="field">
         <label for="grade">Grade</label>
-        <select id="grade">
-          <option value="grade10">Grade 10</option>
-          <option value="grade11">Grade 11</option>
-          <option value="grade12">Grade 12</option>
-        </select>
+        <select id="grade"></select>
       </div>
 
       <div class="field">
@@ -128,7 +119,7 @@
 
     <script type="module">
       import { db } from "./js/config/firebase.js";
-      import { capsTopics } from "./js/quizzes/caps-topic.js";
+      import { capsTopics, subjectMeta } from "./js/quizzes/caps-topic.js";
       import {
         collection,
         writeBatch,
@@ -136,6 +127,49 @@
         serverTimestamp,
       } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
       import { GoogleGenerativeAI } from "https://esm.run/@google/generative-ai";
+
+      const gradeLabels = {
+        grade8: "Grade 8",
+        grade9: "Grade 9",
+        grade10: "Grade 10",
+        grade11: "Grade 11",
+        grade12: "Grade 12",
+      };
+
+      const subjectSelect = document.getElementById("subject");
+      const gradeSelect = document.getElementById("grade");
+
+      // Populate subjects from subjectMeta so this dropdown can never drift
+      // out of sync with caps-topic.js / the CAPS phase structure.
+      Object.entries(subjectMeta).forEach(([key, meta]) => {
+        const opt = document.createElement("option");
+        opt.value = key;
+        opt.textContent = meta.label;
+        subjectSelect.appendChild(opt);
+      });
+
+      // Grade options depend on which subject is selected — Senior Phase
+      // subjects (Gr 8-9) and FET subjects (Gr 10-12) don't share grades,
+      // except Mathematics which spans both.
+      function populateGrades() {
+        const meta = subjectMeta[subjectSelect.value];
+        const previousValue = gradeSelect.value;
+        gradeSelect.innerHTML = "";
+        meta.grades.forEach((g) => {
+          const opt = document.createElement("option");
+          opt.value = g;
+          opt.textContent = gradeLabels[g] || g;
+          gradeSelect.appendChild(opt);
+        });
+        // keep the previous grade selected if it's still valid for the
+        // new subject (e.g. switching between two FET subjects)
+        if (meta.grades.includes(previousValue)) {
+          gradeSelect.value = previousValue;
+        }
+      }
+
+      subjectSelect.addEventListener("change", populateGrades);
+      populateGrades(); // initial population on page load
 
       document
         .getElementById("gen-form")
@@ -191,7 +225,7 @@ Rules:
 
             const genAI = new GoogleGenerativeAI(apiKey);
             let result;
-            let modelUsed = "gemini-3.7-flash";
+            let modelUsed = "gemini-3.5-flash-lite";
 
             try {
               const primaryModel = genAI.getGenerativeModel({
@@ -203,10 +237,11 @@ Rules:
               if (
                 apiErr.message &&
                 (apiErr.message.includes("503") ||
-                  apiErr.message.includes("404"))
+                  apiErr.message.includes("404") ||
+                  apiErr.message.includes("429"))
               ) {
                 status.textContent =
-                  "Primary model busy or unavailable. Switching to fallback model (gemini-3.6-flash)...";
+                  "Primary model busy, unavailable, or quota reached. Switching to fallback model (gemini-3.6-flash)...";
                 modelUsed = "gemini-3.6-flash";
                 const fallbackModel = genAI.getGenerativeModel({
                   model: modelUsed,
@@ -237,7 +272,7 @@ Rules:
                 q: item.q,
                 options: item.options,
                 answer: item.answer,
-                approved: false,
+                approved: true,
                 generatedBy: modelUsed,
                 createdAt: serverTimestamp(),
               });
@@ -246,7 +281,7 @@ Rules:
             await batch.commit();
 
             status.className = "success";
-            status.textContent = `Success! Saved ${parsed.length} questions to Firestore using ${modelUsed}. Remember to mark 'approved: true' in your Firestore Console to display them to learners.`;
+            status.textContent = `Success! Saved ${parsed.length} questions to Firestore using ${modelUsed}. They're live and visible to learners now — no approval step needed.`;
           } catch (err) {
             status.className = "error";
             status.textContent = "Failed: " + err.message;

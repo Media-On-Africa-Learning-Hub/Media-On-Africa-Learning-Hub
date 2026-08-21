@@ -6,7 +6,7 @@
  * This is what forces browsers to drop the old cache and fetch fresh files.
  */
 
-const CACHE_VERSION = "media-on-africa-v10";
+const CACHE_VERSION = "media-on-africa-v11";
 const STATIC_CACHE = `${CACHE_VERSION}-static`;
 const PDF_CACHE = `${CACHE_VERSION}-pdfs`;
 

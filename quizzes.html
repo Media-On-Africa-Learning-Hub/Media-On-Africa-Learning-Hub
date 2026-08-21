@@ -110,37 +110,23 @@
         >
         <h1>Interactive Quizzes</h1>
         <p>
-          Test your knowledge in Maths, Science, Technology, and Art for Grades
-          10–12
+          Test your knowledge in Maths, Science, Technology, Accounting and Art for Grades
+          8–12
         </p>
       </div>
     </header>
 
-    <!-- Quizzes Content -->
     <section class="quizzes">
-      <!-- Maths -->
-      <div class="quiz-card quiz-card--math grade10-block">
+      <!-- Mathematics (Gr 8-12) -->
+      <div class="quiz-card quiz-card--math">
         <h3>Mathematics</h3>
         <p>Challenge yourself with algebra, trigonometry, and calculus.</p>
         <div class="quiz-tabs">
-          <button
-            class="grade-btn grade10"
-            onclick="selectGrade('maths', 'grade10', 'quiz-maths', 'memo-maths', 'terms-maths')"
-          >
-            Grade 10
-          </button>
-          <button
-            class="grade-btn grade11"
-            onclick="selectGrade('maths', 'grade11', 'quiz-maths', 'memo-maths', 'terms-maths')"
-          >
-            Grade 11
-          </button>
-          <button
-            class="grade-btn grade12"
-            onclick="selectGrade('maths', 'grade12', 'quiz-maths', 'memo-maths', 'terms-maths')"
-          >
-            Grade 12
-          </button>
+          <button class="grade-btn grade8" onclick="selectGrade('maths', 'grade8', 'quiz-maths', 'memo-maths', 'terms-maths')">Grade 8</button>
+          <button class="grade-btn grade9" onclick="selectGrade('maths', 'grade9', 'quiz-maths', 'memo-maths', 'terms-maths')">Grade 9</button>
+          <button class="grade-btn grade10" onclick="selectGrade('maths', 'grade10', 'quiz-maths', 'memo-maths', 'terms-maths')">Grade 10</button>
+          <button class="grade-btn grade11" onclick="selectGrade('maths', 'grade11', 'quiz-maths', 'memo-maths', 'terms-maths')">Grade 11</button>
+          <button class="grade-btn grade12" onclick="selectGrade('maths', 'grade12', 'quiz-maths', 'memo-maths', 'terms-maths')">Grade 12</button>
         </div>
         <div class="term-tabs" id="terms-maths"></div>
         <div class="quiz-container">
@@ -149,90 +135,60 @@
         </div>
       </div>
 
-      <!-- Science -->
-      <div class="quiz-card quiz-card--science grade11-block">
-        <h3>Science</h3>
-        <p>Explore physics, chemistry, and biology concepts.</p>
+      <!-- Natural Sciences (Senior Phase, Gr 8-9) -->
+      <div class="quiz-card quiz-card--science">
+        <h3>Natural Sciences</h3>
+        <p>Life and Living, Matter and Materials, Energy and Change, and Planet Earth and Beyond.</p>
         <div class="quiz-tabs">
-          <button
-            class="grade-btn grade10"
-            onclick="
-              selectGrade('science', 'grade10', 'quiz-science', 'memo-science', 'terms-science')
-            "
-          >
-            Grade 10
-          </button>
-          <button
-            class="grade-btn grade11"
-            onclick="
-              selectGrade('science', 'grade11', 'quiz-science', 'memo-science', 'terms-science')
-            "
-          >
-            Grade 11
-          </button>
-          <button
-            class="grade-btn grade12"
-            onclick="
-              selectGrade('science', 'grade12', 'quiz-science', 'memo-science', 'terms-science')
-            "
-          >
-            Grade 12
-          </button>
+          <button class="grade-btn grade8" onclick="selectGrade('natural_science', 'grade8', 'quiz-natural_science', 'memo-natural_science', 'terms-natural_science')">Grade 8</button>
+          <button class="grade-btn grade9" onclick="selectGrade('natural_science', 'grade9', 'quiz-natural_science', 'memo-natural_science', 'terms-natural_science')">Grade 9</button>
         </div>
-        <div class="term-tabs" id="terms-science"></div>
+        <div class="term-tabs" id="terms-natural_science"></div>
         <div class="quiz-container">
-          <div id="quiz-science" class="quiz-area"></div>
-          <div id="memo-science" class="memo-area"></div>
+          <div id="quiz-natural_science" class="quiz-area"></div>
+          <div id="memo-natural_science" class="memo-area"></div>
         </div>
       </div>
 
-      <!-- Technology -->
-      <div class="quiz-card quiz-card--tech grade12-block">
-        <h3>Technology</h3>
-        <p>Test your ICT and design knowledge.</p>
+      <!-- Physical Science (FET, Gr 10-12) -->
+      <div class="quiz-card quiz-card--science">
+        <h3>Physical Science</h3>
+        <p>Explore physics and chemistry concepts.</p>
         <div class="quiz-tabs">
-          <button
-            class="grade-btn grade10"
-            onclick="
-              selectGrade(
-                'technology',
-                'grade10',
-                'quiz-technology',
-                'memo-technology',
-                'terms-technology',
-              )
-            "
-          >
-            Grade 10
-          </button>
-          <button
-            class="grade-btn grade11"
-            onclick="
-              selectGrade(
-                'technology',
-                'grade11',
-                'quiz-technology',
-                'memo-technology',
-                'terms-technology',
-              )
-            "
-          >
-            Grade 11
-          </button>
-          <button
-            class="grade-btn grade12"
-            onclick="
-              selectGrade(
-                'technology',
-                'grade12',
-                'quiz-technology',
-                'memo-technology',
-                'terms-technology',
-              )
-            "
-          >
-            Grade 12
-          </button>
+          <button class="grade-btn grade10" onclick="selectGrade('physical_science', 'grade10', 'quiz-physical_science', 'memo-physical_science', 'terms-physical_science')">Grade 10</button>
+          <button class="grade-btn grade11" onclick="selectGrade('physical_science', 'grade11', 'quiz-physical_science', 'memo-physical_science', 'terms-physical_science')">Grade 11</button>
+          <button class="grade-btn grade12" onclick="selectGrade('physical_science', 'grade12', 'quiz-physical_science', 'memo-physical_science', 'terms-physical_science')">Grade 12</button>
+        </div>
+        <div class="term-tabs" id="terms-physical_science"></div>
+        <div class="quiz-container">
+          <div id="quiz-physical_science" class="quiz-area"></div>
+          <div id="memo-physical_science" class="memo-area"></div>
+        </div>
+      </div>
+
+      <!-- Life Science (FET, Gr 10-12) -->
+      <div class="quiz-card quiz-card--science">
+        <h3>Life Science</h3>
+        <p>Biology — from cells to ecosystems and genetics.</p>
+        <div class="quiz-tabs">
+          <button class="grade-btn grade10" onclick="selectGrade('life_science', 'grade10', 'quiz-life_science', 'memo-life_science', 'terms-life_science')">Grade 10</button>
+          <button class="grade-btn grade11" onclick="selectGrade('life_science', 'grade11', 'quiz-life_science', 'memo-life_science', 'terms-life_science')">Grade 11</button>
+          <button class="grade-btn grade12" onclick="selectGrade('life_science', 'grade12', 'quiz-life_science', 'memo-life_science', 'terms-life_science')">Grade 12</button>
+        </div>
+        <div class="term-tabs" id="terms-life_science"></div>
+        <div class="quiz-container">
+          <div id="quiz-life_science" class="quiz-area"></div>
+          <div id="memo-life_science" class="memo-area"></div>
+        </div>
+      </div>
+
+      <!-- Technology (Senior Phase, Gr 8-9) -->
+      <div class="quiz-card quiz-card--tech">
+        <h3>Technology</h3>
+        <p>Structures, processing, and systems and control.</p>
+        <div class="quiz-tabs">
+          <button class="grade-btn grade8" onclick="selectGrade('technology', 'grade8', 'quiz-technology', 'memo-technology', 'terms-technology')">Grade 8</button>
+          <button class="grade-btn grade9" onclick="selectGrade('technology', 'grade9', 'quiz-technology', 'memo-technology', 'terms-technology')">Grade 9</button>
         </div>
         <div class="term-tabs" id="terms-technology"></div>
         <div class="quiz-container">
@@ -241,29 +197,76 @@
         </div>
       </div>
 
-      <!-- Art -->
-      <div class="quiz-card quiz-card--art grade10-block">
+      <!-- Technology / CAT (FET, Gr 10-12) -->
+      <div class="quiz-card quiz-card--tech">
+        <h3>Technology (CAT)</h3>
+        <p>Test your Computer Applications Technology knowledge.</p>
+        <div class="quiz-tabs">
+          <button class="grade-btn grade10" onclick="selectGrade('cat', 'grade10', 'quiz-cat', 'memo-cat', 'terms-cat')">Grade 10</button>
+          <button class="grade-btn grade11" onclick="selectGrade('cat', 'grade11', 'quiz-cat', 'memo-cat', 'terms-cat')">Grade 11</button>
+          <button class="grade-btn grade12" onclick="selectGrade('cat', 'grade12', 'quiz-cat', 'memo-cat', 'terms-cat')">Grade 12</button>
+        </div>
+        <div class="term-tabs" id="terms-cat"></div>
+        <div class="quiz-container">
+          <div id="quiz-cat" class="quiz-area"></div>
+          <div id="memo-cat" class="memo-area"></div>
+        </div>
+      </div>
+
+      <!-- EMS (Senior Phase, Gr 8-9) -->
+      <div class="quiz-card quiz-card--math">
+        <h3>EMS</h3>
+        <p>Economics, Business, and Financial Literacy.</p>
+        <div class="quiz-tabs">
+          <button class="grade-btn grade8" onclick="selectGrade('ems', 'grade8', 'quiz-ems', 'memo-ems', 'terms-ems')">Grade 8</button>
+          <button class="grade-btn grade9" onclick="selectGrade('ems', 'grade9', 'quiz-ems', 'memo-ems', 'terms-ems')">Grade 9</button>
+        </div>
+        <div class="term-tabs" id="terms-ems"></div>
+        <div class="quiz-container">
+          <div id="quiz-ems" class="quiz-area"></div>
+          <div id="memo-ems" class="memo-area"></div>
+        </div>
+      </div>
+
+      <!-- Accounting (FET, Gr 10-12) -->
+      <div class="quiz-card quiz-card--math">
+        <h3>Accounting</h3>
+        <p>Financial statements, ledgers, and analysis and interpretation.</p>
+        <div class="quiz-tabs">
+          <button class="grade-btn grade10" onclick="selectGrade('accounting', 'grade10', 'quiz-accounting', 'memo-accounting', 'terms-accounting')">Grade 10</button>
+          <button class="grade-btn grade11" onclick="selectGrade('accounting', 'grade11', 'quiz-accounting', 'memo-accounting', 'terms-accounting')">Grade 11</button>
+          <button class="grade-btn grade12" onclick="selectGrade('accounting', 'grade12', 'quiz-accounting', 'memo-accounting', 'terms-accounting')">Grade 12</button>
+        </div>
+        <div class="term-tabs" id="terms-accounting"></div>
+        <div class="quiz-container">
+          <div id="quiz-accounting" class="quiz-area"></div>
+          <div id="memo-accounting" class="memo-area"></div>
+        </div>
+      </div>
+
+      <!-- Creative Arts (Senior Phase, Gr 8-9) -->
+      <div class="quiz-card quiz-card--art">
+        <h3>Creative Arts</h3>
+        <p>Visual Arts, Music, Drama, and Dance.</p>
+        <div class="quiz-tabs">
+          <button class="grade-btn grade8" onclick="selectGrade('creative_arts', 'grade8', 'quiz-creative_arts', 'memo-creative_arts', 'terms-creative_arts')">Grade 8</button>
+          <button class="grade-btn grade9" onclick="selectGrade('creative_arts', 'grade9', 'quiz-creative_arts', 'memo-creative_arts', 'terms-creative_arts')">Grade 9</button>
+        </div>
+        <div class="term-tabs" id="terms-creative_arts"></div>
+        <div class="quiz-container">
+          <div id="quiz-creative_arts" class="quiz-area"></div>
+          <div id="memo-creative_arts" class="memo-area"></div>
+        </div>
+      </div>
+
+      <!-- Art (FET, Gr 10-12) -->
+      <div class="quiz-card quiz-card--art">
         <h3>Art</h3>
         <p>Discover creativity through visual arts, design, and history.</p>
         <div class="quiz-tabs">
-          <button
-            class="grade-btn grade10"
-            onclick="selectGrade('art', 'grade10', 'quiz-art', 'memo-art', 'terms-art')"
-          >
-            Grade 10
-          </button>
-          <button
-            class="grade-btn grade11"
-            onclick="selectGrade('art', 'grade11', 'quiz-art', 'memo-art', 'terms-art')"
-          >
-            Grade 11
-          </button>
-          <button
-            class="grade-btn grade12"
-            onclick="selectGrade('art', 'grade12', 'quiz-art', 'memo-art', 'terms-art')"
-          >
-            Grade 12
-          </button>
+          <button class="grade-btn grade10" onclick="selectGrade('art', 'grade10', 'quiz-art', 'memo-art', 'terms-art')">Grade 10</button>
+          <button class="grade-btn grade11" onclick="selectGrade('art', 'grade11', 'quiz-art', 'memo-art', 'terms-art')">Grade 11</button>
+          <button class="grade-btn grade12" onclick="selectGrade('art', 'grade12', 'quiz-art', 'memo-art', 'terms-art')">Grade 12</button>
         </div>
         <div class="term-tabs" id="terms-art"></div>
         <div class="quiz-container">
