@@ -69,68 +69,27 @@ export async function getQuestionsWithFallback(subject, grade, term) {
 // automatically.
 window.getQuestionsWithFallback = getQuestionsWithFallback;
 
-/* ---------- Download for Offline ---------- */
+/* ---------- Silent offline pre-warming ---------- */
 
 const ALL_TERMS = ["term1", "term2", "term3", "term4"];
 
 /**
- * Pre-fetches all 4 terms for one subject + grade, warming Firestore's
- * persistentLocalCache so that grade's quizzes are available offline —
- * even terms the learner hasn't clicked through yet. Scoped to a single
- * grade (not the whole subject) so it stays fast and only pulls what's
- * actually relevant to the learner using it. Same intent as the
- * "Download This Page for Offline" button on the contact page.
+ * Silently pre-fetches the other 3 terms for a subject + grade in the
+ * background, the moment a learner opens ANY term for that grade — no
+ * button, no visible status. This is what makes "quizzes just work
+ * offline" true beyond the single term the learner actually clicked:
+ * as long as they had signal at some point while browsing a grade, the
+ * whole grade gets warmed into Firestore's persistentLocalCache.
+ *
+ * Fire-and-forget: callers don't await this, and it silently no-ops if
+ * the browser is already offline (nothing to warm from).
  */
-export async function downloadGradeForOffline(subject, grade) {
-  const btn = document.getElementById(`download-btn-${subject}-${grade}`);
-  const statusEl = document.getElementById(`download-status-${subject}-${grade}`);
-
-  if (!navigator.onLine) {
-    if (statusEl) {
-      statusEl.textContent = "You're offline — connect to the internet first to download.";
-      statusEl.className = "download-status show error";
-    }
-    return;
-  }
-
-  const originalText = btn ? btn.innerHTML : "";
-  if (btn) {
-    btn.disabled = true;
-    btn.innerHTML = '<span class="loading-spinner"></span> Downloading…';
-  }
-  if (statusEl) {
-    statusEl.textContent = "";
-    statusEl.className = "download-status";
-  }
-
-  let withQuestions = 0;
-  let empty = 0;
+export async function prefetchGradeTerms(subject, grade) {
+  if (!navigator.onLine) return; // nothing to fetch, avoid noisy console errors
 
   for (const term of ALL_TERMS) {
-    const questions = await fetchQuizQuestions(subject, grade, term);
-    if (questions.length) {
-      withQuestions++;
-    } else {
-      empty++;
-    }
+    await fetchQuizQuestions(subject, grade, term);
   }
-
-  if (btn) {
-    btn.innerHTML = '<i class="fa fa-check" aria-hidden="true"></i> Downloaded!';
-  }
-  if (statusEl) {
-    statusEl.textContent = withQuestions
-      ? `${withQuestions} of ${ALL_TERMS.length} term${ALL_TERMS.length === 1 ? "" : "s"} saved for offline use.`
-      : "No approved quizzes found for this grade yet.";
-    statusEl.className = `download-status show ${withQuestions ? "success" : "info"}`;
-  }
-
-  setTimeout(() => {
-    if (btn) {
-      btn.disabled = false;
-      btn.innerHTML = originalText;
-    }
-  }, 3000);
 }
 
-window.downloadGradeForOffline = downloadGradeForOffline;
+window.prefetchGradeTerms = prefetchGradeTerms;

@@ -1,7 +1,3 @@
-// Converts "^" exponent notation into real superscript HTML so quizzes
-// display maths properly instead of showing raw text like "2^(x+1)".
-// Handles both bracketed exponents — base^(expr) — and simple ones — x^2 —
-// and can be run more than once safely (won't double-wrap already-<sup> text).
 function formatMathText(text) {
   if (typeof text !== "string") return text;
   return text
@@ -9,11 +5,6 @@ function formatMathText(text) {
     .replace(/([A-Za-z0-9\)])\^([A-Za-z0-9]+)/g, "$1<sup>$2</sup>");
 }
 
-// Get questions for a specific subject, grade and term.
-// Tries Firestore (live or offline-cached via persistentLocalCache) first,
-// through getQuestionsWithFallback (see quiz-sync.js). Falls back to the
-// static quizzes object from quiz-data.js if nothing is available yet for
-// that subject/grade/term.
 async function getQuestions(subject, grade, term) {
   if (typeof getQuestionsWithFallback === "function") {
     return await getQuestionsWithFallback(subject, grade, term);
@@ -47,33 +38,17 @@ function selectGrade(subject, grade, containerId, memoId, termsId) {
       // highlight the active term button
       termsContainer.querySelectorAll(".term-btn").forEach((b) => b.classList.remove("active"));
       termBtn.classList.add("active");
-      // Quiz now opens in the full-screen overlay instead of loading inline
-      // into the card — keeps the subject grid layout stable and gives the
-      // user an explicit Back action instead of needing to refresh.
+    
       openQuizOverlay(subject, grade, term);
     };
     termsContainer.appendChild(termBtn);
   });
 
-  // Download button scoped to just this grade's 4 terms — not the
-  // whole subject, so it stays fast and only pulls what's relevant.
-  const downloadBtn = document.createElement("button");
-  downloadBtn.classList.add("download-quiz-btn");
-  downloadBtn.id = `download-btn-${subject}-${grade}`;
-  downloadBtn.innerHTML = '<i class="fa fa-download" aria-hidden="true"></i> Download this grade for Offline';
-  downloadBtn.onclick = () => downloadGradeForOffline(subject, grade);
-  termsContainer.appendChild(downloadBtn);
-
-  const downloadStatus = document.createElement("div");
-  downloadStatus.classList.add("download-status");
-  downloadStatus.id = `download-status-${subject}-${grade}`;
-  termsContainer.appendChild(downloadStatus);
+  if (typeof prefetchGradeTerms === "function") {
+    prefetchGradeTerms(subject, grade);
+  }
 }
 
-// Open the full-screen quiz overlay and load the requested quiz into it.
-// The overlay's markup (#quiz-overlay, #overlay-quiz-area, #overlay-memo-area)
-// lives once in quizzes.html rather than per-subject, so every "Term" button
-// on the page funnels into the same overlay.
 function openQuizOverlay(subject, grade, term) {
   const overlay = document.getElementById("quiz-overlay");
   const titleEl = document.getElementById("quiz-overlay-title");
