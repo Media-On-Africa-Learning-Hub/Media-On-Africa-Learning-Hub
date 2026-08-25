@@ -160,8 +160,6 @@ function updateOfflineUI() {
   }
 }
 
-/* ---------- Nav menu ---------- */
-
 function showmenu() {
   const navLinks = document.getElementById("navLinks");
   const mainNav = document.getElementById("mainNav");
@@ -213,6 +211,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const downloadResourcesBtn = document.getElementById("downloadResourcesBtn");
   if (downloadResourcesBtn)
     downloadResourcesBtn.addEventListener("click", downloadPageOffline);
+
+  const menuToggleBtn = document.getElementById("menuToggle");
+  if (menuToggleBtn) menuToggleBtn.addEventListener("click", showmenu);
+
+  const closeMenuBtn = document.querySelector(".close-btn");
+  if (closeMenuBtn) closeMenuBtn.addEventListener("click", hidemenu);
 
   const dismissBtn = document.getElementById("dismissBanner");
   if (dismissBtn) {

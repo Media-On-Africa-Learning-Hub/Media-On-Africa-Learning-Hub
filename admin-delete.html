@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CAPS Quiz Deleter - Admin</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f4f7f6;
+        max-width: 500px;
+        margin: 3rem auto;
+        padding: 2rem;
+        background: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+      h2 {
+        color: #0072ff;
+        margin-top: 0;
+      }
+      .field {
+        margin-bottom: 1.2rem;
+      }
+      label {
+        display: block;
+        font-weight: 600;
+        margin-bottom: 0.4rem;
+        color: #333;
+      }
+      select,
+      input,
+      button {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        box-sizing: border-box;
+        font-size: 1rem;
+      }
+      button {
+        background: #0072ff;
+        color: #fff;
+        border: none;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+      button:hover {
+        background: #005bb5;
+      }
+      button:disabled {
+        background: #aaa;
+        cursor: not-allowed;
+      }
+      button.danger {
+        background: #c62828;
+      }
+      button.danger:hover {
+        background: #9e1f1f;
+      }
+      .btn-row {
+        display: flex;
+        gap: 0.75rem;
+        margin-top: 0.5rem;
+      }
+      .btn-row button {
+        margin-top: 0;
+      }
+      #status {
+        margin-top: 1.5rem;
+        padding: 1rem;
+        display: none;
+        border-radius: 6px;
+        font-weight: 500;
+      }
+      .success {
+        background: #e8f5e9;
+        color: #2e7d32;
+        border: 1px solid #c8e6c9;
+      }
+      .error {
+        background: #ffebee;
+        color: #c62828;
+        border: 1px solid #ffcdd2;
+      }
+      .info {
+        background: #e3f2fd;
+        color: #0d47a1;
+        border: 1px solid #bbdefb;
+      }
+      #preview {
+        margin-top: 1.5rem;
+        display: none;
+      }
+      #preview h3 {
+        font-size: 0.95rem;
+        color: #333;
+        margin-bottom: 0.6rem;
+      }
+      #preview-list {
+        max-height: 260px;
+        overflow-y: auto;
+        border: 1px solid #eee;
+        border-radius: 6px;
+      }
+      .preview-item {
+        padding: 0.6rem 0.8rem;
+        border-bottom: 1px solid #f0f0f0;
+        font-size: 0.85rem;
+        color: #444;
+      }
+      .preview-item:last-child {
+        border-bottom: none;
+      }
+      .preview-item .topic {
+        display: block;
+        font-size: 0.75rem;
+        color: #888;
+        margin-top: 0.2rem;
+      }
+      .preview-empty {
+        padding: 0.8rem;
+        font-size: 0.85rem;
+        color: #888;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>CAPS Quiz Deleter</h2>
+
+    <div class="field">
+      <label for="subject">Subject</label>
+      <select id="subject"></select>
+    </div>
+
+    <div class="field">
+      <label for="grade">Grade</label>
+      <select id="grade"></select>
+    </div>
+
+    <div class="field">
+      <label for="term">Term</label>
+      <select id="term">
+        <option value="term1">Term 1</option>
+        <option value="term2">Term 2</option>
+        <option value="term3">Term 3</option>
+        <option value="term4">Term 4</option>
+      </select>
+    </div>
+
+    <button type="button" id="preview-btn">Preview Matching Questions</button>
+
+    <div id="preview">
+      <h3 id="preview-count"></h3>
+      <div id="preview-list"></div>
+      <div class="btn-row">
+        <button type="button" id="delete-btn" class="danger" disabled>
+          Delete All Shown
+        </button>
+      </div>
+    </div>
+
+    <div id="status"></div>
+
+    <script type="module">
+      import { db } from "./js/config/firebase.js";
+      import { subjectMeta } from "./js/quizzes/caps-topic.js";
+      import {
+        collection,
+        query,
+        where,
+        getDocs,
+        writeBatch,
+        doc,
+      } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+      const gradeLabels = {
+        grade8: "Grade 8",
+        grade9: "Grade 9",
+        grade10: "Grade 10",
+        grade11: "Grade 11",
+        grade12: "Grade 12",
+      };
+
+      const subjectSelect = document.getElementById("subject");
+      const gradeSelect = document.getElementById("grade");
+      const termSelect = document.getElementById("term");
+      const previewBtn = document.getElementById("preview-btn");
+      const deleteBtn = document.getElementById("delete-btn");
+      const previewBox = document.getElementById("preview");
+      const previewCount = document.getElementById("preview-count");
+      const previewList = document.getElementById("preview-list");
+      const status = document.getElementById("status");
+
+      // Populate subjects from subjectMeta so this dropdown can never drift
+      // out of sync with caps-topic.js / the CAPS phase structure.
+      Object.entries(subjectMeta).forEach(([key, meta]) => {
+        const opt = document.createElement("option");
+        opt.value = key;
+        opt.textContent = meta.label;
+        subjectSelect.appendChild(opt);
+      });
+
+      // Grade options depend on which subject is selected — Senior Phase
+      // subjects (Gr 8-9) and FET subjects (Gr 10-12) don't share grades,
+      // except Mathematics which spans both.
+      function populateGrades() {
+        const meta = subjectMeta[subjectSelect.value];
+        const previousValue = gradeSelect.value;
+        gradeSelect.innerHTML = "";
+        meta.grades.forEach((g) => {
+          const opt = document.createElement("option");
+          opt.value = g;
+          opt.textContent = gradeLabels[g] || g;
+          gradeSelect.appendChild(opt);
+        });
+        if (meta.grades.includes(previousValue)) {
+          gradeSelect.value = previousValue;
+        }
+      }
+
+      subjectSelect.addEventListener("change", populateGrades);
+      populateGrades(); // initial population on page load
+
+      // Any filter change invalidates the current preview — force a fresh
+      // preview before deleting so the admin never deletes a stale set.
+      function resetPreview() {
+        previewBox.style.display = "none";
+        previewList.innerHTML = "";
+        deleteBtn.disabled = true;
+        matchedDocs = [];
+      }
+      [subjectSelect, gradeSelect, termSelect].forEach((el) =>
+        el.addEventListener("change", resetPreview),
+      );
+
+      let matchedDocs = [];
+
+      function showStatus(className, text) {
+        status.style.display = "block";
+        status.className = className;
+        status.textContent = text;
+      }
+
+      previewBtn.addEventListener("click", async () => {
+        const subject = subjectSelect.value;
+        const grade = gradeSelect.value;
+        const term = termSelect.value;
+
+        status.style.display = "none";
+        previewBtn.disabled = true;
+        previewBtn.textContent = "Loading...";
+
+        try {
+          const q = query(
+            collection(db, "quizQuestions"),
+            where("subject", "==", subject),
+            where("grade", "==", grade),
+            where("term", "==", term),
+          );
+          const snapshot = await getDocs(q);
+          matchedDocs = snapshot.docs;
+
+          previewBox.style.display = "block";
+          previewList.innerHTML = "";
+
+          if (matchedDocs.length === 0) {
+            previewCount.textContent = "No questions found for this filter.";
+            previewList.innerHTML =
+              '<div class="preview-empty">Nothing to delete.</div>';
+            deleteBtn.disabled = true;
+          } else {
+            previewCount.textContent = `${matchedDocs.length} question(s) will be deleted:`;
+            matchedDocs.forEach((docSnap) => {
+              const data = docSnap.data();
+              const item = document.createElement("div");
+              item.className = "preview-item";
+              item.innerHTML = `${data.q || "(no question text)"}${
+                data.capsTopic
+                  ? `<span class="topic">${data.capsTopic}</span>`
+                  : ""
+              }`;
+              previewList.appendChild(item);
+            });
+            deleteBtn.disabled = false;
+          }
+        } catch (err) {
+          showStatus("error", "Failed to load preview: " + err.message);
+        } finally {
+          previewBtn.disabled = false;
+          previewBtn.textContent = "Preview Matching Questions";
+        }
+      });
+
+      deleteBtn.addEventListener("click", async () => {
+        if (!matchedDocs.length) return;
+
+        const confirmed = confirm(
+          `Delete ${matchedDocs.length} question(s)? This cannot be undone.`,
+        );
+        if (!confirmed) return;
+
+        deleteBtn.disabled = true;
+        deleteBtn.textContent = "Deleting...";
+        status.style.display = "none";
+
+        try {
+          // Firestore batches are capped at 500 writes, so chunk in case a
+          // filter ever matches more than that.
+          const chunkSize = 500;
+          let deleted = 0;
+
+          for (let i = 0; i < matchedDocs.length; i += chunkSize) {
+            const chunk = matchedDocs.slice(i, i + chunkSize);
+            const batch = writeBatch(db);
+            chunk.forEach((docSnap) => {
+              batch.delete(doc(db, "quizQuestions", docSnap.id));
+            });
+            await batch.commit();
+            deleted += chunk.length;
+          }
+
+          showStatus("success", `Success! Deleted ${deleted} question(s).`);
+          resetPreview();
+        } catch (err) {
+          showStatus("error", "Failed: " + err.message);
+        } finally {
+          deleteBtn.textContent = "Delete All Shown";
+        }
+      });
+    </script>
+  </body>
+</html>
