@@ -20,6 +20,7 @@
   --accent-science: #0d9488;
   --accent-tech: #2563eb;
   --accent-arts: #7c3aed;
+  --accent-business: #16a34a;
 }
 
 .subjects-page-header {
@@ -705,6 +706,24 @@ body.subjects-page .subjects-footer__credit .fa-heart-o {
 #subjectsApp .subject-col--art i.fa {
   color: var(--accent-arts);
   background: #faf5ff;
+}
+
+#subjectsApp .subject-col--lifeScience {
+  border-top-color: var(--accent-science);
+}
+#subjectsApp .subject-col--lifeScience i.fa {
+  color: var(--accent-science);
+  background: #f0fdfa;
+}
+
+#subjectsApp .subject-col--ems,
+#subjectsApp .subject-col--accounting {
+  border-top-color: var(--accent-business);
+}
+#subjectsApp .subject-col--ems i.fa,
+#subjectsApp .subject-col--accounting i.fa {
+  color: var(--accent-business);
+  background: #f0fdf4;
 }
 
 /* Term cards */

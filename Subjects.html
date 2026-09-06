@@ -146,8 +146,14 @@
         navLinks.style.right = "-280px";
       }
     </script>
-
+    <script type="module" src="js/config/seed.js"></script>
     <script src="js/subjects/subjects-data.js"></script>
+    <script type="module">
+      import { syncSubjectsFromFirestore } from "./js/subjects/subjects-sync.js";
+
+      // Expose function globally so non-module render scripts can call it
+      window.syncSubjectsFromFirestore = syncSubjectsFromFirestore;
+    </script>
     <script src="rubric.js"></script>
     <script src="js/subjects/subjects-render.js"></script>
     <script src="cybersafe-integration.js"></script>

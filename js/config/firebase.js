@@ -25,3 +25,5 @@ export const db = initializeFirestore(app, {
   })
 });
 
+window.db = db;
+
