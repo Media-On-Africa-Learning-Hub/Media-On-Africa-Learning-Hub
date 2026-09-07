@@ -6,7 +6,7 @@
  * This is what forces browsers to drop the old cache and fetch fresh files.
  */
 
-const CACHE_VERSION = "media-on-africa-v14";
+const CACHE_VERSION = "media-on-africa-v16";
 const STATIC_CACHE = `${CACHE_VERSION}-static`;
 const PDF_CACHE = `${CACHE_VERSION}-pdfs`;
 
@@ -15,7 +15,6 @@ const PDF_CACHE = `${CACHE_VERSION}-pdfs`;
 // Cached on install — served offline immediately
 // ─────────────────────────────────────────────────────────────
 const STATIC_ASSETS = [
-  "/",
   "index.html",
   "About.html",
   "Subjects.html",
@@ -238,6 +237,31 @@ self.addEventListener("activate", (event) => {
 });
 
 // ─────────────────────────────────────────────────────────────
+// Static assets are precached under their real filenames
+// ("contact.html"), but Live Server (and most static hosts) serve
+// those files at a "clean" URL with no extension ("/contact") without
+// ever redirecting — so the URL bar and cache keys don't match. This
+// tries the request as-is, then retries with ".html" appended (and
+// "index.html" for a trailing-slash folder path) before giving up.
+// ─────────────────────────────────────────────────────────────
+async function matchWithCleanUrlFallback(request) {
+  let response = await caches.match(request);
+  if (response) return response;
+
+  const url = new URL(request.url);
+  if (!url.pathname.endsWith("/") && !url.pathname.match(/\.[a-zA-Z0-9]+$/)) {
+    // "/contact" → try "/contact.html"
+    response = await caches.match(url.pathname.slice(1) + ".html");
+    if (response) return response;
+  } else if (url.pathname.endsWith("/")) {
+    // "/some-folder/" → try "/some-folder/index.html"
+    response = await caches.match(url.pathname.slice(1) + "index.html");
+    if (response) return response;
+  }
+  return undefined;
+}
+
+// ─────────────────────────────────────────────────────────────
 // FETCH
 // Strategy per request type:
 //   /api/*     → network only, never cache
@@ -339,11 +363,15 @@ self.addEventListener("fetch", (event) => {
       })
       .catch(async () => {
         // Offline (or network failed) — fall back to whatever we have cached
-        const cached = await caches.match(request);
+        const cached = await matchWithCleanUrlFallback(request);
         if (cached) return cached;
 
-        // Page navigation with nothing cached → serve offline.html
+        // Page navigation with nothing cached → try index.html (handles
+        // bare "/" or unknown paths), then fall back to offline.html
         if (request.mode === "navigate") {
+          const indexPage = await caches.match("index.html");
+          if (indexPage) return indexPage;
+
           const offlinePage = await caches.match("offline.html");
           // Safety net: if offline.html itself somehow isn't cached,
           // never resolve to undefined — that produces ERR_FAILED instead
