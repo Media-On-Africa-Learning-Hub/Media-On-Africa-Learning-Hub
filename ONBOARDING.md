@@ -1,4 +1,4 @@
-# Onboarding Guide — DataPulse Learning Hub
+# Onboarding Guide - E-Learning Hub
 
 Welcome. This doc explains how the project works, things to be careful with, and what still needs to be done. Read this before you start changing code.
 
@@ -84,4 +84,4 @@ If you pick up one of these, please update this list so the rest of the team kno
 
 ## 7. Getting help
 
-Repo admin: Lutendo Matshidze (Lumina) — lupreshie@gmail.com
+Repo admin: Lutendo Matshidze
